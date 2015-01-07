@@ -1,1 +1,5 @@
-# berlin-vegan-map
+# Installation
+**Requirements**
+
+ * node js
+
