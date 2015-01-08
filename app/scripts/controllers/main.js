@@ -39,8 +39,8 @@ angular.module('berlinVeganMapApp')
         google.maps.event.trigger(selectedMarker, 'click');
       }
     }
+    var infoWindow = new google.maps.InfoWindow();
     var createMarker = function (location){
-      var infoWindow = new google.maps.InfoWindow();
       var marker = new google.maps.Marker({
         map: $scope.map,
         position: new google.maps.LatLng(location.latCoord, location.longCoord),
