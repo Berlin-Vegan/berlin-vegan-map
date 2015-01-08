@@ -22,11 +22,8 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="container">
+<div class="container-fluid">
   <div ng-view=""></div>
-  <div class="footer">
-    <p><span class="glyphicon glyphicon-heart"></span> from the Berlin Vegan team</p>
-  </div>
 </div>
 
 
@@ -68,7 +65,7 @@
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
-
+<script src="https://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/main.js"></script>

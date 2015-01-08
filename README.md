@@ -5,7 +5,7 @@
 
 # Installation
  ```
-npm install -g bower grunt-cli yo
+npm install -g bower grunt-cli yo generator-angular
 npm install
 bower install
 ```
