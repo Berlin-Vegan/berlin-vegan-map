@@ -10,13 +10,16 @@
 angular.module('berlinVeganMapApp')
   .controller('MainController', function ($scope, $http, filterFilter) {
   
-    $scope.search = {};
+    var allDistricts = "Alle Bezirke";
+    $scope.search = { text: "", district: allDistricts };
     $scope.locations = null;
+    $scope.districts = null;
     
     $http({method: 'GET', url: 'assets/Locations.json'})
       .success(function(data, status, headers, config) {
         $scope.locations=data;
         initMap();
+        initDistricts();
         updateMarkers();
       })
       .error(function(data, status, headers, config) {
@@ -78,17 +81,17 @@ angular.module('berlinVeganMapApp')
     }
     
     function getFilteredMarkers() {
-    
+
       var locationPattern = {};
-      
-      if (typeof $scope.search.text === "undefined") {
-          $scope.search.text = "";
-      }
-      
+ 
       if ($scope.search.textAppliesToAllFields) {
         locationPattern.$ = $scope.search.text;
       } else {
         locationPattern.name = $scope.search.text;
+      }
+      
+      if ($scope.search.district !== allDistricts) {
+        locationPattern.district = $scope.search.district;
       }
       
       if ($scope.search.organic) {
@@ -140,6 +143,23 @@ angular.module('berlinVeganMapApp')
       }
       
       return filterFilter($scope.markers, { location: locationPattern });
+    }
+    
+    function initDistricts() {
+    
+      $scope.districts = [];
+      var districtSet = {};
+      
+      for (var i = 0; i < $scope.locations.length; i++) {
+        districtSet[$scope.locations[i].district] = "";
+      }
+      
+      for (var district in districtSet) {
+        $scope.districts.push(district);
+      }
+      
+      $scope.districts.sort();
+      $scope.districts.unshift(allDistricts);
     }
     
     function getContent(location) {
