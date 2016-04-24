@@ -149,14 +149,6 @@ angular.module('berlinVeganMapApp')
         locationPattern.delivery = "1";
       }
       
-      if ($scope.search.seatsOutdoor) {
-        locationPattern.seatsOutdoor = "1";
-      }
-      
-      if ($scope.search.seatsIndoor) {
-        locationPattern.seatsIndoor = "1";
-      }
-      
       return filterFilter($scope.markers, { location: locationPattern });
     }
     

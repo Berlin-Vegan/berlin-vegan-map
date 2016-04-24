@@ -18,8 +18,6 @@
       <input type="checkbox" ng-model="search.childChair" ng-change="updateMarkers()">Kinderstühle</input>
       <input type="checkbox" ng-model="search.catering" ng-change="updateMarkers()">Catering</input>
       <input type="checkbox" ng-model="search.delivery" ng-change="updateMarkers()">Lieferservice</input>
-      <input type="checkbox" ng-model="search.seatsOutdoor" ng-change="updateMarkers()">Sitzplätze draußen</input>
-      <input type="checkbox" ng-model="search.seatsIndoor" ng-change="updateMarkers()">Sitzplätze drinnen</input>
     </div>
     <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
       <hr/>
