@@ -94,6 +94,10 @@ angular.module('berlinVeganMapApp')
         locationPattern.district = $scope.search.district;
       }
       
+      if ($scope.search.completelyVegan) {
+        locationPattern.vegan = "5"; // TODO: Check if equivalent to legacy app's "not 2 and not 4".
+      }
+      
       if ($scope.search.organic) {
         locationPattern.organic = "1";
       }
