@@ -8,16 +8,20 @@
  * Controller of the berlinVeganMapApp
  */
 angular.module('berlinVeganMapApp')
-  .controller('MainController', function ($scope,$http) {
+  .controller('MainController', function ($scope, $http) {
+  
     $scope.locations = null;
-    $http({method: 'GET', url: 'assets/Locations.json'}).
-      success(function(data, status, headers, config) {
+    
+    $http({method: 'GET', url: 'assets/Locations.json'})
+      .success(function(data, status, headers, config) {
         $scope.locations=data;
         initMap()
-      }).error(function(data, status, headers, config) {
+      })
+      .error(function(data, status, headers, config) {
       });
 
     function initMap() {
+    
       var mapOptions = {
         zoom: 12,
         center: new google.maps.LatLng(52.5200070,13.4049540),
@@ -26,9 +30,6 @@ angular.module('berlinVeganMapApp')
 
       $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
       $scope.markers = [];
-
-
-
 
       for (var i = 0; i < $scope.locations.length; i++){
         createMarker($scope.locations[i]);
@@ -39,13 +40,16 @@ angular.module('berlinVeganMapApp')
         google.maps.event.trigger(selectedMarker, 'click');
       }
     }
+    
     var infoWindow = new google.maps.InfoWindow();
+    
     var createMarker = function (location){
       var marker = new google.maps.Marker({
         map: $scope.map,
         position: new google.maps.LatLng(location.latCoord, location.longCoord),
         title: location.name
       });
+      
       marker.content = '<div class="infoWindowContent">' + location.comment + '</div>';
 
       google.maps.event.addListener(marker, 'click', function(){
@@ -54,6 +58,5 @@ angular.module('berlinVeganMapApp')
       });
 
       $scope.markers.push(marker);
-
     }
   });
