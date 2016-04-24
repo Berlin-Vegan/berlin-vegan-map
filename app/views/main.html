@@ -22,7 +22,10 @@
       <input type="checkbox" ng-model="search.seatsIndoor" ng-change="updateMarkers()">Sitzplätze drinnen</input>
     </div>
     <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
-      <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+      <hr/>
+      <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
+      <div>{{marker.location.commentWithoutFormatting | cut:true:150:' ...'}}</div>
+      <div>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</div>
     </div>
   </div>
   <div class="col-sm-8 col-md-9 col-lg-9">

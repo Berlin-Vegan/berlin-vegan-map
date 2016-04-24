@@ -18,6 +18,7 @@ angular.module('berlinVeganMapApp')
     $http({method: 'GET', url: 'assets/Locations.json'})
       .success(function(data, status, headers, config) {
         $scope.locations=data;
+        editLocations();
         initMap();
         initDistricts();
         updateMarkers();
@@ -43,6 +44,16 @@ angular.module('berlinVeganMapApp')
       });
 
       $scope.markers.push(marker);
+    }
+    
+    function editLocations() {
+      for (var i = 0; i < $scope.locations.length; i++){
+        $scope.locations[i].commentWithoutFormatting = removeFormatting($scope.locations[i].comment);
+      }
+    }
+    
+    function removeFormatting(locationComment) {
+      return locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ");
     }
     
     function initMap() {
