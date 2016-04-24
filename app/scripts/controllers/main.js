@@ -8,18 +8,22 @@
  * Controller of the berlinVeganMapApp
  */
 angular.module('berlinVeganMapApp')
-  .controller('MainController', function ($scope, $http) {
+  .controller('MainController', function ($scope, $http, filterFilter) {
   
+    $scope.searchText = "";
     $scope.locations = null;
     
     $http({method: 'GET', url: 'assets/Locations.json'})
       .success(function(data, status, headers, config) {
         $scope.locations=data;
-        initMap()
+        initMap();
+        updateMarkers();
       })
       .error(function(data, status, headers, config) {
       });
 
+    $scope.updateMarkers = updateMarkers;
+    
     function initMap() {
     
       var mapOptions = {
@@ -38,6 +42,20 @@ angular.module('berlinVeganMapApp')
       $scope.openInfoWindow = function(e, selectedMarker){
         e.preventDefault();
         google.maps.event.trigger(selectedMarker, 'click');
+      }
+    }
+    
+    function updateMarkers() {
+      $scope.filteredMarkers = filterFilter($scope.markers, { location: { $: $scope.searchText }});
+
+      for (var i = 0; i < $scope.markers.length; i++){
+        var marker = $scope.markers[i];
+        
+        if ($scope.filteredMarkers.indexOf(marker) >= 0) {
+          marker.setMap($scope.map);
+        } else {
+          marker.setMap(null);
+        }
       }
     }
     
