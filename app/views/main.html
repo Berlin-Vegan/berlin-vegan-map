@@ -1,6 +1,22 @@
 <div class="row">
   <div class="col-sm-4 col-md-3 col-lg-3" id="leftCol">
-    <input type="text" ng-model="searchText" ng-change="updateMarkers()"/>
+    <div>
+      <input type="text" ng-model="search.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
+      <input type="checkbox" ng-model="search.textAppliesToAllFields" ng-change="updateMarkers()">Alle Felder durchsuchen</input>
+    </div>
+    <div>
+      <input type="checkbox" ng-model="search.organic" ng-change="updateMarkers()">Bio</input>
+      <input type="checkbox" ng-model="search.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input>
+      <input type="checkbox" ng-model="search.handicappedAccessible" ng-change="updateMarkers()">barrierefrei</input>
+      <input type="checkbox" ng-model="search.handicappedAccessibleWc" ng-change="updateMarkers()">barrierefreies WC</input>
+      <input type="checkbox" ng-model="search.dog" ng-change="updateMarkers()">Hunde erlaubt</input>
+      <input type="checkbox" ng-model="search.wlan" ng-change="updateMarkers()">WLAN</input>
+      <input type="checkbox" ng-model="search.childChair" ng-change="updateMarkers()">Kinderstühle</input>
+      <input type="checkbox" ng-model="search.catering" ng-change="updateMarkers()">Catering</input>
+      <input type="checkbox" ng-model="search.delivery" ng-change="updateMarkers()">Lieferservice</input>
+      <input type="checkbox" ng-model="search.seatsOutdoor" ng-change="updateMarkers()">Sitzplätze draußen</input>
+      <input type="checkbox" ng-model="search.seatsIndoor" ng-change="updateMarkers()">Sitzplätze drinnen</input>
+    </div>
     <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
       <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
     </div>

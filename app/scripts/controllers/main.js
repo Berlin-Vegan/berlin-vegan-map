@@ -10,7 +10,7 @@
 angular.module('berlinVeganMapApp')
   .controller('MainController', function ($scope, $http, filterFilter) {
   
-    $scope.searchText = "";
+    $scope.search = {};
     $scope.locations = null;
     
     $http({method: 'GET', url: 'assets/Locations.json'})
@@ -46,8 +46,8 @@ angular.module('berlinVeganMapApp')
     }
     
     function updateMarkers() {
-      $scope.filteredMarkers = filterFilter($scope.markers, { location: { $: $scope.searchText }});
-
+      $scope.filteredMarkers = getFilteredMarkers();
+      
       for (var i = 0; i < $scope.markers.length; i++){
         var marker = $scope.markers[i];
         
@@ -57,6 +57,71 @@ angular.module('berlinVeganMapApp')
           marker.setMap(null);
         }
       }
+    }
+    
+    function getFilteredMarkers() {
+    
+      var locationPattern = {};
+      
+      if (typeof $scope.search.text === "undefined") {
+          $scope.search.text = "";
+      }
+      
+      if ($scope.search.textAppliesToAllFields) {
+        locationPattern.$ = $scope.search.text;
+      } else {
+        locationPattern.name = $scope.search.text;
+      }
+      
+      if ($scope.search.organic) {
+        locationPattern.organic = "1";
+      }
+      
+      if ($scope.search.glutenFree) {
+        locationPattern.glutenFree = "1";
+      }
+      
+      if ($scope.search.handicappedAccessible) {
+        locationPattern.handicappedAccessible = "1";
+      }
+      
+      if ($scope.search.handicappedAccessibleWc) {
+        locationPattern.handicappedAccessibleWc = "1";
+      }
+      
+      if ($scope.search.organic) {
+        locationPattern.organic = "1";
+      }
+      
+      if ($scope.search.organic) {
+        locationPattern.organic = "1";
+      }
+      
+      if ($scope.search.dog) {
+        locationPattern.dog = "1";
+      }
+      
+      if ($scope.search.wlan) {
+        locationPattern.wlan = "1";
+      }
+      
+      if ($scope.search.catering) {
+        locationPattern.catering = "1";
+      }
+      
+      if ($scope.search.delivery) {
+        locationPattern.delivery = "1";
+      }
+      
+      if ($scope.search.seatsOutdoor) {
+        locationPattern.seatsOutdoor = "1";
+      }
+      
+      if ($scope.search.seatsIndoor) {
+        locationPattern.seatsIndoor = "1";
+      }
+      
+      return filterFilter($scope.markers, { location: locationPattern });
     }
     
     var infoWindow = new google.maps.InfoWindow();
