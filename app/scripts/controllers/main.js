@@ -47,16 +47,19 @@ angular.module('berlinVeganMapApp')
       var marker = new google.maps.Marker({
         map: $scope.map,
         position: new google.maps.LatLng(location.latCoord, location.longCoord),
-        title: location.name
+        title: location.name,
+        location: location
       });
-      
-      marker.content = '<div class="infoWindowContent">' + location.comment + '</div>';
 
       google.maps.event.addListener(marker, 'click', function(){
-        infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+        infoWindow.setContent('<h2>' + marker.title + '</h2>' + getContent(marker.location));
         infoWindow.open($scope.map, marker);
       });
 
       $scope.markers.push(marker);
+    }
+    
+    function getContent(location) {
+      return '<div class="infoWindowContent">' + location.comment + '</div>';
     }
   });
