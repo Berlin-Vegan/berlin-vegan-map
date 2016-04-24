@@ -23,6 +23,24 @@ angular.module('berlinVeganMapApp')
       });
 
     $scope.updateMarkers = updateMarkers;
+
+    var infoWindow = new google.maps.InfoWindow();
+    
+    var createMarker = function (location){
+      var marker = new google.maps.Marker({
+        map: $scope.map,
+        position: new google.maps.LatLng(location.latCoord, location.longCoord),
+        title: location.name,
+        location: location
+      });
+
+      google.maps.event.addListener(marker, 'click', function(){
+        infoWindow.setContent('<h2>' + marker.title + '</h2>' + getContent(marker.location));
+        infoWindow.open($scope.map, marker);
+      });
+
+      $scope.markers.push(marker);
+    }
     
     function initMap() {
     
@@ -122,24 +140,6 @@ angular.module('berlinVeganMapApp')
       }
       
       return filterFilter($scope.markers, { location: locationPattern });
-    }
-    
-    var infoWindow = new google.maps.InfoWindow();
-    
-    var createMarker = function (location){
-      var marker = new google.maps.Marker({
-        map: $scope.map,
-        position: new google.maps.LatLng(location.latCoord, location.longCoord),
-        title: location.name,
-        location: location
-      });
-
-      google.maps.event.addListener(marker, 'click', function(){
-        infoWindow.setContent('<h2>' + marker.title + '</h2>' + getContent(marker.location));
-        infoWindow.open($scope.map, marker);
-      });
-
-      $scope.markers.push(marker);
     }
     
     function getContent(location) {
