@@ -10,7 +10,8 @@
 app.controller('MainController', function ($scope, $http, LocationLogicService, filterFilter) {
   
     var allDistricts = "Alle Bezirke";
-    $scope.search = { text: "", district: allDistricts };
+    var allWeekDays = "Alle Wochentage";
+    $scope.search = { text: "", district: allDistricts, openAtWeekDay: allWeekDays };
     $scope.locations = null;
     $scope.districts = null;
     
@@ -140,7 +141,17 @@ app.controller('MainController', function ($scope, $http, LocationLogicService, 
             locationPattern.delivery = "1";
         }
         
-        return filterFilter($scope.markers, { location: locationPattern });
+        var filterFunction = function(marker, index, array) {
+
+            if ($scope.search.openAtWeekDay && $scope.search.openAtWeekDay !== allWeekDays) {
+                return marker.location.isOpen(parseInt($scope.search.openAtWeekDay), $scope.search.openAtTime);
+            } else {
+                return true;
+            }
+        }
+        
+        var filteredMarkers = filterFilter($scope.markers, { location: locationPattern });
+        return filterFilter(filteredMarkers, filterFunction);
     }
     
     function initDistricts() {

@@ -20,6 +20,20 @@
             <input type="checkbox" ng-model="search.catering" ng-change="updateMarkers()">Catering</input>
             <input type="checkbox" ng-model="search.delivery" ng-change="updateMarkers()">Lieferservice</input>
         </div>
+        <div>
+            Geöffnet:
+            <select ng-model="search.openAtWeekDay" ng-change="updateMarkers()">
+                <option value="Alle Wochentage">Alle Wochentage</option>
+                <option value="1">Montag</option>
+                <option value="2">Dienstag</option>
+                <option value="3">Mittwoch</option>
+                <option value="4">Donnerstag</option>
+                <option value="5">Freitag</option>
+                <option value="6">Samstag</option>
+                <option value="0">Sonntag</option>
+            </select>
+            <input type="time" ng-model="search.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-change="updateMarkers()"/>
+        </div>
         <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
             <hr/>
             <p>
