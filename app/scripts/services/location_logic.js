@@ -45,6 +45,17 @@ app.factory('LocationLogicService', function() {
             
             return otString;
         };
+        
+        location.getOpeningTimeTodayFriendly = function() {
+        
+            var otToday = this.getOpeningTimeToday();
+            
+            if (otToday === "") {
+                return "Heute geschlossen";
+            } else {
+                return "Heute geöffnet: " + otToday + " Uhr";
+            }
+        }
     }
     
     function removeFormatting(locationComment) {
