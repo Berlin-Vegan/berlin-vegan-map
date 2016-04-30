@@ -14,12 +14,12 @@ app.factory('LocationLogicService', function() {
     
         location.commentWithoutFormatting = removeFormatting(location.comment);
             
-        location.getOpeningTimeToday = function() { 
+        location.getOpeningTime = function(date) { 
         
-            var currentWeekDay = new Date().getDay();
+            var weekDay = date.getDay();
             var otString;
             
-            switch (currentWeekDay) {
+            switch (weekDay) {
                 case 0:
                     otString = this.otSun;
                     break;
@@ -43,12 +43,12 @@ app.factory('LocationLogicService', function() {
                     break;
             }
             
-            return otString;
+            return new OpeningTimes(otString);
         };
         
         location.getOpeningTimeTodayFriendly = function() {
         
-            var otToday = this.getOpeningTimeToday();
+            var otToday = this.getOpeningTime(new Date()).otString;
             
             if (otToday === "") {
                 return "Heute geschlossen";
@@ -60,6 +60,15 @@ app.factory('LocationLogicService', function() {
     
     function removeFormatting(locationComment) {
         return locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ");
+    }
+    
+    function OpeningTimes(otString) {
+    
+        var parts = otString.split("-");
+        
+        this.otString = otString;
+        this.beginString = parts.length > 0 ? parts[0].trim() : "";
+        this.endString = parts.length > 0 ? parts[1].trim() : "";
     }
     
     return {
