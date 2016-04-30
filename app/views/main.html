@@ -22,10 +22,12 @@
         </div>
         <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
             <hr/>
-            <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
-            <div>{{marker.location.commentWithoutFormatting | cut:true:150:' ...'}}</div>
-            <div>{{marker.location.getOpeningTimeTodayFriendly()}}</div>
-            <div>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</div>
+            <p>
+                <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
+            </p>
+            <p>{{marker.location.commentWithoutFormatting | cut:true:150:' ...'}}</p>
+            <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
+            <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>
         </div>
     </div>
     <div class="col-sm-8 col-md-9 col-lg-9">
