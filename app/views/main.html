@@ -1,48 +1,50 @@
 <div class="row">
     <div class="col-sm-4 col-md-3 col-lg-3" id="leftCol">
-        <div>
-            <input type="text" ng-model="search.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
-            <input type="checkbox" ng-model="search.textAppliesToAllFields" ng-change="updateMarkers()">Alle Felder durchsuchen</input>
-        </div>
-        <div>
-            <select ng-model="search.district" ng-change="updateMarkers()">
-                <option ng-repeat="district in districts">{{district}}</option>
-            </select>
-            <!--input type="checkbox" ng-model="search.openNow" ng-change="updateMarkers()">Jetzt geöffnet</input-->
-            <input type="checkbox" ng-model="search.completelyVegan" ng-change="updateMarkers()">100% vegan</input>
-            <input type="checkbox" ng-model="search.organic" ng-change="updateMarkers()">Bio</input>
-            <input type="checkbox" ng-model="search.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input>
-            <input type="checkbox" ng-model="search.handicappedAccessible" ng-change="updateMarkers()">barrierefrei</input>
-            <input type="checkbox" ng-model="search.handicappedAccessibleWc" ng-change="updateMarkers()">barrierefreies WC</input>
-            <input type="checkbox" ng-model="search.dog" ng-change="updateMarkers()">Hunde erlaubt</input>
-            <input type="checkbox" ng-model="search.wlan" ng-change="updateMarkers()">WLAN</input>
-            <input type="checkbox" ng-model="search.childChair" ng-change="updateMarkers()">Kinderstühle</input>
-            <input type="checkbox" ng-model="search.catering" ng-change="updateMarkers()">Catering</input>
-            <input type="checkbox" ng-model="search.delivery" ng-change="updateMarkers()">Lieferservice</input>
-        </div>
-        <div>
-            Geöffnet:
-            <select ng-model="search.openAtWeekDay" ng-change="updateMarkers()">
-                <option value="Alle Wochentage">Alle Wochentage</option>
-                <option value="1">Montag</option>
-                <option value="2">Dienstag</option>
-                <option value="3">Mittwoch</option>
-                <option value="4">Donnerstag</option>
-                <option value="5">Freitag</option>
-                <option value="6">Samstag</option>
-                <option value="0">Sonntag</option>
-            </select>
-            <input type="time" ng-model="search.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-change="updateMarkers()"/>
-        </div>
-        <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
-            <hr/>
-            <p>
-                <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
-            </p>
-            <p>{{marker.location.commentWithoutFormatting | cut:true:150:' ...'}}</p>
-            <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
-            <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>
-        </div>
+        <form name="searchForm">
+            <div>
+                <input type="text" ng-model="search.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
+                <input type="checkbox" ng-model="search.textAppliesToAllFields" ng-change="updateMarkers()">Alle Felder durchsuchen</input>
+            </div>
+            <div>
+                <select ng-model="search.district" ng-change="updateMarkers()">
+                    <option ng-repeat="district in districts">{{district}}</option>
+                </select>
+                <!--input type="checkbox" ng-model="search.openNow" ng-change="updateMarkers()">Jetzt geöffnet</input-->
+                <input type="checkbox" ng-model="search.completelyVegan" ng-change="updateMarkers()">100% vegan</input>
+                <input type="checkbox" ng-model="search.organic" ng-change="updateMarkers()">Bio</input>
+                <input type="checkbox" ng-model="search.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input>
+                <input type="checkbox" ng-model="search.handicappedAccessible" ng-change="updateMarkers()">barrierefrei</input>
+                <input type="checkbox" ng-model="search.handicappedAccessibleWc" ng-change="updateMarkers()">barrierefreies WC</input>
+                <input type="checkbox" ng-model="search.dog" ng-change="updateMarkers()">Hunde erlaubt</input>
+                <input type="checkbox" ng-model="search.wlan" ng-change="updateMarkers()">WLAN</input>
+                <input type="checkbox" ng-model="search.childChair" ng-change="updateMarkers()">Kinderstühle</input>
+                <input type="checkbox" ng-model="search.catering" ng-change="updateMarkers()">Catering</input>
+                <input type="checkbox" ng-model="search.delivery" ng-change="updateMarkers()">Lieferservice</input>
+            </div>
+            <div>
+                Geöffnet:
+                <select ng-model="search.openAtWeekDay" ng-change="updateMarkers()">
+                    <option value="Alle Wochentage">Alle Wochentage</option>
+                    <option value="1">Montag</option>
+                    <option value="2">Dienstag</option>
+                    <option value="3">Mittwoch</option>
+                    <option value="4">Donnerstag</option>
+                    <option value="5">Freitag</option>
+                    <option value="6">Samstag</option>
+                    <option value="0">Sonntag</option>
+                </select>
+                <input type="time" ng-model="search.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-change="updateMarkers()"/>
+            </div>
+            <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
+                <hr/>
+                <p>
+                    <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
+                </p>
+                <p>{{marker.location.commentWithoutFormatting | cut:true:150:' ...'}}</p>
+                <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
+                <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>
+            </div>
+        </form>
     </div>
     <div class="col-sm-8 col-md-9 col-lg-9">
         <div id="map" style="width: auto;height: 700px;"></div>
