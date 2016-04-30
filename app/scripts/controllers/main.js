@@ -7,8 +7,7 @@
  * # MainController
  * Controller of the berlinVeganMapApp
  */
-angular.module('berlinVeganMapApp')
-  .controller('MainController', function ($scope, $http, filterFilter) {
+app.controller('MainController', function ($scope, $http, filterFilter) {
   
     var allDistricts = "Alle Bezirke";
     $scope.search = { text: "", district: allDistricts };
