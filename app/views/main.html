@@ -33,7 +33,8 @@
                     <option value="6">Samstag</option>
                     <option value="0">Sonntag</option>
                 </select>
-                <input type="time" ng-model="search.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-change="updateMarkers()"/>
+                <input name="openAtTimeInput" type="time" ng-model="search.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-disabled="search.openAtWeekDay === 'Alle Wochentage'" ng-change="updateMarkers()"/>
+                <span class="error" ng-show="searchForm.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert)</span>
             </div>
             <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
                 <hr/>
