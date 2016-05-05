@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory('LocationLogicService', function() {
+app.factory('LocationLogicService', function(OpeningTimesService) {
 
     var service = {};
     
@@ -13,43 +13,20 @@ app.factory('LocationLogicService', function() {
     function enhanceLocation(location) {
     
         location.commentWithoutFormatting = removeFormatting(location.comment);
-            
-        location.getOpeningTime = function(weekDay) {
-        
-            var otString;
-            
-            switch (weekDay) {
-                case 0:
-                    otString = this.otSun;
-                    break;
-                case 1:
-                    otString = this.otMon;
-                    break;
-                case 2:
-                    otString = this.otTue;
-                    break;
-                case 3:
-                    otString = this.otWed;
-                    break;
-                case 4:
-                    otString = this.otThu;
-                    break;
-                case 5:
-                    otString = this.otFri;
-                    break;
-                case 6:
-                    otString = this.otSat;
-                    break;
-                default:
-                    alert("Illegal week day (expected 0-6): " + weekDay + " (type: " + typeof weekDay + ")");
-            }
-            
-            return new OpeningTimes(otString);
-        };
+
+        location.openingTimes = [
+            new OpeningTimes(location.otSun), 
+            new OpeningTimes(location.otMon), 
+            new OpeningTimes(location.otTue), 
+            new OpeningTimes(location.otWed), 
+            new OpeningTimes(location.otThu), 
+            new OpeningTimes(location.otFri), 
+            new OpeningTimes(location.otSat)
+        ];
         
         location.getOpeningTimeTodayFriendly = function() {
         
-            var otToday = this.getOpeningTime(new Date().getDay()).otString;
+            var otToday = this.openingTimes[new Date().getDay()].otString;
             
             if (otToday === "") {
                 return "Heute geschlossen";
@@ -59,12 +36,7 @@ app.factory('LocationLogicService', function() {
         }
         
         location.isOpen = function(weekDay, timeAsDate) {
-        
-            if (timeAsDate) {
-                return this.getOpeningTime(weekDay).isOpen(timeAsDate.getHours(), timeAsDate.getMinutes());
-            } else {
-                return this.getOpeningTime(weekDay).otString !== "";
-            }
+            return OpeningTimesService.isOpen(this.openingTimes, weekDay, timeAsDate);
         }
     }
     
@@ -76,33 +48,26 @@ app.factory('LocationLogicService', function() {
         
         this.otString = otString;
         
-        this.isOpen = function(hourOfDay, minuteOfHour) {
+        if (otString && otString.trim() !== "") {
         
-            if (otString === "") {
-                return false;
-            } else {
-                var otParts = otString.split("-");
-                var begin = otParts[0].trim();
-                var end = otParts[1].trim();
-                
-                var beginParts = begin.split(":");
-                var beginHour = beginParts[0];
-                var beginMinute = beginParts.length > 1 ? beginParts[1] : 0;
-                
-                var endParts = end.split(":");
-                var endHour = endParts[0];
-                var endMinute = endParts.length > 1 ? endParts[1] : 0;
-                
-                var year = 2000; // Arbitrary
-                var month = 1; // Arbitrary
-                var day = 1; // Arbitrary
-                
-                var dateAtSpecifiedTime = new Date(year, month, day, hourOfDay, minuteOfHour, 0, 0);
-                var dateAtBeginTime = new Date(year, month, day, beginHour, beginMinute, 0, 0);
-                var dateAtEndTime = new Date(year, month, day, endHour, endMinute, 0, 0);
-                
-                return dateAtBeginTime <= dateAtSpecifiedTime && dateAtSpecifiedTime < dateAtEndTime
-            }
+            var otParts = otString.split("-");
+            var begin = otParts[0].trim();
+            var end = otParts[1].trim();
+            
+            var beginParts = begin.split(":");
+            var beginHour = beginParts[0];
+            var beginMinute = beginParts.length > 1 ? beginParts[1] : 0;
+            
+            var endParts = end.split(":");
+            var endHour = endParts[0];
+            var endMinute = endParts.length > 1 ? endParts[1] : 0;
+            
+            var year = 2000; // Arbitrary
+            var month = 1; // Arbitrary
+            var day = 1; // Arbitrary
+            
+            this.begin = new Date(year, month, day, parseInt(beginHour), parseInt(beginMinute), 0, 0);
+            this.end = new Date(year, month, day, parseInt(endHour === "24" ? "0" : endHour), parseInt(endMinute), 0, 0);
         }
     }
     
