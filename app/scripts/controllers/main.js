@@ -77,10 +77,12 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
         
             var marker = $scope.markers[i];
             
-            if ($scope.filteredMarkers.indexOf(marker) >= 0) {
-                marker.setMap($scope.map);
-            } else {
-                marker.setMap(null);
+            if (marker !== $scope.geolocation.marker){
+                if ($scope.filteredMarkers.indexOf(marker) >= 0) {
+                    marker.setMap($scope.map);
+                } else {
+                    marker.setMap(null);
+                }
             }
         }
     }
