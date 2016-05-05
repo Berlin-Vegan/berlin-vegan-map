@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-4 col-md-3 col-lg-3" id="leftCol">
-        <form name="searchForm">
+        <form name="form">
             <div>
                 <input type="text" ng-model="search.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
                 <input type="checkbox" ng-model="search.textAppliesToAllFields" ng-change="updateMarkers()">Alle Felder durchsuchen</input>
@@ -34,18 +34,18 @@
                     <option value="0">Sonntag</option>
                 </select>
                 <input name="openAtTimeInput" type="time" ng-model="search.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-disabled="search.openAtWeekDay === 'Alle Wochentage'" ng-change="updateMarkers()"/>
-                <span class="error" ng-show="searchForm.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert)</span>
-            </div>
-            <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
-                <hr/>
-                <p>
-                    <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
-                </p>
-                <p>{{marker.location.commentWithoutFormatting | cut:true:150:' ...'}}</p>
-                <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
-                <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>
+                <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert)</span>
             </div>
         </form>
+        <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
+            <hr/>
+            <p>
+                <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
+            </p>
+            <p>{{marker.location.commentWithoutFormatting | cut:true:150:' ...'}}</p>
+            <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
+            <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>
+        </div>
     </div>
     <div class="col-sm-8 col-md-9 col-lg-9">
         <div id="map" style="width: auto;height: 700px;"></div>
