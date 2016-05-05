@@ -9,6 +9,7 @@
  */
 app.controller('MainController', function ($scope, $http, $timeout, LocationLogicService, filterFilter) {
   
+    var debugMode = false;
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
     $scope.search = { text: "", district: allDistricts, openAtWeekDay: allWeekDays };
@@ -195,7 +196,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
                         $scope.geolocation.info = "";
                     }
                 }, 
-                8000
+                debugMode ? 8000 : 16000
             );
             
             $scope.geolocation.info = "Ermittle Standort...";
@@ -203,7 +204,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
             
             var options = {
                 enableHighAccuracy: true,
-                timeout: 5000
+                timeout: debugMode ? 5000 : 15000
                 //maximumAge: 0
             };
             
