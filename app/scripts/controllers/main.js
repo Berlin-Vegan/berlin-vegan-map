@@ -7,13 +7,14 @@
  * # MainController
  * Controller of the berlinVeganMapApp
  */
-app.controller('MainController', function ($scope, $http, LocationLogicService, filterFilter) {
+app.controller('MainController', function ($scope, $http, $timeout, LocationLogicService, filterFilter) {
   
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
     $scope.search = { text: "", district: allDistricts, openAtWeekDay: allWeekDays };
     $scope.locations = null;
     $scope.districts = null;
+    $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
     
     $http({method: 'GET', url: 'assets/Locations.json'})
         .success(function(data, status, headers, config) {
@@ -27,7 +28,8 @@ app.controller('MainController', function ($scope, $http, LocationLogicService, 
         });
 
     $scope.updateMarkers = updateMarkers;
-
+    $scope.updateGeolocationMarker = updateGeolocationMarker;
+    
     var infoWindow = new google.maps.InfoWindow();
     
     var createMarker = function (location){
@@ -64,7 +66,7 @@ app.controller('MainController', function ($scope, $http, LocationLogicService, 
         $scope.openInfoWindow = function(e, selectedMarker){
             e.preventDefault();
             google.maps.event.trigger(selectedMarker, 'click');
-        }
+        };
     }
     
     function updateMarkers() {
@@ -173,5 +175,87 @@ app.controller('MainController', function ($scope, $http, LocationLogicService, 
     
     function getContent(location) {
         return '<div class="infoWindowContent">' + location.comment + '</div>';
+    }
+    
+    function updateGeolocationMarker() {
+
+        if ($scope.geolocation.show) {
+        
+            if (!navigator.geolocation) {
+                alert("Unerwartete Bedingung");
+            }
+            
+            // Workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=675533
+            $timeout(
+                function() {
+                    if ($scope.geolocation.info === "Ermittle Standort...") {
+                        $scope.geolocation.error = "Standortzugriff nicht möglich";
+                        $scope.geolocation.info = "";
+                    }
+                }, 
+                8000
+            );
+            
+            $scope.geolocation.info = "Ermittle Standort...";
+            $scope.geolocation.error = "";
+            
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 5000
+                //maximumAge: 0
+            };
+            
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    $scope.$apply(function() {
+                        var marker = new google.maps.Marker({
+                            map: $scope.map,
+                            position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                            title: "Aktueller Standort", 
+                            label: "X" // TODO: Another image
+                        });
+                        
+                        google.maps.event.addListener(marker, 'click', function(){
+                            infoWindow.setContent('<h2>' + marker.title + '</h2>');
+                            infoWindow.open($scope.map, marker);
+                        });
+
+                        $scope.markers.push(marker);
+                        $scope.geolocation.marker = marker;
+                        $scope.geolocation.info = "";
+                        $scope.geolocation.error = "";
+                    });
+                }, 
+                function(positionError) {
+                    
+                    $scope.$apply(function() {
+                    
+                        var reason;
+                        
+                        switch (positionError.code)
+                        {
+                            case 1://PositionError.PERMISSION_DENIED:
+                                reason = "Zugriff verweigert";
+                                break;
+                            case 2: //PositionError.POSITION_UNAVAILABLE:
+                                reason = "Standort nicht verfügbar";
+                                break;
+                            case 3: //PositionError.TIMEOUT:
+                                reason = "Zeitüberschreitung";
+                                break;
+                        }
+                        
+                        $scope.geolocation.info = "";
+                        $scope.geolocation.error = "Standortzugriff nicht möglich: " + reason;
+                    });
+                },
+                options
+            );
+        } else {
+            $scope.geolocation.info = "";
+            $scope.geolocation.error = "";
+            $scope.geolocation.marker.setMap(null);
+            // TODO: This is a potential memory leak. Better delete the marker.
+        }
     }
 });

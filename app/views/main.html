@@ -36,6 +36,18 @@
                 <input name="openAtTimeInput" type="time" ng-model="search.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-disabled="search.openAtWeekDay === 'Alle Wochentage'" ng-change="updateMarkers()"/>
                 <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert)</span>
             </div>
+            <div ng-show="geolocation.supported">
+                <div>
+                    <input type="checkbox" ng-model="geolocation.show" ng-change="updateGeolocationMarker()">
+                        <span ng-hide="geolocation.marker.map">Aktuellen Standort anzeigen</span>
+                        <a ng-show="geolocation.marker.map" href="#" ng-click="openInfoWindow($event, geolocation.marker)">Aktuellen Standort anzeigen</a> 
+                    </input>
+                </div>
+                <div>
+                    <span ng-bind="geolocation.info"></span>
+                    <span ng-bind="geolocation.error" class="error"></span>
+                </div>
+            </div>
         </form>
         <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
             <hr/>
