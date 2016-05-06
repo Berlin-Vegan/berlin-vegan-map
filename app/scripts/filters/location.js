@@ -1,6 +1,6 @@
 "use strict";
 
-app.filter('location', function(filterFilter, UtilService) {
+app.filter('location', function(filterFilter) {
 
     return function(locations, query) {
 
@@ -72,12 +72,7 @@ app.filter('location', function(filterFilter, UtilService) {
         var filterFunction2 = function(location, index, array) {
 
             if (query.distance.enabled) {            
-                return UtilService.getDistanceFromLatLonInKm(
-                    query.distance.position.lat(), 
-                    query.distance.position.lng(), 
-                    parseFloat(location.latCoord), 
-                    parseFloat(location.longCoord)
-                ) <= query.distance.km;
+                return location.getDistanceToPositionInKm(query.distance.position) <= query.distance.km;
             } else {
                 return true;
             }

@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory('LocationLogicService', function(OpeningTimesService) {
+app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
 
     var service = {};
     
@@ -38,6 +38,16 @@ app.factory('LocationLogicService', function(OpeningTimesService) {
         location.isOpen = function(weekDay, timeAsDate) {
             return OpeningTimesService.isOpen(this.openingTimes, weekDay, timeAsDate);
         }
+        
+        location.getDistanceToPositionInKm = function(position) {
+        
+            return UtilService.getDistanceFromLatLonInKm(
+                position.lat(), 
+                position.lng(), 
+                parseFloat(this.latCoord), 
+                parseFloat(this.longCoord)
+            )
+        };
     }
     
     function removeFormatting(locationComment) {
