@@ -2,28 +2,28 @@
     <div class="col-sm-4 col-md-3 col-lg-3" id="leftCol">
         <form name="form">
             <div>
-                <input type="text" ng-model="search.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
-                <input type="checkbox" ng-model="search.textAppliesToAllFields" ng-change="updateMarkers()">Alle Felder durchsuchen</input>
+                <input type="text" ng-model="query.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
+                <input type="checkbox" ng-model="query.textAppliesToAllFields" ng-change="updateMarkers()">Alle Felder durchsuchen</input>
             </div>
             <div>
-                <select ng-model="search.district" ng-change="updateMarkers()">
+                <select ng-model="query.district" ng-change="updateMarkers()">
                     <option ng-repeat="district in districts">{{district}}</option>
                 </select>
-                <!--input type="checkbox" ng-model="search.openNow" ng-change="updateMarkers()">Jetzt geöffnet</input-->
-                <input type="checkbox" ng-model="search.completelyVegan" ng-change="updateMarkers()">100% vegan</input>
-                <input type="checkbox" ng-model="search.organic" ng-change="updateMarkers()">Bio</input>
-                <input type="checkbox" ng-model="search.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input>
-                <input type="checkbox" ng-model="search.handicappedAccessible" ng-change="updateMarkers()">barrierefrei</input>
-                <input type="checkbox" ng-model="search.handicappedAccessibleWc" ng-change="updateMarkers()">barrierefreies WC</input>
-                <input type="checkbox" ng-model="search.dog" ng-change="updateMarkers()">Hunde erlaubt</input>
-                <input type="checkbox" ng-model="search.wlan" ng-change="updateMarkers()">WLAN</input>
-                <input type="checkbox" ng-model="search.childChair" ng-change="updateMarkers()">Kinderstühle</input>
-                <input type="checkbox" ng-model="search.catering" ng-change="updateMarkers()">Catering</input>
-                <input type="checkbox" ng-model="search.delivery" ng-change="updateMarkers()">Lieferservice</input>
+                <!--input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">Jetzt geöffnet</input-->
+                <input type="checkbox" ng-model="query.completelyVegan" ng-change="updateMarkers()">100% vegan</input>
+                <input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">Bio</input>
+                <input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input>
+                <input type="checkbox" ng-model="query.handicappedAccessible" ng-change="updateMarkers()">barrierefrei</input>
+                <input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="updateMarkers()">barrierefreies WC</input>
+                <input type="checkbox" ng-model="query.dog" ng-change="updateMarkers()">Hunde erlaubt</input>
+                <input type="checkbox" ng-model="query.wlan" ng-change="updateMarkers()">WLAN</input>
+                <input type="checkbox" ng-model="query.childChair" ng-change="updateMarkers()">Kinderstühle</input>
+                <input type="checkbox" ng-model="query.catering" ng-change="updateMarkers()">Catering</input>
+                <input type="checkbox" ng-model="query.delivery" ng-change="updateMarkers()">Lieferservice</input>
             </div>
             <div>
                 Geöffnet:
-                <select ng-model="search.openAtWeekDay" ng-change="updateMarkers()">
+                <select ng-model="query.openAtWeekDay" ng-change="updateMarkers()">
                     <option value="Alle Wochentage">Alle Wochentage</option>
                     <option value="1">Montag</option>
                     <option value="2">Dienstag</option>
@@ -33,7 +33,7 @@
                     <option value="6">Samstag</option>
                     <option value="0">Sonntag</option>
                 </select>
-                <input name="openAtTimeInput" type="time" ng-model="search.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-disabled="search.openAtWeekDay === 'Alle Wochentage'" ng-change="updateMarkers()"/>
+                <input name="openAtTimeInput" type="time" ng-model="query.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-disabled="query.openAtWeekDay === 'Alle Wochentage'" ng-change="updateMarkers()"/>
                 <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert)</span>
             </div>
             <div ng-show="geolocation.supported">

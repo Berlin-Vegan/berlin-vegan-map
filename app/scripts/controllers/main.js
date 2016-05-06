@@ -13,7 +13,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
     
-    $scope.search = { 
+    $scope.query = { 
         text: "", 
         district: allDistricts, 
         openAtWeekDay: allWeekDays, 
@@ -106,7 +106,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
                 }
             ).map(function(marker) { return marker.location; });
 
-        var filteredLocations = locationFilter(locations, $scope.search);
+        var filteredLocations = locationFilter(locations, $scope.query);
 
         return filterFilter(
             $scope.markers, 
