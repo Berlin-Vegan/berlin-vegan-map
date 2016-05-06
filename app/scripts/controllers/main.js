@@ -7,12 +7,20 @@
  * # MainController
  * Controller of the berlinVeganMapApp
  */
-app.controller('MainController', function ($scope, $http, $timeout, LocationLogicService, filterFilter) {
+app.controller('MainController', function ($scope, $http, $timeout, LocationLogicService, filterFilter, locationFilter) {
   
     var debugMode = false;
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
-    $scope.search = { text: "", district: allDistricts, openAtWeekDay: allWeekDays };
+    
+    $scope.search = { 
+        text: "", 
+        district: allDistricts, 
+        openAtWeekDay: allWeekDays, 
+        allDistricts: function() { return this.district === allDistricts; }, 
+        allWeekDays: function() { return this.openAtWeekDay === allWeekDays; }
+    };
+    
     $scope.locations = null;
     $scope.districts = null;
     $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
@@ -90,73 +98,22 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
     
     function getFilteredMarkers() {
 
-        var locationPattern = {};
-   
-        if ($scope.search.textAppliesToAllFields) {
-            locationPattern.$ = $scope.search.text;
-        } else {
-            locationPattern.name = $scope.search.text;
-        }
-        
-        if ($scope.search.district !== allDistricts) {
-            locationPattern.district = $scope.search.district;
-        }
-        
-        if ($scope.search.completelyVegan) {
-            locationPattern.vegan = "5"; // TODO: Check if equivalent to legacy app's "not 2 and not 4".
-        }
-        
-        if ($scope.search.organic) {
-            locationPattern.organic = "1";
-        }
-        
-        if ($scope.search.glutenFree) {
-            locationPattern.glutenFree = "1";
-        }
-        
-        if ($scope.search.handicappedAccessible) {
-            locationPattern.handicappedAccessible = "1";
-        }
-        
-        if ($scope.search.handicappedAccessibleWc) {
-            locationPattern.handicappedAccessibleWc = "1";
-        }
-        
-        if ($scope.search.organic) {
-            locationPattern.organic = "1";
-        }
-        
-        if ($scope.search.organic) {
-            locationPattern.organic = "1";
-        }
-        
-        if ($scope.search.dog) {
-            locationPattern.dog = "1";
-        }
-        
-        if ($scope.search.wlan) {
-            locationPattern.wlan = "1";
-        }
-        
-        if ($scope.search.catering) {
-            locationPattern.catering = "1";
-        }
-        
-        if ($scope.search.delivery) {
-            locationPattern.delivery = "1";
-        }
-        
-        var filterFunction = function(marker, index, array) {
+        var locations = 
+            filterFilter(
+                $scope.markers, 
+                function(marker, index, array) { 
+                    return typeof marker.location !== "undefined"; 
+                }
+            ).map(function(marker) { return marker.location; });
 
-            if ($scope.search.openAtWeekDay && $scope.search.openAtWeekDay !== allWeekDays) {
-                return marker.location.isOpen(parseInt($scope.search.openAtWeekDay), $scope.search.openAtTime);
-            } else {
-                return true;
+        var filteredLocations = locationFilter(locations, $scope.search);
+
+        return filterFilter(
+            $scope.markers, 
+            function(marker, index, array) { 
+                return filteredLocations.indexOf(marker.location) >= 0;
             }
-        }
-        
-        var filteredMarkers = filterFilter($scope.markers, { location: locationPattern });
-        return filterFilter(filteredMarkers, filterFunction);
+        );
     }
     
     function initDistricts() {
