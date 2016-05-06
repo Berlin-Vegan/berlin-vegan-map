@@ -62,6 +62,7 @@
             <p>{{marker.location.commentWithoutFormatting | cut:true:150:' ...'}}</p>
             <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
             <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>
+            <p ng-show="geolocation.marker.map">Entfernung: {{marker.location.getDistanceToPositionInKm(geolocation.marker.position) | number : 1}} km</p>
         </div>
     </div>
     <div class="col-sm-8 col-md-9 col-lg-9">
