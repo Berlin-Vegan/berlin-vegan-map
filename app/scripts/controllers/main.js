@@ -18,7 +18,8 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
         district: allDistricts, 
         openAtWeekDay: allWeekDays, 
         allDistricts: function() { return this.district === allDistricts; }, 
-        allWeekDays: function() { return this.openAtWeekDay === allWeekDays; }
+        allWeekDays: function() { return this.openAtWeekDay === allWeekDays; },
+        distance: { enabled: false, position: null, km: 1}
     };
     
     $scope.locations = null;
@@ -184,6 +185,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
                         $scope.geolocation.marker = marker;
                         $scope.geolocation.info = "";
                         $scope.geolocation.error = "";
+                        $scope.query.distance.position = marker.position;
                     });
                 }, 
                 function(positionError) {
@@ -216,6 +218,13 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
             $scope.geolocation.error = "";
             $scope.geolocation.marker.setMap(null);
             // TODO: This is a potential memory leak. Better delete the marker.
+            
+            if ($scope.query.distance.enabled) {
+                $scope.query.distance.enabled = false;
+                $scope.updateMarkers();
+            }
+
+            $scope.query.distance.position = null;
         }
     }
 });
