@@ -53,8 +53,17 @@
                     <span ng-bind-template="{{query.distance.km | number : 1}} km"/>
                 </div>
             </div>
+            <div>
+                Sortierung:
+                <select ng-model="orderSelection" ng-change="updateOrder()">
+                    <option>Name</option>
+                    <option>Bezirk</option>
+                    <option ng-show="geolocation.marker.map"">Entfernung</option>
+                    <option ng-hide="geolocation.marker.map" ng-disabled="true" title="Standort erforderlich">Entfernung</option>
+                </select>
+            </div>
         </form>
-        <div id="class" ng-repeat="marker in filteredMarkers | orderBy : 'title'">
+        <div id="class" ng-repeat="marker in filteredMarkers | orderBy : order">
             <hr/>
             <p>
                 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>

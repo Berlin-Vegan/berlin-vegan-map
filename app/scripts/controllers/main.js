@@ -25,6 +25,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
     $scope.locations = null;
     $scope.districts = null;
     $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
+    $scope.orderSelection = "Name";
     
     $http({method: 'GET', url: 'assets/Locations.json'})
         .success(function(data, status, headers, config) {
@@ -33,12 +34,14 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
             initMap();
             initDistricts();
             updateMarkers();
+            updateOrder();
         })
         .error(function(data, status, headers, config) {
         });
 
     $scope.updateMarkers = updateMarkers;
     $scope.updateGeolocationMarker = updateGeolocationMarker;
+    $scope.updateOrder = updateOrder;
     
     var infoWindow = new google.maps.InfoWindow();
     
@@ -226,5 +229,32 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
 
             $scope.query.distance.position = null;
         }
+    }
+    
+    function updateOrder() {
+    
+        var order;
+        
+        switch ($scope.orderSelection) {
+            case "Name":
+                order = "location.name";
+                break;
+            case "Bezirk":
+                order = "location.district";
+                break;
+            case "Entfernung":
+                order = function(marker) { 
+                    if ($scope.geolocation.marker && $scope.geolocation.marker.map) {
+                        return marker.location.getDistanceToPositionInKm($scope.geolocation.marker.position); 
+                    } else {
+                        return 1;
+                    }
+                };
+                break;
+            default:
+                console.log("Unerwarteter Wert für orderSelection: " + $scope.orderSelection); // TODO
+        }
+        
+        $scope.order = order; 
     }
 });
