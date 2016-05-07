@@ -54,7 +54,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
         });
 
         google.maps.event.addListener(marker, 'click', function(){
-            infoWindow.setContent('<h2>' + marker.title + '</h2>' + getContent(marker.location));
+            infoWindow.setContent(getContent(marker.location));
             infoWindow.open($scope.map, marker);
         });
 
@@ -138,7 +138,8 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
     }
     
     function getContent(location) {
-        return '<div class="infoWindowContent">' + location.comment + '</div>';
+        return '<h2>' + location.name + '</h2>' 
+            + '<div class="infoWindowContent">' + location.comment + '</div>';
     }
     
     function updateGeolocationMarker() {
