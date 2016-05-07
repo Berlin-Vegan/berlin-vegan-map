@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-4 col-md-3 col-lg-3" id="leftCol">
+    <div class="col-sm-4 col-md-3 col-lg-3" id="leftCol" xstyle="width:200;">
         <form name="form">
             <div>
                 <input type="text" ng-model="query.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
@@ -92,7 +92,7 @@
             </p>
         </div>
     </div>
-    <div class="col-sm-8 col-md-9 col-lg-9">
+    <div class="col-sm-8 col-md-9 col-lg-9" style="position:fixed;top:0;right:0;">
         <div id="map" style="width: auto;height: 700px;"></div>
     </div>
 </div>
