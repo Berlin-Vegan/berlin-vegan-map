@@ -39,8 +39,8 @@
             <div ng-show="geolocation.supported">
                 <div>
                     <input type="checkbox" ng-model="geolocation.show" ng-change="updateGeolocationMarker()">
-                        <span ng-hide="geolocation.marker.map">Aktuellen Standort anzeigen</span>
-                        <a ng-show="geolocation.marker.map" href="#" ng-click="openInfoWindow($event, geolocation.marker)">Aktuellen Standort anzeigen</a> 
+                        <span ng-hide="geolocation.marker.map">Standorterkennung</span>
+                        <a ng-show="geolocation.marker.map" href="#" ng-click="openInfoWindow($event, geolocation.marker)">Standorterkennung</a> 
                     </input>
                 </div>
                 <div>
@@ -53,13 +53,14 @@
                     <span ng-bind-template="{{query.distance.km | number : 1}} km"/>
                 </div>
             </div>
+            <hr/>
             <div>
                 Sortierung:
                 <select ng-model="orderSelection" ng-change="updateOrder()">
                     <option>Name</option>
                     <option>Bezirk</option>
                     <option ng-show="geolocation.marker.map"">Entfernung</option>
-                    <option ng-hide="geolocation.marker.map" ng-disabled="true" title="Standort erforderlich">Entfernung</option>
+                    <option ng-hide="geolocation.marker.map" ng-disabled="true" title="Standorterkennung erforderlich">Entfernung</option>
                 </select>
             </div>
         </form>
