@@ -70,6 +70,7 @@
             <p>
                 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
             </p>
+            <p>{{marker.location.tags.join(", ")}}</p>
             <p>{{marker.location.commentWithoutFormatting | cut:true:150:' ...'}}</p>
             <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
             <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>

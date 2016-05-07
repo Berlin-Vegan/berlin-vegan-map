@@ -139,7 +139,10 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
     
     function getContent(location) {
         return '<h2>' + location.name + '</h2>' 
-            + '<div class="infoWindowContent">' + location.comment + '</div>';
+            + '<div class="infoWindowContent">' 
+            + '<p>' + location.tags.join(", ") + '</p>'
+            + '<p>' + location.comment + '</p>'
+            + '</div>';
     }
     
     function updateGeolocationMarker() {
