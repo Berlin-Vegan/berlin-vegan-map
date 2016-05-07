@@ -52,7 +52,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     }
     
     function getCleanAndSortedTags(tags) {
-        var newTags = tags.map(function(tag) { return tag.trim(); });
+        var newTags = tags.map(String.trim);
         newTags.sort();
         return newTags;
     }
