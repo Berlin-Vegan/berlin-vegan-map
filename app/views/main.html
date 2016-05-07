@@ -65,7 +65,7 @@
                 </select>
             </div>
         </form>
-        <div id="class" ng-repeat="marker in filteredMarkers | orderBy : order">
+        <div id="class" ng-repeat="marker in filteredMarkers | orderBy : [order, 'location.name']">
             <hr/>
             <p>
                 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
