@@ -12,6 +12,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
     function enhanceLocation(location) {
     
+        location.tags = getCleanAndSortedTags(location.tags);
         location.commentWithoutFormatting = removeFormatting(location.comment);
 
         location.openingTimes = [
@@ -48,6 +49,12 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
                 parseFloat(this.longCoord)
             )
         };
+    }
+    
+    function getCleanAndSortedTags(tags) {
+        var newTags = tags.map(function(tag) { return tag.trim(); });
+        newTags.sort();
+        return newTags;
     }
     
     function removeFormatting(locationComment) {
