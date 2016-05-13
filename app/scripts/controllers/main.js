@@ -12,18 +12,22 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
     var debugMode = false;
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
+    var allTags = "Alle Typen";
     
     $scope.query = { 
         text: "", 
         district: allDistricts, 
         openAtWeekDay: allWeekDays, 
+        tag: allTags, 
         allDistricts: function() { return this.district === allDistricts; }, 
         allWeekDays: function() { return this.openAtWeekDay === allWeekDays; },
+        allTags: function() { return this.tag === allTags; },
         distance: { enabled: false, position: null, km: 1}
     };
     
     $scope.locations = null;
     $scope.districts = null;
+    $scope.tags = null;
     $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
     $scope.orderSelection = "Name";
     
@@ -33,6 +37,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
             LocationLogicService.enhanceLocations($scope.locations);
             initMap();
             initDistricts();
+            initTags();
             updateMarkers();
             updateOrder();
         })
@@ -135,6 +140,25 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
         
         $scope.districts.sort();
         $scope.districts.unshift(allDistricts);
+    }
+    
+    function initTags() {
+    
+        $scope.tags = [];
+        var tagSet = {};
+        
+        for (var i = 0; i < $scope.locations.length; i++) {
+            for (var j = 0; j < $scope.locations[i].tags.length; j++) {
+                tagSet[$scope.locations[i].tags[j]] = "";
+            }
+        }
+        
+        for (var tag in tagSet) {
+            $scope.tags.push(tag);
+        }
+        
+        $scope.tags.sort();
+        $scope.tags.unshift(allTags);
     }
     
     function getContent(location) {

@@ -9,6 +9,9 @@
                 <select ng-model="query.district" ng-change="updateMarkers()">
                     <option ng-repeat="district in districts">{{district}}</option>
                 </select>
+                <select ng-model="query.tag" ng-change="updateMarkers()">
+                    <option ng-repeat="tag in tags">{{tag}}</option>
+                </select>
                 <!--input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">Jetzt geöffnet</input-->
                 <input type="checkbox" ng-model="query.completelyVegan" ng-change="updateMarkers()">100% vegan</input>
                 <input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">Bio</input>

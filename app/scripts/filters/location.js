@@ -94,11 +94,21 @@ app.filter('location', function(filterFilter) {
                 return normalizeText(property).contains(normalizeText(query.text));
             });
         };
+        
+        var filterFunction4 = function(location, index, array) {
+
+            if (!query.allTags()) {            
+                return location.tags.indexOf(query.tag) >= 0;
+            } else {
+                return true;
+            }
+        };
 
         var filteredLocations = filterFilter(locations, locationPattern);
         filteredLocations = filterFilter(filteredLocations, filterFunction);
         filteredLocations = filterFilter(filteredLocations, filterFunction2);
         filteredLocations = filterFilter(filteredLocations, filterFunction3);
+        filteredLocations = filterFilter(filteredLocations, filterFunction4);
         return filteredLocations;
     };
     
