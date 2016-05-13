@@ -126,38 +126,12 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
     }
     
     function initDistricts() {
-    
-        $scope.districts = [];
-        var districtSet = {};
-        
-        for (var i = 0; i < $scope.locations.length; i++) {
-            districtSet[$scope.locations[i].district] = "";
-        }
-        
-        for (var district in districtSet) {
-            $scope.districts.push(district);
-        }
-        
-        $scope.districts.sort();
+        $scope.districts = LocationLogicService.getSortedDistricts($scope.locations);
         $scope.districts.unshift(allDistricts);
     }
     
     function initTags() {
-    
-        $scope.tags = [];
-        var tagSet = {};
-        
-        for (var i = 0; i < $scope.locations.length; i++) {
-            for (var j = 0; j < $scope.locations[i].tags.length; j++) {
-                tagSet[$scope.locations[i].tags[j]] = "";
-            }
-        }
-        
-        for (var tag in tagSet) {
-            $scope.tags.push(tag);
-        }
-        
-        $scope.tags.sort();
+        $scope.tags = LocationLogicService.getSortedTags($scope.locations);
         $scope.tags.unshift(allTags);
     }
     

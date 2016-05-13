@@ -99,9 +99,51 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         }
     }
     
+    service.getSortedDistricts = function(locations) {
+    
+        var districts = [];
+        var districtSet = {};
+        
+        for (var i = 0; i < locations.length; i++) {
+            districtSet[locations[i].district] = "";
+        }
+        
+        for (var district in districtSet) {
+            districts.push(district);
+        }
+        
+        districts.sort();
+        return districts;
+    };
+    
+    service.getSortedTags = function(locations) {
+    
+        var tags = [];
+        var tagSet = {};
+        
+        for (var i = 0; i < locations.length; i++) {
+            for (var j = 0; j < locations[i].tags.length; j++) {
+                tagSet[locations[i].tags[j]] = "";
+            }
+        }
+        
+        for (var tag in tagSet) {
+            tags.push(tag);
+        }
+        
+        tags.sort();
+        return tags;
+    }
+    
     return {
         enhanceLocations: function(locations) {
             return service.enhanceLocations(locations);
+        },
+        getSortedDistricts: function(locations) {
+            return service.getSortedDistricts(locations);
+        },
+        getSortedTags: function(locations) {
+            return service.getSortedTags(locations);
         }
     };
 });
