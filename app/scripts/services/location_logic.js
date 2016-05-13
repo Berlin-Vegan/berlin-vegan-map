@@ -54,7 +54,9 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     function getCleanAndSortedTags(tags) {
         var newTags = 
             tags
-                .map(String.trim)
+                .map(function(tag) {
+                    return tag.trim();
+                })
                 .map(function(tag) {
                     if (tag === "Cafe") {
                         return "Café";

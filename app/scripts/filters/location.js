@@ -91,7 +91,7 @@ app.filter('location', function(filterFilter) {
                 searchedValues = searchedValues.concat(location.tags);
             }
             return searchedValues.some(function(property) { 
-                return normalizeText(property).contains(normalizeText(query.text));
+                return normalizeText(property).includes(normalizeText(query.text));
             });
         };
         
