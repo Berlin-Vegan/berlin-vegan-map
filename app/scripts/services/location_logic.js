@@ -101,38 +101,38 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
     service.getSortedDistricts = function(locations) {
     
-        var districts = [];
-        var districtSet = {};
+        var pseudoSet = {};
         
         for (var i = 0; i < locations.length; i++) {
-            districtSet[locations[i].district] = "";
+            pseudoSet[locations[i].district] = "";
         }
         
-        for (var district in districtSet) {
-            districts.push(district);
-        }
-        
-        districts.sort();
-        return districts;
+        return pseudoSetToSortedArray(pseudoSet);
     };
     
     service.getSortedTags = function(locations) {
     
-        var tags = [];
-        var tagSet = {};
+        var pseudoSet = {};
         
         for (var i = 0; i < locations.length; i++) {
             for (var j = 0; j < locations[i].tags.length; j++) {
-                tagSet[locations[i].tags[j]] = "";
+                pseudoSet[locations[i].tags[j]] = "";
             }
         }
         
-        for (var tag in tagSet) {
-            tags.push(tag);
+        return pseudoSetToSortedArray(pseudoSet);
+    }
+    
+    function pseudoSetToSortedArray(pseudoSet) {
+    
+        var array = [];
+        
+        for (var entry in pseudoSet) {
+            array.push(entry);
         }
         
-        tags.sort();
-        return tags;
+        array.sort();
+        return array;
     }
     
     return {
