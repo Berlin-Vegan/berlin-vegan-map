@@ -6,12 +6,6 @@ app.filter('location', function(filterFilter) {
 
         var locationPattern = {};
 
-        if (query.textAppliesToAllFields) {
-            locationPattern.$ = query.text;
-        } else {
-            locationPattern.name = query.text;
-        }
-
         if (!query.allDistricts()) {
             locationPattern.district = query.district;
         }
@@ -77,10 +71,50 @@ app.filter('location', function(filterFilter) {
                 return true;
             }
         };
+        
+        var filterFunction3 = function(location, index, array) {
+
+            var searchedValues = [location.name];
+            
+            if (query.textAppliesToAllFields) {
+                searchedValues = searchedValues.concat([
+                    location.street,
+                    location.cityCode,
+                    location.district,
+                    location.bvg,
+                    location.telephone,
+                    location.website,
+                    location.email,
+                    location.commentWithoutFormatting
+                ]);
+                
+                searchedValues = searchedValues.concat(location.tags);
+            }
+            return searchedValues.some(function(property) { 
+                return normalizeText(property).contains(normalizeText(query.text));
+            });
+        };
 
         var filteredLocations = filterFilter(locations, locationPattern);
-        filteredLocations = filterFilter(filteredLocations, filterFunction); 
-        filteredLocations = filterFilter(filteredLocations, filterFunction2); 
+        filteredLocations = filterFilter(filteredLocations, filterFunction);
+        filteredLocations = filterFilter(filteredLocations, filterFunction2);
+        filteredLocations = filterFilter(filteredLocations, filterFunction3);
         return filteredLocations;
     };
+    
+    function normalizeText(text) {
+    
+        if (typeof text === "undefined") {
+            text = "";
+        }
+        
+        if (!(text === 'string' || text instanceof String)) {
+            text+= "";
+        }
+        
+        // So we find café when searching for cafe and vice versa
+        text = text.replace("é", "e");
+        
+        return text.toLowerCase();
+    }
 });
