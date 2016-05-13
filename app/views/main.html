@@ -63,7 +63,7 @@
                     <option>Name</option>
                     <option>Veganfreundlichkeit</option>
                     <option>Bezirk</option>
-                    <option ng-show="geolocation.marker.map"">Entfernung</option>
+                    <option ng-show="geolocation.marker.map">Entfernung</option>
                     <option ng-hide="geolocation.marker.map" ng-disabled="true" title="Standorterkennung erforderlich">Entfernung</option>
                 </select>
             </div>
@@ -83,7 +83,7 @@
                 <!-- 
                     Even when not shown because geolocation.marker.map is undefined/null, the following 
                     expression gets evaluated, so we use the dummy value 0 to prevent an error when trying 
-                    to get the distance when tgeolocation.marker.map is undefined/null.
+                    to get the distance when geolocation.marker.map is undefined/null.
                     If one could prevent AngularJS from evaluating, would be more elegant. 
                     No idea if this is possible.
                 -->
