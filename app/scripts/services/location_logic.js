@@ -81,11 +81,8 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         if (otString && otString.trim() !== "") {
         
             var otParts = otString.split("-");
-            var begin = otParts[0].trim();
-            var end = otParts[1].trim();
-            
-            var beginTime = UtilService.getTime(begin);
-            var endTime = UtilService.getTime(end);
+            var beginTime = UtilService.getTime(otParts[0].trim());
+            var endTime = UtilService.getTime(otParts[1].trim());
             var date = { year: 2000, month: 1, day: 1 }; // Arbitrary
             
             this.begin = UtilService.newDate(date, beginTime);
