@@ -84,20 +84,35 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             var begin = otParts[0].trim();
             var end = otParts[1].trim();
             
-            var beginParts = begin.split(":");
-            var beginHour = beginParts[0];
-            var beginMinute = beginParts.length > 1 ? beginParts[1] : 0;
+            var beginTime = getTime(begin);
+            var endTime = getTime(end);
+            var date = { year: 2000, month: 1, day: 1 }; // Arbitrary
             
-            var endParts = end.split(":");
-            var endHour = endParts[0];
-            var endMinute = endParts.length > 1 ? endParts[1] : 0;
+            this.begin = newDate(date, beginTime);
+            this.end = newDate(date, endTime);
+        }
+        
+        function getTime(time) {
+        
+            var parts = time.split(":");
             
-            var year = 2000; // Arbitrary
-            var month = 1; // Arbitrary
-            var day = 1; // Arbitrary
+            if (parts.length > 2) {
+                throw new Error("Not implemented support for time string: " + time);
+            }
             
-            this.begin = new Date(year, month, day, parseInt(beginHour), parseInt(beginMinute), 0, 0);
-            this.end = new Date(year, month, day, parseInt(endHour === "24" ? "0" : endHour), parseInt(endMinute), 0, 0);
+            var hours = parts[0] === "24" ? "0" : parts[0];
+            var minutes = parts.length > 1 ? parts[1] : "0";
+            
+            return {
+                hours: parseInt(hours), 
+                minutes: parseInt(minutes), 
+                seconds: 0, 
+                milliseconds: 0
+            };
+        }
+        
+        function newDate(date, time) {
+            return new Date(date.year, date.month, date.day, time.hours, time.minutes, time.seconds, time.milliseconds);
         }
     }
     
