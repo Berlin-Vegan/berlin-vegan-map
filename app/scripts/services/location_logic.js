@@ -84,35 +84,12 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             var begin = otParts[0].trim();
             var end = otParts[1].trim();
             
-            var beginTime = getTime(begin);
-            var endTime = getTime(end);
+            var beginTime = UtilService.getTime(begin);
+            var endTime = UtilService.getTime(end);
             var date = { year: 2000, month: 1, day: 1 }; // Arbitrary
             
-            this.begin = newDate(date, beginTime);
-            this.end = newDate(date, endTime);
-        }
-        
-        function getTime(time) {
-        
-            var parts = time.split(":");
-            
-            if (parts.length > 2) {
-                throw new Error("Not implemented support for time string: " + time);
-            }
-            
-            var hours = parts[0] === "24" ? "0" : parts[0];
-            var minutes = parts.length > 1 ? parts[1] : "0";
-            
-            return {
-                hours: parseInt(hours), 
-                minutes: parseInt(minutes), 
-                seconds: 0, 
-                milliseconds: 0
-            };
-        }
-        
-        function newDate(date, time) {
-            return new Date(date.year, date.month, date.day, time.hours, time.minutes, time.seconds, time.milliseconds);
+            this.begin = UtilService.newDate(date, beginTime);
+            this.end = UtilService.newDate(date, endTime);
         }
     }
     

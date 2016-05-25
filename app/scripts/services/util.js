@@ -25,9 +25,38 @@ app.factory('UtilService', function() {
         return deg * (Math.PI/180);
     }
     
+    service.getTime = function(time) {
+        
+        var parts = time.split(":");
+        
+        if (parts.length > 2) {
+            throw new Error("Not implemented support for time string: " + time);
+        }
+        
+        var hours = parts[0] === "24" ? "0" : parts[0];
+        var minutes = parts.length > 1 ? parts[1] : "0";
+        
+        return {
+            hours: parseInt(hours), 
+            minutes: parseInt(minutes), 
+            seconds: 0, 
+            milliseconds: 0
+        };
+    };
+    
+    service.newDate = function(date, time) {
+        return new Date(date.year, date.month, date.day, time.hours, time.minutes, time.seconds, time.milliseconds);
+    };
+    
     return {
         getDistanceFromLatLonInKm: function(lat1, lon1, lat2, lon2) {
             return service.getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2);
+        },
+        getTime: function(time) {
+            return service.getTime(time);
+        },
+        newDate: function(date, time) {
+            return service.newDate(date, time);
         }
     };
 });
