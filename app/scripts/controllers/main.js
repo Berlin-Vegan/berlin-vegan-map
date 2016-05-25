@@ -31,7 +31,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
     $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
     $scope.orderSelection = "Name";
     
-    $http({method: 'GET', url: 'assets/Locations.json'})
+    $http({method: 'GET', url: 'assets/GastroLocations_2016-05-26_formatted.json'})
         .success(function(data, status, headers, config) {
             $scope.locations = data;
             LocationLogicService.enhanceLocations($scope.locations);
