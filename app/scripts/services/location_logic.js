@@ -13,7 +13,10 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     function enhanceLocation(location) {
     
         location.tags = getCleanAndSortedTags(location.tags);
-        location.commentWithoutFormatting = removeFormatting(location.comment);
+        
+        if (location.comment) {
+            location.commentWithoutFormatting = removeFormatting(location.comment);
+        }
 
         location.openingTimes = [
             new OpeningTimes(location.otSun), 
