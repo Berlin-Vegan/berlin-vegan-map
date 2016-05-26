@@ -45,7 +45,7 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
         }
         
         // Fixes that should be done during JSON generation:
-        return otString.replace(/\s/g, "");
+        return otString.replace(/\s/g, "").replace(/-24/g, "-0");
     }
     
     return {
