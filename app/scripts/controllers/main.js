@@ -7,7 +7,7 @@
  * # MainController
  * Controller of the berlinVeganMapApp
  */
-app.controller('MainController', function ($scope, $http, $timeout, LocationLogicService, filterFilter, locationFilter) {
+app.controller('MainController', function ($scope, $http, $timeout, LocationCleansingService, LocationLogicService, filterFilter, locationFilter) {
   
     var debugMode = false;
     var allDistricts = "Alle Bezirke";
@@ -34,6 +34,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
     $http({method: 'GET', url: 'assets/GastroLocations_2016-05-26_formatted.json'})
         .success(function(data, status, headers, config) {
             $scope.locations = data;
+            LocationCleansingService.cleanLocations($scope.locations);
             LocationLogicService.enhanceLocations($scope.locations);
             initMap();
             initDistricts();
