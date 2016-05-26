@@ -42,6 +42,8 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             
             if (otToday === "") {
                 return "Heute geschlossen";
+            } else if (otToday.endsWith("-")) {
+                return "Heute geöffnet: Ab " + otToday.replace(/-/g, "") + " Uhr (Open End)";
             } else {
                 return "Heute geöffnet: " + otToday + " Uhr";
             }
@@ -89,29 +91,29 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
         // TODO: Correct this stuff in data source or JSON generator and remove the logic here:
         if (otString === "ab 10") {
-            return "10-0";
+            return "10-";
         } else if (otString === "12 : 23") {
             return "12-23";
         } else if (otString === "12 - 15:30, 17:30 - 23") {
             return "12-23";
         }
     
-        return otString.trim().endsWith("-") ? otString + "0" : otString;
+        return otString.replace(/\s/g, "");
     }
     
     function OpeningTimes(otString) {
         
         this.otString = otString;
         
-        if (otString && otString.trim() !== "") {
+        if (otString !== "") {
         
             var date = { year: 2000, month: 1, day: 1 }; // Arbitrary
             var otParts = otString.split("-");
             
-            var beginTime = UtilService.getTime(otParts[0].trim());
+            var beginTime = UtilService.getTime(otParts[0]);
             this.begin = UtilService.newDate(date, beginTime);
             
-            var endTime = UtilService.getTime(otParts[1].trim());
+            var endTime = UtilService.getTime(otParts[1] ? otParts[1] : "0");
             this.end = UtilService.newDate(date, endTime);
         }
     }
