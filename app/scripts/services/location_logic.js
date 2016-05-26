@@ -14,14 +14,6 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
         location.tags = getCleanAndSortedTags(location.tags);
         
-        location.otSun = getCleanOpeningTimeString(location.otSun);
-        location.otMon = getCleanOpeningTimeString(location.otMon);
-        location.otTue = getCleanOpeningTimeString(location.otTue);
-        location.otWed = getCleanOpeningTimeString(location.otWed);
-        location.otThu = getCleanOpeningTimeString(location.otThu);
-        location.otFri = getCleanOpeningTimeString(location.otFri);
-        location.otSat = getCleanOpeningTimeString(location.otSat);
-        
         if (location.comment) {
             location.commentWithoutFormatting = removeFormatting(location.comment);
         }
@@ -66,11 +58,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
     function getCleanAndSortedTags(tags) {
         var newTags = 
-            tags
-                .map(function(tag) {
-                    return tag.trim();
-                })
-                .map(function(tag) {
+            tags.map(function(tag) {
                     if (tag === "Cafe") {
                         return "Café";
                     } else if (tag === "Eiscafe") {
@@ -85,20 +73,6 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
     function removeFormatting(locationComment) {
         return locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ");
-    }
-    
-    function getCleanOpeningTimeString(otString) {
-    
-        // TODO: Correct this stuff in data source or JSON generator and remove the logic here:
-        if (otString === "ab 10") {
-            return "10-";
-        } else if (otString === "12 : 23") {
-            return "12-23";
-        } else if (otString === "12 - 15:30, 17:30 - 23") {
-            return "12-23";
-        }
-    
-        return otString.replace(/\s/g, "");
     }
     
     function OpeningTimes(otString) {
