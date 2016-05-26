@@ -122,8 +122,9 @@ app.filter('location', function(filterFilter) {
             text+= "";
         }
         
-        // So we find café when searching for cafe and vice versa
-        text = text.replace("é", "e");
+        // So we find café when searching for cafe and vice versa.
+        // Analogous motivation for the other letters.
+        text = text.replace("é", "e").replace("á", "a").replace("à", "a").replace("ñ", "n");
         
         return text.toLowerCase();
     }
