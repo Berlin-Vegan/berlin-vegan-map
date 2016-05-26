@@ -81,7 +81,7 @@ app.filter('location', function(filterFilter) {
                     location.street,
                     location.cityCode,
                     location.district,
-                    location.bvg,
+                    location.publicTransport,
                     location.telephone,
                     location.website,
                     location.email,
