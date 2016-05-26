@@ -37,7 +37,8 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             } else if (otToday.endsWith("-")) {
                 return "Heute geöffnet: Ab " + otToday.replace(/-/g, "") + " Uhr (Open End)";
             } else {
-                return "Heute geöffnet: " + otToday + " Uhr";
+                var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
+                return "Heute geöffnet: " + otToday.replace(/-/g, extraLongHyphen) + " Uhr";
             }
         }
         
