@@ -268,12 +268,6 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             case "Name":
                 order = "location.name";
                 break;
-            case "Bezirk":
-                order = "location.district";
-                break;
-            case "Veganfreundlichkeit":
-                order = "-location.vegan";
-                break;
             case "Entfernung":
                 order = function(marker) { 
                     if ($scope.geolocation.marker && $scope.geolocation.marker.map) {

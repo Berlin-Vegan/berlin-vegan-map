@@ -69,8 +69,6 @@
                 Sortierung:
                 <select ng-model="orderSelection" ng-change="updateOrder()">
                     <option>Name</option>
-                    <option>Veganfreundlichkeit</option>
-                    <option>Bezirk</option>
                     <option ng-show="geolocation.marker.map">Entfernung</option>
                     <option ng-hide="geolocation.marker.map" ng-disabled="true" title="Standorterkennung erforderlich">Entfernung</option>
                 </select>
