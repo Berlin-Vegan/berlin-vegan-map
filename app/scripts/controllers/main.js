@@ -13,16 +13,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
     
-    $scope.query = { 
-        text: "", 
-        district: allDistricts, 
-        openAtWeekDay: allWeekDays, 
-        tags: {}, 
-        allDistricts: function() { return this.district === allDistricts; }, 
-        allWeekDays: function() { return this.openAtWeekDay === allWeekDays; },
-        distance: { enabled: false, position: null, km: 1}
-    };
-    
+    $scope.query = null;
     $scope.locations = null;
     $scope.districts = null;
     $scope.tags = null;
@@ -34,6 +25,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             $scope.locations = data;
             LocationCleansingService.cleanLocations($scope.locations);
             LocationLogicService.enhanceLocations($scope.locations);
+            initQuery();
             initMap();
             initDistricts();
             initTags();
@@ -63,6 +55,18 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
         });
 
         $scope.markers.push(marker);
+    }
+    
+    function initQuery() {
+        $scope.query = { 
+            text: "", 
+            district: allDistricts, 
+            openAtWeekDay: allWeekDays, 
+            tags: {}, 
+            allDistricts: function() { return this.district === allDistricts; }, 
+            allWeekDays: function() { return this.openAtWeekDay === allWeekDays; },
+            distance: { enabled: false, position: null, km: 1}
+        };
     }
     
     function initMap() {
