@@ -1,26 +1,23 @@
 <div class="row">
     <div class="col-sm-4 col-md-3 col-lg-3" id="leftCol" xstyle="width:200;">
         <form name="form" novalidate>
-            <div>
+            <p>
                 <input type="text" ng-model="query.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
                 <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="updateMarkers()">Nur Namen durchsuchen</input>
-            </div>
-            <div>
+            </p>
+            <p>
                 Kategorie:
                 <span ng-repeat="veganCategory in veganCategories">
                     <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="updateMarkers()">{{veganCategory}}</input>
                 </span>
-            </div>
-            <div>
+            </p>
+            <p>
                 Art der Lokalität:
                 <span ng-repeat="tag in tags">
                     <input type="checkbox" ng-model="query.tags[tag]" ng-change="updateMarkers()">{{tag}}</input>
                 </span>
-            </div>
-            <div>
-                <select ng-model="query.district" ng-change="updateMarkers()">
-                    <option ng-repeat="district in districts">{{district}}</option>
-                </select>
+            </p>
+            <p>
                 <!--input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">Jetzt geöffnet</input-->
                 <input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">Bioware</input>
                 <input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input>
@@ -31,8 +28,8 @@
                 <input type="checkbox" ng-model="query.childChair" ng-change="updateMarkers()">Kinderstuhl</input>
                 <input type="checkbox" ng-model="query.catering" ng-change="updateMarkers()">Catering</input>
                 <input type="checkbox" ng-model="query.delivery" ng-change="updateMarkers()">Lieferdienst</input>
-            </div>
-            <div>
+            </p>
+            <p>
                 Geöffnet:
                 <select ng-model="query.openAtWeekDay" ng-change="updateMarkers()">
                     <option value="Alle Wochentage">Alle Wochentage</option>
@@ -46,8 +43,13 @@
                 </select>
                 <input name="openAtTimeInput" type="time" ng-model="query.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-disabled="query.openAtWeekDay === 'Alle Wochentage'" ng-change="updateMarkers()"/>
                 <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert)</span>
-            </div>
-            <div ng-show="geolocation.supported">
+            </p>
+            <p>
+                <select ng-model="query.district" ng-change="updateMarkers()">
+                    <option ng-repeat="district in districts">{{district}}</option>
+                </select>
+            </p>
+            <p ng-show="geolocation.supported">
                 <div>
                     <input type="checkbox" ng-model="geolocation.show" ng-change="updateGeolocationMarker()">
                         <span ng-hide="geolocation.marker.map">Standorterkennung</span>
@@ -63,19 +65,18 @@
                     <input type="range" min="0.1" max="10" step="0.1" ng-model="query.distance.km" ng-change="query.distance.enabled = true; updateMarkers()" />
                     <span ng-bind-template="{{query.distance.km | number : 1}} km"/>
                 </div>
-            </div>
+            </p>
             <hr/>
-            <div>
+            <p>
                 Sortierung:
                 <select ng-model="orderSelection" ng-change="updateOrder()">
                     <option>Name</option>
                     <option ng-show="geolocation.marker.map">Entfernung</option>
                     <option ng-hide="geolocation.marker.map" ng-disabled="true" title="Standorterkennung erforderlich">Entfernung</option>
                 </select>
-            </div>
+            </p>
         </form>
-        <hr/>
-        <div>{{filteredMarkers.length}} Treffer von insgesamt {{locations.length}} Einträgen</div>
+        <p>{{filteredMarkers.length}} Treffer von insgesamt {{locations.length}} Einträgen</p>
         <div id="class" ng-repeat="marker in filteredMarkers | orderBy : [order, 'location.name']">
             <hr/>
             <p>
