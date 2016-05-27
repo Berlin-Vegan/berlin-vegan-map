@@ -17,6 +17,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     $scope.locations = null;
     $scope.districts = null;
     $scope.tags = null;
+    $scope.veganCategories = null;
     $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
     $scope.orderSelection = "Name";
     
@@ -29,6 +30,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             initMap();
             initDistricts();
             initTags();
+            initVeganCategories();
             updateMarkers();
             updateOrder();
         })
@@ -66,11 +68,19 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             tagsMap[tags[i]] = true;
         }
         
+        var veganCategories = LocationLogicService.getSortedVeganCategories();
+        var veganCategoriesMap = {};
+        
+        for (var i = 0; i < veganCategories.length; i++) {
+            veganCategoriesMap[veganCategories[i]] = true;
+        }
+        
         $scope.query = { 
             text: "", 
             district: allDistricts, 
             openAtWeekDay: allWeekDays, 
             tags: tagsMap, 
+            veganCategories: veganCategoriesMap, 
             allDistricts: function() { return this.district === allDistricts; }, 
             allWeekDays: function() { return this.openAtWeekDay === allWeekDays; },
             distance: { enabled: false, position: null, km: 1}
@@ -143,6 +153,10 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     
     function initTags() {
         $scope.tags = LocationLogicService.getSortedTags($scope.locations);
+    }
+    
+    function initVeganCategories() {
+        $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
     }
     
     function getContent(location) {

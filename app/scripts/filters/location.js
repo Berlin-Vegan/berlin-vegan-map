@@ -9,10 +9,6 @@ app.filter('location', function(filterFilter) {
         if (!query.allDistricts()) {
             locationPattern.district = query.district;
         }
-
-        if (query.completelyVegan) {
-            locationPattern.vegan = "5"; // TODO: Check if equivalent to legacy app's "not 2 and not 4".
-        }
         
         if (query.organic) {
             locationPattern.organic = "1";
@@ -107,12 +103,26 @@ app.filter('location', function(filterFilter) {
             
             return false;
         };
+        
+        var filterFunction5 = function(location, index, array) {
+
+            for (var veganCategory in query.veganCategories) {
+                if (query.veganCategories.hasOwnProperty(veganCategory) && query.veganCategories[veganCategory]) { // Vegan category is selected...
+                    if (location.getVeganCategoryFriendly() === veganCategory) { // ... and location belongs to it
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        };
 
         var filteredLocations = filterFilter(locations, locationPattern);
         filteredLocations = filterFilter(filteredLocations, filterFunction);
         filteredLocations = filterFilter(filteredLocations, filterFunction2);
         filteredLocations = filterFilter(filteredLocations, filterFunction3);
         filteredLocations = filterFilter(filteredLocations, filterFunction4);
+        filteredLocations = filterFilter(filteredLocations, filterFunction5);
         return filteredLocations;
     };
     

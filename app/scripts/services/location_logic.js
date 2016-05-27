@@ -55,6 +55,19 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
                 parseFloat(this.longCoord)
             )
         };
+        
+        location.getVeganCategoryFriendly = function() {
+            switch(this.vegan) {
+                case 5:
+                    return "vegan";
+                case 4:
+                    return "vegetarisch";
+                case 2:
+                    return "omnivor";
+                default:
+                    throw new Error("Unexpected value for vegan: " + this.vegan);
+            }
+        }
     }
     
     function getCleanAndSortedTags(tags) {
@@ -129,6 +142,10 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         return array;
     }
     
+    service.getSortedVeganCategories = function(locations) {
+        return ["vegan", "vegetarisch", "omnivor"];
+    }
+    
     return {
         enhanceLocations: function(locations) {
             return service.enhanceLocations(locations);
@@ -138,6 +155,9 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         },
         getSortedTags: function(locations) {
             return service.getSortedTags(locations);
+        },
+        getSortedVeganCategories: function() {
+            return service.getSortedVeganCategories();
         }
     };
 });
