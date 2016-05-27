@@ -32,17 +32,36 @@
             </p>
             <p>
                 Geöffnet:
-                <select ng-model="query.openAtWeekDay" ng-change="updateMarkers()">
-                    <option value="Alle Wochentage">Alle Wochentage</option>
-                    <option value="1">Montag</option>
-                    <option value="2">Dienstag</option>
-                    <option value="3">Mittwoch</option>
-                    <option value="4">Donnerstag</option>
-                    <option value="5">Freitag</option>
-                    <option value="6">Samstag</option>
-                    <option value="0">Sonntag</option>
-                </select>
-                <input name="openAtTimeInput" type="time" ng-model="query.openAtTime" placeholder="hh:mm (Uhrzeit)" ng-disabled="query.openAtWeekDay === 'Alle Wochentage'" ng-change="updateMarkers()"/>
+                <span ng-hide="query.openNow">
+                    <select ng-model="query.openAtWeekDay" ng-change="updateMarkers()">
+                        <option value="Alle Wochentage">Alle Wochentage</option>
+                        <option value="1">Montag</option>
+                        <option value="2">Dienstag</option>
+                        <option value="3">Mittwoch</option>
+                        <option value="4">Donnerstag</option>
+                        <option value="5">Freitag</option>
+                        <option value="6">Samstag</option>
+                        <option value="0">Sonntag</option>
+                    </select>
+                    <input 
+                        name="openAtTimeInput" 
+                        type="time" 
+                        ng-model="query.openAtTime" 
+                        placeholder="hh:mm (Uhrzeit)" 
+                        ng-disabled="query.openAtWeekDay === 'Alle Wochentage'" 
+                        ng-change="updateMarkers()" 
+                        size="15" 
+                        maxlength="5"
+                    />
+                </span>
+                <span ng-show="query.openNow">
+                    <select ng-disabled="true">
+                        <option>-Heute-</option>
+                        <option>Alle Wochentage</option><!-- So this select element gets the same size as the "real" select element.-->
+                    </select>
+                    <input type="time" placeholder="-Jetzt-" ng-disabled="true" size="15"/>
+                </span>
+                <input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">Jetzt</input>
                 <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert)</span>
             </p>
             <p>

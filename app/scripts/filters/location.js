@@ -52,7 +52,10 @@ app.filter('location', function(filterFilter) {
 
         var filterFunction = function(location, index, array) {
 
-            if (!query.allWeekDays()) {
+            if (query.openNow) {
+                var now = new Date(Date.now());
+                return location.isOpen(now.getDay(), now);
+            } else if (!query.allWeekDays()) {
                 return location.isOpen(parseInt(query.openAtWeekDay), query.openAtTime);
             } else {
                 return true;
