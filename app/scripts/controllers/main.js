@@ -183,6 +183,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
                         });
                         
                         google.maps.event.addListener(marker, 'click', function(){
+                            $scope.map.setCenter(marker.getPosition());
                             infoWindow.setContent('<h2>' + marker.title + '</h2>');
                             infoWindow.open($scope.map, marker);
                         });
