@@ -62,7 +62,7 @@
                     <input type="time" placeholder="-Jetzt-" ng-disabled="true" size="15"/>
                 </span>
                 <input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">Jetzt</input>
-                <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert)</span>
+                <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert); Format: hh:mm</span>
             </p>
             <p>
                 <select ng-model="query.district" ng-change="updateMarkers()">
