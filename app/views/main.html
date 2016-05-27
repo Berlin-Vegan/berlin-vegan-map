@@ -6,11 +6,14 @@
                 <input type="checkbox" ng-model="query.textAppliesToAllFields" ng-change="updateMarkers()">Alle Felder durchsuchen</input>
             </div>
             <div>
+                Art der Lokalität:
+                <span ng-repeat="tag in tags">
+                    <input type="checkbox" ng-model="query.tags[tag]" ng-change="updateMarkers()">{{tag}}</input>
+                </span>
+            </div>
+            <div>
                 <select ng-model="query.district" ng-change="updateMarkers()">
                     <option ng-repeat="district in districts">{{district}}</option>
-                </select>
-                <select ng-model="query.tag" ng-change="updateMarkers()">
-                    <option ng-repeat="tag in tags">{{tag}}</option>
                 </select>
                 <!--input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">Jetzt geöffnet</input-->
                 <input type="checkbox" ng-model="query.completelyVegan" ng-change="updateMarkers()">100% vegan</input>

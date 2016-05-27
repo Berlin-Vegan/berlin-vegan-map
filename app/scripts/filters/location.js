@@ -97,11 +97,15 @@ app.filter('location', function(filterFilter) {
         
         var filterFunction4 = function(location, index, array) {
 
-            if (!query.allTags()) {            
-                return location.tags.indexOf(query.tag) >= 0;
-            } else {
-                return true;
+            for (var tag in query.tags) {
+                if (query.tags.hasOwnProperty(tag) && query.tags[tag]) { // Tag is selected...
+                    if (location.tags.indexOf(tag) >= 0) { // ... and location has tag
+                        return true;
+                    }
+                }
             }
+            
+            return false;
         };
 
         var filteredLocations = filterFilter(locations, locationPattern);

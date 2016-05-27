@@ -12,16 +12,14 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     var debugMode = false;
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
-    var allTags = "Alle Typen";
     
     $scope.query = { 
         text: "", 
         district: allDistricts, 
         openAtWeekDay: allWeekDays, 
-        tag: allTags, 
+        tags: {}, 
         allDistricts: function() { return this.district === allDistricts; }, 
         allWeekDays: function() { return this.openAtWeekDay === allWeekDays; },
-        allTags: function() { return this.tag === allTags; },
         distance: { enabled: false, position: null, km: 1}
     };
     
@@ -133,7 +131,6 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     
     function initTags() {
         $scope.tags = LocationLogicService.getSortedTags($scope.locations);
-        $scope.tags.unshift(allTags);
     }
     
     function getContent(location) {
