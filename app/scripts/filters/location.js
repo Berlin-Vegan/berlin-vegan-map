@@ -116,13 +116,23 @@ app.filter('location', function(filterFilter) {
             
             return false;
         };
-
+        
+        var filterFunction6 = function(location, index, array) {
+        
+            if (query.review) {
+                return location.reviewURL && location.reviewURL.length > 0;
+            } else {
+                return true;
+            }
+        }
+        
         var filteredLocations = filterFilter(locations, locationPattern);
         filteredLocations = filterFilter(filteredLocations, filterFunction);
         filteredLocations = filterFilter(filteredLocations, filterFunction2);
         filteredLocations = filterFilter(filteredLocations, filterFunction3);
         filteredLocations = filterFilter(filteredLocations, filterFunction4);
         filteredLocations = filterFilter(filteredLocations, filterFunction5);
+        filteredLocations = filterFilter(filteredLocations, filterFunction6);
         return filteredLocations;
     };
     
