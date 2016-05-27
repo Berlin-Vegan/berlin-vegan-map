@@ -192,6 +192,8 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
                         $scope.geolocation.info = "";
                         $scope.geolocation.error = "";
                         $scope.query.distance.position = marker.position;
+                        
+                        google.maps.event.trigger(marker, 'click');
                     });
                 }, 
                 function(positionError) {
