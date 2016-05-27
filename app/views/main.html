@@ -3,7 +3,7 @@
         <form name="form" novalidate>
             <div>
                 <input type="text" ng-model="query.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
-                <input type="checkbox" ng-model="query.textAppliesToAllFields" ng-change="updateMarkers()">Alle Felder durchsuchen</input>
+                <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="updateMarkers()">Nur Namen durchsuchen</input>
             </div>
             <div>
                 Kategorie:

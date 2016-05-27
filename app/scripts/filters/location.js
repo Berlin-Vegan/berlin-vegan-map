@@ -72,7 +72,7 @@ app.filter('location', function(filterFilter) {
 
             var searchedValues = [location.name];
             
-            if (query.textAppliesToAllFields) {
+            if (!query.textAppliesToNamesOnly) {
                 searchedValues = searchedValues.concat([
                     location.street,
                     location.cityCode,
