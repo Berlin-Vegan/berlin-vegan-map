@@ -58,11 +58,19 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     }
     
     function initQuery() {
+    
+        var tags = LocationLogicService.getSortedTags($scope.locations);
+        var tagsMap = {};
+        
+        for (var i = 0; i < tags.length; i++) {
+            tagsMap[tags[i]] = true;
+        }
+        
         $scope.query = { 
             text: "", 
             district: allDistricts, 
             openAtWeekDay: allWeekDays, 
-            tags: {}, 
+            tags: tagsMap, 
             allDistricts: function() { return this.district === allDistricts; }, 
             allWeekDays: function() { return this.openAtWeekDay === allWeekDays; },
             distance: { enabled: false, position: null, km: 1}
