@@ -104,7 +104,6 @@
             </p>
             <p><span>{{marker.location.tags.join(", ")}}</span> (<span>{{marker.location.getVeganCategoryFriendly(true)}}</span>)</p>
             <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>
-            <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
             <p ng-show="geolocation.marker.map">
                 <!-- 
                     Even when not shown because geolocation.marker.map is undefined/null, the following 
@@ -121,6 +120,7 @@
                 }} 
                 km
             </p>
+            <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
         </div>
     </div>
     <div class="col-sm-8 col-md-9 col-lg-9" style="position:fixed;top:0;right:0;">
