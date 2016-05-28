@@ -16,6 +16,7 @@ app.factory("InfoWindowViewService", function() {
             + (location.website && location.website.length > 0 ? " (<a target='_blank' href='" + location.website + "' title='" + location.website + "'>Website</a>)" : "") + "</p>"
             + "<h5>Öffnungszeiten</h5>"
             + "<p>TODO</p>"
+            + "<p>" + (location.reviewURL && location.reviewURL.length > 0 ? "<a target='_blank' href='" + location.reviewURL + "'>Rezension</a>" : location.comment) + "</p>"
             + "</div>";
     };
     

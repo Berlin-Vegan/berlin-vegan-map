@@ -17,6 +17,11 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         if (location.comment) {
             location.commentWithoutFormatting = removeFormatting(location.comment);
         }
+        
+        if (location.reviewURL && location.reviewURL.length > 0) {
+            // Possibly not necessary in production
+            location.reviewURL = "http://www.berlin-vegan.de/essen-und-trinken/kritiken/" + location.reviewURL;
+        }
 
         location.openingTimes = [
             new OpeningTimes(location.otSun), 
