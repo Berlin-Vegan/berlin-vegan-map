@@ -7,7 +7,7 @@
  * # MainController
  * Controller of the berlinVeganMapApp
  */
-app.controller('MainController', function ($scope, $http, $timeout, LocationCleansingService, LocationLogicService, filterFilter, locationFilter) {
+app.controller('MainController', function ($scope, $http, $timeout, LocationCleansingService, LocationLogicService, InfoWindowViewService, filterFilter, locationFilter) {
   
     var debugMode = false;
     var allDistricts = "Alle Bezirke";
@@ -52,7 +52,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
         });
 
         google.maps.event.addListener(marker, 'click', function(){
-            infoWindow.setContent(getContent(marker.location));
+            infoWindow.setContent(InfoWindowViewService.getContent(marker.location));
             infoWindow.open($scope.map, marker);
         });
 
@@ -157,14 +157,6 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     
     function initVeganCategories() {
         $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
-    }
-    
-    function getContent(location) {
-        return '<h2>' + location.name + '</h2>' 
-            + '<div class="infoWindowContent">' 
-            + '<p>' + location.tags.join(", ") + '</p>'
-            + '<p>' + location.comment + '</p>'
-            + '</div>';
     }
     
     function updateGeolocationMarker() {
