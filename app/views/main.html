@@ -102,7 +102,7 @@
             <p>
                 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
             </p>
-            <p>{{marker.location.tags.join(", ")}}</p>
+            <p><span>{{marker.location.tags.join(", ")}}</span> (<span>{{marker.location.getVeganCategoryFriendly(true)}}</span>)</p>
             <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>
             <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
             <p ng-show="geolocation.marker.map">
