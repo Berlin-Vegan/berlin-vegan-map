@@ -61,13 +61,13 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             )
         };
         
-        location.getVeganCategoryFriendly = function(withVeganDeclaration) {
+        location.getVeganCategoryFriendly = function(verbose) {
         
-            var veganDeclaration = withVeganDeclaration ? ", vegan deklariert" : "";
+            var veganDeclaration = (verbose ? ", vegan deklariert" : "");
             
             switch(this.vegan) {
                 case 5:
-                    return "vegan";
+                    return (verbose ? "100% " : "") + "vegan";
                 case 4:
                     return "vegetarisch" + veganDeclaration;
                 case 2:
