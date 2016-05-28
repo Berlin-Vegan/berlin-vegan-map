@@ -103,8 +103,8 @@
                 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
             </p>
             <p>{{marker.location.tags.join(", ")}}</p>
-            <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
             <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>
+            <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
             <p ng-show="geolocation.marker.map">
                 <!-- 
                     Even when not shown because geolocation.marker.map is undefined/null, the following 
