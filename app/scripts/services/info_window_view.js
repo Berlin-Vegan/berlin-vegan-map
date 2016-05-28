@@ -9,10 +9,13 @@ app.factory("InfoWindowViewService", function() {
     var service = {};
     
     service.getContent = function(location) {
-        return "<h2>" + location.name + "</h2>" 
+        return "<h4>" + location.name + "</h4>" 
             + "<div class='infoWindowContent'>" 
-            + "<p>" + location.tags.join(", ") + "</p>"
-            + "<p>" + location.comment + "</p>"
+            + "<p>" + location.tags.join(", ") + " (" + location.getVeganCategoryFriendly(true) + ")</p>"
+            + "<p>" + location.street + " " + location.cityCode + " " + location.district 
+            + (location.website && location.website.length > 0 ? " (<a target='_blank' href='" + location.website + "' title='" + location.website + "'>Website</a>)" : "") + "</p>"
+            + "<h5>Öffnungszeiten</h5>"
+            + "<p>TODO</p>"
             + "</div>";
     };
     

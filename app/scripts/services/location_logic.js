@@ -56,14 +56,17 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             )
         };
         
-        location.getVeganCategoryFriendly = function() {
+        location.getVeganCategoryFriendly = function(withVeganDeclaration) {
+        
+            var veganDeclaration = withVeganDeclaration ? ", vegan deklariert" : "";
+            
             switch(this.vegan) {
                 case 5:
                     return "vegan";
                 case 4:
-                    return "vegetarisch";
+                    return "vegetarisch" + veganDeclaration;
                 case 2:
-                    return "omnivor";
+                    return "omnivor" + veganDeclaration;
                 default:
                     throw new Error("Unexpected value for vegan: " + this.vegan);
             }
