@@ -51,8 +51,17 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             location: location
         });
 
-        google.maps.event.addListener(marker, 'click', function(){
-            infoWindow.setContent(InfoWindowViewService.getContent(marker.location));
+        google.maps.event.addListener(marker, 'click', function() {
+        
+            var content;
+            
+            if ($scope.geolocation.marker) {
+                content = InfoWindowViewService.getContent(marker.location, $scope.geolocation.marker.position);
+            } else {
+                content = InfoWindowViewService.getContent(marker.location);
+            }
+            
+            infoWindow.setContent(content);
             infoWindow.open($scope.map, marker);
         });
 
