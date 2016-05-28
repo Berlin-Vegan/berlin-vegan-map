@@ -26,6 +26,10 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
             var propertyName = otPropertyNames[i];
             location[propertyName] = getCleanOt(location[propertyName]);
         }
+        
+        if (location.website && location.website.length > 0) {
+            location.website = getCleanWebsite(location.website);
+        }
     }
     
     function getCleanTags(tags) {
@@ -46,6 +50,11 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
         
         // Fixes that should be done during JSON generation:
         return otString.replace(/\s/g, "").replace(/-24/g, "-0");
+    }
+    
+    function getCleanWebsite(website) {
+        // Fixes that should be done during JSON generation:
+        return website.startsWith("http") ? website : "http://" + website;
     }
     
     return {
