@@ -71,6 +71,7 @@
                     </input>
                 </div>
                 <div>
+                    <img ng-show="geolocation.info === 'Ermittle Standort...'" src="assets/images/ajax-loader.gif"/>
                     <span ng-bind="geolocation.info"></span>
                     <span ng-bind="geolocation.error" class="error"></span>
                 </div>
