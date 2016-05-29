@@ -23,19 +23,19 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             location.reviewURL = "http://www.berlin-vegan.de/essen-und-trinken/kritiken/" + location.reviewURL;
         }
 
-        location.openingTimes = [
-            new OpeningTimes(location.otSun), 
-            new OpeningTimes(location.otMon), 
-            new OpeningTimes(location.otTue), 
-            new OpeningTimes(location.otWed), 
-            new OpeningTimes(location.otThu), 
-            new OpeningTimes(location.otFri), 
-            new OpeningTimes(location.otSat)
+        location.openingTimeIntervals = [
+            new OpeningTimeInterval(location.otSun), 
+            new OpeningTimeInterval(location.otMon), 
+            new OpeningTimeInterval(location.otTue), 
+            new OpeningTimeInterval(location.otWed), 
+            new OpeningTimeInterval(location.otThu), 
+            new OpeningTimeInterval(location.otFri), 
+            new OpeningTimeInterval(location.otSat)
         ];
         
         location.getOpeningTimeTodayFriendly = function() {
         
-            var otToday = this.openingTimes[new Date().getDay()].otString;
+            var otToday = this.openingTimeIntervals[new Date().getDay()].otString;
             
             if (otToday === "") {
                 return "Heute geschlossen";
@@ -48,7 +48,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         }
         
         location.isOpen = function(weekDay, timeAsDate) {
-            return OpeningTimesService.isOpen(this.openingTimes, weekDay, timeAsDate);
+            return OpeningTimesService.isOpen(this.openingTimeIntervals, weekDay, timeAsDate);
         }
         
         location.getDistanceToPositionInKm = function(position) {
@@ -97,7 +97,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         return locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ");
     }
     
-    function OpeningTimes(otString) {
+    function OpeningTimeInterval(otString) {
         
         this.otString = otString;
         
