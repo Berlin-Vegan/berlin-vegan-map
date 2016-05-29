@@ -35,15 +35,12 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         
         location.getOpeningTimeTodayFriendly = function() {
         
-            var otToday = this.openingTimeIntervals[new Date().getDay()].otString;
+            var otIntervalFriendlyToday = this.openingTimeIntervals[new Date().getDay()].friendly;
             
-            if (otToday === "") {
+            if (otIntervalFriendlyToday === "Geschlossen") {
                 return "Heute geschlossen";
-            } else if (otToday.endsWith("-")) {
-                return "Heute geöffnet: Ab " + otToday.replace(/-/g, "") + " Uhr (Open End)";
             } else {
-                var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
-                return "Heute geöffnet: " + otToday.replace(/-/g, extraLongHyphen) + " Uhr";
+                return "Heute geöffnet: " + otIntervalFriendlyToday;
             }
         }
         
@@ -111,6 +108,15 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             
             var endTime = UtilService.getTime(otParts[1] ? otParts[1] : "0");
             this.end = UtilService.newDate(date, endTime);
+        }
+        
+        if (otString === "") {
+            this.friendly = "Geschlossen";
+        } else if (otString.endsWith("-")) {
+            this.friendly =  "Ab " + otString.replace("-", "") + " Uhr (Open End)";
+        } else {
+            var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
+            this.friendly = otString.replace("-", extraLongHyphen) + " Uhr";
         }
     }
     
