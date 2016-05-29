@@ -2,6 +2,7 @@
 
 app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
 
+    var friendlyDayStrings = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
     var service = {};
     
     service.enhanceLocations = function(locations) {
@@ -23,19 +24,19 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             location.reviewURL = "http://www.berlin-vegan.de/essen-und-trinken/kritiken/" + location.reviewURL;
         }
 
-        location.openingTimeIntervals = [
-            new OpeningTimeInterval(location.otSun), 
-            new OpeningTimeInterval(location.otMon), 
-            new OpeningTimeInterval(location.otTue), 
-            new OpeningTimeInterval(location.otWed), 
-            new OpeningTimeInterval(location.otThu), 
-            new OpeningTimeInterval(location.otFri), 
-            new OpeningTimeInterval(location.otSat)
+        location.openingTimes = [
+            new OpeningTime(0, location.otSun), 
+            new OpeningTime(1, location.otMon), 
+            new OpeningTime(2, location.otTue), 
+            new OpeningTime(3, location.otWed), 
+            new OpeningTime(4, location.otThu), 
+            new OpeningTime(5, location.otFri), 
+            new OpeningTime(6, location.otSat)
         ];
         
         location.getOpeningTimeTodayFriendly = function() {
         
-            var otIntervalFriendlyToday = this.openingTimeIntervals[new Date().getDay()].friendly;
+            var otIntervalFriendlyToday = this.openingTimes[new Date().getDay()].interval.friendly;
             
             if (otIntervalFriendlyToday === "Geschlossen") {
                 return "Heute geschlossen";
@@ -45,7 +46,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         }
         
         location.isOpen = function(weekDay, timeAsDate) {
-            return OpeningTimesService.isOpen(this.openingTimeIntervals, weekDay, timeAsDate);
+            return OpeningTimesService.isOpen(this.openingTimes, weekDay, timeAsDate);
         }
         
         location.getDistanceToPositionInKm = function(position) {
@@ -92,6 +93,11 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
     function removeFormatting(locationComment) {
         return locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ");
+    }
+    
+    function OpeningTime(dayIndex, otString) {
+        this.friendlyDay = friendlyDayStrings[dayIndex];
+        this.interval = new OpeningTimeInterval(otString);
     }
     
     function OpeningTimeInterval(otString) {
@@ -160,6 +166,10 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         return ["vegan", "vegetarisch", "omnivor"];
     }
     
+    service.getFriendlyDayStrings = function() {
+        return friendlyDayStrings;
+    }
+    
     return {
         enhanceLocations: function(locations) {
             return service.enhanceLocations(locations);
@@ -172,6 +182,9 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         },
         getSortedVeganCategories: function() {
             return service.getSortedVeganCategories();
+        },
+        getFriendlyDayStrings: function() {
+            return service.getFriendlyDayStrings();
         }
     };
 });

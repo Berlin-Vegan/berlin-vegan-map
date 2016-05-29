@@ -7,7 +7,7 @@ app.factory('OpeningTimesService', function() {
     
     service.isOpen = function(openingTimes, dayOfWeek, time) {
     
-        if (!openingTimes[dayOfWeek].begin || !openingTimes[dayOfWeek].end) {
+        if (!openingTimes[dayOfWeek].interval.begin || !openingTimes[dayOfWeek].interval.end) {
             return false;
         }
         
@@ -16,8 +16,8 @@ app.factory('OpeningTimesService', function() {
         }
         
         var date = new Date(0);
-        var dayBegin = combine(date, openingTimes[dayOfWeek].begin);
-        var dayEnd = combine(date, openingTimes[dayOfWeek].end);
+        var dayBegin = combine(date, openingTimes[dayOfWeek].interval.begin);
+        var dayEnd = combine(date, openingTimes[dayOfWeek].interval.end);
         var dayTime = combine(date, time);
     
         if (dayBegin.getTime() === dayEnd.getTime()) {
@@ -29,7 +29,7 @@ app.factory('OpeningTimesService', function() {
             // The day has special opening times, so adjust the end time.
             var nextDate = new Date(0);
             nextDate.setTime(nextDate.getTime() + millisecondsOfADay);
-            dayEnd = combine(nextDate, openingTimes[dayOfWeek].end);
+            dayEnd = combine(nextDate, openingTimes[dayOfWeek].interval.end);
         }
         
         if (dayBegin <= dayTime && dayTime < dayEnd) {
@@ -43,17 +43,17 @@ app.factory('OpeningTimesService', function() {
         var previousDate = new Date(0);
         previousDate.setTime(previousDate.getTime() - millisecondsOfADay);
         
-        if (!openingTimes[previousDayOfWeek].begin || !openingTimes[previousDayOfWeek].end) {
+        if (!openingTimes[previousDayOfWeek].interval.begin || !openingTimes[previousDayOfWeek].interval.end) {
             return false;
         }
         
-        var previousDayBegin = combine(previousDate, openingTimes[previousDayOfWeek].begin);
-        var previousDayEnd = combine(previousDate, openingTimes[previousDayOfWeek].end);
+        var previousDayBegin = combine(previousDate, openingTimes[previousDayOfWeek].interval.begin);
+        var previousDayEnd = combine(previousDate, openingTimes[previousDayOfWeek].interval.end);
         
         if (previousDayBegin > previousDayEnd) {
         
             // Previous day indeed has special opening times, so adjust the end time.
-            var previousDayEnd = combine(date, openingTimes[previousDayOfWeek].end);
+            var previousDayEnd = combine(date, openingTimes[previousDayOfWeek].interval.end);
             
             return dayTime < previousDayEnd;
         }

@@ -17,6 +17,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     $scope.locations = null;
     $scope.districts = null;
     $scope.tags = null;
+    $scope.friendlyDayStrings = null;
     $scope.veganCategories = null;
     $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
     $scope.orderSelection = "Name";
@@ -31,6 +32,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             initDistricts();
             initTags();
             initVeganCategories();
+            initFriendlyDayStrings();
             updateMarkers();
             updateOrder();
         })
@@ -166,6 +168,10 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     
     function initVeganCategories() {
         $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
+    }
+    
+    function initFriendlyDayStrings() {
+        $scope.friendlyDayStrings = LocationLogicService.getFriendlyDayStrings();
     }
     
     function updateGeolocationMarker() {

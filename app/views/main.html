@@ -35,13 +35,7 @@
                 <span ng-hide="query.openNow">
                     <select ng-model="query.openAtWeekDay" ng-change="updateMarkers()">
                         <option value="Alle Wochentage">Alle Wochentage</option>
-                        <option value="1">Montag</option>
-                        <option value="2">Dienstag</option>
-                        <option value="3">Mittwoch</option>
-                        <option value="4">Donnerstag</option>
-                        <option value="5">Freitag</option>
-                        <option value="6">Samstag</option>
-                        <option value="0">Sonntag</option>
+                        <option ng-repeat="i in [1, 2, 3, 4, 5, 6, 0]" value="{{i}}">{{friendlyDayStrings[i]}}</option>
                     </select>
                     <input 
                         name="openAtTimeInput" 
