@@ -151,7 +151,7 @@ app.filter('location', function(filterFilter) {
         
         // So we find café when searching for cafe and vice versa.
         // Analogous motivation for the other letters.
-        text = text.replace(/é/g, "e").replace(/á/g, "a").replace(/à/g, "a").replace(/ñ/g, "n");
+        text = text.replace(/é/g, "e").replace(/á/g, "a").replace(/à/g, "a").replace(/â/g, "a").replace(/ñ/g, "n");
         
         return text.toLowerCase();
     }
