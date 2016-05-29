@@ -49,6 +49,32 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             return OpeningTimesService.isOpen(this.openingTimes, weekDay, timeAsDate);
         }
         
+        location.getOpeningTimesCompressed = function() {
+        
+            var compressedOts = [];
+            
+            for (var day = 1; day <= 7; day++) {
+            
+                var ot = this.openingTimes[day === 7 ? 0 : day];
+                
+                if (day > 1) {
+                
+                    var lastGroup = compressedOts[compressedOts.length - 1];
+                    
+                    if (lastGroup[0].interval.friendly === ot.interval.friendly) {
+                        lastGroup.push(ot);
+                        continue;
+                    }
+                }
+                
+                var group = [];
+                group.push(ot);
+                compressedOts.push(group);
+            }
+            
+            return compressedOts;
+        }
+        
         location.getDistanceToPositionInKm = function(position) {
         
             return UtilService.getDistanceFromLatLonInKm(

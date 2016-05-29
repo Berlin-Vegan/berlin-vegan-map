@@ -6,6 +6,8 @@
  */
 app.factory("InfoWindowViewService", function(numberFilter) {
 
+    var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
+
     var service = {};
     
     service.getContent = function(location, currentPosition) {
@@ -24,21 +26,26 @@ app.factory("InfoWindowViewService", function(numberFilter) {
     function getOpeningTimesInnerHtml(location) {
     
         var html = "";
-        var openingTimes = location.openingTimes;
+        var compressedOts = location.getOpeningTimesCompressed();
         
-        html+= getOpeningTimeInnerHtml(openingTimes[1]) + "<br/>";
-        html+= getOpeningTimeInnerHtml(openingTimes[2]) + "<br/>";
-        html+= getOpeningTimeInnerHtml(openingTimes[3]) + "<br/>";
-        html+= getOpeningTimeInnerHtml(openingTimes[4]) + "<br/>";
-        html+= getOpeningTimeInnerHtml(openingTimes[5]) + "<br/>";
-        html+= getOpeningTimeInnerHtml(openingTimes[6]) + "<br/>";
-        html+= getOpeningTimeInnerHtml(openingTimes[0]);
+        for (var i = 0; i < compressedOts.length; i++) {
+        
+            var group = compressedOts[i];
+            var firstOt = group[0];
+            var lastOt = group[group.length - 1];
+            
+            if (firstOt === lastOt) {
+                html += "<b>" + firstOt.friendlyDayShort + ":</b> " + firstOt.interval.friendly;
+            } else {
+                html += "<b>" + firstOt.friendlyDayShort + extraLongHyphen + lastOt.friendlyDayShort +":</b> " + firstOt.interval.friendly;
+            }
+            
+            if (i < compressedOts.length - 1) {
+                html += "<br/>";
+            }
+        }
         
         return html;
-    }
-    
-    function getOpeningTimeInnerHtml(openingTime) {
-        return "<b>" + openingTime.friendlyDayShort + ":</b> " + openingTime.interval.friendly;
     }
     
     return {
