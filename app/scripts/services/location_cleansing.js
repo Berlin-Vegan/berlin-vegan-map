@@ -46,6 +46,8 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
             return "12-23";
         } else if (otString === "12 - 15:30, 17:30 - 23") {
             return "12-23";
+        } else if (otString ===  "12 - 15 + 17 - 22") {
+            return "12-22";
         }
         
         // Fixes that should be done during JSON generation:
