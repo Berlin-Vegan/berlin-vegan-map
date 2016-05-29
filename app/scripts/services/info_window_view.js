@@ -44,7 +44,8 @@ app.factory("InfoWindowViewService", function(numberFilter) {
                 interval = firstOt.interval.friendly;
             }
             
-            html += "<b>" + days + ":</b> " + interval;
+            var groupContainsToday = group.map(function(ot) { return ot.dayIndex; }).indexOf(new Date().getDay()) >= 0;
+            html += "<b>" + days + ":</b> " + (groupContainsToday ? "<b>" + interval + "</b>" : interval);
             
             if (i < compressedOts.length - 1) {
                 html += "<br/>";
