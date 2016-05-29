@@ -33,12 +33,18 @@ app.factory("InfoWindowViewService", function(numberFilter) {
             var group = compressedOts[i];
             var firstOt = group[0];
             var lastOt = group[group.length - 1];
+            var days;
+            var interval;
             
             if (firstOt === lastOt) {
-                html += "<b>" + firstOt.friendlyDayShort + ":</b> " + firstOt.interval.friendly;
+                days = firstOt.friendlyDayShort;
+                interval = firstOt.interval.friendly;
             } else {
-                html += "<b>" + firstOt.friendlyDayShort + extraLongHyphen + lastOt.friendlyDayShort +":</b> " + firstOt.interval.friendly;
+                days = firstOt.friendlyDayShort + extraLongHyphen + lastOt.friendlyDayShort;
+                interval = firstOt.interval.friendly;
             }
+            
+            html += "<b>" + days + ":</b> " + interval;
             
             if (i < compressedOts.length - 1) {
                 html += "<br/>";
