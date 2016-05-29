@@ -97,6 +97,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
     function OpeningTime(dayIndex, otString) {
         this.friendlyDay = friendlyDayStrings[dayIndex];
+        this.friendlyDayShort = this.friendlyDay.substring(0, 2);
         this.interval = new OpeningTimeInterval(otString);
     }
     

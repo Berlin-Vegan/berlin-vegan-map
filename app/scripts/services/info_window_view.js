@@ -16,10 +16,30 @@ app.factory("InfoWindowViewService", function(numberFilter) {
             + (location.website && location.website.length > 0 ? " (<a target='_blank' href='" + location.website + "' title='" + location.website + "'>Website</a>)" : "") + "</p>"
             + (currentPosition ? "<p>Entfernung: " + numberFilter(location.getDistanceToPositionInKm(currentPosition), 1) + " km</p>" : "")
             + "<h5>Öffnungszeiten</h5>"
-            + "<p>TODO</p>"
+            + "<p>" + getOpeningTimesInnerHtml(location) + "</p>"
             + "<p>" + (location.reviewURL && location.reviewURL.length > 0 ? "<a target='_blank' href='" + location.reviewURL + "'>Rezension</a>" : location.comment) + "</p>"
             + "</div>";
     };
+    
+    function getOpeningTimesInnerHtml(location) {
+    
+        var html = "";
+        var openingTimes = location.openingTimes;
+        
+        html+= getOpeningTimeInnerHtml(openingTimes[1]) + "<br/>";
+        html+= getOpeningTimeInnerHtml(openingTimes[2]) + "<br/>";
+        html+= getOpeningTimeInnerHtml(openingTimes[3]) + "<br/>";
+        html+= getOpeningTimeInnerHtml(openingTimes[4]) + "<br/>";
+        html+= getOpeningTimeInnerHtml(openingTimes[5]) + "<br/>";
+        html+= getOpeningTimeInnerHtml(openingTimes[6]) + "<br/>";
+        html+= getOpeningTimeInnerHtml(openingTimes[0]);
+        
+        return html;
+    }
+    
+    function getOpeningTimeInnerHtml(openingTime) {
+        return "<b>" + openingTime.friendlyDayShort + ":</b> " + openingTime.interval.friendly;
+    }
     
     return {
         getContent: function(location, currentPosition) {
