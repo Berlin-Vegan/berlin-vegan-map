@@ -13,6 +13,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
     
+    $scope.display = { search: "simple" };
     $scope.query = null;
     $scope.locations = null;
     $scope.districts = null;
