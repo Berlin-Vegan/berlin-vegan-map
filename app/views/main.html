@@ -18,16 +18,29 @@
                 </span>
             </p>
             <p>
-                <input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">Bioware</input>
-                <input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input>
-                <input type="checkbox" ng-model="query.handicappedAccessible" ng-change="updateMarkers()">Rollstuhlgeeignet</input>
-                <input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="updateMarkers()">Rollstuhlgeeignetes WC</input>
-                <input type="checkbox" ng-model="query.dog" ng-change="updateMarkers()">Hunde erlaubt</input>
-                <input type="checkbox" ng-model="query.wlan" ng-change="updateMarkers()">WLAN</input>
-                <input type="checkbox" ng-model="query.childChair" ng-change="updateMarkers()">Kinderstuhl</input>
-                <input type="checkbox" ng-model="query.catering" ng-change="updateMarkers()">Catering</input>
-                <input type="checkbox" ng-model="query.delivery" ng-change="updateMarkers()">Lieferdienst</input>
-                <input type="checkbox" ng-model="query.review" ng-change="updateMarkers()">Mit Rezension</input>
+                <!-- TODO: Layout with CSS, not HTML table: -->
+                <table style="width:100%">
+                    <tr>
+                        <td><input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">Bioware</input></td>
+                        <td><input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" ng-model="query.dog" ng-change="updateMarkers()">Hunde erlaubt</input></td>
+                        <td><input type="checkbox" ng-model="query.childChair" ng-change="updateMarkers()">Kinderstuhl</input></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" ng-model="query.handicappedAccessible" ng-change="updateMarkers()">Rollstuhlgeeignet</input></td>
+                        <td><input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="updateMarkers()">Rollstuhlgeeignetes WC</input></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" ng-model="query.delivery" ng-change="updateMarkers()">Lieferdienst</input></td>
+                        <td><input type="checkbox" ng-model="query.catering" ng-change="updateMarkers()">Catering</input></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" ng-model="query.wlan" ng-change="updateMarkers()">WLAN</input></td>
+                        <td><input type="checkbox" ng-model="query.review" ng-change="updateMarkers()">Mit Rezension</input></td>
+                    </tr>
+                </table>
             </p>
             <p>
                 Geöffnet:
@@ -80,41 +93,51 @@
                     <span ng-bind-template="{{query.distance.km | number : 1}} km"/>
                 </div>
             </p>
-            <hr/>
+            <hr style="margin: 0.1em auto;"/>
             <p>
-                Sortierung:
-                <select ng-model="orderSelection" ng-change="updateOrder()">
-                    <option>Name</option>
-                    <option ng-show="geolocation.marker.map">Entfernung</option>
-                    <option ng-hide="geolocation.marker.map" ng-disabled="true" title="Standorterkennung erforderlich">Entfernung</option>
-                </select>
+                <!-- TODO: Layout with CSS, not HTML table: -->
+                <table style="width:100%">
+                    <tr>
+                        <td>
+                            Sortierung:
+                            <select ng-model="orderSelection" ng-change="updateOrder()">
+                                <option>Name</option>
+                                <option ng-show="geolocation.marker.map">Entfernung</option>
+                                <option ng-hide="geolocation.marker.map" ng-disabled="true" title="Standorterkennung erforderlich">Entfernung</option>
+                            </select>
+                        </td>
+                        <td style="text-align:right;">{{filteredMarkers.length}} Treffer von {{locations.length}}</td>
+                    </tr>
+                </table>
             </p>
         </form>
-        <p>{{filteredMarkers.length}} Treffer von insgesamt {{locations.length}} Einträgen</p>
         <div id="class" ng-repeat="marker in filteredMarkers | orderBy : [order, 'location.name']">
-            <hr/>
-            <p>
+            <hr style="margin: 0.3em auto;"/>
+            <h4 style="margin: 0.3em auto;">
                 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
-            </p>
-            <p><span>{{marker.location.tags.join(", ")}}</span> (<span>{{marker.location.getVeganCategoryFriendly(true)}}</span>)</p>
-            <p>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</p>
-            <p ng-show="geolocation.marker.map">
-                <!-- 
-                    Even when not shown because geolocation.marker.map is undefined/null, the following 
-                    expression gets evaluated, so we use the dummy value 0 to prevent an error when trying 
-                    to get the distance when geolocation.marker.map is undefined/null.
-                    If one could prevent AngularJS from evaluating, would be more elegant. 
-                    No idea if this is possible.
-                -->
-                Entfernung: 
-                {{ 
-                    geolocation.marker.position ? marker.location.getDistanceToPositionInKm(geolocation.marker.position) : 0
-                    | 
-                    number : 1
-                }} 
-                km
-            </p>
-            <p>{{marker.location.getOpeningTimeTodayFriendly()}}</p>
+            </h4>
+            <div><span>{{marker.location.tags.join(", ")}}</span> (<span>{{marker.location.getVeganCategoryFriendly(true)}}</span>)</div>
+            <!-- TODO: Layout with CSS, not HTML table: -->
+            <table style="width:100%;">
+                <tr>
+                    <td>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</td>
+                    <td ng-show="geolocation.marker.map" style="text-align:right;">
+                    <!-- 
+                        Even when not shown because geolocation.marker.map is undefined/null, the following 
+                        expression gets evaluated, so we use the dummy value 0 to prevent an error when trying 
+                        to get the distance when geolocation.marker.map is undefined/null.
+                        If one could prevent AngularJS from evaluating, would be more elegant. 
+                        No idea if this is possible.
+                    -->
+                    {{ 
+                        geolocation.marker.position ? marker.location.getDistanceToPositionInKm(geolocation.marker.position) : 0
+                        | 
+                        number : 1
+                    }}&nbsp;km
+                    </td>
+                </tr>
+            </table>
+            <div>{{marker.location.getOpeningTimeTodayFriendly()}}</div>
         </div>
     </div>
     <div class="col-sm-8 col-md-9 col-lg-9" style="position:fixed;top:0;right:0;">
