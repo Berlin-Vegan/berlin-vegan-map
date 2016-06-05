@@ -167,15 +167,19 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
     service.getSortedTags = function(locations) {
     
-        var pseudoSet = {};
+        // var pseudoSet = {};
+        // 
+        // for (var i = 0; i < locations.length; i++) {
+        //     for (var j = 0; j < locations[i].tags.length; j++) {
+        //         pseudoSet[locations[i].tags[j]] = "";
+        //     }
+        // }
+        // 
+        // return pseudoSetToSortedArray(pseudoSet);
         
-        for (var i = 0; i < locations.length; i++) {
-            for (var j = 0; j < locations[i].tags.length; j++) {
-                pseudoSet[locations[i].tags[j]] = "";
-            }
-        }
-        
-        return pseudoSetToSortedArray(pseudoSet);
+        // Since we know that these are fixed, we can optimize performance by using a shortcut.
+        // It would probably be better to have this list generated into JSON. TODO
+        return ["Café", "Eiscafé", "Imbiss", "Restaurant"];
     }
     
     function pseudoSetToSortedArray(pseudoSet) {
