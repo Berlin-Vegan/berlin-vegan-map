@@ -77,7 +77,8 @@
             </p>
             <p ng-show="display.search==='advanced'">
                 <select ng-model="query.district" ng-change="updateMarkers()">
-                    <option ng-repeat="district in districts">{{district}}</option>
+                    <!-- TODO: Find out why in production (but not in dev mode) we need the value attribute even if it equals the text. -->
+                    <option ng-repeat="district in districts" value="{{district}}">{{district}}</option>
                 </select>
             </p>
             <p ng-show="geolocation.supported">
@@ -106,9 +107,10 @@
                         <td>
                             Sortierung:
                             <select ng-model="orderSelection" ng-change="updateOrder()">
-                                <option>Name</option>
-                                <option ng-show="geolocation.marker.map">Entfernung</option>
-                                <option ng-hide="geolocation.marker.map" ng-disabled="true" title="Standorterkennung erforderlich">Entfernung</option>
+                                <!-- TODO: Find out why in production (but not in dev mode) we need the value attribute even if it equals the text. -->
+                                <option value="Name">Name</option>
+                                <option value="Entfernung" ng-show="geolocation.marker.map">Entfernung</option>
+                                <option value="Entfernung" ng-hide="geolocation.marker.map" ng-disabled="true" title="Standorterkennung erforderlich">Entfernung</option>
                             </select>
                         </td>
                         <td style="text-align:right;">{{filteredMarkers.length}} Treffer von {{locations.length}}</td>
