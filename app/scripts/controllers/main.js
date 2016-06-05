@@ -9,9 +9,10 @@
  */
 app.controller('MainController', function ($scope, $http, $timeout, LocationCleansingService, LocationLogicService, InfoWindowViewService, filterFilter, locationFilter) {
   
-    var debugMode = false;
+    var debugMode = false; // TODO: Set something like that depending on build.
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
+    var locationsUrl = debugMode ? "assets/GastroLocations_2016-05-26_formatted.json" : "http://www.berlin-vegan.de/app/data/GastroLocations.json";
     
     $scope.display = { search: "simple" };
     $scope.query = null;
@@ -23,7 +24,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
     $scope.orderSelection = "Name";
     
-    $http({method: 'GET', url: 'assets/GastroLocations_2016-05-26_formatted.json'})
+    $http({method: 'GET', url: locationsUrl})
         .success(function(data, status, headers, config) {
             $scope.locations = data;
             LocationCleansingService.cleanLocations($scope.locations);
