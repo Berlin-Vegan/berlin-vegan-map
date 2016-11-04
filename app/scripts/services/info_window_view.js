@@ -7,15 +7,22 @@
 app.factory("InfoWindowViewService", function(numberFilter) {
 
     var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
-
+    var linkSymbol = "🔗"; // Your editor may not have this.
+    
     var service = {};
     
     service.getContent = function(location, currentPosition) {
-        return "<h4>" + location.name + "</h4>" 
+        return "<h4>" 
+            + location.name 
+            + (location.website && location.website.length > 0 ? 
+                " <a target='_blank' href='" + location.website + "' title='" + location.website + "'>" + linkSymbol + "</a>" 
+                : 
+                ""
+            ) 
+            + "</h4>" 
             + "<div class='infoWindowContent'>" 
             + "<p>" + location.tags.join(", ") + " (" + location.getVeganCategoryFriendly(true) + ")</p>"
-            + "<p>" + location.street + " " + location.cityCode + " " + location.district 
-            + (location.website && location.website.length > 0 ? " (<a target='_blank' href='" + location.website + "' title='" + location.website + "'>Website</a>)" : "") + "</p>"
+            + "<p>" + location.street + " " + location.cityCode + " " + location.district + "</p>"
             + (currentPosition ? "<p>Entfernung: " + numberFilter(location.getDistanceToPositionInKm(currentPosition), 1) + " km</p>" : "")
             + "<h5>Öffnungszeiten</h5>"
             + "<p>" + getOpeningTimesInnerHtml(location) + "</p>"
