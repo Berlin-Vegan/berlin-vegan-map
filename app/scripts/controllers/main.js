@@ -8,12 +8,12 @@
  * Controller of the berlinVeganMapApp
  */
 app.controller('MainController', function ($scope, $http, $timeout, LocationCleansingService, LocationLogicService, InfoWindowViewService, filterFilter, locationFilter) {
-  
+
     var debugMode = false; // TODO: Set something like that depending on build.
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
-    var locationsUrl = debugMode ? "assets/GastroLocations_2016-05-26_formatted.json" : "http://www.berlin-vegan.de/app/data/GastroLocations.json";
-    
+    var locationsUrl = debugMode ? "assets/GastroLocations_2016-05-26_formatted.json" : "/app/data/GastroLocations.json";
+
     $scope.display = { search: "simple" };
     $scope.query = null;
     $scope.locations = null;
@@ -23,7 +23,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     $scope.veganCategories = null;
     $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
     $scope.orderSelection = "Name";
-    
+
     $http({method: 'GET', url: locationsUrl})
         .success(function(data, status, headers, config) {
             $scope.locations = data;
@@ -44,9 +44,9 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     $scope.updateMarkers = updateMarkers;
     $scope.updateGeolocationMarker = updateGeolocationMarker;
     $scope.updateOrder = updateOrder;
-    
+
     var infoWindow = new google.maps.InfoWindow();
-    
+
     var createMarker = function (location){
         var marker = new google.maps.Marker({
             map: $scope.map,
@@ -56,52 +56,52 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-        
+
             var content;
-            
+
             if ($scope.geolocation.marker) {
                 content = InfoWindowViewService.getContent(marker.location, $scope.geolocation.marker.position);
             } else {
                 content = InfoWindowViewService.getContent(marker.location);
             }
-            
+
             infoWindow.setContent(content);
             infoWindow.open($scope.map, marker);
         });
 
         $scope.markers.push(marker);
     }
-    
+
     function initQuery() {
-    
+
         var tags = LocationLogicService.getSortedTags($scope.locations);
         var tagsMap = {};
-        
+
         for (var i = 0; i < tags.length; i++) {
             tagsMap[tags[i]] = true;
         }
-        
+
         var veganCategories = LocationLogicService.getSortedVeganCategories();
         var veganCategoriesMap = {};
-        
+
         for (var i = 0; i < veganCategories.length; i++) {
             veganCategoriesMap[veganCategories[i]] = true;
         }
-        
-        $scope.query = { 
-            text: "", 
-            district: allDistricts, 
-            openAtWeekDay: allWeekDays, 
-            tags: tagsMap, 
-            veganCategories: veganCategoriesMap, 
-            allDistricts: function() { return this.district === allDistricts; }, 
+
+        $scope.query = {
+            text: "",
+            district: allDistricts,
+            openAtWeekDay: allWeekDays,
+            tags: tagsMap,
+            veganCategories: veganCategoriesMap,
+            allDistricts: function() { return this.district === allDistricts; },
             allWeekDays: function() { return this.openAtWeekDay === allWeekDays; },
             distance: { enabled: false, position: null, km: 1}
         };
     }
-    
+
     function initMap() {
-    
+
         var mapOptions = {
             zoom: 12,
             center: new google.maps.LatLng(52.5200070,13.4049540),
@@ -120,15 +120,15 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             google.maps.event.trigger(selectedMarker, 'click');
         };
     }
-    
+
     function updateMarkers() {
-    
+
         $scope.filteredMarkers = getFilteredMarkers();
-        
+
         for (var i = 0; i < $scope.markers.length; i++) {
-        
+
             var marker = $scope.markers[i];
-            
+
             if (marker !== $scope.geolocation.marker){
                 if ($scope.filteredMarkers.indexOf(marker) >= 0) {
                     marker.setMap($scope.map);
@@ -138,52 +138,52 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             }
         }
     }
-    
+
     function getFilteredMarkers() {
 
-        var locations = 
+        var locations =
             filterFilter(
-                $scope.markers, 
-                function(marker, index, array) { 
-                    return typeof marker.location !== "undefined"; 
+                $scope.markers,
+                function(marker, index, array) {
+                    return typeof marker.location !== "undefined";
                 }
             ).map(function(marker) { return marker.location; });
 
         var filteredLocations = locationFilter(locations, $scope.query);
 
         return filterFilter(
-            $scope.markers, 
-            function(marker, index, array) { 
+            $scope.markers,
+            function(marker, index, array) {
                 return filteredLocations.indexOf(marker.location) >= 0;
             }
         );
     }
-    
+
     function initDistricts() {
         $scope.districts = LocationLogicService.getSortedDistricts($scope.locations);
         $scope.districts.unshift(allDistricts);
     }
-    
+
     function initTags() {
         $scope.tags = LocationLogicService.getSortedTags($scope.locations);
     }
-    
+
     function initVeganCategories() {
         $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
     }
-    
+
     function initFriendlyDayStrings() {
         $scope.friendlyDayStrings = LocationLogicService.getFriendlyDayStrings();
     }
-    
+
     function updateGeolocationMarker() {
 
         if ($scope.geolocation.show) {
-        
+
             if (!navigator.geolocation) {
                 alert("Unerwartete Bedingung");
             }
-            
+
             // Workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=675533
             $timeout(
                 function() {
@@ -191,29 +191,29 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
                         $scope.geolocation.error = "Standortzugriff nicht möglich";
                         $scope.geolocation.info = "";
                     }
-                }, 
+                },
                 debugMode ? 8000 : 16000
             );
-            
+
             $scope.geolocation.info = "Ermittle Standort...";
             $scope.geolocation.error = "";
-            
+
             var options = {
                 enableHighAccuracy: true,
                 timeout: debugMode ? 5000 : 15000
                 //maximumAge: 0
             };
-            
+
             navigator.geolocation.getCurrentPosition(
                 function(position) {
                     $scope.$apply(function() {
                         var marker = new google.maps.Marker({
                             map: $scope.map,
                             position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-                            title: "Aktueller Standort", 
+                            title: "Aktueller Standort",
                             label: "X" // TODO: Another image
                         });
-                        
+
                         google.maps.event.addListener(marker, 'click', function(){
                             $scope.map.setCenter(marker.getPosition());
                             infoWindow.setContent('<h2>' + marker.title + '</h2>');
@@ -225,16 +225,16 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
                         $scope.geolocation.info = "";
                         $scope.geolocation.error = "";
                         $scope.query.distance.position = marker.position;
-                        
+
                         google.maps.event.trigger(marker, 'click');
                     });
-                }, 
+                },
                 function(positionError) {
-                    
+
                     $scope.$apply(function() {
-                    
+
                         var reason;
-                        
+
                         switch (positionError.code)
                         {
                             case 1://PositionError.PERMISSION_DENIED:
@@ -247,7 +247,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
                                 reason = "Zeitüberschreitung";
                                 break;
                         }
-                        
+
                         $scope.geolocation.info = "";
                         $scope.geolocation.error = "Standortzugriff nicht möglich: " + reason;
                     });
@@ -259,7 +259,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             $scope.geolocation.error = "";
             $scope.geolocation.marker.setMap(null);
             // TODO: This is a potential memory leak. Better delete the marker.
-            
+
             if ($scope.query.distance.enabled) {
                 $scope.query.distance.enabled = false;
                 $scope.updateMarkers();
@@ -268,19 +268,19 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             $scope.query.distance.position = null;
         }
     }
-    
+
     function updateOrder() {
-    
+
         var order;
-        
+
         switch ($scope.orderSelection) {
             case "Name":
                 order = "location.name";
                 break;
             case "Entfernung":
-                order = function(marker) { 
+                order = function(marker) {
                     if ($scope.geolocation.marker && $scope.geolocation.marker.map) {
-                        return marker.location.getDistanceToPositionInKm($scope.geolocation.marker.position); 
+                        return marker.location.getDistanceToPositionInKm($scope.geolocation.marker.position);
                     } else {
                         return 1;
                     }
@@ -289,7 +289,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             default:
                 console.log("Unerwarteter Wert für orderSelection: " + $scope.orderSelection); // TODO
         }
-        
-        $scope.order = order; 
+
+        $scope.order = order;
     }
 });
