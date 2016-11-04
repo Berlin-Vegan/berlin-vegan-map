@@ -19,6 +19,7 @@ app.factory("InfoWindowViewService", function(numberFilter) {
             + (currentPosition ? "<p>Entfernung: " + numberFilter(location.getDistanceToPositionInKm(currentPosition), 1) + " km</p>" : "")
             + "<h5>Öffnungszeiten</h5>"
             + "<p>" + getOpeningTimesInnerHtml(location) + "</p>"
+            + (location.openComment ? "<p>" + location.openComment + "</p>" : "")
             + "<p>" + (location.reviewURL && location.reviewURL.length > 0 ? "<a target='_blank' href='" + location.reviewURL + "'>Rezension</a>" : location.comment) + "</p>"
             + "</div>";
     };

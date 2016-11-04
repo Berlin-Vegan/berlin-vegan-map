@@ -144,7 +144,12 @@
                     </td>
                 </tr>
             </table>
-            <div>{{marker.location.getOpeningTimeTodayFriendly()}}</div>
+            <div>
+                <span>{{marker.location.getOpeningTimeTodayFriendly()}}</span>
+                <span ng-show="marker.location.openComment" title={{marker.location.openComment}}>
+                    <img width="18" height="18" src="https://upload.wikimedia.org/wikipedia/commons/2/28/Information.svg"/>
+                </span>
+            </div>
         </div>
     </div>
     <div class="col-sm-8 col-md-9 col-lg-9" style="position:fixed;top:0;right:0;">
