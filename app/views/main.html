@@ -2,48 +2,54 @@
     <div class="col-sm-4 col-md-3 col-lg-3" id="leftCol" xstyle="width:200;">
         <form name="form" novalidate>
             <div>
-                <input type="radio" name="display.search" ng-model="display.search" value="simple">Einfache Suche</input>
-                <input type="radio" name="display.search" ng-model="display.search" value="advanced">Erweiterte Suche</input>
+                <label>
+                    <input type="radio" name="display.search" ng-model="display.search" value="simple">Einfache Suche</input>
+                </label>
+                <label>
+                    <input type="radio" name="display.search" ng-model="display.search" value="advanced">Erweiterte Suche</input>
+                </label>
             </div>
             <hr style="margin: 0.2em auto;"/>
             <p>
                 <input type="text" ng-model="query.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
-                <span ng-show="display.search==='advanced'"><input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="updateMarkers()">Nur Namen durchsuchen</input></span>
+                <label ng-show="display.search==='advanced'">
+                    <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="updateMarkers()">Nur Namen durchsuchen</input>
+                </label>
             </p>
             <p>
                 Kategorie:
-                <span ng-repeat="veganCategory in veganCategories">
+                <label ng-repeat="veganCategory in veganCategories">
                     <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="updateMarkers()">{{veganCategory}}</input>
-                </span>
+                </label>
             </p>
             <p>
                 Art:
-                <span ng-repeat="tag in tags">
+                <label ng-repeat="tag in tags">
                     <input type="checkbox" ng-model="query.tags[tag]" ng-change="updateMarkers()">{{tag}}</input>
-                </span>
+                </label>
             </p>
             <p>
                 <!-- TODO: Layout with CSS, not HTML table: -->
                 <table style="width:100%" ng-show="display.search==='advanced'">
                     <tr>
-                        <td><input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">Bioware</input></td>
-                        <td><input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input></td>
+                        <td><label><input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">Bioware</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input></label></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" ng-model="query.dog" ng-change="updateMarkers()">Hunde erlaubt</input></td>
-                        <td><input type="checkbox" ng-model="query.childChair" ng-change="updateMarkers()">Kinderstuhl</input></td>
+                        <td><label><input type="checkbox" ng-model="query.dog" ng-change="updateMarkers()">Hunde erlaubt</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.childChair" ng-change="updateMarkers()">Kinderstuhl</input></label></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" ng-model="query.handicappedAccessible" ng-change="updateMarkers()">Rollstuhlgeeignet</input></td>
-                        <td><input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="updateMarkers()">Rollstuhlgeeignetes WC</input></td>
+                        <td><label><input type="checkbox" ng-model="query.handicappedAccessible" ng-change="updateMarkers()">Rollstuhlgeeignet</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="updateMarkers()">Rollstuhlgeeignetes WC</input></label></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" ng-model="query.delivery" ng-change="updateMarkers()">Lieferdienst</input></td>
-                        <td><input type="checkbox" ng-model="query.catering" ng-change="updateMarkers()">Catering</input></td>
+                        <td><label><input type="checkbox" ng-model="query.delivery" ng-change="updateMarkers()">Lieferdienst</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.catering" ng-change="updateMarkers()">Catering</input></label></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" ng-model="query.wlan" ng-change="updateMarkers()">WLAN</input></td>
-                        <td><input type="checkbox" ng-model="query.review" ng-change="updateMarkers()">Mit Rezension</input></td>
+                        <td><label><input type="checkbox" ng-model="query.wlan" ng-change="updateMarkers()">WLAN</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.review" ng-change="updateMarkers()">Mit Rezension</input></label></td>
                     </tr>
                 </table>
             </p>
@@ -72,7 +78,9 @@
                     </select>
                     <input type="time" placeholder="-Jetzt-" ng-disabled="true" size="15"/>
                 </span>
-                <input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">Jetzt</input>
+                <label>
+                    <input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">Jetzt</input>
+                </label>
                 <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert); Format: hh:mm</span>
             </p>
             <p ng-show="display.search==='advanced'">
@@ -83,10 +91,12 @@
             </p>
             <p ng-show="geolocation.supported">
                 <div>
-                    <input type="checkbox" ng-model="geolocation.show" ng-change="updateGeolocationMarker()">
-                        <span ng-hide="geolocation.marker.map">Standorterkennung</span>
-                        <a ng-show="geolocation.marker.map" href="#" ng-click="openInfoWindow($event, geolocation.marker)">Standorterkennung</a> 
-                    </input>
+                    <label>
+                        <input type="checkbox" ng-model="geolocation.show" ng-change="updateGeolocationMarker()">
+                            <span ng-hide="geolocation.marker.map">Standorterkennung</span>
+                            <a ng-show="geolocation.marker.map" href="#" ng-click="openInfoWindow($event, geolocation.marker)">Standorterkennung</a> 
+                        </input>
+                    </label>
                 </div>
                 <div>
                     <img ng-show="geolocation.info === 'Ermittle Standort...'" src="assets/images/ajax-loader.gif"/>
@@ -94,7 +104,9 @@
                     <span ng-bind="geolocation.error" class="error"></span>
                 </div>
                 <div ng-show="display.search==='advanced' && geolocation.marker.map">
-                    <input type="checkbox" ng-model="query.distance.enabled" ng-change="updateMarkers()">Entfernung:</input>
+                    <label>
+                        <input type="checkbox" ng-model="query.distance.enabled" ng-change="updateMarkers()">Entfernung:</input>
+                    </label>
                     <input type="range" min="0.1" max="10" step="0.1" ng-model="query.distance.km" ng-change="query.distance.enabled = true; updateMarkers()" />
                     <span ng-bind-template="{{query.distance.km | number : 1}} km"/>
                 </div>

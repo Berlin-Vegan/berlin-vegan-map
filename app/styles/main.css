@@ -7,3 +7,8 @@
 .error {
   color: red;
 }
+
+label {
+  font-weight: normal;
+  white-space:nowrap;
+}
