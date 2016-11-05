@@ -18,6 +18,7 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
     
     function cleanLocation(location) {
 
+        location.openComment = getCleanOpenComment(location.openComment);
         location.tags = getCleanTags(location.tags);
         
         var otPropertyNames = ["otSun", "otMon", "otTue", "otWed", "otThu", "otFri", "otSat"];
@@ -30,6 +31,18 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
         if (location.website && location.website.length > 0) {
             location.website = getCleanWebsite(location.website);
         }
+    }
+    
+    function getCleanOpenComment(openComment) {
+    
+        if (openComment) {
+            openComment = openComment.trim();
+            if (openComment.length === 0) {
+                openComment = undefined;
+            }
+        }
+        
+        return openComment;
     }
     
     function getCleanTags(tags) {
