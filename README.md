@@ -21,5 +21,5 @@ grunt test
 
 # Build and Deploy
 ```
-grunt
+deploy.sh
 ```
