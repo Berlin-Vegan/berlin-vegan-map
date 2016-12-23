@@ -52,7 +52,8 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
             map: $scope.map,
             position: new google.maps.LatLng(location.latCoord, location.longCoord),
             title: location.name,
-            location: location
+            location: location,
+            icon: getMarkerImage(location)
         });
 
         google.maps.event.addListener(marker, 'click', function() {
@@ -70,6 +71,29 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
         });
 
         $scope.markers.push(marker);
+    }
+    
+    function getMarkerImage(location) {
+        var url;
+        switch (location.vegan) {
+            case 2:
+                url = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+                break;
+            case 4:
+                url = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
+                break;
+            case 5:
+                url = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+                break;
+            default:
+                throw new Error("Unexpected value for location.vegan: " + location.vegan);
+        }
+        return new google.maps.MarkerImage(
+            url,
+            new google.maps.Size(50, 50),
+            new google.maps.Point(0,0),
+            new google.maps.Point(15, 34)
+        );
     }
 
     function initQuery() {
@@ -211,7 +235,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
                             map: $scope.map,
                             position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                             title: "Aktueller Standort",
-                            label: "X" // TODO: Another image
+                            icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
                         });
 
                         google.maps.event.addListener(marker, 'click', function(){
