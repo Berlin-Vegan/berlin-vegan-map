@@ -12,7 +12,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationClea
     var debugMode = false; // TODO: Set something like that depending on build.
     var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
-    var locationsUrl = debugMode ? "assets/GastroLocations_2016-05-26_formatted.json" : "/app/data/GastroLocations.json";
+    var locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";
 
     $scope.display = { search: "simple" };
     $scope.query = null;

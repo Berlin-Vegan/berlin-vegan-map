@@ -51,22 +51,6 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
     }
 
     function getCleanOt(otString) {
-    
-        //Fixes that should be done in the source spreadsheet:
-        if (otString === "ab 10") {
-            return "10-";
-        } else if (otString === "12 : 23") {
-            return "12-23";
-        } else if (otString === "12 - 15:30, 17:30 - 23") {
-            return "12-23";
-        } else if (otString ===  "12 - 15 + 17 - 22") {
-            return "12-22";
-        } else if (otString ===  "9 - 16 Winter - 13") {
-            return "9-16";
-        } else if (otString ===  "12 - 14:30 + 17 - 22") {
-            return "12-22";
-        }
-        
         // Fixes that should be done during JSON generation:
         return otString.replace(/\s/g, "").replace(/-24/g, "-0");
     }
