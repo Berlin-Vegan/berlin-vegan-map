@@ -19,13 +19,6 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
     function cleanLocation(location) {
 
         location.openComment = getCleanOpenComment(location.openComment);
-        
-        var otPropertyNames = ["otSun", "otMon", "otTue", "otWed", "otThu", "otFri", "otSat"];
-        
-        for (var i = 0; i < otPropertyNames.length; i++) {
-            var propertyName = otPropertyNames[i];
-            location[propertyName] = getCleanOt(location[propertyName]);
-        }
     }
     
     function getCleanOpenComment(openComment) {
@@ -38,11 +31,6 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
         }
         
         return openComment;
-    }
-
-    function getCleanOt(otString) {
-        // Fixes that should be done during JSON generation:
-        return otString.replace(/\s/g, "").replace(/-24/g, "-0");
     }
     
     return {
