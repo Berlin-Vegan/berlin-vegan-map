@@ -735,7 +735,7 @@
   }, {
     "district" : "Schöneberg",
     "publicTransport" : "U1/2/5 Nollendorfplatz, U7 Kleistpark oder Eisenacher Straße",
-    "openComment" : "\n",
+    "openComment" : "",
     "email" : "info@berlin-burrito-company.de",
     "handicappedAccessible" : 0,
     "handicappedAccessibleWc" : 0,
@@ -875,7 +875,7 @@
     "reviewURL" : "bistro-bardot",
     "district" : "Friedrichshain",
     "publicTransport" : "U5 Samariterstraße",
-    "openComment" : "Frühstück: 7:00 - 11:00 (Sa/So bis 12:00)\n",
+    "openComment" : "Frühstück: 7:00 - 11:00 (Sa/So bis 12:00)",
     "email" : "info@bistrobardot.de",
     "handicappedAccessible" : 1,
     "handicappedAccessibleWc" : 1,
