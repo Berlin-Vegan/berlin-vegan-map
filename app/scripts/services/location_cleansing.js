@@ -19,7 +19,6 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
     function cleanLocation(location) {
 
         location.openComment = getCleanOpenComment(location.openComment);
-        location.tags = getCleanTags(location.tags);
         
         var otPropertyNames = ["otSun", "otMon", "otTue", "otWed", "otThu", "otFri", "otSat"];
         
@@ -39,11 +38,6 @@ app.factory('LocationCleansingService', function(OpeningTimesService, UtilServic
         }
         
         return openComment;
-    }
-    
-    function getCleanTags(tags) {
-        // Fixes that should be done during JSON generation:
-        return tags.map(function(tag) { return tag.trim(); });
     }
 
     function getCleanOt(otString) {
