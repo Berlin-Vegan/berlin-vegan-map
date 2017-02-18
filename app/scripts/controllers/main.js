@@ -14,7 +14,6 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
     var allWeekDays = "Alle Wochentage";
     var locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";
 
-    $scope.display = { search: "simple" };
     $scope.query = null;
     $scope.locations = null;
     $scope.districts = null;

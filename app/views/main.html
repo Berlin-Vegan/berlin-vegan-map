@@ -1,18 +1,10 @@
 <div class="row">
     <div class="col-sm-4 col-md-3 col-lg-3" id="leftCol" xstyle="width:200;">
         <form name="form" novalidate>
-            <div>
-                <label>
-                    <input type="radio" name="display.search" ng-model="display.search" value="simple">Einfache Suche</input>
-                </label>
-                <label>
-                    <input type="radio" name="display.search" ng-model="display.search" value="advanced">Erweiterte Suche</input>
-                </label>
-            </div>
             <hr style="margin: 0.2em auto;"/>
             <p>
                 <input type="text" ng-model="query.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
-                <label ng-show="display.search==='advanced'">
+                <label>
                     <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="updateMarkers()">Nur Namen durchsuchen</input>
                 </label>
             </p>
@@ -30,7 +22,7 @@
             </p>
             <p>
                 <!-- TODO: Layout with CSS, not HTML table: -->
-                <table style="width:100%" ng-show="display.search==='advanced'">
+                <table style="width:100%">
                     <tr>
                         <td><label><input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">Bioware</input></label></td>
                         <td><label><input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input></label></td>
@@ -53,7 +45,7 @@
                     </tr>
                 </table>
             </p>
-            <p ng-show="display.search==='advanced'">
+            <p>
                 Geöffnet:
                 <span ng-hide="query.openNow">
                     <select ng-model="query.openAtWeekDay" ng-change="updateMarkers()">
@@ -83,7 +75,7 @@
                 </label>
                 <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert); Format: hh:mm</span>
             </p>
-            <p ng-show="display.search==='advanced'">
+            <p>
                 <select ng-model="query.district" ng-change="updateMarkers()">
                     <!-- TODO: Find out why in production (but not in dev mode) we need the value attribute even if it equals the text. -->
                     <option ng-repeat="district in districts" value="{{district}}">{{district}}</option>
@@ -103,7 +95,7 @@
                     <span ng-bind="geolocation.info"></span>
                     <span ng-bind="geolocation.error" class="error"></span>
                 </div>
-                <div ng-show="display.search==='advanced' && geolocation.marker.map">
+                <div ng-show="geolocation.marker.map">
                     <label>
                         <input type="checkbox" ng-model="query.distance.enabled" ng-change="updateMarkers()">Entfernung:</input>
                     </label>
