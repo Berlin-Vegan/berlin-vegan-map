@@ -10,13 +10,11 @@
 app.controller('MainController', function ($scope, $http, $timeout, LocationLogicService, InfoWindowViewService, filterFilter, locationFilter) {
 
     var debugMode = false; // TODO: Set something like that depending on build.
-    var allDistricts = "Alle Bezirke";
     var allWeekDays = "Alle Wochentage";
     var locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";
 
     $scope.query = null;
     $scope.locations = null;
-    $scope.districts = null;
     $scope.tags = null;
     $scope.friendlyDayStrings = null;
     $scope.veganCategories = null;
@@ -29,7 +27,6 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
             LocationLogicService.enhanceLocations($scope.locations);
             initQuery();
             initMap();
-            initDistricts();
             initTags();
             initVeganCategories();
             initFriendlyDayStrings();
@@ -112,11 +109,9 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
 
         $scope.query = {
             text: "",
-            district: allDistricts,
             openAtWeekDay: allWeekDays,
             tags: tagsMap,
             veganCategories: veganCategoriesMap,
-            allDistricts: function() { return this.district === allDistricts; },
             allWeekDays: function() { return this.openAtWeekDay === allWeekDays; },
             distance: { enabled: false, position: null, km: 1}
         };
@@ -179,11 +174,6 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
                 return filteredLocations.indexOf(marker.location) >= 0;
             }
         );
-    }
-
-    function initDistricts() {
-        $scope.districts = LocationLogicService.getSortedDistricts($scope.locations);
-        $scope.districts.unshift(allDistricts);
     }
 
     function initTags() {

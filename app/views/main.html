@@ -75,12 +75,6 @@
                 </label>
                 <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert); Format: hh:mm</span>
             </p>
-            <p>
-                <select ng-model="query.district" ng-change="updateMarkers()">
-                    <!-- TODO: Find out why in production (but not in dev mode) we need the value attribute even if it equals the text. -->
-                    <option ng-repeat="district in districts" value="{{district}}">{{district}}</option>
-                </select>
-            </p>
             <p ng-show="geolocation.supported">
                 <div>
                     <label>

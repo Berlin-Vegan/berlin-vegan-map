@@ -5,10 +5,6 @@ app.filter('location', function(filterFilter) {
     return function(locations, query) {
 
         var locationPattern = {};
-
-        if (!query.allDistricts()) {
-            locationPattern.district = query.district;
-        }
         
         if (query.organic) {
             locationPattern.organic = "1";

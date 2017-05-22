@@ -154,17 +154,6 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         }
     }
     
-    service.getSortedDistricts = function(locations) {
-    
-        var pseudoSet = {};
-        
-        for (var i = 0; i < locations.length; i++) {
-            pseudoSet[locations[i].district] = "";
-        }
-        
-        return pseudoSetToSortedArray(pseudoSet);
-    };
-    
     service.getSortedTags = function(locations) {
     
         // var pseudoSet = {};
@@ -205,9 +194,6 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     return {
         enhanceLocations: function(locations) {
             return service.enhanceLocations(locations);
-        },
-        getSortedDistricts: function(locations) {
-            return service.getSortedDistricts(locations);
         },
         getSortedTags: function(locations) {
             return service.getSortedTags(locations);
