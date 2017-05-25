@@ -3,61 +3,61 @@
         <form name="form" novalidate>
             <hr style="margin: 0.2em auto;"/>
             <p>
-                <input type="text" ng-model="query.text" placeholder="Suchtext" ng-change="updateMarkers()"/>
+                <input type="text" ng-model="query.text" placeholder="{{i18n.search.text.placeholder}}" ng-change="updateMarkers()"/>
                 <label>
-                    <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="updateMarkers()">Nur Namen durchsuchen</input>
+                    <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="updateMarkers()">{{i18n.search.text.namesOnly}}</input>
                 </label>
             </p>
             <p>
-                Kategorie:
+                {{i18n.category.header}}:
                 <label ng-repeat="veganCategory in veganCategories">
-                    <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="updateMarkers()">{{veganCategory}}</input>
+                    <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="updateMarkers()">{{i18n.enums.veganCategory.concise[veganCategory]}}</input>
                 </label>
             </p>
             <p>
-                Art:
+                {{i18n.tag.header}}:
                 <label ng-repeat="tag in tags">
-                    <input type="checkbox" ng-model="query.tags[tag]" ng-change="updateMarkers()">{{tag}}</input>
+                    <input type="checkbox" ng-model="query.tags[tag]" ng-change="updateMarkers()">{{i18n.enums.tag[tag]}}</input>
                 </label>
             </p>
             <p>
                 <!-- TODO: Layout with CSS, not HTML table: -->
                 <table style="width:100%">
                     <tr>
-                        <td><label><input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">Bioware</input></label></td>
-                        <td><label><input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()">glutenfreie Speisen</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">{{i18n.features.organic}}</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()">{{i18n.features.glutenFree}}</input></label></td>
                     </tr>
                     <tr>
-                        <td><label><input type="checkbox" ng-model="query.dog" ng-change="updateMarkers()">Hunde erlaubt</input></label></td>
-                        <td><label><input type="checkbox" ng-model="query.childChair" ng-change="updateMarkers()">Kinderstuhl</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.dog" ng-change="updateMarkers()">{{i18n.features.dog}}</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.childChair" ng-change="updateMarkers()">{{i18n.features.childChair}}</input></label></td>
                     </tr>
                     <tr>
-                        <td><label><input type="checkbox" ng-model="query.handicappedAccessible" ng-change="updateMarkers()">Rollstuhlgeeignet</input></label></td>
-                        <td><label><input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="updateMarkers()">Rollstuhlgeeignetes WC</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.handicappedAccessible" ng-change="updateMarkers()">{{i18n.features.handicappedAccessible}}</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="updateMarkers()">{{i18n.features.handicappedAccessibleWc}}</input></label></td>
                     </tr>
                     <tr>
-                        <td><label><input type="checkbox" ng-model="query.delivery" ng-change="updateMarkers()">Lieferdienst</input></label></td>
-                        <td><label><input type="checkbox" ng-model="query.catering" ng-change="updateMarkers()">Catering</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.delivery" ng-change="updateMarkers()">{{i18n.features.delivery}}</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.catering" ng-change="updateMarkers()">{{i18n.features.catering}}</input></label></td>
                     </tr>
                     <tr>
-                        <td><label><input type="checkbox" ng-model="query.wlan" ng-change="updateMarkers()">WLAN</input></label></td>
-                        <td><label><input type="checkbox" ng-model="query.review" ng-change="updateMarkers()">Mit Rezension</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.wlan" ng-change="updateMarkers()">{{i18n.features.wlan}}</input></label></td>
+                        <td><label><input type="checkbox" ng-model="query.review" ng-change="updateMarkers()">{{i18n.features.review}}</input></label></td>
                     </tr>
                 </table>
             </p>
             <p>
-                Geöffnet:
+                {{i18n.openingTimes.header}}:
                 <span ng-hide="query.openNow">
                     <select ng-model="query.openAtWeekDay" ng-change="updateMarkers()">
-                        <option value="Alle Wochentage">Alle Wochentage</option>
-                        <option ng-repeat="i in [1, 2, 3, 4, 5, 6, 0]" value="{{i}}">{{friendlyDayStrings[i]}}</option>
+                        <option value="all">{{i18n.enums.weekday.all}}</option>
+                        <option ng-repeat="i in [1, 2, 3, 4, 5, 6, 0]" value="{{i}}">{{i18n.enums.weekday[i + ""]}}</option>
                     </select>
                     <input 
                         name="openAtTimeInput" 
                         type="time" 
                         ng-model="query.openAtTime" 
-                        placeholder="hh:mm (Uhrzeit)" 
-                        ng-disabled="query.openAtWeekDay === 'Alle Wochentage'" 
+                        placeholder="{{i18n.openingTimes.timePlaceholder.notOpenNow}}" 
+                        ng-disabled="query.openAtWeekDay === 'all'" 
                         ng-change="updateMarkers()" 
                         size="15" 
                         maxlength="5"
@@ -65,33 +65,33 @@
                 </span>
                 <span ng-show="query.openNow">
                     <select ng-disabled="true">
-                        <option>-Heute-</option>
-                        <option>Alle Wochentage</option><!-- So this select element gets the same size as the "real" select element.-->
+                        <option>-{{i18n.enums.weekday.today}}-</option>
+                        <option>{{i18n.enums.weekday.all}}</option><!-- So this select element gets the same size as the "real" select element.-->
                     </select>
-                    <input type="time" placeholder="-Jetzt-" ng-disabled="true" size="15"/>
+                    <input type="time" placeholder="{{i18n.openingTimes.timePlaceholder.openNow}}" ng-disabled="true" size="15"/>
                 </span>
                 <label>
-                    <input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">Jetzt</input>
+                    <input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">{{i18n.openingTimes.nowCheckbox}}</input>
                 </label>
-                <span class="error" ng-show="form.openAtTimeInput.$error.time">Ungültige Zeit (wird ignoriert); Format: hh:mm</span>
+                <span class="error" ng-show="form.openAtTimeInput.$error.time">{{i18n.openingTimes.invalidTime}}</span>
             </p>
             <p ng-show="geolocation.supported">
                 <div>
                     <label>
                         <input type="checkbox" ng-model="geolocation.show" ng-change="updateGeolocationMarker()">
-                            <span ng-hide="geolocation.marker.map">Standorterkennung</span>
-                            <a ng-show="geolocation.marker.map" href="#" ng-click="openInfoWindow($event, geolocation.marker)">Standorterkennung</a> 
+                            <span ng-hide="geolocation.marker.map">{{i18n.geolocation.header}}</span>
+                            <a ng-show="geolocation.marker.map" href="#" ng-click="openInfoWindow($event, geolocation.marker)">{{i18n.geolocation.header}}</a> 
                         </input>
                     </label>
                 </div>
                 <div>
-                    <img ng-show="geolocation.info === 'Ermittle Standort...'" src="assets/images/ajax-loader.gif"/>
+                    <img ng-show="geolocation.info === '{{i18n.geolocation.detecting}}'" src="assets/images/ajax-loader.gif"/>
                     <span ng-bind="geolocation.info"></span>
                     <span ng-bind="geolocation.error" class="error"></span>
                 </div>
                 <div ng-show="geolocation.marker.map">
                     <label>
-                        <input type="checkbox" ng-model="query.distance.enabled" ng-change="updateMarkers()">Entfernung:</input>
+                        <input type="checkbox" ng-model="query.distance.enabled" ng-change="updateMarkers()">{{i18n.geolocation.distance}}:</input>
                     </label>
                     <input type="range" min="0.1" max="10" step="0.1" ng-model="query.distance.km" ng-change="query.distance.enabled = true; updateMarkers()" />
                     <span ng-bind-template="{{query.distance.km | number : 1}} km"/>
@@ -103,15 +103,15 @@
                 <table style="width:100%">
                     <tr>
                         <td>
-                            Sortierung:
+                            {{i18n.sortBy.header}}:
                             <select ng-model="orderSelection" ng-change="updateOrder()">
                                 <!-- TODO: Find out why in production (but not in dev mode) we need the value attribute even if it equals the text. -->
-                                <option value="Name">Name</option>
-                                <option value="Entfernung" ng-show="geolocation.marker.map">Entfernung</option>
-                                <option value="Entfernung" ng-hide="geolocation.marker.map" ng-disabled="true" title="Standorterkennung erforderlich">Entfernung</option>
+                                <option value="name">{{i18n.sortBy.name}}</option>
+                                <option value="distance" ng-show="geolocation.marker.map">{{i18n.sortBy.distance}}</option>
+                                <option value="distance" ng-hide="geolocation.marker.map" ng-disabled="true" title="{{i18n.sortBy.distanceRequiresGeolocation}}">{{i18n.sortBy.distance}}</option>
                             </select>
                         </td>
-                        <td style="text-align:right;">{{filteredMarkers.length}} Treffer von {{locations.length}}</td>
+                        <td style="text-align:right;">{{filteredMarkers.length + i18n.resultsLength + locations.length}}</td>
                     </tr>
                 </table>
             </p>
@@ -121,7 +121,7 @@
             <h4 style="margin: 0.3em auto;">
                 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
             </h4>
-            <div><span>{{marker.location.tags.join(", ")}}</span> (<span>{{marker.location.getVeganCategoryFriendly(true)}}</span>)</div>
+            <div><span>{{formatTags(marker.location.tags)}}</span> (<span>{{i18n.enums.veganCategory.verbose[marker.location.getVeganCategory()]}}</span>)</div>
             <!-- TODO: Layout with CSS, not HTML table: -->
             <table style="width:100%;">
                 <tr>
@@ -145,19 +145,28 @@
             <div>
                 <span>{{marker.location.getOpeningTimeTodayFriendly()}}</span>
                 <span ng-show="marker.location.openComment" 
-                    title={{marker.location.openComment}} 
+                    title={{marker.location.getOpenComment(language)}} 
                     ng-click="display.expandOpenComments = !display.expandOpenComments"
                 >
                     <img width="18" height="18" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Exquisite-khelpcenter.png"/>
-                    <span ng-show="display.expandOpenComments">{{marker.location.openComment}}</span>
+                    <span ng-show="display.expandOpenComments">{{marker.location.getOpenComment(language)}}</span>
                 </span>
             </div>
         </div>
     </div>
     <div class="col-sm-8 col-md-9 col-lg-9" style="position:fixed;top:0;right:0;">
         <div id="map" style="width: auto;height: 700px;"></div>
-        <div>Die Karte umfasst insgesamt <b>{{locations.length}}</b> Restaurants/Cafés usw. Die veganen Speisen sind deklariert. </div>
-        <p>Probleme und Verbesserungsvorschläge bitte an: <a href="mailto:karte@berlin-vegan.de">karte@berlin-vegan.de</a></p>
+        <div>
+            {{i18n.footer.infoPrefix}}<b>{{locations.length}}</b>{{i18n.footer.infoPostfix}} 
+            | {{i18n.footer.feedback}}: <a href="mailto:karte@berlin-vegan.de">karte@berlin-vegan.de</a>
+        </div>
+        <p>
+            <span ng-show="{{ language === 'de' }}">{{i18n.footer.language.de}}</span>
+            <a ng-hide="{{ language === 'de' }}" href="#" ng-click="setLanguage($event, 'de')">{{i18n.footer.language.de}}</a>
+            |
+            <span ng-show="{{ language === 'en' }}">{{i18n.footer.language.en}}</span>
+            <a ng-hide="{{ language === 'en' }}" href="#" ng-click="setLanguage($event, 'en')">{{i18n.footer.language.en}}</a>
+        </p>
     </div>
 </div>
 

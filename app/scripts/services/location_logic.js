@@ -1,8 +1,12 @@
 "use strict";
 
-app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
+app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I18nService) {
 
-    var friendlyDayStrings = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+    var veganCategories = [];
+    veganCategories[5] = "vegan";
+    veganCategories[4] = "vegetarian";
+    veganCategories[2] = "omnivorous";
+    var i18n = I18nService.getI18n();
     var service = {};
     
     service.enhanceLocations = function(locations) {
@@ -13,13 +17,17 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
     function enhanceLocation(location) {
     
-        location.tags = getCleanAndSortedTags(location.tags);
+        location.tags = location.tags.sort();
         
         if (location.comment) {
             location.commentWithoutFormatting = removeFormatting(location.comment);
         }
+
+        if (location.commentEnglish) {
+            location.commentEnglishWithoutFormatting = removeFormatting(location.commentEnglish);
+        }
         
-        if (location.reviewURL && location.reviewURL.length > 0) {
+        if (location.reviewURL) {
             // Possibly not necessary in production
             location.reviewURL = "http://www.berlin-vegan.de/essen-und-trinken/kritiken/" + location.reviewURL;
         }
@@ -48,6 +56,11 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         location.isOpen = function(weekDay, timeAsDate) {
             return OpeningTimesService.isOpen(this.openingTimes, weekDay, timeAsDate);
         }
+
+        location.getOpenComment = function(language) {
+            return language === "en" ? 
+                "Please see location website for opening time details!" :  this.openComment;
+        };
         
         location.getOpeningTimesCompressed = function() {
         
@@ -85,36 +98,13 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
             )
         };
         
-        location.getVeganCategoryFriendly = function(verbose) {
-        
-            var veganDeclaration = (verbose ? ", vegan deklariert" : "");
-            
-            switch(this.vegan) {
-                case 5:
-                    return (verbose ? "100% " : "") + "vegan";
-                case 4:
-                    return "vegetarisch" + veganDeclaration;
-                case 2:
-                    return "omnivor" + veganDeclaration;
-                default:
-                    throw new Error("Unexpected value for vegan: " + this.vegan);
+        location.getVeganCategory = function() {
+            var veganCategory = veganCategories[this.vegan];
+            if (!veganCategory) {
+                throw new Error("Unexpected value for vegan: " + this.vegan);
             }
+            return veganCategory;
         }
-    }
-    
-    function getCleanAndSortedTags(tags) {
-        var newTags = 
-            tags.map(function(tag) {
-                    if (tag === "Cafe") {
-                        return "Café";
-                    } else if (tag === "Eiscafe") {
-                        return "Eiscafé";
-                    } else {
-                        return tag;
-                    }
-                });
-        newTags.sort();
-        return newTags;
     }
     
     function removeFormatting(locationComment) {
@@ -123,8 +113,8 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
     
     function OpeningTime(dayIndex, otString) {
         this.dayIndex = dayIndex;
-        this.friendlyDay = friendlyDayStrings[dayIndex];
-        this.friendlyDayShort = this.friendlyDay.substring(0, 2);
+        this.friendlyDay = i18n.enums.weekday[dayIndex + ""];
+        this.friendlyDayShort = I18nService.abbreviateWeekDay(this.friendlyDay);
         this.interval = new OpeningTimeInterval(otString);
     }
     
@@ -168,7 +158,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         
         // Since we know that these are fixed, we can optimize performance by using a shortcut.
         // It would probably be better to have this list generated into JSON. TODO
-        return ["Café", "Eiscafé", "Imbiss", "Restaurant"];
+        return ["Cafe", "Eiscafe", "Imbiss", "Restaurant"];
     }
     
     function pseudoSetToSortedArray(pseudoSet) {
@@ -183,12 +173,8 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         return array;
     }
     
-    service.getSortedVeganCategories = function(locations) {
-        return ["vegan", "vegetarisch", "omnivor"];
-    }
-    
-    service.getFriendlyDayStrings = function() {
-        return friendlyDayStrings;
+    service.getSortedVeganCategories = function() {
+        return veganCategories.filter(function(it) { return !!it; } ).reverse();
     }
     
     return {
@@ -201,8 +187,5 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService) {
         getSortedVeganCategories: function() {
             return service.getSortedVeganCategories();
         },
-        getFriendlyDayStrings: function() {
-            return service.getFriendlyDayStrings();
-        }
     };
 });

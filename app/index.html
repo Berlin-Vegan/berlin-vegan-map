@@ -44,7 +44,19 @@
         ga('send', 'pageview');
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.min.js"></script>
+    <script>
+        var language = localStorage ? localStorage.getItem("language") || "de" : "de";
+        global_language = language;
+        var region = (language === "en") ? "us" : "de";
+        appendScript("bower_components/angular-i18n/angular-locale_" + language + "-" + region + ".js");
+        appendScript("https://maps.googleapis.com/maps/api/js?language=" + language +"&region=" + region + ".js");
 
+        function appendScript(url) {
+            var script = document.createElement('script');
+            script.src = url;
+            document.head.appendChild(script);
+        }
+    </script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -56,16 +68,15 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-i18n/angular-locale_de-de.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/filters/location.js"></script>
     <script src="scripts/services/info_window_view.js"></script>
     <script src="scripts/services/location_logic.js"></script>
+    <script src="scripts/services/i18n.js"></script>
     <script src="scripts/services/opening_times.js"></script>
     <script src="scripts/services/util.js"></script>
     <!-- endbuild -->

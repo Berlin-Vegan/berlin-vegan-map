@@ -11,25 +11,30 @@ app.factory("InfoWindowViewService", function(numberFilter) {
     
     var service = {};
     
-    service.getContent = function(location, currentPosition) {
+    service.getContent = function(i18n, language, location, currentPosition) {
         return "<h4>" 
             + location.name 
-            + (location.website && location.website.length > 0 ? 
+            + (location.website ? 
                 " <a target='_blank' href='" + location.website + "' title='" + location.website + "'>" + linkSymbol + "</a>" 
                 : 
                 ""
             ) 
             + "</h4>" 
             + "<div class='infoWindowContent'>" 
-            + "<p>" + location.tags.join(", ") + " (" + location.getVeganCategoryFriendly(true) + ")</p>"
+            + "<p>" + formatTags(i18n, location.tags) + " (" + i18n.enums.veganCategory.verbose[location.getVeganCategory()] + ")</p>"
             + "<p>" + location.street + " " + location.cityCode + " " + location.district + "</p>"
-            + (currentPosition ? "<p>Entfernung: " + numberFilter(location.getDistanceToPositionInKm(currentPosition), 1) + " km</p>" : "")
-            + "<h5>Öffnungszeiten</h5>"
+            + (currentPosition ? "<p>" + i18n.infoWindow.distance + ": " + numberFilter(location.getDistanceToPositionInKm(currentPosition), 1) + " km</p>" : "")
+            + "<h5>" + i18n.infoWindow.openingTimes + "</h5>"
             + "<p>" + getOpeningTimesInnerHtml(location) + "</p>"
-            + (location.openComment ? "<p>" + location.openComment + "</p>" : "")
-            + "<p>" + (location.reviewURL && location.reviewURL.length > 0 ? "<a target='_blank' href='" + location.reviewURL + "'>Rezension</a>" : location.comment) + "</p>"
+            + getOpenCommentInnerHtml(language, location)
+            + "<p>" + getCommentAndReviewInnerHtml(i18n, language, location) + "</p>"
             + "</div>";
     };
+
+    // Redundantly defined elewhere. TODO
+    function formatTags(i18n, tags) {
+        return tags.map(function(it) { return i18n.enums.tag[it]; }).join(", ");
+    }
     
     function getOpeningTimesInnerHtml(location) {
     
@@ -62,10 +67,26 @@ app.factory("InfoWindowViewService", function(numberFilter) {
         
         return html;
     }
+
+    function getOpenCommentInnerHtml(language, location) {
+        var openComment = location.getOpenComment(language);
+        return openComment ? "<p>" + openComment + "</p>" : "";
+    }
     
+    function getCommentAndReviewInnerHtml(i18n, language, location) {
+        return language === "en" ?
+            location.commentEnglish + "<br/>" + getReviewAnchor()
+            :
+            (location.reviewURL ? getReviewAnchor() : location.comment);
+
+        function getReviewAnchor() {
+            return "<a target='_blank' href='" + location.reviewURL + "'>" + i18n.infoWindow.review + "</a>";
+        }
+    }
+
     return {
-        getContent: function(location, currentPosition) {
-            return service.getContent(location, currentPosition);
+        getContent: function(i18n, language, location, currentPosition) {
+            return service.getContent(i18n, language, location, currentPosition);
         }
     };
 });

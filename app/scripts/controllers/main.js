@@ -7,19 +7,29 @@
  * # MainController
  * Controller of the berlinVeganMapApp
  */
-app.controller('MainController', function ($scope, $http, $timeout, LocationLogicService, InfoWindowViewService, filterFilter, locationFilter) {
+app.controller('MainController', function ($scope, $http, $timeout, $window, LocationLogicService, InfoWindowViewService, I18nService, filterFilter, locationFilter) {
 
-    var debugMode = false; // TODO: Set something like that depending on build.
-    var allWeekDays = "Alle Wochentage";
+    var debugMode = true; // TODO: Set something like that depending on build.
     var locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";
 
     $scope.query = null;
     $scope.locations = null;
     $scope.tags = null;
-    $scope.friendlyDayStrings = null;
     $scope.veganCategories = null;
     $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
-    $scope.orderSelection = "Name";
+    $scope.orderSelection = "name";
+    $scope.language = I18nService.getLanguage();;
+    $scope.i18n = I18nService.getI18n();
+    $scope.setLanguage = function(event, language) {
+        event.preventDefault();
+        I18nService.setLanguage(language);
+        $scope.language = I18nService.getLanguage();
+        $scope.i18n = I18nService.getI18n();
+        $window.location.reload();
+    }
+    $scope.formatTags = function(tags) {
+        return tags.map(function(it) { return $scope.i18n.enums.tag[it]; }).join(", ");
+    }
 
     $http({method: 'GET', url: locationsUrl})
         .success(function(data, status, headers, config) {
@@ -29,7 +39,6 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
             initMap();
             initTags();
             initVeganCategories();
-            initFriendlyDayStrings();
             updateMarkers();
             updateOrder();
         })
@@ -56,9 +65,9 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
             var content;
 
             if ($scope.geolocation.marker) {
-                content = InfoWindowViewService.getContent(marker.location, $scope.geolocation.marker.position);
+                content = InfoWindowViewService.getContent($scope.i18n, $scope.language, marker.location, $scope.geolocation.marker.position);
             } else {
-                content = InfoWindowViewService.getContent(marker.location);
+                content = InfoWindowViewService.getContent($scope.i18n, $scope.language, marker.location);
             }
 
             infoWindow.setContent(content);
@@ -109,10 +118,10 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
 
         $scope.query = {
             text: "",
-            openAtWeekDay: allWeekDays,
+            openAtWeekDay: "all",
             tags: tagsMap,
             veganCategories: veganCategoriesMap,
-            allWeekDays: function() { return this.openAtWeekDay === allWeekDays; },
+            allWeekDays: function() { return this.openAtWeekDay === "all"; },
             distance: { enabled: false, position: null, km: 1}
         };
     }
@@ -184,10 +193,6 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
         $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
     }
 
-    function initFriendlyDayStrings() {
-        $scope.friendlyDayStrings = LocationLogicService.getFriendlyDayStrings();
-    }
-
     function updateGeolocationMarker() {
 
         if ($scope.geolocation.show) {
@@ -199,15 +204,15 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
             // Workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=675533
             $timeout(
                 function() {
-                    if ($scope.geolocation.info === "Ermittle Standort...") {
-                        $scope.geolocation.error = "Standortzugriff nicht möglich";
+                    if ($scope.geolocation.info === $scope.i18n.geolocation.detecting) {
+                        $scope.geolocation.error = $scope.i18n.geolocation.error;
                         $scope.geolocation.info = "";
                     }
                 },
                 debugMode ? 8000 : 16000
             );
 
-            $scope.geolocation.info = "Ermittle Standort...";
+            $scope.geolocation.info = $scope.i18n.geolocation.detecting;
             $scope.geolocation.error = "";
 
             var options = {
@@ -222,7 +227,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
                         var marker = new google.maps.Marker({
                             map: $scope.map,
                             position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-                            title: "Aktueller Standort",
+                            title: $scope.i18n.geolocation.currentLocation,
                             icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
                         });
 
@@ -286,10 +291,10 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
         var order;
 
         switch ($scope.orderSelection) {
-            case "Name":
+            case "name":
                 order = "location.name";
                 break;
-            case "Entfernung":
+            case "distance":
                 order = function(marker) {
                     if ($scope.geolocation.marker && $scope.geolocation.marker.map) {
                         return marker.location.getDistanceToPositionInKm($scope.geolocation.marker.position);
@@ -299,7 +304,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
                 };
                 break;
             default:
-                console.log("Unerwarteter Wert für orderSelection: " + $scope.orderSelection); // TODO
+                console.log("Unexpected value for orderSelection: " + $scope.orderSelection); // TODO
         }
 
         $scope.order = order;

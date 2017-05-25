@@ -1,6 +1,6 @@
 "use strict";
 
-app.filter('location', function(filterFilter) {
+app.filter('location', function(filterFilter, I18nService) {
 
     return function(locations, query) {
 
@@ -80,7 +80,11 @@ app.filter('location', function(filterFilter) {
                     location.telephone,
                     location.website,
                     location.email,
-                    location.commentWithoutFormatting
+                    (I18nService.getLanguage() === "en" ? 
+                        location.commentEnglishWithoutFormatting
+                        :
+                        location.commentWithoutFormatting
+                    )
                 ]);
                 
                 searchedValues = searchedValues.concat(location.tags);
@@ -107,7 +111,7 @@ app.filter('location', function(filterFilter) {
 
             for (var veganCategory in query.veganCategories) {
                 if (query.veganCategories.hasOwnProperty(veganCategory) && query.veganCategories[veganCategory]) { // Vegan category is selected...
-                    if (location.getVeganCategoryFriendly() === veganCategory) { // ... and location belongs to it
+                    if (location.getVeganCategory() === veganCategory) { // ... and location belongs to it
                         return true;
                     }
                 }
