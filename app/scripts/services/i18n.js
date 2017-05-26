@@ -44,7 +44,7 @@ app.factory('I18nService', function() {
                     de: "Eiscafé",
                 },
                 Imbiss: {
-                    en: "Diner",
+                    en: "Snack bar",
                     de: "Imbiss",
                 },
                 Restaurant: {
