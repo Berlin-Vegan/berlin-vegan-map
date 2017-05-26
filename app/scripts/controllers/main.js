@@ -205,7 +205,7 @@ app.controller('MainController', function ($scope, $http, $timeout, $window, Loc
             $timeout(
                 function() {
                     if ($scope.geolocation.info === $scope.i18n.geolocation.detecting) {
-                        $scope.geolocation.error = $scope.i18n.geolocation.error;
+                        $scope.geolocation.error = $scope.i18n.geolocation.theError;
                         $scope.geolocation.info = "";
                     }
                 },

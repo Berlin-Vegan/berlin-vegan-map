@@ -210,7 +210,7 @@ app.factory('I18nService', function() {
                 en: "Geolocating...",
                 de: "Ermittle Standort...",
             },
-            error: {
+            theError: {
                 en: "Geolocation impossible",
                 de: "Standortzugriff nicht möglich",
             },
@@ -355,7 +355,7 @@ app.factory('I18nService', function() {
                 currentLocation: i18n.geolocation.currentLocation[language],
                 distance: i18n.geolocation.distance[language],
                 detecting: i18n.geolocation.detecting[language],
-                error: i18n.geolocation.error[language],
+                theError: i18n.geolocation.theError[language],
             },
             sortBy: {
                 header: i18n.sortBy.header[language],
@@ -382,24 +382,24 @@ app.factory('I18nService', function() {
     }
 
     return { 
-        setLanguage(language) {
+        setLanguage: function(language) {
             global_language = language;
             if (localStorage) {
                 localStorage.setItem("language", global_language);
             }
             transformedI18n = getTransformedI18n(global_language);
         },
-        getLanguage() {
+        getLanguage: function() {
             return global_language;
         },
-        getI18n() {
+        getI18n: function() {
             return transformedI18n;
         },
-        abbreviateWeekDay(weekday) {
+        abbreviateWeekDay: function(weekday) {
             var charCount = global_language === "en" ? 3 : 2;
             return weekday.substring(0, charCount);
         },
-        formatTimeInterval(beginDate, endDate) {
+        formatTimeInterval: function(beginDate, endDate) {
             var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
             var separator = " " + extraLongHyphen + " ";
             var postfix = global_language === "en" ? "" : " Uhr";
