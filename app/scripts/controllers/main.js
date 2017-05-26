@@ -9,7 +9,7 @@
  */
 app.controller('MainController', function ($scope, $http, $timeout, $window, LocationLogicService, InfoWindowViewService, I18nService, filterFilter, locationFilter) {
 
-    var debugMode = true; // TODO: Set something like that depending on build.
+    var debugMode = false; // TODO: Set something like that depending on build.
     var locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";
 
     $scope.query = null;
