@@ -44,12 +44,12 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I
         
         location.getOpeningTimeTodayFriendly = function() {
         
-            var otIntervalFriendlyToday = this.openingTimes[new Date().getDay()].interval.friendly;
+            var otIntervalToday = this.openingTimes[new Date().getDay()].interval;
             
-            if (otIntervalFriendlyToday === "Geschlossen") {
-                return "Heute geschlossen";
+            if (otIntervalToday.isOpen) {
+                return i18n.openingTimes.isOpenToday + ": " + otIntervalToday.friendly;
             } else {
-                return "Heute geöffnet: " + otIntervalFriendlyToday;
+                return i18n.openingTimes.isClosedToday;
             }
         }
         
@@ -121,8 +121,9 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I
     function OpeningTimeInterval(otString) {
         
         this.otString = otString;
-        
-        if (otString !== "") {
+        this.isOpen = (otString !== "");
+
+        if (this.isOpen) {
         
             var date = { year: 2000, month: 1, day: 1 }; // Arbitrary
             var otParts = otString.split(" - ");
@@ -132,15 +133,10 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I
             
             var endTime = UtilService.getTime(otParts[1]);
             this.end = UtilService.newDate(date, endTime);
-        }
-        
-        if (otString === "") {
-            this.friendly = "Geschlossen";
-        } else if (otString.endsWith("-")) {
-            this.friendly =  "Ab " + otString.replace("-", "") + " Uhr (Open End)";
+
+            this.friendly = I18nService.formatTimeInterval(this.begin, this.end);
         } else {
-            var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
-            this.friendly = otString.replace("-", extraLongHyphen) + " Uhr";
+            this.friendly = i18n.openingTimes.isClosed;
         }
     }
     

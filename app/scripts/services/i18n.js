@@ -180,6 +180,18 @@ app.factory('I18nService', function() {
                 en: "Now",
                 de: "Jetzt",
             },
+            isOpenToday: {
+                en: "Open today",
+                de: "Heute geöffnet",
+            },
+            isClosedToday: {
+                en: "Closed today",
+                de: "Heute geschlossen",
+            },
+            isClosed: {
+                en: "Closed",
+                de: "Geschlossen",
+            },
         },
         geolocation: {
             header: {
@@ -334,6 +346,9 @@ app.factory('I18nService', function() {
                 },
                 invalidTime: i18n.openingTimes.invalidTime[language],
                 nowCheckbox: i18n.openingTimes.nowCheckbox[language],
+                isOpenToday: i18n.openingTimes.isOpenToday[language],
+                isClosedToday: i18n.openingTimes.isClosedToday[language],
+                isClosed: i18n.openingTimes.isClosed[language],
             },
             geolocation: {
                 header: i18n.geolocation.header[language],
@@ -383,6 +398,48 @@ app.factory('I18nService', function() {
         abbreviateWeekDay(weekday) {
             var charCount = global_language === "en" ? 3 : 2;
             return weekday.substring(0, charCount);
+        },
+        formatTimeInterval(beginDate, endDate) {
+            var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
+            var separator = " " + extraLongHyphen + " ";
+            var postfix = global_language === "en" ? "" : " Uhr";
+            return formatTime(beginDate) + separator + formatTime(endDate) + postfix;
+
+            function formatTime(date) {
+                var h = date.getHours();
+                var m = date.getMinutes();
+                if (global_language === "en") {
+                    if (m === 0) {
+                        if (h === 0) {
+                            return "12 Midnight";
+                        } else if (h < 12) {
+                            return h + " AM";
+                        } else if (h === 12) {
+                            return "12 Noon";
+                        } else {
+                            return (h - 12) + " PM";
+                        }
+                    } else {
+                        if (h < 12) {
+                            return h + ":" + pad(m) + " AM";
+                        } else if (h === 12) {
+                            return h + ":" + pad(m) + " PM";
+                        } else {
+                            return (h - 12) + ":" + pad(m) + " PM";
+                        }
+                    }
+                } else {
+                    if (m === 0) {
+                        return h;
+                    } else {
+                        return h + ":" + pad(m);
+                    }
+                }
+
+                function pad(n) {
+                    return n < 10 ? "0" + n : n;
+                }
+            }
         }
     };
 });
