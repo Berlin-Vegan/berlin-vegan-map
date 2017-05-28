@@ -8,14 +8,7 @@
  *
  * Main module of the application.
  */
-var app = angular.module('berlinVeganMapApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-]);
+var app = angular.module('berlinVeganMapApp', ['ngRoute']);
 
  app.config(function ($routeProvider) {
     $routeProvider
