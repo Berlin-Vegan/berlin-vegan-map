@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory('I18nService', function() {
+app.factory('I18nService', function($window, $location) {
     var i18n = {
         enums: {
             veganCategory: {
@@ -383,11 +383,14 @@ app.factory('I18nService', function() {
 
     return { 
         setLanguage: function(language) {
-            global_language = language;
             if (localStorage) {
-                localStorage.setItem("language", global_language);
+                localStorage.setItem("lang", language);
+                $location.search("lang", null);
+            } else {
+                $location.search("lang", language);
             }
-            transformedI18n = getTransformedI18n(global_language);
+            $window.location.href = $location.absUrl();
+            $window.location.reload();
         },
         getLanguage: function() {
             return global_language;

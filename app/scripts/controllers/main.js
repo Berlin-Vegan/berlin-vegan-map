@@ -7,7 +7,7 @@
  * # MainController
  * Controller of the berlinVeganMapApp
  */
-app.controller('MainController', function ($scope, $http, $timeout, $window, LocationLogicService, InfoWindowViewService, I18nService, filterFilter, locationFilter) {
+app.controller('MainController', function ($scope, $http, $timeout, LocationLogicService, InfoWindowViewService, I18nService, filterFilter, locationFilter) {
 
     var debugMode = false; // TODO: Set something like that depending on build.
     var locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";
@@ -23,9 +23,6 @@ app.controller('MainController', function ($scope, $http, $timeout, $window, Loc
     $scope.setLanguage = function(event, language) {
         event.preventDefault();
         I18nService.setLanguage(language);
-        $scope.language = I18nService.getLanguage();
-        $scope.i18n = I18nService.getI18n();
-        $window.location.reload();
     }
     $scope.formatTags = function(tags) {
         return tags.map(function(it) { return $scope.i18n.enums.tag[it]; }).join(", ");
