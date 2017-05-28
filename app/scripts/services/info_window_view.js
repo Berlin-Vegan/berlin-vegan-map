@@ -75,7 +75,7 @@ app.factory("InfoWindowViewService", function(numberFilter) {
     
     function getCommentAndReviewInnerHtml(i18n, language, location) {
         return language === "en" ?
-            location.commentEnglish + "<br/>" + getReviewAnchor()
+            location.commentEnglish + "<br/>" + (location.reviewURL ? getReviewAnchor() : "")
             :
             (location.reviewURL ? getReviewAnchor() : location.comment);
 
