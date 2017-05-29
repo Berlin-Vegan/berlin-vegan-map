@@ -78,13 +78,13 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
         var url;
         switch (location.vegan) {
             case 2:
-                url = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+                url = "https://maps.google.com/mapfiles/ms/icons/red-dot.png";
                 break;
             case 4:
-                url = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
+                url = "https://maps.google.com/mapfiles/ms/icons/orange-dot.png";
                 break;
             case 5:
-                url = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+                url = "https://maps.google.com/mapfiles/ms/icons/green-dot.png";
                 break;
             default:
                 throw new Error("Unexpected value for location.vegan: " + location.vegan);
@@ -225,7 +225,7 @@ app.controller('MainController', function ($scope, $http, $timeout, LocationLogi
                             map: $scope.map,
                             position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                             title: $scope.i18n.geolocation.currentLocation,
-                            icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                            icon: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
                         });
 
                         google.maps.event.addListener(marker, 'click', function(){
