@@ -55,7 +55,6 @@
         appendScript("bower_components/angular/angular.js");
         appendScript("bower_components/bootstrap/dist/js/bootstrap.js");
         appendScript("bower_components/angular-route/angular-route.js");
-        appendScript("bower_components/angular-i18n/angular-locale_" + global_language + "-" + region + ".js");
         appendScript("https://maps.googleapis.com/maps/api/js?language=" + global_language +"&region=" + region + ".js");
         appendScript("scripts/app.js");
         appendScript("scripts/services/info_window_view.js");
@@ -64,6 +63,7 @@
         appendScript("scripts/services/util.js");
         appendScript("scripts/services/location_logic.js");
         appendScript("scripts/filters/location.js");
+        appendScript("scripts/filters/kilometer.js");
         appendScript("scripts/controllers/main.js");
 
         function appendScript(url) {

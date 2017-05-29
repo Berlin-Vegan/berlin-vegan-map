@@ -398,6 +398,9 @@ app.factory('I18nService', function($window, $location) {
         getI18n: function() {
             return transformedI18n;
         },
+        formatNumberString: function(numberString) {
+            return global_language === "en"? numberString : numberString.replace(/\./, ",");
+        },
         abbreviateWeekDay: function(weekday) {
             var charCount = global_language === "en" ? 3 : 2;
             return weekday.substring(0, charCount);

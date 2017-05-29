@@ -4,7 +4,7 @@
  * There have been great technical diffculties when trying to define the google.maps.InfoWindow content HTML 
  * with a proper AngularJS template. So, to at least have it in a dedicated file, we use this service.
  */
-app.factory("InfoWindowViewService", function(numberFilter) {
+app.factory("InfoWindowViewService", function(kilometerFilter) {
 
     var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
     var linkSymbol = "🔗"; // Your editor may not have this.
@@ -23,7 +23,7 @@ app.factory("InfoWindowViewService", function(numberFilter) {
             + "<div class='infoWindowContent'>" 
             + "<p>" + formatTags(i18n, location.tags) + " (" + i18n.enums.veganCategory.verbose[location.getVeganCategory()] + ")</p>"
             + "<p>" + location.street + " " + location.cityCode + " " + location.district + "</p>"
-            + (currentPosition ? "<p>" + i18n.infoWindow.distance + ": " + numberFilter(location.getDistanceToPositionInKm(currentPosition), 1) + " km</p>" : "")
+            + (currentPosition ? "<p>" + i18n.infoWindow.distance + ": " + kilometerFilter(location.getDistanceToPositionInKm(currentPosition)) + "</p>" : "")
             + "<h5>" + i18n.infoWindow.openingTimes + "</h5>"
             + "<p>" + getOpeningTimesInnerHtml(location) + "</p>"
             + getOpenCommentInnerHtml(language, location)
