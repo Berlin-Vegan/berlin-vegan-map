@@ -267,18 +267,18 @@ app.controller('MainController', function (
                         switch (positionError.code)
                         {
                             case 1://PositionError.PERMISSION_DENIED:
-                                reason = "Zugriff verweigert";
+                                reason = i18n.geolocation.PERMISSION_DENIED;
                                 break;
                             case 2: //PositionError.POSITION_UNAVAILABLE:
-                                reason = "Standort nicht verfügbar";
+                                reason = i18n.geolocation.POSITION_UNAVAILABLE;
                                 break;
                             case 3: //PositionError.TIMEOUT:
-                                reason = "Zeitüberschreitung";
+                                reason = i18n.geolocation.TIMEOUT;
                                 break;
                         }
 
                         $scope.geolocation.info = "";
-                        $scope.geolocation.error = "Standortzugriff nicht möglich: " + reason;
+                        $scope.geolocation.error = i18n.geolocation.theError + ": " + reason;
                     });
                 },
                 options

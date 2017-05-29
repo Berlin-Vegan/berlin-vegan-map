@@ -214,6 +214,18 @@ app.factory('I18nService', function($window, $location) {
                 en: "Geolocation impossible",
                 de: "Standortzugriff nicht möglich",
             },
+            PERMISSION_DENIED: {
+                en: "Permission denied",
+                de: "Zugriff verweigert",
+            },
+            POSITION_UNAVAILABLE: {
+                en: "Position unavailable",
+                de: "Standort nicht verfügbar",
+            },
+            TIMEOUT: {
+                en: "Timeout",
+                de: "Zeitüberschreitung",
+            },
         },
         sortBy: {
             header: {
@@ -356,6 +368,9 @@ app.factory('I18nService', function($window, $location) {
                 distance: i18n.geolocation.distance[language],
                 detecting: i18n.geolocation.detecting[language],
                 theError: i18n.geolocation.theError[language],
+                PERMISSION_DENIED: i18n.geolocation.PERMISSION_DENIED[language],
+                POSITION_UNAVAILABLE: i18n.geolocation.POSITION_UNAVAILABLE[language],
+                TIMEOUT: i18n.geolocation.TIMEOUT[language],
             },
             sortBy: {
                 header: i18n.sortBy.header[language],
