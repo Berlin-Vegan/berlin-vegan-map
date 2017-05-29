@@ -7,7 +7,22 @@
  * # MainController
  * Controller of the berlinVeganMapApp
  */
-app.controller('MainController', function ($scope, $http, $timeout, LocationLogicService, InfoWindowViewService, I18nService, filterFilter, locationFilter, kilometerFilter) {
+app.controller('MainController', function (
+    $scope, 
+    $http, 
+    $timeout, 
+    $window, 
+    LocationLogicService, 
+    InfoWindowViewService, 
+    I18nService, 
+    filterFilter, 
+    locationFilter, 
+    kilometerFilter
+) {
+
+    if (typeof(google) === "undefined") {
+        $window.location.reload(); // Dirty hack TODO
+    }
 
     var debugMode = false; // TODO: Set something like that depending on build.
     var locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";

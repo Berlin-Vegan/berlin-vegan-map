@@ -15,11 +15,16 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
-<body>
+<body ng-app="berlinVeganMapApp">
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
       your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container-fluid">
+        <div ng-view=""></div>
+    </div>
 
     <!-- Google Analytics -->
     <script>
@@ -38,7 +43,29 @@
         ga('create', 'UA-1323925-1');
         ga('send', 'pageview');
     </script>
+    <script>global_dynamicScriptsHaveLoaded = false;</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.min.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js.js"></script>-->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/info_window_view.js"></script>
+    <script src="scripts/services/i18n.js"></script>
+    <script src="scripts/services/opening_times.js"></script>
+    <script src="scripts/services/util.js"></script>
+    <script src="scripts/services/location_logic.js"></script>
+    <script src="scripts/filters/location.js"></script>
+    <script src="scripts/filters/kilometer.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <!-- endbuild -->
     <script>
         var global_language;
         if (location.href.indexOf("lang=") !== -1) {
@@ -50,21 +77,7 @@
         }
         
         var region = (global_language === "en") ? "us" : "de";
-        appendScript("scripts/appendAppToDom.js");
-        appendScript("bower_components/jquery/dist/jquery.js");
-        appendScript("bower_components/angular/angular.js");
-        appendScript("bower_components/bootstrap/dist/js/bootstrap.js");
-        appendScript("bower_components/angular-route/angular-route.js");
         appendScript("https://maps.googleapis.com/maps/api/js?language=" + global_language +"&region=" + region + ".js");
-        appendScript("scripts/app.js");
-        appendScript("scripts/services/info_window_view.js");
-        appendScript("scripts/services/i18n.js");
-        appendScript("scripts/services/opening_times.js");
-        appendScript("scripts/services/util.js");
-        appendScript("scripts/services/location_logic.js");
-        appendScript("scripts/filters/location.js");
-        appendScript("scripts/filters/kilometer.js");
-        appendScript("scripts/controllers/main.js");
 
         function appendScript(url) {
             var script = document.createElement('script');
