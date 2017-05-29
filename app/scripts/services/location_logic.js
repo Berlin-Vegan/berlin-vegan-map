@@ -170,7 +170,19 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I
     }
     
     service.getSortedVeganCategories = function() {
-        return veganCategories.filter(function(it) { return !!it; } ).reverse();
+        return onlyDefined(veganCategories).reverse();
+
+        // Build process seems to have a problem with an array's filter funtion,
+        // so we use this workaround: (TODO: Refactor to UtilService)
+        function onlyDefined(arr) {
+            var result = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i]) {
+                    result.push(arr[i]);
+                }
+            }
+            return result;
+        } 
     }
     
     return {
