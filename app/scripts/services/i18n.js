@@ -153,7 +153,7 @@ app.factory('I18nService', function($window, $location) {
                 de: "WLAN",
             },
             review: {
-                en: "With Review (German)",
+                en: "With review (German)",
                 de: "Mit Rezension",
             },
         },
