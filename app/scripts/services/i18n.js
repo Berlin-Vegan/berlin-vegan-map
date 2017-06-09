@@ -269,8 +269,8 @@ app.factory('I18nService', function($window, $location) {
                 de: "Schalte Kartenvollansicht um",
             },
             searchButtonTitle: {
-                en: "Scroll to the search form",
-                de: "Zum Suchformular scrollen",
+                en: "Show search form",
+                de: "Suchformular anzeigen",
             },
             language: {
                 // A bit dirty, but we want to display the language in its language.

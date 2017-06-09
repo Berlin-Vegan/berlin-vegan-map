@@ -5,8 +5,14 @@
         </div>
         <div class="menu flex-container-nowrap">
             <div>
-                <button title="{{i18n.header.fullMapViewbuttonTitle}}" ng-click="toggleFullMapView()">{{fullMapView ? "=&gt;" : "&lt;="}}</button>
-                <button title="{{i18n.header.searchButtonTitle}}" ng-click="scrollSearchIntoView()"><span class="fa fa-search"></span></button>
+                <button title="{{i18n.header.fullMapViewbuttonTitle}}" ng-click="toggleFullMapView()">
+                    <span class="fa" ng-class="{'fa-caret-left': !fullMapView}">
+                    <span class="fa fa-list"></span>
+                    <span class="fa" ng-class="{'fa-caret-right': fullMapView}">
+                </button>
+                <button title="{{i18n.header.searchButtonTitle}}" ng-click="scrollSearchIntoView()">
+                    <span class="fa fa-search"></span>
+                </button>
             </div>
             <div>
                 <a href="http://www.berlin-vegan.de/">Berlin&#8209;Vegan</a>
