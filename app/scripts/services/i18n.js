@@ -432,21 +432,21 @@ app.factory('I18nService', function($window, $location) {
                 if (global_language === "en") {
                     if (m === 0) {
                         if (h === 0) {
-                            return "12 Midnight";
+                            return "12 midnight";
                         } else if (h < 12) {
-                            return h + " AM";
+                            return h + " am";
                         } else if (h === 12) {
-                            return "12 Noon";
+                            return "12 noon";
                         } else {
-                            return (h - 12) + " PM";
+                            return (h - 12) + " pm";
                         }
                     } else {
                         if (h < 12) {
-                            return h + ":" + pad(m) + " AM";
+                            return h + ":" + pad(m) + " am";
                         } else if (h === 12) {
-                            return h + ":" + pad(m) + " PM";
+                            return h + ":" + pad(m) + " pm";
                         } else {
-                            return (h - 12) + ":" + pad(m) + " PM";
+                            return (h - 12) + ":" + pad(m) + " pm";
                         }
                     }
                 } else {
