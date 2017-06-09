@@ -39,6 +39,11 @@ app.controller('MainController', function (
         event.preventDefault();
         I18nService.setLanguage(language);
     }
+    $scope.fullMapView = false;
+    $scope.toggleFullMapView = function() {
+        $scope.fullMapView = !$scope.fullMapView;
+        $timeout(function() { google.maps.event.trigger($scope.map, "resize"); });
+    }
     $scope.formatTags = function(tags) {
         return tags.map(function(it) { return $scope.i18n.enums.tag[it]; }).join(", ");
     }

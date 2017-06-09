@@ -263,18 +263,10 @@ app.factory('I18nService', function($window, $location) {
                 de: "Rezension",
             },
         },
-        footer: {
-            infoPrefix: {
-                en: "The map contains ",
-                de: "Die Karte umfasst insgesamt ",
-            },
-            infoPostfix: {
-                en: " locations altogether. Vegan food is declared.",
-                de: " Restaurants/Cafés usw. Die veganen Speisen sind deklariert.",
-            },
-            feedback: {
-                en: "Problems and suggestions to",
-                de: "Probleme und Verbesserungsvorschläge bitte an",
+        header: {
+            buttonTitle: {
+                en: "Toggle full map view",
+                de: "Schalte Kartenvollansicht um",
             },
             language: {
                 // A bit dirty, but we want to display the language in its language.
@@ -287,7 +279,7 @@ app.factory('I18nService', function($window, $location) {
                     de: "Deutsch",
                 },
             },
-        },
+        }
     };
 
     var transformedI18n = getTransformedI18n(global_language);
@@ -384,13 +376,11 @@ app.factory('I18nService', function($window, $location) {
                 openingTimes: i18n.infoWindow.openingTimes[language],
                 review: i18n.infoWindow.review[language],
             },
-            footer: {
-                infoPrefix: i18n.footer.infoPrefix[language],
-                infoPostfix: i18n.footer.infoPostfix[language],
-                feedback: i18n.footer.feedback[language],
+            header: {
+                buttonTitle: i18n.header.buttonTitle[language],
                 language: {
-                    en: i18n.footer.language.en[language],
-                    de: i18n.footer.language.de[language],
+                    en: i18n.header.language.en[language],
+                    de: i18n.header.language.de[language],
                 }
             },
         };
