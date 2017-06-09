@@ -14,6 +14,7 @@ app.controller('MainController', function (
     $window, 
     LocationLogicService, 
     InfoWindowViewService, 
+    ResourcesService,
     I18nService, 
     filterFilter, 
     locationFilter, 
@@ -103,26 +104,26 @@ app.controller('MainController', function (
     }
     
     function getMarkerImage(location) {
-        var url;
-        switch (location.vegan) {
-            case 2:
-                url = "https://maps.google.com/mapfiles/ms/icons/red-dot.png";
-                break;
-            case 4:
-                url = "https://maps.google.com/mapfiles/ms/icons/orange-dot.png";
-                break;
-            case 5:
-                url = "https://maps.google.com/mapfiles/ms/icons/green-dot.png";
-                break;
-            default:
-                throw new Error("Unexpected value for location.vegan: " + location.vegan);
-        }
+        var url = getMarkerImageUrl(location);
         return new google.maps.MarkerImage(
             url,
             new google.maps.Size(50, 50),
             new google.maps.Point(0,0),
             new google.maps.Point(15, 34)
         );
+    }
+
+    function getMarkerImageUrl(location) {
+        switch (location.vegan) {
+            case 2:
+                return ResourcesService.getRedDotImageUrl();
+            case 4:
+                return ResourcesService.getOrangeDotImageUrl();
+            case 5:
+                return ResourcesService.getGreenDotImageUrl();
+            default:
+                throw new Error("Unexpected value for location.vegan: " + location.vegan);
+        }
     }
 
     function initQuery() {
