@@ -24,11 +24,11 @@ app.factory('I18nService', function($window, $location) {
                         de: "100% vegan",
                     },
                     vegetarian: {
-                        en: "vegetarian, vegan declared",
+                        en: "vegetarian, vegan declaration",
                         de: "vegetarisch, vegan deklariert",
                     },
                     omnivorous: {
-                        en: "omnivorous, vegan declared",
+                        en: "omnivorous, vegan declaration",
                         de: "omnivor, vegan deklariert",
                     },
                 },
