@@ -5,7 +5,8 @@
         </div>
         <div class="menu flex-container-nowrap">
             <div>
-                <button title="{{i18n.header.buttonTitle}}" ng-click="toggleFullMapView()">{{fullMapView ? "=&gt;" : "&lt;="}}</button>
+                <button title="{{i18n.header.fullMapViewbuttonTitle}}" ng-click="toggleFullMapView()">{{fullMapView ? "=&gt;" : "&lt;="}}</button>
+                <button title="{{i18n.header.searchButtonTitle}}" ng-click="scrollSearchIntoView()"><span class="fa fa-search"></span></button>
             </div>
             <div>
                 <a href="http://www.berlin-vegan.de/">Berlin&#8209;Vegan</a>
@@ -25,6 +26,7 @@
     </div>
     <div class="body flex-container-nowrap">
         <div class="col col-left" ng-hide="fullMapView" >
+            <div id="pre-search-div"></div>
             <form name="form" novalidate>
                 <p class="searchTextContainer flex-container-wrap">
                     <input type="text" ng-model="query.text" placeholder="{{i18n.search.text.placeholder}}" ng-change="updateMarkers()"/>
@@ -138,7 +140,7 @@
                     </div>
                 </p>
             </form>
-            <div ng-repeat="marker in filteredMarkers | orderBy : [order, 'location.name']">
+            <div ng-repeat="marker in filteredMarkers | orderBy : [order, 'location.name']" id="{{marker.location.id}}">
                 <hr/>
                 <h1>
                     <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>

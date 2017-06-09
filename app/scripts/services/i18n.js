@@ -264,9 +264,13 @@ app.factory('I18nService', function($window, $location) {
             },
         },
         header: {
-            buttonTitle: {
+            fullMapViewbuttonTitle: {
                 en: "Toggle full map view",
                 de: "Schalte Kartenvollansicht um",
+            },
+            searchButtonTitle: {
+                en: "Scroll to the search form",
+                de: "Zum Suchformular scrollen",
             },
             language: {
                 // A bit dirty, but we want to display the language in its language.
@@ -377,7 +381,8 @@ app.factory('I18nService', function($window, $location) {
                 review: i18n.infoWindow.review[language],
             },
             header: {
-                buttonTitle: i18n.header.buttonTitle[language],
+                fullMapViewbuttonTitle: i18n.header.fullMapViewbuttonTitle[language],
+                searchButtonTitle: i18n.header.searchButtonTitle[language],
                 language: {
                     en: i18n.header.language.en[language],
                     de: i18n.header.language.de[language],

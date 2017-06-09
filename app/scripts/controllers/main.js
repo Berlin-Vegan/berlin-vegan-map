@@ -44,6 +44,9 @@ app.controller('MainController', function (
         $scope.fullMapView = !$scope.fullMapView;
         $timeout(function() { google.maps.event.trigger($scope.map, "resize"); });
     }
+    $scope.scrollSearchIntoView = function() {
+        $window.document.getElementById("pre-search-div").scrollIntoView();
+    }
     $scope.formatTags = function(tags) {
         return tags.map(function(it) { return $scope.i18n.enums.tag[it]; }).join(", ");
     }
@@ -89,6 +92,7 @@ app.controller('MainController', function (
 
             infoWindow.setContent(content);
             infoWindow.open($scope.map, marker);
+            $window.document.getElementById(marker.location.id).scrollIntoView();
         });
 
         $scope.markers.push(marker);
