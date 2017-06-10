@@ -132,10 +132,6 @@ a:hover {
   width: 0%;
 }
 
-.bv-email {
-  display: none;
-}
-
 .selectedLanguage {
   display: none;
 }
@@ -158,9 +154,6 @@ a:hover {
 
 @media all and (min-width: 850px)
 {
-  .bv-email {
-    display: initial;
-  }
   .col-left { width: 50%; }
   .col-right { width: 50%; }
 }

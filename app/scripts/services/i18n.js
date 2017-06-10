@@ -1,6 +1,7 @@
 "use strict";
 
 app.factory('I18nService', function($window, $location) {
+    var nbsp = "\xa0"; // Non-breaking space
     var i18n = {
         enums: {
             veganCategory: {
@@ -268,6 +269,14 @@ app.factory('I18nService', function($window, $location) {
             },
         },
         header: {
+            reportNewLocation: {
+                en: "Report" + nbsp + "new" + nbsp + "location",
+                de: "Neueintrag" + nbsp + "melden",
+            },
+            reportProblem: {
+                en: "Report" + nbsp + "problem",
+                de: "Problem" + nbsp +"melden",
+            },
             fullMapViewbuttonTitle: {
                 en: "Full map view",
                 de: "Kartenvollansicht",
@@ -386,6 +395,8 @@ app.factory('I18nService', function($window, $location) {
                 review: i18n.infoWindow.review[language],
             },
             header: {
+                reportNewLocation: i18n.header.reportNewLocation[language],
+                reportProblem: i18n.header.reportProblem[language],
                 fullMapViewbuttonTitle: i18n.header.fullMapViewbuttonTitle[language],
                 searchButtonTitle: i18n.header.searchButtonTitle[language],
                 language: {
