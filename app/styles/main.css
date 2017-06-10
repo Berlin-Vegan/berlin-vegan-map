@@ -23,15 +23,15 @@ section {
 
 hr {
   color: rgb(230, 255, 230);
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 h1 {
   font-size: 1.3em;
   font-weight: 500;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 0em;
+  margin-bottom: 0.5em;
 }
 
 a {
@@ -41,6 +41,11 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+form {
+  border-bottom: 3px solid rgb(100, 141, 36);
+  margin-bottom: 1em;
 }
 
 .header .imgContainer {
