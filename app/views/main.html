@@ -45,7 +45,9 @@
                         <div>{{i18n.category.header}}:</div>
                         <div class="flex-container-wrap">
                             <label ng-repeat="veganCategory in veganCategories" title="{{i18n.enums.veganCategory.verbose[veganCategory]}}">
-                                <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="updateMarkers()">{{i18n.enums.veganCategory.concise[veganCategory]}}</input>
+                                <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="updateMarkers()">
+                                    <span ng-style="{'border-bottom': '3px dotted ' + getColor(veganCategory)}">{{i18n.enums.veganCategory.concise[veganCategory]}}</span>
+                                </input>
                             </label>
                         </div>
                     </div>

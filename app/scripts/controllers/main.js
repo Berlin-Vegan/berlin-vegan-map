@@ -56,6 +56,7 @@ app.controller('MainController', function (
         return tags.map(function(it) { return $scope.i18n.enums.tag[it]; }).join(", ");
     }
     $scope.getMarkerImageUrl = getMarkerImageUrl;
+    $scope.getColor = getColor;
 
     $http({method: 'GET', url: locationsUrl})
         .success(function(data, status, headers, config) {
@@ -115,15 +116,19 @@ app.controller('MainController', function (
     }
 
     function getMarkerImageUrl(location) {
-        switch (location.vegan) {
-            case 2:
-                return ResourcesService.getRedDotImageUrl();
-            case 4:
-                return ResourcesService.getOrangeDotImageUrl();
-            case 5:
-                return ResourcesService.getGreenDotImageUrl();
+        return ResourcesService.getDotImageUrl(getColor(location.getVeganCategory()));
+    }
+
+    function getColor(veganCategory) {
+        switch (veganCategory) {
+            case "omnivorous":
+                return "red";
+            case "vegetarian":
+                return "orange";
+            case "vegan":
+                return "green";
             default:
-                throw new Error("Unexpected value for location.vegan: " + location.vegan);
+                throw new Error("Unexpected value for veganCategory: " + veganCategory);
         }
     }
 
