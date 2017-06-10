@@ -45,7 +45,7 @@
                 <p class="searchTextContainer flex-container-wrap">
                     <input type="text" ng-model="query.text" placeholder="{{i18n.search.text.placeholder}}" ng-change="updateMarkers()"/>
                     <label>
-                        <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="updateMarkers()">{{i18n.search.text.namesOnly}}</input>
+                        <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="updateMarkers()"/>{{i18n.search.text.namesOnly}}
                     </label>
                 </p>
                 <p>
@@ -53,9 +53,8 @@
                         <div>{{i18n.category.header}}:</div>
                         <div class="flex-container-wrap">
                             <label ng-repeat="veganCategory in veganCategories" title="{{i18n.enums.veganCategory.verbose[veganCategory]}}">
-                                <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="updateMarkers()">
-                                    <span ng-style="{'border-bottom': '3px dotted ' + getColor(veganCategory)}">{{i18n.enums.veganCategory.concise[veganCategory]}}</span>
-                                </input>
+                                <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="updateMarkers()"/>
+                                <span ng-style="{'border-bottom': '3px dotted ' + getColor(veganCategory)}">{{i18n.enums.veganCategory.concise[veganCategory]}}</span>
                             </label>
                         </div>
                     </div>
@@ -65,7 +64,7 @@
                         <div>{{i18n.tag.header}}:</div>
                         <div class="flex-container-wrap">
                             <label ng-repeat="tag in tags">
-                                <input type="checkbox" ng-model="query.tags[tag]" ng-change="updateMarkers()">{{i18n.enums.tag[tag]}}</input>
+                                <input type="checkbox" ng-model="query.tags[tag]" ng-change="updateMarkers()"/>{{i18n.enums.tag[tag]}}
                             </label>
                         </div>
                     </div>
@@ -73,18 +72,18 @@
                 <p>
                     <div class="flex-container-wrap">
                         <div class="feature-col">
-                            <label><input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()">{{i18n.features.organic}}</input></label>
-                            <label><input type="checkbox" ng-model="query.dog" ng-change="updateMarkers()">{{i18n.features.dog}}</input></label>
-                            <label><input type="checkbox" ng-model="query.handicappedAccessible" ng-change="updateMarkers()">{{i18n.features.handicappedAccessible}}</input></label>
-                            <label><input type="checkbox" ng-model="query.delivery" ng-change="updateMarkers()">{{i18n.features.delivery}}</input></label>
-                            <label><input type="checkbox" ng-model="query.wlan" ng-change="updateMarkers()">{{i18n.features.wlan}}</input></label>
+                            <label><input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()"/>{{i18n.features.organic}}</label>
+                            <label><input type="checkbox" ng-model="query.dog" ng-change="updateMarkers()"/>{{i18n.features.dog}}</label>
+                            <label><input type="checkbox" ng-model="query.handicappedAccessible" ng-change="updateMarkers()"/>{{i18n.features.handicappedAccessible}}</label>
+                            <label><input type="checkbox" ng-model="query.delivery" ng-change="updateMarkers()"/>{{i18n.features.delivery}}</label>
+                            <label><input type="checkbox" ng-model="query.wlan" ng-change="updateMarkers()"/>{{i18n.features.wlan}}</label>
                         </div>
                         <div class="feature-col">
-                            <label><input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()">{{i18n.features.glutenFree}}</input></label>
-                            <label><input type="checkbox" ng-model="query.childChair" ng-change="updateMarkers()">{{i18n.features.childChair}}</input></label>
-                            <label><input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="updateMarkers()">{{i18n.features.handicappedAccessibleWc}}</input></label>
-                            <label><input type="checkbox" ng-model="query.catering" ng-change="updateMarkers()">{{i18n.features.catering}}</input></label>
-                            <label><input type="checkbox" ng-model="query.review" ng-change="updateMarkers()">{{i18n.features.review}}</input></label>
+                            <label><input type="checkbox" ng-model="query.glutenFree" ng-change="updateMarkers()"/>{{i18n.features.glutenFree}}</label>
+                            <label><input type="checkbox" ng-model="query.childChair" ng-change="updateMarkers()"/>{{i18n.features.childChair}}</label>
+                            <label><input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="updateMarkers()"/>{{i18n.features.handicappedAccessibleWc}}</label>
+                            <label><input type="checkbox" ng-model="query.catering" ng-change="updateMarkers()"/>{{i18n.features.catering}}</label>
+                            <label><input type="checkbox" ng-model="query.review" ng-change="updateMarkers()"/>{{i18n.features.review}}</label>
                         </div>
                     </div>
                 </p>
@@ -116,7 +115,7 @@
                                 <input type="time" placeholder="{{i18n.openingTimes.timePlaceholder.openNow}}" ng-disabled="true" size="15"/>
                             </span>
                             <label>
-                                <input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">{{i18n.openingTimes.nowCheckbox}}</input>
+                                <input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()"/>{{i18n.openingTimes.nowCheckbox}}
                             </label>
                             <span class="error" ng-show="form.openAtTimeInput.$error.time">{{i18n.openingTimes.invalidTime}}</span>
                         </div>
@@ -125,10 +124,9 @@
                 <p ng-show="geolocation.supported">
                     <div>
                         <label>
-                            <input type="checkbox" ng-model="geolocation.show" ng-change="updateGeolocationMarker()">
-                                <span ng-hide="geolocation.marker.map">{{i18n.geolocation.header}}</span>
-                                <a ng-show="geolocation.marker.map" href="#" ng-click="openInfoWindow($event, geolocation.marker)">{{i18n.geolocation.header}}</a> 
-                            </input>
+                            <input type="checkbox" ng-model="geolocation.show" ng-change="updateGeolocationMarker()"/>
+                            <span ng-hide="geolocation.marker.map">{{i18n.geolocation.header}}</span>
+                            <a ng-show="geolocation.marker.map" href="#" ng-click="openInfoWindow($event, geolocation.marker)">{{i18n.geolocation.header}}</a>
                         </label>
                     </div>
                     <div>
@@ -138,7 +136,7 @@
                     </div>
                     <div class="distanceContainer flex-container-wrap" ng-show="geolocation.marker.map">
                         <label>
-                            <input type="checkbox" ng-model="query.distance.enabled" ng-change="updateMarkers()">{{i18n.geolocation.distance}}:</input>
+                            <input type="checkbox" ng-model="query.distance.enabled" ng-change="updateMarkers()"/>{{i18n.geolocation.distance}}:
                         </label>
                         <input type="range" min="0.1" max="10" step="0.1" ng-model="query.distance.km" ng-change="query.distance.enabled = true; updateMarkers()" />
                         <span ng-bind-template="{{query.distance.km | kilometer }}"/>
