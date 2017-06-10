@@ -32,6 +32,8 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I
             location.reviewURL = "http://www.berlin-vegan.de/essen-und-trinken/kritiken/" + location.reviewURL;
         }
 
+        location.address = location.street + ", " + location.cityCode + " " + location.district;
+
         location.openingTimes = [
             new OpeningTime(0, location.otSun), 
             new OpeningTime(1, location.otMon), 

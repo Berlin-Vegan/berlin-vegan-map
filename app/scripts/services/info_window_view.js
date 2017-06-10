@@ -23,7 +23,7 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
             + "<hr/>"
             + "<div class='infoWindowContent'>" 
             + "<p>" + formatTags(i18n, location.tags) + " (" + i18n.enums.veganCategory.verbose[location.getVeganCategory()] + ")</p>"
-            + "<p>" + location.street + " " + location.cityCode + " " + location.district + "</p>"
+            + "<p>" + location.address + "</p>"
             + (currentPosition ? "<p>" + i18n.infoWindow.distance + ": " + kilometerFilter(location.getDistanceToPositionInKm(currentPosition)) + "</p>" : "")
             + "<h2>" + i18n.infoWindow.openingTimes + "</h2>"
             + "<p>" + getOpeningTimesInnerHtml(location) + "</p>"
