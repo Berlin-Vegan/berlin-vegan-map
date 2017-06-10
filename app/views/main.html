@@ -1,5 +1,5 @@
 <div class="main">
-    <div class="header flex-container-wrap">
+    <header class="flex-container-wrap">
         <div class="imgContainer flex-container-nowrap">
             <div>
                 <a href="http://www.berlin-vegan.de/">
@@ -11,7 +11,7 @@
                 <div></div>
             </div>
         </div>
-        <div class="menu flex-container-nowrap">
+        <nav class="flex-container-nowrap">
             <div>
                 <button title="{{i18n.header.searchButtonTitle}}" ng-click="scrollSearchIntoView()">
                     <span class="fa fa-search"></span>
@@ -23,7 +23,7 @@
             <div>
                 <a href="http://www.berlin-vegan.de/">Berlin&#8209;Vegan</a>
                 |
-                <a href="http://www.berlin-vegan.de/bv-guide/">Mobile&nbsp;App</a>
+                <a href="http://www.berlin-vegan.de/bv-guide/"><span class="mobile">Mobile&nbsp;</span>App</a>
                 |
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGdCRVpeBX2KWoAOn9LHx__uzTFBknz9au0LVYI5hLlIXZOw/viewform">{{i18n.header.reportNewLocation}}</a>
                 |
@@ -36,9 +36,9 @@
                 <span ng-show="{{ language === 'en' }}" class="selectedLanguage">{{i18n.header.language.en}}</span>
                 <a ng-hide="{{ language === 'en' }}" href="#" ng-click="setLanguage($event, 'en')">{{i18n.header.language.en}}</a>
             </div>
-        </div>
-    </div>
-    <div class="body flex-container-nowrap">
+        </nav>
+    </header>
+    <main class="flex-container-nowrap">
         <div class="col col-left" ng-hide="fullMapView" >
             <div id="pre-search-div"></div>
             <form name="form" novalidate>
@@ -211,6 +211,5 @@
         <div class="col col-right" ng-class="{fullMapView: fullMapView}">
             <div id="map"></div>
         </div>
-    </div>
+    </main>
 </div>
-

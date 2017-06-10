@@ -48,33 +48,33 @@ form {
   margin-bottom: 1em;
 }
 
-.header .imgContainer {
+header .imgContainer {
   flex: 1;
 }
 
-.header .imgContainer img {
-  height: 8vh;
+header .imgContainer img {
+  height: 7vh;
 }
 
-.header .imgContainer div:nth-of-type(2) {
+header .imgContainer div:nth-of-type(2) {
   flex: 1;
 }
 
-.header .imgContainer div:nth-of-type(2) div:nth-of-type(1) {
-  width: 24vh; /* 24 = 3 * 8. Indeed vh, not vw! */
+header .imgContainer div:nth-of-type(2) div:nth-of-type(1) {
+  width: 21vh; /* 21 = 3 * 7. Indeed vh, not vw! */
   background-image: url("../assets/images/bv-header-center.png");
   background-repeat: no-repeat;
-  background-size: auto 8vh;
+  background-size: auto 7vh;
 }
 
-.header .imgContainer div:nth-of-type(2) div:nth-of-type(2) {
+header .imgContainer div:nth-of-type(2) div:nth-of-type(2) {
   flex: 1;
   background-image: url("../assets/images/bv-header-right.png");
   background-repeat: repeat-x;
-  background-size: auto 8vh;
+  background-size: auto 7vh;
 }
 
-.header .menu {
+header nav {
   width: 100%;
   align-items: flex-end;
   color: white;
@@ -84,24 +84,24 @@ form {
   background-color: rgb(100, 141, 36);
 }
 
-.header .menu div:nth-of-type(1) {
+header nav div:nth-of-type(1) {
   width: 23%;
   text-align: left;
   padding-left: 0.3%;
 }
 
-.header .menu div:nth-of-type(2) {
+header nav div:nth-of-type(2) {
   width: 54%;
   text-align: center;
 }
 
-.header .menu div:nth-of-type(3) {
+header nav div:nth-of-type(3) {
   width: 23%;
   text-align: right;
   padding-right: 0.5%;
 }
 
-.header .menu a {
+header nav a {
   color: white;
 }
 
@@ -109,7 +109,7 @@ form {
   color: rgb(170, 240, 85);
 }
 
-.body {
+main {
   border-bottom: 5px solid rgb(100, 141, 36);
 }
 
@@ -120,12 +120,12 @@ form {
 
 @media all and (min-height: 400px)
 {
-  .col { height: 81vh; }
+  .col { height: 78vh; }
 }
 
 @media all and (min-height: 650px)
 {
-  .col { height: 84vh; }
+  .col { height: 81vh; }
 }
 
 @media all and (min-height: 860px)
@@ -150,6 +150,11 @@ form {
   display: none;
 }
 
+.mobile {
+  display: none;
+}
+
+
 @media all and (min-width: 568px)
 {
   .selectedLanguage {
@@ -157,6 +162,9 @@ form {
   }
   .selectedLanguagePipe {
     display: initial;
+  }
+  .mobile { 
+    display: initial; 
   }
   .col-left { width: 60%; }
   .col-right { width: 40%; }
