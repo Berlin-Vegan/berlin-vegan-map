@@ -42,13 +42,13 @@
         <div class="col col-left" ng-hide="fullMapView" >
             <div id="pre-search-div"></div>
             <form name="form" novalidate>
-                <p class="searchTextContainer flex-container-wrap">
+                <section class="searchTextContainer flex-container-wrap">
                     <input type="text" ng-model="query.text" placeholder="{{i18n.search.text.placeholder}}" ng-change="updateMarkers()"/>
                     <label>
                         <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="updateMarkers()"/>{{i18n.search.text.namesOnly}}
                     </label>
-                </p>
-                <p>
+                </section>
+                <section>
                     <div class="flex-container-wrap">
                         <div>{{i18n.category.header}}:</div>
                         <div class="flex-container-wrap">
@@ -58,8 +58,8 @@
                             </label>
                         </div>
                     </div>
-                </p>
-                <p>
+                </section>
+                <section>
                     <div class="flex-container-wrap">
                         <div>{{i18n.tag.header}}:</div>
                         <div class="flex-container-wrap">
@@ -68,8 +68,8 @@
                             </label>
                         </div>
                     </div>
-                </p>
-                <p>
+                </section>
+                <section>
                     <div class="flex-container-wrap">
                         <div class="feature-col">
                             <label><input type="checkbox" ng-model="query.organic" ng-change="updateMarkers()"/>{{i18n.features.organic}}</label>
@@ -86,8 +86,8 @@
                             <label><input type="checkbox" ng-model="query.review" ng-change="updateMarkers()"/>{{i18n.features.review}}</label>
                         </div>
                     </div>
-                </p>
-                <p>
+                </section>
+                <section>
                     <div class="flex-container-wrap">
                         <div>{{i18n.openingTimes.header}}:</div>
                         <div>
@@ -120,8 +120,8 @@
                             <span class="error" ng-show="form.openAtTimeInput.$error.time">{{i18n.openingTimes.invalidTime}}</span>
                         </div>
                     </div>
-                </p>
-                <p ng-show="geolocation.supported">
+                </section>
+                <section ng-show="geolocation.supported">
                     <div>
                         <label>
                             <input type="checkbox" ng-model="geolocation.show" ng-change="updateGeolocationMarker()"/>
@@ -141,7 +141,7 @@
                         <input type="range" min="0.1" max="10" step="0.1" ng-model="query.distance.km" ng-change="query.distance.enabled = true; updateMarkers()" />
                         <span ng-bind-template="{{query.distance.km | kilometer }}"/>
                     </div>
-                </p>
+                </section>
                 <hr/>
                 <div class="sortContainer flex-container-nowrap">
                     <div>

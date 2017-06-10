@@ -16,6 +16,11 @@
   flex-wrap: wrap;
 }
 
+section {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 hr {
   color: rgb(230, 255, 230);
   margin-top: 5px;
