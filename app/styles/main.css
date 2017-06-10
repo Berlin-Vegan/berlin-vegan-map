@@ -97,7 +97,7 @@ a:hover {
 
 .col-left {
   width: 100%;
-  padding-right: 6px
+  padding-right: 6px;
 }
 
 .col-right {
@@ -169,7 +169,15 @@ a:hover {
 
 .sortContainer div:nth-of-type(2) {
   width: 45%;
-  text-align: right
+  text-align: right;
+}
+
+.locationHeadingContainer h1 {
+  flex: 1;
+}
+
+.locationHeadingContainer div {
+  text-align: right;
 }
 
 .addressWithDistanceContainer div:nth-of-type(1) {
@@ -178,7 +186,7 @@ a:hover {
 
 .addressWithDistanceContainer div:nth-of-type(2) {
   width: 17%;
-  text-align: right
+  text-align: right;
 }
 
 .feature-col label {

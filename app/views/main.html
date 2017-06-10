@@ -150,15 +150,19 @@
             </form>
             <div ng-repeat="marker in filteredMarkers | orderBy : [order, 'location.name']" id="{{marker.location.id}}">
                 <hr/>
-                <h1>
-                    <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
-                    <img 
-                        ng-click="openInfoWindow($event, marker)"
-                        title="{{i18n.enums.veganCategory.verbose[marker.location.getVeganCategory()]}}" 
-                        src="{{getMarkerImageUrl(marker.location)}}" 
-                        style="height: 25px; width: auto;"
-                    />
-                </h1>
+                <div class="locationHeadingContainer flex-container-nowrap">
+                    <h1>
+                        <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
+                    </h1>
+                    <div>
+                        <img 
+                            ng-click="openInfoWindow($event, marker)"
+                            title="{{i18n.enums.veganCategory.verbose[marker.location.getVeganCategory()]}}" 
+                            src="{{getMarkerImageUrl(marker.location)}}" 
+                            style="height: 25px; width: auto; position:relative; bottom: -6px;"
+                        />
+                    </div>
+                </div>
                 <div>
                     <span>{{formatTags(marker.location.tags)}}</span>
                     <span title="{{i18n.enums.veganCategory.verbose[marker.location.getVeganCategory()]}}">
