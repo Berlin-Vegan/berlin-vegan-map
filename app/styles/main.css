@@ -43,22 +43,28 @@ a:hover {
 }
 
 .header .imgContainer {
-  width: 100%;
-  overflow: hidden;
-  background-color: rgb(100, 141, 36);
+  flex: 1;
 }
 
-.header img {
+.header .imgContainer img {
   height: 8vh;
+}
+
+.header .imgContainer div:nth-of-type(2) {
+  flex: 1;
+  background-image: url("../assets/images/bv-header-right.png");
+  background-repeat: repeat-x;
+  background-size: auto 8vh;
 }
 
 .header .menu {
   width: 100%;
   align-items: flex-end;
-  background-color: rgb(100, 141, 36);
   color: white;
-  margin-top: -4px;
+  margin-top: -8px;
+  padding-top: -8px;
   padding-bottom: 4px;
+  background-color: rgb(100, 141, 36);
 }
 
 .header .menu div:nth-of-type(1) {
@@ -87,12 +93,27 @@ a:hover {
 }
 
 .body {
-  border-bottom: 6px solid rgb(100, 141, 36);
+  border-bottom: 5px solid rgb(100, 141, 36);
 }
 
 .col {
-  height: 85vh;
+  height: 72vh;
   overflow-y: auto;
+}
+
+@media all and (min-height: 400px)
+{
+  .col { height: 81vh; }
+}
+
+@media all and (min-height: 650px)
+{
+  .col { height: 84vh; }
+}
+
+@media all and (min-height: 860px)
+{
+  .col { height: 86vh; }
 }
 
 .col-left {
@@ -116,7 +137,7 @@ a:hover {
   display: none;
 }
 
-@media screen and (min-width: 568px)
+@media all and (min-width: 568px)
 {
   .selectedLanguage {
     display: initial;
@@ -128,7 +149,7 @@ a:hover {
   .col-right { width: 40%; }
 }
 
-@media screen and (min-width: 850px)
+@media all and (min-width: 850px)
 {
   .bv-email {
     display: initial;
@@ -137,19 +158,19 @@ a:hover {
   .col-right { width: 50%; }
 }
 
-@media screen and (min-width: 1050px)
+@media all and (min-width: 1050px)
 {
   .col-left { width: 40%; }
   .col-right { width: 60%; }
 }
 
-@media screen and (min-width: 1300px)
+@media all and (min-width: 1300px)
 {
   .col-left { width: 30%; }
   .col-right { width: 70%; }
 }
 
-@media screen and (min-width: 1500px)
+@media all and (min-width: 1500px)
 {
   .col-left { width: 25%; }
   .col-right { width: 75%; }
