@@ -122,7 +122,7 @@ app.factory('I18nService', function($window, $location) {
             },
             glutenFree: {
                 en: "Gluten-free food",
-                de: "glutenfreie Speisen",
+                de: "Glutenfreie Speisen",
             },
             dog: {
                 en: "Dogs allowed",
@@ -133,12 +133,12 @@ app.factory('I18nService', function($window, $location) {
                 de: "Kinderstuhl",
             },
             handicappedAccessible: {
-                en: "Suitable for wheelchairs",
-                de: "Rollstuhlgeeignet",
+                en: "Wheelchair-accessible",
+                de: "Rollstuhlgerecht",
             },
             handicappedAccessibleWc: {
-                en: "Toilet suitable for wheelchairs",
-                de: "Rollstuhlgeeignetes WC",
+                en: "Wheelchair-accessible toilet",
+                de: "Rollstuhlgerechtes WC",
             },
             delivery: {
                 en: "Delivery service",
