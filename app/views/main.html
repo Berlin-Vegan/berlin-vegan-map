@@ -150,8 +150,14 @@
                 <hr/>
                 <h1>
                     <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
+                    <img 
+                        ng-click="openInfoWindow($event, marker)"
+                        title="{{i18n.enums.veganCategory.verbose[marker.location.getVeganCategory()]}}" 
+                        src="{{getMarkerImageUrl(marker.location)}}" 
+                        style="height: 25px; width: auto;"
+                    />
                 </h1>
-                <div><span>{{formatTags(marker.location.tags)}}</span> (<span>{{i18n.enums.veganCategory.verbose[marker.location.getVeganCategory()]}}</span>)</div>
+                <div><span>{{formatTags(marker.location.tags)}}</span></div>
                 <div class="addressWithDistanceContainer flex-container-nowrap">
                     <div>{{marker.location.street}} {{marker.location.cityCode}} {{marker.location.district}}</div>
                     <div ng-show="geolocation.marker.map">

@@ -55,6 +55,7 @@ app.controller('MainController', function (
     $scope.formatTags = function(tags) {
         return tags.map(function(it) { return $scope.i18n.enums.tag[it]; }).join(", ");
     }
+    $scope.getMarkerImageUrl = getMarkerImageUrl;
 
     $http({method: 'GET', url: locationsUrl})
         .success(function(data, status, headers, config) {
