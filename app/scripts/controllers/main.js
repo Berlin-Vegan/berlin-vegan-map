@@ -16,6 +16,7 @@ app.controller('MainController', function (
     InfoWindowViewService, 
     ResourcesService,
     I18nService, 
+    UtilService,
     filterFilter, 
     locationFilter, 
     kilometerFilter
@@ -99,7 +100,12 @@ app.controller('MainController', function (
 
             infoWindow.setContent(content);
             infoWindow.open($scope.map, marker);
-            $window.document.getElementById(marker.location.id).scrollIntoView();
+
+            var locationElement = $window.document.getElementById(marker.location.id);
+
+            if (!UtilService.isElementVisible(locationElement)) {
+                locationElement.scrollIntoView();
+            }
         });
 
         $scope.markers.push(marker);
