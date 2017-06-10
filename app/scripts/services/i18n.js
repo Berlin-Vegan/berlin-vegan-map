@@ -249,6 +249,10 @@ app.factory('I18nService', function($window, $location) {
             en: " results of ",
             de: " Treffer von ",
         },
+        showOnMap: {
+            en: "Show on map",
+            de: "Auf der Karte anzeigen",
+        },
         infoWindow: {
             distance: {
                 en: "Distance",
@@ -265,8 +269,8 @@ app.factory('I18nService', function($window, $location) {
         },
         header: {
             fullMapViewbuttonTitle: {
-                en: "Toggle full map view",
-                de: "Schalte Kartenvollansicht um",
+                en: "Full map view",
+                de: "Kartenvollansicht",
             },
             searchButtonTitle: {
                 en: "Show search form",
@@ -375,6 +379,7 @@ app.factory('I18nService', function($window, $location) {
                 distanceRequiresGeolocation: i18n.sortBy.distanceRequiresGeolocation[language],
             },
             resultsLength: i18n.resultsLength[language],
+            showOnMap: i18n.showOnMap[language],
             infoWindow: {
                 distance: i18n.infoWindow.distance[language],
                 openingTimes: i18n.infoWindow.openingTimes[language],

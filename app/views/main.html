@@ -5,13 +5,11 @@
         </div>
         <div class="menu flex-container-nowrap">
             <div>
-                <button title="{{i18n.header.fullMapViewbuttonTitle}}" ng-click="toggleFullMapView()">
-                    <span class="fa" ng-class="{'fa-caret-left': !fullMapView}">
-                    <span class="fa fa-list"></span>
-                    <span class="fa" ng-class="{'fa-caret-right': fullMapView}">
-                </button>
                 <button title="{{i18n.header.searchButtonTitle}}" ng-click="scrollSearchIntoView()">
                     <span class="fa fa-search"></span>
+                </button>
+                <button title="{{i18n.header.fullMapViewbuttonTitle}}" ng-click="enableFullMapView()" ng-disabled="fullMapView">
+                    <span class="fa fa-map-o"></span>
                 </button>
             </div>
             <div>
@@ -81,34 +79,38 @@
                     </div>
                 </p>
                 <p>
-                    {{i18n.openingTimes.header}}:
-                    <span ng-hide="query.openNow">
-                        <select ng-model="query.openAtWeekDay" ng-change="updateMarkers()">
-                            <option value="all">{{i18n.enums.weekday.all}}</option>
-                            <option ng-repeat="i in [1, 2, 3, 4, 5, 6, 0]" value="{{i}}">{{i18n.enums.weekday[i + ""]}}</option>
-                        </select>
-                        <input 
-                            name="openAtTimeInput" 
-                            type="time" 
-                            ng-model="query.openAtTime" 
-                            placeholder="{{i18n.openingTimes.timePlaceholder.notOpenNow}}" 
-                            ng-disabled="query.openAtWeekDay === 'all'" 
-                            ng-change="updateMarkers()" 
-                            size="15" 
-                            maxlength="5"
-                        />
-                    </span>
-                    <span ng-show="query.openNow">
-                        <select ng-disabled="true">
-                            <option>-{{i18n.enums.weekday.today}}-</option>
-                            <option>{{i18n.enums.weekday.all}}</option><!-- So this select element gets the same size as the "real" select element.-->
-                        </select>
-                        <input type="time" placeholder="{{i18n.openingTimes.timePlaceholder.openNow}}" ng-disabled="true" size="15"/>
-                    </span>
-                    <label>
-                        <input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">{{i18n.openingTimes.nowCheckbox}}</input>
-                    </label>
-                    <span class="error" ng-show="form.openAtTimeInput.$error.time">{{i18n.openingTimes.invalidTime}}</span>
+                    <div class="flex-container-wrap">
+                        <div>{{i18n.openingTimes.header}}:</div>
+                        <div>
+                            <span ng-hide="query.openNow">
+                                <select ng-model="query.openAtWeekDay" ng-change="updateMarkers()">
+                                    <option value="all">{{i18n.enums.weekday.all}}</option>
+                                    <option ng-repeat="i in [1, 2, 3, 4, 5, 6, 0]" value="{{i}}">{{i18n.enums.weekday[i + ""]}}</option>
+                                </select>
+                                <input 
+                                    name="openAtTimeInput" 
+                                    type="time" 
+                                    ng-model="query.openAtTime" 
+                                    placeholder="{{i18n.openingTimes.timePlaceholder.notOpenNow}}" 
+                                    ng-disabled="query.openAtWeekDay === 'all'" 
+                                    ng-change="updateMarkers()" 
+                                    size="15" 
+                                    maxlength="5"
+                                />
+                            </span>
+                            <span ng-show="query.openNow">
+                                <select ng-disabled="true">
+                                    <option>-{{i18n.enums.weekday.today}}-</option>
+                                    <option>{{i18n.enums.weekday.all}}</option><!-- So this select element gets the same size as the "real" select element.-->
+                                </select>
+                                <input type="time" placeholder="{{i18n.openingTimes.timePlaceholder.openNow}}" ng-disabled="true" size="15"/>
+                            </span>
+                            <label>
+                                <input type="checkbox" ng-model="query.openNow" ng-change="updateMarkers()">{{i18n.openingTimes.nowCheckbox}}</input>
+                            </label>
+                            <span class="error" ng-show="form.openAtTimeInput.$error.time">{{i18n.openingTimes.invalidTime}}</span>
+                        </div>
+                    </div>
                 </p>
                 <p ng-show="geolocation.supported">
                     <div>
@@ -133,23 +135,21 @@
                     </div>
                 </p>
                 <hr/>
-                <p>
-                    <div class="sortContainer flex-container-nowrap">
-                        <div>
-                            {{i18n.sortBy.header}}:
-                            <select ng-model="orderSelection" ng-change="updateOrder()">
-                                <!-- TODO: Find out why in production (but not in dev mode) we need the value attribute even if it equals the text. -->
-                                <option value="name">{{i18n.sortBy.name}}</option>
-                                <option value="distance" ng-show="geolocation.marker.map">{{i18n.sortBy.distance}}</option>
-                                <option value="distance" ng-hide="geolocation.marker.map" ng-disabled="true" title="{{i18n.sortBy.distanceRequiresGeolocation}}">{{i18n.sortBy.distance}}</option>
-                            </select>
-                        </div>
-                        <div>{{filteredMarkers.length + i18n.resultsLength + locations.length}}</div>
+                <div class="sortContainer flex-container-nowrap">
+                    <div>
+                        {{i18n.sortBy.header}}:
+                        <select ng-model="orderSelection" ng-change="updateOrder()">
+                            <!-- TODO: Find out why in production (but not in dev mode) we need the value attribute even if it equals the text. -->
+                            <option value="name">{{i18n.sortBy.name}}</option>
+                            <option value="distance" ng-show="geolocation.marker.map">{{i18n.sortBy.distance}}</option>
+                            <option value="distance" ng-hide="geolocation.marker.map" ng-disabled="true" title="{{i18n.sortBy.distanceRequiresGeolocation}}">{{i18n.sortBy.distance}}</option>
+                        </select>
                     </div>
-                </p>
+                    <div>{{filteredMarkers.length + i18n.resultsLength + locations.length}}</div>
+                </div>
             </form>
+            <hr/>
             <div ng-repeat="marker in filteredMarkers | orderBy : [order, 'location.name']" id="{{marker.location.id}}">
-                <hr/>
                 <div class="locationHeadingContainer flex-container-nowrap">
                     <h1>
                         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
@@ -157,7 +157,7 @@
                     <div>
                         <img 
                             ng-click="openInfoWindow($event, marker)"
-                            title="{{i18n.enums.veganCategory.verbose[marker.location.getVeganCategory()]}}" 
+                            title="{{i18n.showOnMap}}" 
                             src="{{getMarkerImageUrl(marker.location)}}" 
                             style="height: 25px; width: auto; position:relative; bottom: -6px;"
                         />

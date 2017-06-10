@@ -42,14 +42,17 @@ app.controller('MainController', function (
         I18nService.setLanguage(language);
     }
     $scope.fullMapView = false;
-    $scope.toggleFullMapView = function() {
-        $scope.fullMapView = !$scope.fullMapView;
+    $scope.enableFullMapView = function() {
+        $scope.fullMapView = true;
         $timeout(function() { google.maps.event.trigger($scope.map, "resize"); });
+    }
+    $scope.disableFullMapView = function() {
+        $scope.fullMapView = false;
     }
     $scope.scrollSearchIntoView = function() {
         if ($scope.fullMapView)
         {
-            $scope.fullMapView = false;
+            $scope.disableFullMapView();
         }
         $timeout(function() { $window.document.getElementById("pre-search-div").scrollIntoView(); });
     }
@@ -181,7 +184,10 @@ app.controller('MainController', function (
 
         $scope.openInfoWindow = function(e, selectedMarker){
             e.preventDefault();
-            google.maps.event.trigger(selectedMarker, 'click');
+            if (!window.matchMedia("(min-width: 568px)").matches) {
+                $scope.enableFullMapView();
+            }
+            $timeout(function() { google.maps.event.trigger(selectedMarker, 'click'); });
         };
     }
 

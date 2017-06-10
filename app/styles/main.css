@@ -23,7 +23,7 @@ hr {
 }
 
 h1 {
-  font-size: 1.4em;
+  font-size: 1.3em;
   margin-top: 5px;
   margin-bottom: 5px;
   font-weight: 500;
@@ -116,7 +116,7 @@ a:hover {
   display: none;
 }
 
-@media screen and (min-width: 700px)
+@media screen and (min-width: 568px)
 {
   .selectedLanguage {
     display: initial;
@@ -128,7 +128,7 @@ a:hover {
   .col-right { width: 40%; }
 }
 
-@media screen and (min-width: 900px)
+@media screen and (min-width: 850px)
 {
   .bv-email {
     display: initial;
@@ -137,7 +137,7 @@ a:hover {
   .col-right { width: 50%; }
 }
 
-@media screen and (min-width: 1100px)
+@media screen and (min-width: 1050px)
 {
   .col-left { width: 40%; }
   .col-right { width: 60%; }
@@ -178,6 +178,11 @@ a:hover {
 
 .locationHeadingContainer div {
   text-align: right;
+}
+
+.addressWithDistanceContainer {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .addressWithDistanceContainer div:nth-of-type(1) {
