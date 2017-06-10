@@ -46,6 +46,10 @@ app.filter('location', function(filterFilter, I18nService) {
             locationPattern.delivery = "1";
         }
 
+        if (query.childChair) {
+            locationPattern.childChair = "1";
+        }
+
         var filterFunction = function(location, index, array) {
 
             if (query.openNow) {
