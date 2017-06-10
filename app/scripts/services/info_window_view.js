@@ -12,7 +12,8 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
     var service = {};
     
     service.getContent = function(i18n, language, location, currentPosition) {
-        return "<h1>" 
+        return "<div class='infoWindow'>"
+            + "<h1>" 
             + location.name 
             + (location.website ? 
                 " <a target='_blank' href='" + location.website + "' title='" + location.website + "'>" + linkSymbol + "</a>" 
@@ -21,7 +22,6 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
             ) 
             + "</h1>" 
             + "<hr/>"
-            + "<div class='infoWindowContent'>" 
             + "<p>" + formatTags(i18n, location.tags) + " (" + i18n.enums.veganCategory.verbose[location.getVeganCategory()] + ")</p>"
             + "<p>" + location.address + "</p>"
             + (currentPosition ? "<p>" + i18n.infoWindow.distance + ": " + kilometerFilter(location.getDistanceToPositionInKm(currentPosition)) + "</p>" : "")

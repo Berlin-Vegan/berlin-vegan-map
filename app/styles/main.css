@@ -24,13 +24,9 @@ hr {
 
 h1 {
   font-size: 1.3em;
+  font-weight: 500;
   margin-top: 5px;
   margin-bottom: 5px;
-  font-weight: 500;
-}
-
-h2 {
-  font-size: 1em;
 }
 
 a {
@@ -239,8 +235,22 @@ a:hover {
   height: 100%;
 }
 
-.infoWindowContent {
+.infoWindow {
   font-size: initial;
+}
+
+.infoWindow h1 {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.infoWindow h2 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: -12px;
 }
 
 .error {
