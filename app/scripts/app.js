@@ -10,7 +10,7 @@
  */
 var app = angular.module('berlinVeganMapApp', ['ngRoute']);
 
- app.config(function ($routeProvider) {
+app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'views/main.html',
