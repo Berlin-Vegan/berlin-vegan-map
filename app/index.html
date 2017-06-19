@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
-<body ng-app="berlinVeganMapApp">
+<body id="berlinVeganMapApp">
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
       your browser</a> to improve your experience.</p>
@@ -41,9 +41,7 @@
         ga('create', 'UA-1323925-1');
         ga('send', 'pageview');
     </script>
-    <script>global_dynamicScriptsHaveLoaded = false;</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.min.js"></script>
-    <!--<script src="https://maps.googleapis.com/maps/api/js.js"></script>-->
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -77,8 +75,9 @@
         }
         
         var region = (global_language === "en") ? "us" : "de";
-        appendScript("https://maps.googleapis.com/maps/api/js?language=" + global_language +"&region=" + region + ".js");
-        
+        appendScript("https://maps.googleapis.com/maps/api/js?language=" + global_language +"&region=" + region);
+        bootstrapAngular();
+
         function getPreferredSupportedLanguage() {
             var preferredLanguages = getPreferredLanguages();
             for (var i = 0; i < preferredLanguages.length; i++) {
@@ -114,6 +113,21 @@
             script.src = url;
             script.async = false;
             document.head.appendChild(script);
+        }
+
+        function bootstrapAngular() {
+            var interval = setInterval(
+                function() { 
+                    if (typeof(google) !== "undefined") {
+                        console.info("Google Maps has loaded. Bootstrapping Angular ...");
+                        clearInterval(interval);
+                        angular.bootstrap(document.querySelector("#berlinVeganMapApp"), ["berlinVeganMapApp"])
+                    } else {
+                        console.info("Google Maps has not yet loaded. Trying again ...");
+                    }
+                },
+                100
+            );
         }
     </script>
     </body>
