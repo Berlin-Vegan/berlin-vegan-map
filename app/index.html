@@ -75,8 +75,11 @@
         }
         
         var region = (global_language === "en") ? "us" : "de";
-        appendScript("https://maps.googleapis.com/maps/api/js?language=" + global_language +"&region=" + region);
-        bootstrapAngular();
+
+        appendScript(
+            "https://maps.googleapis.com/maps/api/js?language=" + global_language +"&region=" + region,
+            function() { angular.bootstrap(document.querySelector("#berlinVeganMapApp"), ["berlinVeganMapApp"]); }
+        );
 
         function getPreferredSupportedLanguage() {
             var preferredLanguages = getPreferredLanguages();
@@ -108,26 +111,12 @@
             );
         }
 
-        function appendScript(url) {
+        function appendScript(url, onload) {
             var script = document.createElement('script');
             script.src = url;
             script.async = false;
+            script.onload = onload;
             document.head.appendChild(script);
-        }
-
-        function bootstrapAngular() {
-            var interval = setInterval(
-                function() { 
-                    if (typeof(google) !== "undefined") {
-                        console.info("Google Maps has loaded. Bootstrapping Angular ...");
-                        clearInterval(interval);
-                        angular.bootstrap(document.querySelector("#berlinVeganMapApp"), ["berlinVeganMapApp"])
-                    } else {
-                        console.info("Google Maps has not yet loaded. Trying again ...");
-                    }
-                },
-                100
-            );
         }
     </script>
     </body>
