@@ -47,16 +47,8 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
             var group = compressedOts[i];
             var firstOt = group[0];
             var lastOt = group[group.length - 1];
-            var days;
-            var interval;
-            
-            if (firstOt === lastOt) {
-                days = firstOt.friendlyDayShort;
-                interval = firstOt.interval.friendly;
-            } else {
-                days = firstOt.friendlyDayShort + extraLongHyphen + lastOt.friendlyDayShort;
-                interval = firstOt.interval.friendly;
-            }
+            var interval = firstOt.interval.friendly;
+            var days = firstOt.friendlyDayShort + (firstOt === lastOt ? "" : extraLongHyphen + lastOt.friendlyDayShort);
             
             var groupContainsToday = group.map(function(ot) { return ot.dayIndex; }).indexOf(new Date().getDay()) >= 0;
             html += "<b>" + days + ":</b> " + (groupContainsToday ? "<b>" + interval + "</b>" : interval);
