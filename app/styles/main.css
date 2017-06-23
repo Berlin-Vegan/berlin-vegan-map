@@ -146,11 +146,10 @@ main {
   display: none;
 }
 
-
 @media all and (min-width: 568px)
 {
   .selectedLanguage, .selectedLanguagePipe, .mobile {
-    display: initial;
+    display: inline; /* initial is more elegant, but does not work in IE11. */
   }
   .col-left { width: 60%; }
   .col-right { width: 40%; }
