@@ -148,7 +148,7 @@
                     <div>{{filteredMarkers.length + i18n.resultsLength + locations.length}}</div>
                 </section>
             </form>
-            <div ng-repeat="marker in filteredMarkers | orderBy : [order, 'location.name']" id="{{marker.location.id}}">
+            <div ng-repeat="marker in filteredMarkers | orderBy : order : false : localeSensitiveComparator" id="{{marker.location.id}}">
                 <div class="locationHeadingContainer flex-container-nowrap">
                     <h1>
                         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>

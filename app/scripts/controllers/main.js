@@ -54,6 +54,23 @@ app.controller('MainController', function (
     $scope.formatTags = function(tags) {
         return tags.map(function(it) { return $scope.i18n.enums.tag[it]; }).join(", ");
     }
+
+    // Adapted (but changed) from https://code.angularjs.org/1.5.7/docs/api/ng/filter/orderBy
+    $scope.localeSensitiveComparator = function(v1, v2) {
+        
+        if (v1.type !== 'string' || v2.type !== 'string') {
+            if (v1.value < v2.value) {
+                return -1;
+            } else if (v1.value > v2.value) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+        return v1.value.localeCompare(v2.value, global_language);
+    };
+
     $scope.getMarkerImageUrl = getMarkerImageUrl;
     $scope.getColor = getColor;
 
