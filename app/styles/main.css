@@ -142,29 +142,15 @@ main {
   width: 0%;
 }
 
-.selectedLanguage {
-  display: none;
-}
-
-.selectedLanguagePipe {
-  display: none;
-}
-
-.mobile {
+.selectedLanguage, .selectedLanguagePipe, .mobile {
   display: none;
 }
 
 
 @media all and (min-width: 568px)
 {
-  .selectedLanguage {
+  .selectedLanguage, .selectedLanguagePipe, .mobile {
     display: initial;
-  }
-  .selectedLanguagePipe {
-    display: initial;
-  }
-  .mobile { 
-    display: initial; 
   }
   .col-left { width: 60%; }
   .col-right { width: 40%; }
