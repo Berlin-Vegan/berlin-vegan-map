@@ -57,16 +57,16 @@
                     </label>
                 </section>
                 <section class="flex-container-wrap">
-                    <div>{{i18n.category.header}}:</div>
+                    <h1>{{i18n.category.header}}</h1>
                     <div class="flex-container-wrap">
                         <label ng-repeat="veganCategory in veganCategories" title="{{i18n.enums.veganCategory.verbose[veganCategory]}}">
-                            <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="updateMarkers()"/>
-                            <span ng-style="{'border-bottom': '3px dotted ' + getColor(veganCategory)}">{{i18n.enums.veganCategory.concise[veganCategory]}}</span>
+                            <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="updateMarkers()"
+                            /><span ng-style="{'border-bottom': '3px dotted ' + getColor(veganCategory)}">{{i18n.enums.veganCategory.concise[veganCategory]}}</span>
                         </label>
                     </div>
                 </section>
                 <section class="flex-container-wrap">
-                    <div>{{i18n.tag.header}}:</div>
+                    <h1>{{i18n.tag.header}}</h1>
                     <div class="flex-container-wrap">
                         <label ng-repeat="tag in tags">
                             <input type="checkbox" ng-model="query.tags[tag]" ng-change="updateMarkers()"/>{{i18n.enums.tag[tag]}}
@@ -90,7 +90,7 @@
                     </div>
                 </section>
                 <section class="flex-container-wrap">
-                    <div>{{i18n.openingTimes.header}}:</div>
+                    <h1>{{i18n.openingTimes.header}}</h1>
                     <div>
                         <span ng-hide="query.openNow">
                             <select ng-model="query.openAtWeekDay" ng-change="updateMarkers()">
@@ -144,8 +144,8 @@
                 </section>
                 <hr/>
                 <section class="sortContainer flex-container-nowrap">
-                    <div>
-                        {{i18n.sortBy.header}}:
+                    <div class="flex-container-wrap">
+                        <h1>{{i18n.sortBy.header}}</h1>
                         <select ng-model="orderSelection" ng-change="updateOrder()">
                             <!-- TODO: Find out why in production (but not in dev mode) we need the value attribute even if it equals the text. -->
                             <option value="name">{{i18n.sortBy.name}}</option>

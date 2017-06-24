@@ -48,6 +48,20 @@ form {
   margin-bottom: 1em;
 }
 
+form h1 {
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0; /* initial is more elegant, but does not work in IE11. */
+}
+
+form h1:after {
+  content: ":";
+}
+
+form select {
+  margin-left: 0.3em;
+}
+
 header .imgContainer {
   flex: 1;
 }
