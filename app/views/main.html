@@ -20,22 +20,30 @@
                     <span class="fa fa-map-o"></span>
                 </button>
             </div>
-            <div>
-                <a href="http://www.berlin-vegan.de/">Berlin&#8209;Vegan</a>
-                |
-                <a href="http://www.berlin-vegan.de/bv-guide/"><span class="mobile">Mobile&nbsp;</span>App</a>
-                |
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGdCRVpeBX2KWoAOn9LHx__uzTFBknz9au0LVYI5hLlIXZOw/viewform">{{i18n.header.reportNewLocation}}</a>
-                |
-                <a href="mailto:karte@berlin-vegan.de">{{i18n.header.reportProblem}}</a>
-            </div>
-            <div>
-                <span ng-show="{{ language === 'de' }}" class="selectedLanguage">{{i18n.header.language.de}}</span>
-                <a ng-hide="{{ language === 'de' }}" href="#" ng-click="setLanguage($event, 'de')">{{i18n.header.language.de}}</a>
-                <span class="selectedLanguagePipe">|</span>
-                <span ng-show="{{ language === 'en' }}" class="selectedLanguage">{{i18n.header.language.en}}</span>
-                <a ng-hide="{{ language === 'en' }}" href="#" ng-click="setLanguage($event, 'en')">{{i18n.header.language.en}}</a>
-            </div>
+            <ul>
+                <li>
+                    <a href="http://www.berlin-vegan.de/">Berlin&#8209;Vegan</a>
+                </li>
+                <li>
+                    <a href="http://www.berlin-vegan.de/bv-guide/"><span class="mobile">Mobile&nbsp;</span>App</a>
+                </li>
+                <li>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGdCRVpeBX2KWoAOn9LHx__uzTFBknz9au0LVYI5hLlIXZOw/viewform">{{i18n.header.reportNewLocation}}</a>
+                </li>
+                <li>
+                    <a href="mailto:karte@berlin-vegan.de">{{i18n.header.reportProblem}}</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <span ng-show="language === 'de'" class="selectedLanguage">{{i18n.header.language.de}}</span>
+                    <a ng-show="language !== 'de'" href="#" ng-click="setLanguage($event, 'de')">{{i18n.header.language.de}}</a>
+                </li>
+                <li>
+                    <span ng-show="language === 'en'" class="selectedLanguage">{{i18n.header.language.en}}</span>
+                    <a ng-show="language !== 'en'" href="#" ng-click="setLanguage($event, 'en')">{{i18n.header.language.en}}</a>
+                </li>
+            </ul>
         </nav>
     </header>
     <main class="flex-container-nowrap">

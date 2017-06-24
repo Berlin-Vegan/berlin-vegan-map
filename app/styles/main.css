@@ -84,21 +84,39 @@ header nav {
   background-color: rgb(100, 141, 36);
 }
 
-header nav div:nth-of-type(1) {
+header nav div {
   width: 23%;
   text-align: left;
   padding-left: 0.3%;
 }
 
-header nav div:nth-of-type(2) {
+header nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul:nth-of-type(1) {
   width: 54%;
   text-align: center;
 }
 
-header nav div:nth-of-type(3) {
+header nav ul:nth-of-type(2) {
   width: 23%;
   text-align: right;
   padding-right: 0.5%;
+}
+
+header nav ul li {
+  display: inline;
+}
+
+header nav ul:first-of-type li::before {
+  content: '|'
+}
+
+header nav ul:first-of-type li:first-of-type::before {
+  content: ''
 }
 
 header nav a {
@@ -142,14 +160,17 @@ main {
   width: 0%;
 }
 
-.selectedLanguage, .selectedLanguagePipe, .mobile {
+.selectedLanguage, .mobile {
   display: none;
 }
 
 @media all and (min-width: 568px)
 {
-  .selectedLanguage, .selectedLanguagePipe, .mobile {
+  .selectedLanguage, .mobile {
     display: inline; /* initial is more elegant, but does not work in IE11. */
+  }
+  header nav ul:last-of-type li:last-of-type::before {
+    content: '|'
   }
   .col-left { width: 60%; }
   .col-right { width: 40%; }
