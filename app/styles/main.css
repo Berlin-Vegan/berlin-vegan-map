@@ -214,6 +214,17 @@ main {
   .col-right { width: 75%; }
 }
 
+.resultsList {
+  padding: 0;
+  list-style-type: none;
+}
+
+.resultsList li {
+  margin-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 0.06em solid rgb(100, 141, 36);
+}
+
 .searchTextContainer input {
   flex: 1;
 }

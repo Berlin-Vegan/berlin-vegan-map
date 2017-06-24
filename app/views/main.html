@@ -156,55 +156,56 @@
                     <div>{{filteredMarkers.length + i18n.resultsLength + locations.length}}</div>
                 </section>
             </form>
-            <div ng-repeat="marker in filteredMarkers | orderBy : order : false : localeSensitiveComparator" id="{{marker.location.id}}">
-                <div class="locationHeadingContainer flex-container-nowrap">
-                    <h1>
-                        <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
-                    </h1>
+            <ul class="resultsList">
+                <li ng-repeat="marker in filteredMarkers | orderBy : order : false : localeSensitiveComparator" id="{{marker.location.id}}">
+                    <div class="locationHeadingContainer flex-container-nowrap">
+                        <h1>
+                            <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
+                        </h1>
+                        <div>
+                            <img 
+                                ng-click="openInfoWindow($event, marker)"
+                                title="{{i18n.showOnMap}}" 
+                                src="{{getMarkerImageUrl(marker.location)}}" 
+                                style="height: 25px; width: auto; position:relative; bottom: -6px;"
+                            />
+                        </div>
+                    </div>
                     <div>
-                        <img 
-                            ng-click="openInfoWindow($event, marker)"
-                            title="{{i18n.showOnMap}}" 
-                            src="{{getMarkerImageUrl(marker.location)}}" 
-                            style="height: 25px; width: auto; position:relative; bottom: -6px;"
-                        />
+                        <span>{{formatTags(marker.location.tags)}}</span>
+                        <span title="{{i18n.enums.veganCategory.verbose[marker.location.getVeganCategory()]}}">
+                            ({{i18n.enums.veganCategory.concise[marker.location.getVeganCategory()]}})
+                        </span>
                     </div>
-                </div>
-                <div>
-                    <span>{{formatTags(marker.location.tags)}}</span>
-                    <span title="{{i18n.enums.veganCategory.verbose[marker.location.getVeganCategory()]}}">
-                        ({{i18n.enums.veganCategory.concise[marker.location.getVeganCategory()]}})
-                    </span>
-                </div>
-                <div class="addressWithDistanceContainer flex-container-nowrap">
-                    <div>{{marker.location.address}}</div>
-                    <div ng-show="geolocation.marker.map">
-                    <!-- 
-                        Even when not shown because geolocation.marker.map is undefined/null, the following 
-                        expression gets evaluated, so we use the dummy value 0 to prevent an error when trying 
-                        to get the distance when geolocation.marker.map is undefined/null.
-                        If one could prevent AngularJS from evaluating, would be more elegant. 
-                        No idea if this is possible.
-                    -->
-                    {{ 
-                        geolocation.marker.position ? marker.location.getDistanceToPositionInKm(geolocation.marker.position) : 0
-                        | 
-                        kilometer
-                    }}
+                    <div class="addressWithDistanceContainer flex-container-nowrap">
+                        <div>{{marker.location.address}}</div>
+                        <div ng-show="geolocation.marker.map">
+                        <!-- 
+                            Even when not shown because geolocation.marker.map is undefined/null, the following 
+                            expression gets evaluated, so we use the dummy value 0 to prevent an error when trying 
+                            to get the distance when geolocation.marker.map is undefined/null.
+                            If one could prevent AngularJS from evaluating, would be more elegant. 
+                            No idea if this is possible.
+                        -->
+                        {{ 
+                            geolocation.marker.position ? marker.location.getDistanceToPositionInKm(geolocation.marker.position) : 0
+                            | 
+                            kilometer
+                        }}
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <span>{{marker.location.getOpeningTimeTodayFriendly()}}</span>
-                    <span ng-show="marker.location.openComment" 
-                        title={{marker.location.getOpenComment(language)}} 
-                        ng-click="display.expandOpenComments = !display.expandOpenComments"
-                    >
-                        <span class="fa fa-info-circle"></span>
-                        <span ng-show="display.expandOpenComments">{{marker.location.getOpenComment(language)}}</span>
-                    </span>
-                </div>
-                <hr/>
-            </div>
+                    <div>
+                        <span>{{marker.location.getOpeningTimeTodayFriendly()}}</span>
+                        <span ng-show="marker.location.openComment" 
+                            title={{marker.location.getOpenComment(language)}} 
+                            ng-click="display.expandOpenComments = !display.expandOpenComments"
+                        >
+                            <span class="fa fa-info-circle"></span>
+                            <span ng-show="display.expandOpenComments">{{marker.location.getOpenComment(language)}}</span>
+                        </span>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="col col-right" ng-class="{fullMapView: fullMapView}">
             <div id="map"></div>
