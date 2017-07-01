@@ -12,16 +12,15 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
     var service = {};
     
     service.getContent = function(i18n, language, location, currentPosition) {
-        return "<div class='infoWindow'>"
-            + "<h1>" 
-            + location.name 
+        return "<article class='infoWindow'>"
+            + "<header class='flex-container-nowrap'>" 
+            + "<h1>" + location.name + "</h1>"
             + (location.website ? 
-                " <a target='_blank' href='" + location.website + "' title='" + location.website + "'>" + linkSymbol + "</a>" 
+                "<a target='_blank' href='" + location.website + "' title='" + location.website + "'>" + linkSymbol + "</a>" 
                 : 
                 ""
-            ) 
-            + "</h1>" 
-            + "<hr/>"
+            )
+            + "</header>" 
             + "<p>" + formatTags(i18n, location.tags) + " (" + i18n.enums.veganCategory.verbose[location.getVeganCategory()] + ")</p>"
             + "<p>" + location.address + "</p>"
             + (currentPosition ? "<p>" + i18n.infoWindow.distance + ": " + kilometerFilter(location.getDistanceToPositionInKm(currentPosition)) + "</p>" : "")
@@ -29,7 +28,7 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
             + "<p>" + getOpeningTimesInnerHtml(location) + "</p>"
             + getOpenCommentInnerHtml(language, location)
             + "<p>" + getCommentAndReviewInnerHtml(i18n, language, location) + "</p>"
-            + "</div>";
+            + "</article>";
     };
 
     // Redundantly defined elewhere. TODO
