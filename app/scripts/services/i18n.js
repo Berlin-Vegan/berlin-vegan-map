@@ -130,7 +130,7 @@ app.factory('I18nService', function($window, $location) {
                 de: "Hunde erlaubt",
             },
             childChair: {
-                en: "Child chair",
+                en: "High chair",
                 de: "Kinderstuhl",
             },
             handicappedAccessible: {
@@ -260,7 +260,7 @@ app.factory('I18nService', function($window, $location) {
                 de: "Entfernung",
             },
             openingTimes: {
-                en: "Opening times",
+                en: "Opening hours",
                 de: "Öffnungszeiten",
             },
             review: {
