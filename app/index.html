@@ -82,10 +82,19 @@
     <!-- endbuild -->
     <script src="scripts/vanilla-js/set_globals.js"></script>
     <script>
-        appendScript(
-            "https://maps.googleapis.com/maps/api/js?language=" + global_language +"&region=" + global_region,
-            function() { angular.bootstrap(document.querySelector("#berlinVeganMapApp"), ["berlinVeganMapApp"]); }
-        );
+        if (window.location.hostname !== "localhost" && window.location.protocol === "http:") {
+            redirectToHttps();
+        } else {
+            appendScript(
+                "https://maps.googleapis.com/maps/api/js?language=" + global_language +"&region=" + global_region,
+                function() { angular.bootstrap(document.querySelector("#berlinVeganMapApp"), ["berlinVeganMapApp"]); }
+            );
+        }
+
+        function redirectToHttps() {
+            var httpsUrl = location.href.replace(/http:/, "https:");
+            window.location.replace(httpsUrl);
+        }
 
         function appendScript(url, onload) {
             var script = document.createElement('script');
