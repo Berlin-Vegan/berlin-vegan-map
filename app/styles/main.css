@@ -6,6 +6,37 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+body {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 
+  This media query essentially asks for IE using a trick.
+  The adjustments make the layout in IE less horrible.
+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  body {
+    margin-top: 2vh;
+  }
+
+  .main {
+    height: 98vh;
+  }
+}
+
+main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
 .flex-container-nowrap {
   display: flex;
   flex-wrap: nowrap;
@@ -141,33 +172,10 @@ header nav a {
   color: rgb(170, 240, 85);
 }
 
-main {
-  border-bottom: 5px solid rgb(100, 141, 36);
-}
-
-.col {
-  height: 72vh;
-  overflow-y: scroll;
-}
-
-@media all and (min-height: 400px)
-{
-  .col { height: 78vh; }
-}
-
-@media all and (min-height: 650px)
-{
-  .col { height: 81vh; }
-}
-
-@media all and (min-height: 860px)
-{
-  .col { height: 86vh; }
-}
-
 .col-left {
   width: 100%;
   padding-right: 6px;
+  overflow-y: scroll;
 }
 
 .col-right {
