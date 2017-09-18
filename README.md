@@ -23,3 +23,5 @@ grunt test
 ```
 deploy.sh
 ```
+
+![app/assets/images/browserstack-logo-01.svg](https://www.browserstack.com/)
