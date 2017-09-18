@@ -24,4 +24,6 @@ grunt test
 deploy.sh
 ```
 
-![app/assets/images/browserstack-logo-01.svg](https://www.browserstack.com/)
+<a href="https://www.browserstack.com/">
+  <img src="app/assets/images/browserstack-logo-01.svg" alt="BrowserStack" style="width: 300px;"/>
+</a>
