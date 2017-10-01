@@ -50,7 +50,7 @@ app.filter('location', function(filterFilter, I18nService) {
             locationPattern.childChair = "1";
         }
 
-        var filterFunction = function(location, index, array) {
+        var filterFunction = function(location) {
 
             if (query.openNow) {
                 var now = new Date(Date.now());
@@ -62,7 +62,7 @@ app.filter('location', function(filterFilter, I18nService) {
             }
         };
         
-        var filterFunction2 = function(location, index, array) {
+        var filterFunction2 = function(location) {
 
             if (query.distance.enabled) {            
                 return location.getDistanceToPositionInKm(query.distance.position) <= query.distance.km;
@@ -71,7 +71,7 @@ app.filter('location', function(filterFilter, I18nService) {
             }
         };
         
-        var filterFunction3 = function(location, index, array) {
+        var filterFunction3 = function(location) {
 
             var searchedValues = [location.name];
             
@@ -98,7 +98,7 @@ app.filter('location', function(filterFilter, I18nService) {
             });
         };
         
-        var filterFunction4 = function(location, index, array) {
+        var filterFunction4 = function(location) {
 
             for (var tag in query.tags) {
                 if (query.tags.hasOwnProperty(tag) && query.tags[tag]) { // Tag is selected...
@@ -111,7 +111,7 @@ app.filter('location', function(filterFilter, I18nService) {
             return false;
         };
         
-        var filterFunction5 = function(location, index, array) {
+        var filterFunction5 = function(location) {
 
             for (var veganCategory in query.veganCategories) {
                 if (query.veganCategories.hasOwnProperty(veganCategory) && query.veganCategories[veganCategory]) { // Vegan category is selected...
@@ -124,7 +124,7 @@ app.filter('location', function(filterFilter, I18nService) {
             return false;
         };
         
-        var filterFunction6 = function(location, index, array) {
+        var filterFunction6 = function(location) {
         
             if (query.review) {
                 return location.reviewURL && location.reviewURL.length > 0;

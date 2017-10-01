@@ -18,8 +18,7 @@ app.controller('MainController', function (
     I18nService, 
     UtilService,
     filterFilter, 
-    locationFilter, 
-    kilometerFilter
+    locationFilter
 ) {
     var debugMode = false; // TODO: Set something like that depending on build.
     var locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";
@@ -75,7 +74,7 @@ app.controller('MainController', function (
     $scope.getColor = getColor;
 
     $http({method: 'GET', url: locationsUrl})
-        .success(function(data, status, headers, config) {
+        .success(function(data) {
             $scope.locations = data;
             LocationLogicService.enhanceLocations($scope.locations);
             initQuery();
@@ -85,7 +84,7 @@ app.controller('MainController', function (
             updateMarkers();
             updateOrder();
         })
-        .error(function(data, status, headers, config) {
+        .error(function() {
         });
 
     $scope.updateMarkers = updateMarkers;
@@ -155,7 +154,7 @@ app.controller('MainController', function (
 
     function initQuery() {
 
-        var tags = LocationLogicService.getSortedTags($scope.locations);
+        var tags = LocationLogicService.getSortedTags();
         var tagsMap = {};
 
         for (var i = 0; i < tags.length; i++) {
@@ -226,7 +225,7 @@ app.controller('MainController', function (
         var locations =
             filterFilter(
                 $scope.markers,
-                function(marker, index, array) {
+                function(marker) {
                     return typeof marker.location !== "undefined";
                 }
             ).map(function(marker) { return marker.location; });
@@ -235,14 +234,14 @@ app.controller('MainController', function (
 
         return filterFilter(
             $scope.markers,
-            function(marker, index, array) {
+            function(marker) {
                 return filteredLocations.indexOf(marker.location) >= 0;
             }
         );
     }
 
     function initTags() {
-        $scope.tags = LocationLogicService.getSortedTags($scope.locations);
+        $scope.tags = LocationLogicService.getSortedTags();
     }
 
     function initVeganCategories() {
