@@ -89,15 +89,14 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I
             
             return compressedOts;
         }
-        
+
+        location.position = {
+            lat: function() { return location.latCoord; },
+            lng: function() { return location.longCoord; }
+        }
+
         location.getDistanceToPositionInKm = function(position) {
-        
-            return UtilService.getDistanceFromLatLonInKm(
-                position.lat(), 
-                position.lng(), 
-                parseFloat(this.latCoord), 
-                parseFloat(this.longCoord)
-            )
+            return new JsCommon().geoUtil.getDistanceInKm(position, this.position);
         };
         
         location.getVeganCategory = function() {
