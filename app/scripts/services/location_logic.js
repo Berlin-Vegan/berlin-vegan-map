@@ -19,14 +19,8 @@ app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
     function enhanceLocation(location) {
     
         location.tags = location.tags.sort();
-        
-        if (location.comment) {
-            location.commentWithoutFormatting = removeFormatting(location.comment);
-        }
-
-        if (location.commentEnglish) {
-            location.commentEnglishWithoutFormatting = removeFormatting(location.commentEnglish);
-        }
+        location.commentWithoutFormatting = removeFormatting(location.comment);
+        location.commentEnglishWithoutFormatting = removeFormatting(location.commentEnglish);
         
         if (location.reviewURL) {
             // Possibly not necessary in production
@@ -110,7 +104,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
     }
     
     function removeFormatting(locationComment) {
-        return locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ");
+        return locationComment ? locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ") : locationComment;
     }
     
     function OpeningTime(dayIndex, otString) {
