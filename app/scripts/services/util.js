@@ -15,16 +15,11 @@ app.factory('UtilService', function() {
         var hours = parts[0] === "24" ? "0" : parts[0];
         var minutes = parts.length > 1 ? parts[1] : "0";
         
-        return {
-            hours: parseInt(hours), 
-            minutes: parseInt(minutes), 
-            seconds: 0, 
-            milliseconds: 0
-        };
+        return { hours: parseInt(hours), minutes: parseInt(minutes) };
     };
     
     service.newDate = function(date, time) {
-        return new Date(date.year, date.month, date.day, time.hours, time.minutes, time.seconds, time.milliseconds);
+        return new Date(date.year, date.month, date.day, time.hours, time.minutes);
     };
 
     // From https://stackoverflow.com/a/15203639 (also see comments)
