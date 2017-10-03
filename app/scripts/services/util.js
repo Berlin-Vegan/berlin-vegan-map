@@ -17,10 +17,6 @@ app.factory('UtilService', function() {
         
         return { hours: parseInt(hours), minutes: parseInt(minutes) };
     };
-    
-    service.newDate = function(date, time) {
-        return new Date(date.year, date.month, date.day, time.hours, time.minutes);
-    };
 
     // From https://stackoverflow.com/a/15203639 (also see comments)
     service.isElementVisible = function(el) {
@@ -46,9 +42,6 @@ app.factory('UtilService', function() {
     return {
         getTime: function(time) {
             return service.getTime(time);
-        },
-        newDate: function(date, time) {
-            return service.newDate(date, time);
         },
         isElementVisible: function(el) {
             return service.isElementVisible(el);

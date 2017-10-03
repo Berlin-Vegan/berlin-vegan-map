@@ -130,10 +130,10 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I
             var otParts = otString.split(" - ");
             
             var beginTime = UtilService.getTime(otParts[0]);
-            this.begin = UtilService.newDate(date, beginTime);
+            this.begin = new Date(date.year, date.month, date.day, beginTime.hours, beginTime.minutes);
             
             var endTime = UtilService.getTime(otParts[1]);
-            this.end = UtilService.newDate(date, endTime);
+            this.end = new Date(date.year, date.month, date.day, endTime.hours, endTime.minutes);
 
             this.friendly = I18nService.formatTimeInterval(this.begin, this.end);
         } else {
