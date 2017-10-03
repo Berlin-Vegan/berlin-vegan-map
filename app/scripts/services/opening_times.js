@@ -5,9 +5,9 @@ app.factory('OpeningTimesService', function() {
     var service = {};
     var millisecondsOfADay = 24 * 60 * 60 * 1000;
     
-    service.isOpen = function(openingTimes, dayOfWeek, time) {
+    service.isOpen = function(openingTimeIntervals, dayOfWeek, time) {
     
-        if (!openingTimes[dayOfWeek].interval.begin || !openingTimes[dayOfWeek].interval.end) {
+        if (!openingTimeIntervals[dayOfWeek].begin || !openingTimeIntervals[dayOfWeek].end) {
             return false;
         }
         
@@ -16,8 +16,8 @@ app.factory('OpeningTimesService', function() {
         }
         
         var date = new Date(0);
-        var dayBegin = combine(date, openingTimes[dayOfWeek].interval.begin);
-        var dayEnd = combine(date, openingTimes[dayOfWeek].interval.end);
+        var dayBegin = combine(date, openingTimeIntervals[dayOfWeek].begin);
+        var dayEnd = combine(date, openingTimeIntervals[dayOfWeek].end);
         var dayTime = combine(date, time);
     
         if (dayBegin.getTime() === dayEnd.getTime()) {
@@ -29,7 +29,7 @@ app.factory('OpeningTimesService', function() {
             // The day has special opening times, so adjust the end time.
             var nextDate = new Date(0);
             nextDate.setTime(nextDate.getTime() + millisecondsOfADay);
-            dayEnd = combine(nextDate, openingTimes[dayOfWeek].interval.end);
+            dayEnd = combine(nextDate, openingTimeIntervals[dayOfWeek].end);
         }
         
         if (dayBegin <= dayTime && dayTime < dayEnd) {
@@ -43,17 +43,17 @@ app.factory('OpeningTimesService', function() {
         var previousDate = new Date(0);
         previousDate.setTime(previousDate.getTime() - millisecondsOfADay);
         
-        if (!openingTimes[previousDayOfWeek].interval.begin || !openingTimes[previousDayOfWeek].interval.end) {
+        if (!openingTimeIntervals[previousDayOfWeek].begin || !openingTimeIntervals[previousDayOfWeek].end) {
             return false;
         }
         
-        var previousDayBegin = combine(previousDate, openingTimes[previousDayOfWeek].interval.begin);
-        var previousDayEnd = combine(previousDate, openingTimes[previousDayOfWeek].interval.end);
+        var previousDayBegin = combine(previousDate, openingTimeIntervals[previousDayOfWeek].begin);
+        var previousDayEnd = combine(previousDate, openingTimeIntervals[previousDayOfWeek].end);
         
         if (previousDayBegin > previousDayEnd) {
         
             // Previous day indeed has special opening times, so adjust the end time.
-            var previousDayEnd = combine(date, openingTimes[previousDayOfWeek].interval.end);
+            var previousDayEnd = combine(date, openingTimeIntervals[previousDayOfWeek].end);
             
             return dayTime < previousDayEnd;
         }
@@ -77,8 +77,8 @@ app.factory('OpeningTimesService', function() {
     }
     
     return {
-        isOpen: function(openingTimes, dayOfWeek, time) {
-            return service.isOpen(openingTimes, dayOfWeek, time);
+        isOpen: function(openingTimeIntervals, dayOfWeek, time) {
+            return service.isOpen(openingTimeIntervals, dayOfWeek, time);
         }
     };
 });
