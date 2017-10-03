@@ -27,11 +27,11 @@ app.factory('UtilService', function() {
         return new Date(date.year, date.month, date.day, time.hours, time.minutes, time.seconds, time.milliseconds);
     };
 
-    // From https://stackoverflow.com/a/15203639
+    // From https://stackoverflow.com/a/15203639 (also see comments)
     service.isElementVisible = function(el) {
         var rect     = el.getBoundingClientRect(),
-            vWidth   = window.innerWidth || doc.documentElement.clientWidth,
-            vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+            vWidth   = window.innerWidth || document.documentElement.clientWidth,
+            vHeight  = window.innerHeight || document.documentElement.clientHeight,
             efp      = function (x, y) { return document.elementFromPoint(x, y) };     
 
         // Return false if it's not in the viewport
