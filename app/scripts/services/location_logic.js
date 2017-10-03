@@ -115,10 +115,10 @@ app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
         this.dayIndex = dayIndex;
         this.friendlyDay = i18n.enums.weekday[dayIndex + ""];
         this.friendlyDayShort = I18nService.abbreviateWeekDay(this.friendlyDay);
-        this.interval = createOpeningTimeInterval(otString);
+        this.interval = parseOpeningTimeInterval(otString);
     }
     
-    function createOpeningTimeInterval(otString) {
+    function parseOpeningTimeInterval(otString) {
         var isOpen = !!otString;
         var begin;
         var end;
@@ -126,21 +126,21 @@ app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
 
         if (isOpen) {
             var otParts = otString.split(" - ");
-            
-            var beginTime = jsCommon.dateUtil.parseTime(otParts[0]);
-            begin = new Date(0);
-            begin.setHours(beginTime.hours, beginTime.minutes);
-            
-            var endTime = jsCommon.dateUtil.parseTime(otParts[1]);
-            end = new Date(0);
-            end.setHours(endTime.hours, endTime.minutes);
-
+            begin = parseTimeAsDate(otParts[0])
+            end = parseTimeAsDate(otParts[1])
             friendly = I18nService.formatTimeInterval(begin, end);
         } else {
             friendly = i18n.openingTimes.isClosed;
         }
 
         return new OpeningTimeInterval(begin, end, friendly);
+
+        function parseTimeAsDate(timeString) {
+            var time = jsCommon.dateUtil.parseTime(timeString);
+            var date = new Date(0);
+            date.setHours(time.hours, time.minutes);
+            return date;
+        }
     }
 
     function OpeningTimeInterval(beginTimeAsDate, endTimeAsDate, friendlyString) {
