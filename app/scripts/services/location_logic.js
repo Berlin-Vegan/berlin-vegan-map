@@ -1,12 +1,13 @@
 "use strict";
 
-app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I18nService) {
+app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
 
     var veganCategories = [];
     veganCategories[5] = "vegan";
     veganCategories[4] = "vegetarian";
     veganCategories[2] = "omnivorous";
     var i18n = I18nService.getI18n();
+    var jsCommon = new JsCommon();
     var service = {};
     
     service.enhanceLocations = function(locations) {
@@ -96,7 +97,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I
         }
 
         location.getDistanceToPositionInKm = function(position) {
-            return new JsCommon().geoUtil.getDistanceInKm(position, this.position);
+            return jsCommon.geoUtil.getDistanceInKm(position, this.position);
         };
         
         location.getVeganCategory = function() {
@@ -128,11 +129,11 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I
         
             var otParts = otString.split(" - ");
             
-            var beginTime = UtilService.getTime(otParts[0]);
+            var beginTime = jsCommon.dateUtil.parseTime(otParts[0]);
             this.begin = new Date(0);
             this.begin.setHours(beginTime.hours, beginTime.minutes);
             
-            var endTime = UtilService.getTime(otParts[1]);
+            var endTime = jsCommon.dateUtil.parseTime(otParts[1]);
             this.end = new Date(0);
             this.end.setHours(endTime.hours, endTime.minutes);
 
@@ -150,7 +151,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, UtilService, I
         return onlyDefined(veganCategories).reverse();
 
         // Build process seems to have a problem with an array's filter funtion,
-        // so we use this workaround: (TODO: Refactor to UtilService)
+        // so we use this workaround: (TODO: Refactor)
         function onlyDefined(arr) {
             var result = [];
             for (var i = 0; i < arr.length; i++) {

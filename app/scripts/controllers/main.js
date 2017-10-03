@@ -15,11 +15,11 @@ app.controller('MainController', function (
     LocationLogicService, 
     InfoWindowViewService, 
     ResourcesService,
-    I18nService, 
-    UtilService,
+    I18nService,
     filterFilter, 
     locationFilter
 ) {
+    var jsCommon = new JsCommon();
     var debugMode = false; // TODO: Set something like that depending on build.
     var locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";
 
@@ -117,7 +117,7 @@ app.controller('MainController', function (
 
             var locationElement = $window.document.getElementById(marker.location.id);
 
-            if (!UtilService.isElementVisible(locationElement)) {
+            if (!jsCommon.domUtil.isElementVisible(locationElement)) {
                 locationElement.scrollIntoView();
             }
         });

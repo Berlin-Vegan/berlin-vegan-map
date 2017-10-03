@@ -1,6 +1,7 @@
 "use strict";
 
 app.factory('I18nService', function($window, $location) {
+    var i18nUtil = new JsCommon().i18nUtil;
     var nbsp = "\xa0"; // Non-breaking space
     var i18n = {
         enums: {
@@ -299,7 +300,7 @@ app.factory('I18nService', function($window, $location) {
         }
     };
 
-    var transformedI18n = new JsCommon().i18nUtil.transform(i18n, global_language);
+    var transformedI18n = i18nUtil.transform(i18n, global_language);
 
     return { 
         setLanguage: function(language) {
@@ -319,53 +320,13 @@ app.factory('I18nService', function($window, $location) {
             return transformedI18n;
         },
         formatNumberString: function(numberString) {
-            return global_language === "en"? numberString : numberString.replace(/\./, ",");
+            return i18nUtil.formatNumberString(numberString, global_language);
         },
         abbreviateWeekDay: function(weekday) {
-            var charCount = global_language === "en" ? 3 : 2;
-            return weekday.substring(0, charCount);
+            return i18nUtil.abbreviateWeekDay(weekday, global_language);
         },
         formatTimeInterval: function(beginDate, endDate) {
-            var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
-            var separator = " " + extraLongHyphen + " ";
-            var postfix = global_language === "en" ? "" : " Uhr";
-            return formatTime(beginDate) + separator + formatTime(endDate) + postfix;
-
-            function formatTime(date) {
-                var h = date.getHours();
-                var m = date.getMinutes();
-                if (global_language === "en") {
-                    if (m === 0) {
-                        if (h === 0) {
-                            return "12 midnight";
-                        } else if (h < 12) {
-                            return h + " am";
-                        } else if (h === 12) {
-                            return "12 noon";
-                        } else {
-                            return (h - 12) + " pm";
-                        }
-                    } else {
-                        if (h < 12) {
-                            return h + ":" + pad(m) + " am";
-                        } else if (h === 12) {
-                            return h + ":" + pad(m) + " pm";
-                        } else {
-                            return (h - 12) + ":" + pad(m) + " pm";
-                        }
-                    }
-                } else {
-                    if (m === 0) {
-                        return h;
-                    } else {
-                        return h + ":" + pad(m);
-                    }
-                }
-
-                function pad(n) {
-                    return n < 10 ? "0" + n : n;
-                }
-            }
+            return i18nUtil.formatTimeInterval(beginDate, endDate, global_language);
         }
     };
 });
