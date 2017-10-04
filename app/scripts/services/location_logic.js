@@ -52,7 +52,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
         
         location.isOpen = function(weekDay, timeAsDate) {
             return OpeningTimesService.isOpen(
-                this.openingTimes.map(function(it) { return it.interval }), 
+                this.openingTimes.map(function(it) { return it.interval.timeInterval }), 
                 weekDay, 
                 timeAsDate
             );
@@ -119,21 +119,31 @@ app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
     }
     
     function parseOpeningTimeInterval(otString) {
-        var isOpen = !!otString;
-        var begin;
-        var end;
+        var timeInterval;
         var friendly;
 
-        if (isOpen) {
-            var otParts = otString.split(" - ");
-            begin = parseTimeAsDate(otParts[0])
-            end = parseTimeAsDate(otParts[1])
-            friendly = I18nService.formatTimeInterval(begin, end);
+        if (!!otString) {
+            timeInterval = parseTimeInterval(otString);
+            friendly = I18nService.formatTimeInterval(timeInterval.begin, timeInterval.end); // TODO
         } else {
+            timeInterval = null;
             friendly = i18n.openingTimes.isClosed;
         }
 
-        return new OpeningTimeInterval(begin, end, friendly);
+        return new OpeningTimeInterval(timeInterval, friendly);
+    }
+
+    function OpeningTimeInterval(timeInterval, friendlyString) {
+        this.timeInterval = timeInterval;
+        this.friendly = friendlyString;
+        this.isOpen = function() { return !!timeInterval };
+    }
+
+    function parseTimeInterval(intervalString) {
+        var parts = intervalString.split(" - ");
+        var begin = parseTimeAsDate(parts[0])
+        var end = parseTimeAsDate(parts[1])
+        return new TimeInterval(begin, end);
 
         function parseTimeAsDate(timeString) {
             var time = jsCommon.dateUtil.parseTime(timeString);
@@ -143,11 +153,9 @@ app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
         }
     }
 
-    function OpeningTimeInterval(beginTimeAsDate, endTimeAsDate, friendlyString) {
+    function TimeInterval(beginTimeAsDate, endTimeAsDate) {
         this.begin = beginTimeAsDate;
         this.end = endTimeAsDate;
-        this.friendly = friendlyString;
-        this.isOpen = function() { return !!beginTimeAsDate };
     }
     
     service.getSortedTags = function() {

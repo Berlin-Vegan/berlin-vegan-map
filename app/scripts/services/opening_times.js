@@ -8,7 +8,7 @@ app.factory('OpeningTimesService', function() {
     
     service.isOpen = function(openingTimeIntervals, dayOfWeek, time) {
     
-        if (!openingTimeIntervals[dayOfWeek].begin || !openingTimeIntervals[dayOfWeek].end) {
+        if (!openingTimeIntervals[dayOfWeek]) {
             return false;
         }
         
@@ -44,7 +44,7 @@ app.factory('OpeningTimesService', function() {
         var previousDate = new Date(0);
         previousDate.setTime(previousDate.getTime() - millisecondsOfADay);
         
-        if (!openingTimeIntervals[previousDayOfWeek].begin || !openingTimeIntervals[previousDayOfWeek].end) {
+        if (!openingTimeIntervals[previousDayOfWeek]) {
             return false;
         }
         
