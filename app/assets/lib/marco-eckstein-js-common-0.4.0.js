@@ -25,6 +25,7 @@ var JsCommon = /** @class */ (function () {
                 var minutes = parts.length > 1 ? parts[1] : "0";
                 return { hours: parseInt(hours, 10), minutes: parseInt(minutes, 10) };
             };
+            // TODO: Check whether this can be better replaced with a lib like moment.js.
             DateUtil.prototype.getDateAtTime = function (date, time) {
                 var result = new Date();
                 result.setFullYear(date.getFullYear());
@@ -168,6 +169,57 @@ var JsCommon = /** @class */ (function () {
                     || element.contains(document.elementFromPoint(rect.left, rect.bottom)));
             };
             return DomUtil;
+        }());
+        this.openingTimesUtil = new /** @class */ (function () {
+            function OpeningTimesUtil() {
+            }
+            OpeningTimesUtil.prototype.isOpen = function (openingTimeIntervals, dayOfWeek, time) {
+                var getDateAtTime = new JsCommon().dateUtil.getDateAtTime;
+                var millisecondsOfADay = 24 * 60 * 60 * 1000;
+                var currentInterval = openingTimeIntervals[dayOfWeek];
+                if (!currentInterval) {
+                    // TODO: This is a bug. Could be open with previous day's opening times.
+                    return false;
+                }
+                if (!time) {
+                    return true;
+                }
+                var date = new Date(0);
+                var dayBegin = getDateAtTime(date, currentInterval.begin);
+                var dayEnd = getDateAtTime(date, currentInterval.end);
+                var dayTime = getDateAtTime(date, time);
+                if (dayBegin.getTime() === dayEnd.getTime()) {
+                    // Special case: Always open
+                    return true;
+                }
+                if (dayBegin > dayEnd) {
+                    // The day has special opening times, so adjust the end time.
+                    var nextDate = new Date(0);
+                    nextDate.setTime(nextDate.getTime() + millisecondsOfADay);
+                    dayEnd = getDateAtTime(nextDate, currentInterval.end);
+                }
+                if (dayBegin <= dayTime && dayTime < dayEnd) {
+                    return true;
+                }
+                // Seems to be closed so far, but maybe it is open due to
+                // special opening times on the previous day.
+                var previousDayOfWeek = (dayOfWeek === 0 ? 6 : dayOfWeek - 1);
+                var previousDate = new Date(0);
+                previousDate.setTime(previousDate.getTime() - millisecondsOfADay);
+                var previousInterval = openingTimeIntervals[previousDayOfWeek];
+                if (!previousInterval) {
+                    return false;
+                }
+                var previousDayBegin = getDateAtTime(previousDate, previousInterval.begin);
+                var previousDayEnd = getDateAtTime(previousDate, previousInterval.end);
+                if (previousDayBegin > previousDayEnd) {
+                    // Previous day indeed has special opening times, so adjust the end time.
+                    previousDayEnd = getDateAtTime(date, previousInterval.end);
+                    return dayTime < previousDayEnd;
+                }
+                return false;
+            };
+            return OpeningTimesUtil;
         }());
     }
     return JsCommon;

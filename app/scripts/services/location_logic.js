@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
+app.factory('LocationLogicService', function(I18nService) {
 
     var veganCategories = [];
     veganCategories[5] = "vegan";
@@ -51,7 +51,7 @@ app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
         }
         
         location.isOpen = function(weekDay, timeAsDate) {
-            return OpeningTimesService.isOpen(
+            return jsCommon.openingTimesUtil.isOpen(
                 this.openingTimes.map(function(it) { return it.interval.timeInterval }), 
                 weekDay, 
                 timeAsDate
