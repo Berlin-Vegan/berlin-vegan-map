@@ -165,8 +165,9 @@ app.factory('LocationLogicService', function(I18nService) {
     service.getSortedVeganCategories = function() {
         return onlyDefined(veganCategories).reverse();
 
-        // Build process seems to have a problem with an array's filter funtion,
-        // so we use this workaround: (TODO: Refactor)
+        // Build process seems to have a problem with an array's filter funtion.
+        // The problem shows up at runtime in production.
+        // So we use this workaround: (TODO: Refactor)
         function onlyDefined(arr) {
             var result = [];
             for (var i = 0; i < arr.length; i++) {
