@@ -35,7 +35,7 @@ app.factory('LocationLogicService', function(OpeningTimesService) {
         location.isOpen = 
             function(weekDay, timeAsDate) { return OpeningTimesService.isOpen(this.openingTimes, weekDay, timeAsDate) };
         location.getOpenComment = 
-            function(language) { return OpeningTimesService.getOpenComment(location, language); };
+            function() { return OpeningTimesService.getOpenComment(location); };
         
         location.position = {
             lat: function() { return location.latCoord; },

@@ -22,8 +22,8 @@ app.factory('OpeningTimesService', function(I18nService) {
         ];
     };
 
-    service.getOpenComment= function(location, language) {
-        return language === "en" ? 
+    service.getOpenComment= function(location) {
+        return I18nService.getLanguage() === "en" ? 
             "Please see location website for opening time details!"
             :
             location.openComment;
@@ -121,8 +121,8 @@ app.factory('OpeningTimesService', function(I18nService) {
         getOpeningTimes: function(location) {
             return service.getOpeningTimes(location);
         },
-        getOpenComment: function(location, language) {
-            return service.getOpenComment(location, language);
+        getOpenComment: function(location) {
+            return service.getOpenComment(location);
         },
         getOpeningTimeTodayFriendly: function(openingTimes) {
             return service.getOpeningTimeTodayFriendly(openingTimes);

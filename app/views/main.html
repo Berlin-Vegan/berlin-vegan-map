@@ -197,11 +197,11 @@
                     <div>
                         <span>{{marker.location.getOpeningTimeTodayFriendly()}}</span>
                         <span ng-show="marker.location.openComment" 
-                            title={{marker.location.getOpenComment(language)}} 
+                            title={{marker.location.getOpenComment()}} 
                             ng-click="display.expandOpenComments = !display.expandOpenComments"
                         >
                             <span class="fa fa-info-circle"></span>
-                            <span ng-show="display.expandOpenComments">{{marker.location.getOpenComment(language)}}</span>
+                            <span ng-show="display.expandOpenComments">{{marker.location.getOpenComment()}}</span>
                         </span>
                     </div>
                 </li>

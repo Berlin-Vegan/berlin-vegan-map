@@ -26,7 +26,7 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
             + (currentPosition ? "<p>" + i18n.infoWindow.distance + ": " + kilometerFilter(location.getDistanceToPositionInKm(currentPosition)) + "</p>" : "")
             + "<h2>" + i18n.infoWindow.openingTimes + "</h2>"
             + "<p>" + getOpeningTimesInnerHtml(location) + "</p>"
-            + getOpenCommentInnerHtml(language, location)
+            + getOpenCommentInnerHtml(location)
             + "<p>" + getCommentAndReviewInnerHtml(i18n, language, location) + "</p>"
             + "</article>";
     };
@@ -60,8 +60,8 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
         return html;
     }
 
-    function getOpenCommentInnerHtml(language, location) {
-        var openComment = location.getOpenComment(language);
+    function getOpenCommentInnerHtml(location) {
+        var openComment = location.getOpenComment();
         return openComment ? "<p>" + openComment + "</p>" : "";
     }
     
