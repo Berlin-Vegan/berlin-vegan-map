@@ -2,10 +2,6 @@
 
 app.factory('OpeningTimesService', function(I18nService) {
 
-    var veganCategories = [];
-    veganCategories[5] = "vegan";
-    veganCategories[4] = "vegetarian";
-    veganCategories[2] = "omnivorous";
     var i18n = I18nService.getI18n();
     var jsCommon = new JsCommon();
     var service = {};
