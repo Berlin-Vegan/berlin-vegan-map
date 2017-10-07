@@ -195,7 +195,7 @@
                         </div>
                     </div>
                     <div>
-                        <span>{{marker.location.getOpeningTimeTodayFriendly()}}</span>
+                        <span>{{marker.location.openingTimes.getTodayFriendly()}}</span>
                         <span ng-show="marker.location.openComment" 
                             title={{marker.location.getOpenComment()}} 
                             ng-click="display.expandOpenComments = !display.expandOpenComments"

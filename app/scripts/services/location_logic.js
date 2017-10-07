@@ -27,15 +27,8 @@ app.factory('LocationLogicService', function(OpeningTimesService) {
         }
 
         location.address = location.street + ", " + location.cityCode + " " + location.district;
-        location.openingTimes = OpeningTimesService.getOpeningTimes(location);
-        location.getOpenComment = 
-            function() { return OpeningTimesService.getOpenComment(location); };
-        location.getOpeningTimeTodayFriendly = 
-            function() { return OpeningTimesService.getOpeningTimeTodayFriendly(location.openingTimes); };
-        location.getOpeningTimesCompressed = 
-            function() { return OpeningTimesService.getOpeningTimesCompressed(location.openingTimes) };
-        location.isOpen = 
-            function(weekDay, timeAsDate) { return OpeningTimesService.isOpen(this.openingTimes, weekDay, timeAsDate) };
+        location.openingTimes = OpeningTimesService.getOpeningTimesCollection(location);
+        location.getOpenComment = function() { return OpeningTimesService.getOpenComment(location); };
         
         location.position = {
             lat: function() { return location.latCoord; },

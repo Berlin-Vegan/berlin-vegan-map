@@ -54,9 +54,9 @@ app.filter('location', function(filterFilter, I18nService) {
 
             if (query.openNow) {
                 var now = new Date(Date.now());
-                return location.isOpen(now.getDay(), now);
+                return location.openingTimes.isOpen(now.getDay(), now);
             } else if (!query.allWeekDays()) {
-                return location.isOpen(parseInt(query.openAtWeekDay), query.openAtTime);
+                return location.openingTimes.isOpen(parseInt(query.openAtWeekDay), query.openAtTime);
             } else {
                 return true;
             }

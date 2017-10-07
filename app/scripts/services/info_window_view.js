@@ -39,7 +39,7 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
     function getOpeningTimesInnerHtml(location) {
     
         var html = "";
-        var compressedOts = location.getOpeningTimesCompressed();
+        var compressedOts = location.openingTimes.getCompressed();
         
         for (var i = 0; i < compressedOts.length; i++) {
         
