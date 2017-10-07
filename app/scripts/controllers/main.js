@@ -283,7 +283,7 @@ app.controller('MainController', function (
                             map: $scope.map,
                             position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                             title: $scope.i18n.geolocation.currentLocation,
-                            icon: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                            icon: ResourcesService.getDotImageUrl("blue")
                         });
 
                         google.maps.event.addListener(marker, 'click', function(){
