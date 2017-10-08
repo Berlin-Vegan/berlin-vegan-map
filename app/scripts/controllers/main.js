@@ -12,6 +12,7 @@ app.controller('MainController', function (
     $http, 
     $timeout, 
     $window, 
+    ConfigurationService,
     LocationLogicService, 
     InfoWindowViewService, 
     ResourcesService,
@@ -20,8 +21,6 @@ app.controller('MainController', function (
     locationFilter
 ) {
     var jsCommon = new JsCommon();
-    var debugMode = false; // TODO: Set something like that depending on build.
-    var locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";
 
     $scope.query = null;
     $scope.locations = null;
@@ -71,9 +70,9 @@ app.controller('MainController', function (
     };
 
     $scope.getMarkerImageUrl = getMarkerImageUrl;
-    $scope.getColor = getColor;
+    $scope.getColor = ConfigurationService.getColor;
 
-    $http({method: 'GET', url: locationsUrl})
+    $http({ method: 'GET', url: ConfigurationService.locationsUrl })
         .success(function(data) {
             $scope.locations = data;
             LocationLogicService.enhanceLocations($scope.locations);
@@ -124,9 +123,8 @@ app.controller('MainController', function (
     }
     
     function getMarkerImage(location) {
-        var url = getMarkerImageUrl(location);
         return new google.maps.MarkerImage(
-            url,
+            getMarkerImageUrl(location),
             new google.maps.Size(50, 50),
             new google.maps.Point(0,0),
             new google.maps.Point(15, 34)
@@ -134,20 +132,7 @@ app.controller('MainController', function (
     }
 
     function getMarkerImageUrl(location) {
-        return ResourcesService.getDotImageUrl(getColor(location.getVeganCategory()));
-    }
-
-    function getColor(veganCategory) {
-        switch (veganCategory) {
-            case "omnivorous":
-                return "red";
-            case "vegetarian":
-                return "orange";
-            case "vegan":
-                return "green";
-            default:
-                throw new Error("Unexpected value for veganCategory: " + veganCategory);
-        }
+        return ResourcesService.getDotImageUrl(ConfigurationService.getColor(location.getVeganCategory()));
     }
 
     function initQuery() {
@@ -177,10 +162,10 @@ app.controller('MainController', function (
     }
 
     function initMap() {
-
+        var center = ConfigurationService.mapCenter;
         var mapOptions = {
             zoom: 12,
-            center: new google.maps.LatLng(52.5200070,13.4049540),
+            center: new google.maps.LatLng(center.lat, center.lng),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
 
@@ -262,7 +247,7 @@ app.controller('MainController', function (
                         $scope.geolocation.info = "";
                     }
                 },
-                debugMode ? 8000 : 16000
+                ConfigurationService.geoLocationFirefoxWorkaroundTimeoutMillis
             );
 
             $scope.geolocation.info = $scope.i18n.geolocation.detecting;
@@ -270,7 +255,7 @@ app.controller('MainController', function (
 
             var options = {
                 enableHighAccuracy: true,
-                timeout: debugMode ? 5000 : 15000
+                timeout: ConfigurationService.geoLocationTimeoutMillis
                 //maximumAge: 0
             };
 
