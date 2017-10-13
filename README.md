@@ -25,5 +25,5 @@ deploy.sh
 ```
 
 <a href="https://www.browserstack.com/">
-  <img src="app/assets/images/browserstack-logo-01.svg" alt="BrowserStack" width="300px;"/>
+  <img src="browserstack-logo-01.svg" alt="BrowserStack" width="300px;"/>
 </a>
