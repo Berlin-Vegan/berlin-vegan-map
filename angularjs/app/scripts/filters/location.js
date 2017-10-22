@@ -133,6 +133,7 @@ app.filter('location', function(I18nService) {
             .replace(/é/g, "e")
             .replace(/ê/g, "e")
             .replace(/ñ/g, "n")
+            .replace(/ó/g, "o")
             .replace(/ô/g, "o");
 
         return text.toLowerCase();
