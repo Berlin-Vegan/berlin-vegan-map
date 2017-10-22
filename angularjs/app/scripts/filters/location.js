@@ -1,10 +1,10 @@
 "use strict";
 
-app.filter('location', function(filterFilter, I18nService) {
+app.filter('location', function(I18nService) {
 
     return function(locations, query) {
 
-        var filterFunction = function(location) {
+        var filter0 = function(location) {
             return (!query.organic || location.organic === 1)
               && (!query.glutenFree || location.glutenFree === 1)
               && (!query.dog || location.dog === 1)
@@ -16,7 +16,7 @@ app.filter('location', function(filterFilter, I18nService) {
               && (!query.wlan || location.wlan === 1);
         }
 
-        var filterFunction1 = function(location) {
+        var filter1 = function(location) {
 
             if (query.openNow) {
                 var now = new Date(Date.now());
@@ -28,7 +28,7 @@ app.filter('location', function(filterFilter, I18nService) {
             }
         };
 
-        var filterFunction2 = function(location) {
+        var filter2 = function(location) {
 
             if (query.distance.enabled) {
                 return location.getDistanceToPositionInKm(query.distance.position) <= query.distance.km;
@@ -37,7 +37,7 @@ app.filter('location', function(filterFilter, I18nService) {
             }
         };
 
-        var filterFunction3 = function(location) {
+        var filter3 = function(location) {
 
             var searchedValues = [location.name];
 
@@ -64,7 +64,7 @@ app.filter('location', function(filterFilter, I18nService) {
             });
         };
 
-        var filterFunction4 = function(location) {
+        var filter4 = function(location) {
 
             for (var tag in query.tags) {
                 if (query.tags.hasOwnProperty(tag) && query.tags[tag]) { // Tag is selected...
@@ -77,7 +77,7 @@ app.filter('location', function(filterFilter, I18nService) {
             return false;
         };
 
-        var filterFunction5 = function(location) {
+        var filter5 = function(location) {
 
             for (var veganCategory in query.veganCategories) {
                 if (query.veganCategories.hasOwnProperty(veganCategory) && query.veganCategories[veganCategory]) { // Vegan category is selected...
@@ -90,22 +90,27 @@ app.filter('location', function(filterFilter, I18nService) {
             return false;
         };
 
-        var filterFunction6 = function(location) {
+        var filter6 = function(location) {
+            return !query.review || location.reviewURL;
+        }
 
-            if (query.review) {
-                return location.reviewURL && location.reviewURL.length > 0;
-            } else {
-                return true;
+        var filteredLocations = [];
+
+        for (var i = 0; i < locations.length; i++) {
+            var location = locations[i];
+            if (
+                filter0(location)
+                && filter1(location)
+                && filter2(location)
+                && filter3(location)
+                && filter4(location)
+                && filter5(location)
+                && filter6(location)
+            ) {
+                filteredLocations.push(location);
             }
         }
 
-        var filteredLocations = filterFilter(locations, filterFunction);
-        filteredLocations = filterFilter(filteredLocations, filterFunction1);
-        filteredLocations = filterFilter(filteredLocations, filterFunction2);
-        filteredLocations = filterFilter(filteredLocations, filterFunction3);
-        filteredLocations = filterFilter(filteredLocations, filterFunction4);
-        filteredLocations = filterFilter(filteredLocations, filterFunction5);
-        filteredLocations = filterFilter(filteredLocations, filterFunction6);
         return filteredLocations;
     };
 
