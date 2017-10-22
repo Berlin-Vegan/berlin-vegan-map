@@ -121,20 +121,16 @@ app.filter('location', function(I18nService) {
         }
 
         if (!(text === 'string' || text instanceof String)) {
-            text+= "";
+            text += "";
         }
 
         // So we find café when searching for cafe and vice versa.
         // Analogous motivation for the other letters.
         text = text
-            .replace(/á/g, "a")
-            .replace(/à/g, "a")
-            .replace(/â/g, "a")
-            .replace(/é/g, "e")
-            .replace(/ê/g, "e")
-            .replace(/ñ/g, "n")
-            .replace(/ó/g, "o")
-            .replace(/ô/g, "o");
+            .replace(/á|â|à/g, "a")
+            .replace(/é|ê/g, "e")
+            .replace(/ó|ô/g, "o")
+            .replace(/ñ/g, "n");
 
         return text.toLowerCase();
     }
