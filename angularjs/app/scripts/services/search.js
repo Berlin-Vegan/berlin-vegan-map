@@ -4,7 +4,7 @@ app.factory('SearchService', function(I18nService) {
 
     function isResult(location, query) {
 
-        var filter0 = function(location) {
+        var filter0 = function() {
             return (!query.organic || location.organic === 1)
               && (!query.glutenFree || location.glutenFree === 1)
               && (!query.dog || location.dog === 1)
@@ -16,7 +16,7 @@ app.factory('SearchService', function(I18nService) {
               && (!query.wlan || location.wlan === 1);
         }
 
-        var filter1 = function(location) {
+        var filter1 = function() {
 
             if (query.openNow) {
                 var now = new Date(Date.now());
@@ -28,7 +28,7 @@ app.factory('SearchService', function(I18nService) {
             }
         };
 
-        var filter2 = function(location) {
+        var filter2 = function() {
 
             if (query.distance.enabled) {
                 return location.getDistanceToPositionInKm(query.distance.position) <= query.distance.km;
@@ -37,7 +37,7 @@ app.factory('SearchService', function(I18nService) {
             }
         };
 
-        var filter3 = function(location) {
+        var filter3 = function() {
 
             var searchedValues = [location.name];
 
@@ -64,7 +64,7 @@ app.factory('SearchService', function(I18nService) {
             });
         };
 
-        var filter4 = function(location) {
+        var filter4 = function() {
 
             for (var tag in query.tags) {
                 if (query.tags.hasOwnProperty(tag) && query.tags[tag]) { // Tag is selected...
@@ -77,7 +77,7 @@ app.factory('SearchService', function(I18nService) {
             return false;
         };
 
-        var filter5 = function(location) {
+        var filter5 = function() {
 
             for (var veganCategory in query.veganCategories) {
                 if (query.veganCategories.hasOwnProperty(veganCategory) && query.veganCategories[veganCategory]) { // Vegan category is selected...
@@ -90,18 +90,18 @@ app.factory('SearchService', function(I18nService) {
             return false;
         };
 
-        var filter6 = function(location) {
+        var filter6 = function() {
             return !query.review || location.reviewURL;
         }
 
         return !!location
-            && filter0(location)
-            && filter1(location)
-            && filter2(location)
-            && filter3(location)
-            && filter4(location)
-            && filter5(location)
-            && filter6(location);
+            && filter0()
+            && filter1()
+            && filter2()
+            && filter3()
+            && filter4()
+            && filter5()
+            && filter6();
     };
 
     function normalizeText(text) {
