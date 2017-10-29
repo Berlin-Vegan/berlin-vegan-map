@@ -17,8 +17,7 @@ app.controller('MainController', function (
     InfoWindowViewService, 
     ResourcesService,
     I18nService,
-    filterFilter, 
-    locationFilter
+    SearchService
 ) {
     var jsCommon = new JsCommon();
 
@@ -203,24 +202,11 @@ app.controller('MainController', function (
         }
     }
 
+    Array.prototype.workaroundFilter = Array.prototype.filter;
+
     function getFilteredMarkers() {
-
-        var locations =
-            filterFilter(
-                $scope.markers,
-                function(marker) {
-                    return typeof marker.location !== "undefined";
-                }
-            ).map(function(marker) { return marker.location; });
-
-        var filteredLocations = locationFilter(locations, $scope.query);
-
-        return filterFilter(
-            $scope.markers,
-            function(marker) {
-                return filteredLocations.indexOf(marker.location) >= 0;
-            }
-        );
+        return $scope.markers
+          .workaroundFilter(function(marker) { return SearchService.isResult(marker.location, $scope.query); });
     }
 
     function initTags() {

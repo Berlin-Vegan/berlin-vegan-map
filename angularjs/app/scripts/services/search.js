@@ -1,8 +1,8 @@
 "use strict";
 
-app.filter('location', function(I18nService) {
+app.factory('SearchService', function(I18nService) {
 
-    return function(locations, query) {
+    function isResult(location, query) {
 
         var filter0 = function(location) {
             return (!query.organic || location.organic === 1)
@@ -94,24 +94,14 @@ app.filter('location', function(I18nService) {
             return !query.review || location.reviewURL;
         }
 
-        var filteredLocations = [];
-
-        for (var i = 0; i < locations.length; i++) {
-            var location = locations[i];
-            if (
-                filter0(location)
-                && filter1(location)
-                && filter2(location)
-                && filter3(location)
-                && filter4(location)
-                && filter5(location)
-                && filter6(location)
-            ) {
-                filteredLocations.push(location);
-            }
-        }
-
-        return filteredLocations;
+        return !!location
+            && filter0(location)
+            && filter1(location)
+            && filter2(location)
+            && filter3(location)
+            && filter4(location)
+            && filter5(location)
+            && filter6(location);
     };
 
     function normalizeText(text) {
@@ -133,5 +123,11 @@ app.filter('location', function(I18nService) {
             .replace(/ñ/g, "n");
 
         return text.toLowerCase();
+    }
+
+    return {
+        isResult: function(location, query) {
+            return isResult(location, query);
+        }
     }
 });
