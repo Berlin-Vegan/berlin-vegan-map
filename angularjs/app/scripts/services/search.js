@@ -44,7 +44,7 @@ app.factory('SearchService', function(I18nService) {
             if (!query.textAppliesToNamesOnly) {
                 searchedValues = searchedValues.concat([
                     location.street,
-                    location.cityCode,
+                    location.cityCode + "",
                     location.district,
                     location.publicTransport,
                     location.telephone,
@@ -108,10 +108,6 @@ app.factory('SearchService', function(I18nService) {
 
         if (typeof text === "undefined") {
             text = "";
-        }
-
-        if (!(text === 'string' || text instanceof String)) {
-            text += "";
         }
 
         // So we find café when searching for cafe and vice versa.
