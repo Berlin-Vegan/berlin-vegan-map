@@ -106,19 +106,18 @@ app.factory('SearchService', function(I18nService) {
 
     function normalizeText(text) {
 
-        if (typeof text === "undefined") {
+        if (!text) {
             text = "";
         }
 
         // So we find café when searching for cafe and vice versa.
         // Analogous motivation for the other letters.
-        text = text
+        return text
             .replace(/á|â|à/g, "a")
             .replace(/é|ê/g, "e")
             .replace(/ó|ô/g, "o")
-            .replace(/ñ/g, "n");
-
-        return text.toLowerCase();
+            .replace(/ñ/g, "n")
+            .toLowerCase();
     }
 
     return {
