@@ -91,7 +91,7 @@ app.controller('MainController', function (
 
     var infoWindow = new google.maps.InfoWindow();
 
-    var createMarker = function (location){
+    function createMarker(location){
         var marker = new google.maps.Marker({
             map: $scope.map,
             position: new google.maps.LatLng(location.latCoord, location.longCoord),
