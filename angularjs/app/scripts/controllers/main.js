@@ -162,6 +162,14 @@ app.controller('MainController', function (
         };
     }
 
+    function initTags() {
+        $scope.tags = LocationLogicService.getSortedTags();
+    }
+
+    function initVeganCategories() {
+        $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
+    }
+
     function updateMarkers() {
 
         $scope.filteredMarkers = getFilteredMarkers();
@@ -185,14 +193,6 @@ app.controller('MainController', function (
     function getFilteredMarkers() {
         return $scope.markers
           .workaroundFilter(function(marker) { return SearchService.isResult(marker.location, $scope.query); });
-    }
-
-    function initTags() {
-        $scope.tags = LocationLogicService.getSortedTags();
-    }
-
-    function initVeganCategories() {
-        $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
     }
 
     function updateGeolocationMarker() {
