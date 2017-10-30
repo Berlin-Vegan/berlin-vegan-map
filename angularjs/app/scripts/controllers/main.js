@@ -135,29 +135,7 @@ app.controller('MainController', function (
     }
 
     function initQuery() {
-
-        var tags = LocationLogicService.getSortedTags();
-        var tagsMap = {};
-
-        for (var i = 0; i < tags.length; i++) {
-            tagsMap[tags[i]] = true;
-        }
-
-        var veganCategories = LocationLogicService.getSortedVeganCategories();
-        var veganCategoriesMap = {};
-
-        for (var i = 0; i < veganCategories.length; i++) {
-            veganCategoriesMap[veganCategories[i]] = true;
-        }
-
-        $scope.query = {
-            text: "",
-            openAtWeekDay: "all",
-            tags: tagsMap,
-            veganCategories: veganCategoriesMap,
-            allWeekDays: function() { return this.openAtWeekDay === "all"; },
-            distance: { enabled: false, position: null, km: 1}
-        };
+        $scope.query = SearchService.getInitialQuery();
     }
 
     function initMap() {

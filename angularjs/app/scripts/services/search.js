@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory('SearchService', function(I18nService) {
+app.factory('SearchService', function(I18nService, LocationLogicService) {
 
     function isResult(location, query) {
 
@@ -120,9 +120,38 @@ app.factory('SearchService', function(I18nService) {
             .toLowerCase();
     }
 
+    function getInitialQuery() {
+
+        var tags = LocationLogicService.getSortedTags();
+        var tagsMap = {};
+
+        for (var i = 0; i < tags.length; i++) {
+            tagsMap[tags[i]] = true;
+        }
+
+        var veganCategories = LocationLogicService.getSortedVeganCategories();
+        var veganCategoriesMap = {};
+
+        for (var i = 0; i < veganCategories.length; i++) {
+            veganCategoriesMap[veganCategories[i]] = true;
+        }
+
+        return {
+            text: "",
+            openAtWeekDay: "all",
+            tags: tagsMap,
+            veganCategories: veganCategoriesMap,
+            allWeekDays: function() { return this.openAtWeekDay === "all"; },
+            distance: { enabled: false, position: null, km: 1}
+        };
+    }
+
     return {
         isResult: function(location, query) {
             return isResult(location, query);
+        },
+        getInitialQuery: function() {
+            return getInitialQuery();
         }
     }
 });
