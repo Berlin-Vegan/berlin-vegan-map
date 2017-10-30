@@ -68,35 +68,28 @@ app.controller('MainController', function (
         return v1.value.localeCompare(v2.value, global_language);
     };
 
-    $scope.getMarkerImageUrl = getMarkerImageUrl;
     $scope.getColor = ConfigurationService.getColor;
-
-    $http({ method: 'GET', url: ConfigurationService.locationsUrl })
-        .success(function(data) {
-            $scope.locations = data;
-            LocationLogicService.enhanceLocations($scope.locations);
-            initQuery();
-            initMap();
-            initTags();
-            initVeganCategories();
-            updateMarkers();
-            updateOrder();
-        })
-        .error(function() {
-        });
-
+    $scope.getMarkerImageUrl = getMarkerImageUrl;
     $scope.updateMarkers = updateMarkers;
     $scope.updateGeolocationMarker = updateGeolocationMarker;
     $scope.updateOrder = updateOrder;
 
     var infoWindow = new google.maps.InfoWindow();
 
+    $http({ method: 'GET', url: ConfigurationService.locationsUrl })
+        .success(function(data) {
+            $scope.locations = data;
+            LocationLogicService.enhanceLocations($scope.locations);
+            $scope.query = SearchService.getInitialQuery();
+            $scope.tags = LocationLogicService.getSortedTags();
+            $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
+            initMap();
+            updateMarkers();
+            updateOrder();
+        });
+
     function getMarkerImageUrl(location) {
         return ResourcesService.getDotImageUrl(ConfigurationService.getColor(location.getVeganCategory()));
-    }
-
-    function initQuery() {
-        $scope.query = SearchService.getInitialQuery();
     }
 
     function initMap() {
@@ -160,14 +153,6 @@ app.controller('MainController', function (
             new google.maps.Point(0,0),
             new google.maps.Point(15, 34)
         );
-    }
-
-    function initTags() {
-        $scope.tags = LocationLogicService.getSortedTags();
-    }
-
-    function initVeganCategories() {
-        $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
     }
 
     function updateMarkers() {
