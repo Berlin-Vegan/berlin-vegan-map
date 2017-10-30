@@ -8,13 +8,13 @@
  * Controller of the berlinVeganMapApp
  */
 app.controller('MainController', function (
-    $scope, 
-    $http, 
-    $timeout, 
-    $window, 
+    $scope,
+    $http,
+    $timeout,
+    $window,
     ConfigurationService,
-    LocationLogicService, 
-    InfoWindowViewService, 
+    LocationLogicService,
+    InfoWindowViewService,
     ResourcesService,
     I18nService,
     SearchService
@@ -54,7 +54,7 @@ app.controller('MainController', function (
 
     // Adapted (but changed) from https://code.angularjs.org/1.5.7/docs/api/ng/filter/orderBy
     $scope.localeSensitiveComparator = function(v1, v2) {
-        
+
         if (v1.type !== 'string' || v2.type !== 'string') {
             if (v1.value < v2.value) {
                 return -1;
@@ -103,9 +103,9 @@ app.controller('MainController', function (
         google.maps.event.addListener(marker, 'click', function() {
 
             var content = InfoWindowViewService.getContent(
-                $scope.i18n, 
-                $scope.language, 
-                marker.location, 
+                $scope.i18n,
+                $scope.language,
+                marker.location,
                 $scope.geolocation.marker ? $scope.geolocation.marker.position : undefined);
 
             infoWindow.setContent(content);
@@ -120,7 +120,7 @@ app.controller('MainController', function (
 
         $scope.markers.push(marker);
     }
-    
+
     function getMarkerImage(location) {
         return new google.maps.MarkerImage(
             getMarkerImageUrl(location),
