@@ -91,6 +91,38 @@ app.controller('MainController', function (
 
     var infoWindow = new google.maps.InfoWindow();
 
+    function getMarkerImageUrl(location) {
+        return ResourcesService.getDotImageUrl(ConfigurationService.getColor(location.getVeganCategory()));
+    }
+
+    function initQuery() {
+        $scope.query = SearchService.getInitialQuery();
+    }
+
+    function initMap() {
+        var center = ConfigurationService.mapCenter;
+        var mapOptions = {
+            zoom: 12,
+            center: new google.maps.LatLng(center.lat, center.lng),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        $scope.markers = [];
+
+        for (var i = 0; i < $scope.locations.length; i++){
+            createMarker($scope.locations[i]);
+        }
+
+        $scope.openInfoWindow = function(e, selectedMarker){
+            e.preventDefault();
+            if (!window.matchMedia("(min-width: 568px)").matches) {
+                $scope.enableFullMapView();
+            }
+            $timeout(function() { google.maps.event.trigger(selectedMarker, 'click'); });
+        };
+    }
+
     function createMarker(location){
         var marker = new google.maps.Marker({
             map: $scope.map,
@@ -130,38 +162,6 @@ app.controller('MainController', function (
         );
     }
 
-    function getMarkerImageUrl(location) {
-        return ResourcesService.getDotImageUrl(ConfigurationService.getColor(location.getVeganCategory()));
-    }
-
-    function initQuery() {
-        $scope.query = SearchService.getInitialQuery();
-    }
-
-    function initMap() {
-        var center = ConfigurationService.mapCenter;
-        var mapOptions = {
-            zoom: 12,
-            center: new google.maps.LatLng(center.lat, center.lng),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-
-        $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        $scope.markers = [];
-
-        for (var i = 0; i < $scope.locations.length; i++){
-            createMarker($scope.locations[i]);
-        }
-
-        $scope.openInfoWindow = function(e, selectedMarker){
-            e.preventDefault();
-            if (!window.matchMedia("(min-width: 568px)").matches) {
-                $scope.enableFullMapView();
-            }
-            $timeout(function() { google.maps.event.trigger(selectedMarker, 'click'); });
-        };
-    }
-
     function initTags() {
         $scope.tags = LocationLogicService.getSortedTags();
     }
@@ -193,6 +193,30 @@ app.controller('MainController', function (
     function getFilteredMarkers() {
         return $scope.markers
           .workaroundFilter(function(marker) { return SearchService.isResult(marker.location, $scope.query); });
+    }
+
+    function updateOrder() {
+
+        var order;
+
+        switch ($scope.orderSelection) {
+            case "name":
+                order = "location.name";
+                break;
+            case "distance":
+                order = function(marker) {
+                    if ($scope.geolocation.marker && $scope.geolocation.marker.map) {
+                        return marker.location.getDistanceToPositionInKm($scope.geolocation.marker.position);
+                    } else {
+                        return 1;
+                    }
+                };
+                break;
+            default:
+                console.log("Unexpected value for orderSelection: " + $scope.orderSelection); // TODO
+        }
+
+        $scope.order = order;
     }
 
     function updateGeolocationMarker() {
@@ -286,29 +310,5 @@ app.controller('MainController', function (
 
             $scope.query.distance.position = null;
         }
-    }
-
-    function updateOrder() {
-
-        var order;
-
-        switch ($scope.orderSelection) {
-            case "name":
-                order = "location.name";
-                break;
-            case "distance":
-                order = function(marker) {
-                    if ($scope.geolocation.marker && $scope.geolocation.marker.map) {
-                        return marker.location.getDistanceToPositionInKm($scope.geolocation.marker.position);
-                    } else {
-                        return 1;
-                    }
-                };
-                break;
-            default:
-                console.log("Unexpected value for orderSelection: " + $scope.orderSelection); // TODO
-        }
-
-        $scope.order = order;
     }
 });
