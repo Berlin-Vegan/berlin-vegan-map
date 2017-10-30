@@ -52,22 +52,6 @@ app.controller('MainController', function (
         return tags.map(function(it) { return $scope.i18n.enums.tag[it]; }).join(", ");
     }
 
-    // Adapted (but changed) from https://code.angularjs.org/1.5.7/docs/api/ng/filter/orderBy
-    $scope.localeSensitiveComparator = function(v1, v2) {
-
-        if (v1.type !== 'string' || v2.type !== 'string') {
-            if (v1.value < v2.value) {
-                return -1;
-            } else if (v1.value > v2.value) {
-                return 1;
-            } else {
-                return 0;
-            }
-        }
-
-        return v1.value.localeCompare(v2.value, global_language);
-    };
-
     $scope.getColor = ConfigurationService.getColor;
     $scope.getMarkerImageUrl = getMarkerImageUrl;
     $scope.updateMarkers = updateMarkers;
@@ -85,7 +69,6 @@ app.controller('MainController', function (
             $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
             initMap();
             updateMarkers();
-            updateOrder();
         });
 
     function getMarkerImageUrl(location) {
@@ -176,32 +159,38 @@ app.controller('MainController', function (
     Array.prototype.workaroundFilter = Array.prototype.filter;
 
     function getFilteredMarkers() {
-        return $scope.markers
-          .workaroundFilter(function(marker) { return SearchService.isResult(marker.location, $scope.query); });
-    }
-
-    function updateOrder() {
-
-        var order;
+        var sortFunction;
 
         switch ($scope.orderSelection) {
             case "name":
-                order = "location.name";
+                sortFunction = function(markerA, markerB) {
+                    return markerA.location.name.localeCompare(markerB.location.name, global_language);
+                };
                 break;
             case "distance":
-                order = function(marker) {
-                    if ($scope.geolocation.marker && $scope.geolocation.marker.map) {
-                        return marker.location.getDistanceToPositionInKm($scope.geolocation.marker.position);
-                    } else {
-                        return 1;
-                    }
+                sortFunction = function(markerA, markerB) {
+                    return getDistanceToGeolocation(markerA) - getDistanceToGeolocation(markerB);
                 };
                 break;
             default:
-                console.log("Unexpected value for orderSelection: " + $scope.orderSelection); // TODO
+              console.log("Unexpected value for orderSelection: " + $scope.orderSelection); // TODO
         }
 
-        $scope.order = order;
+        return $scope.markers
+            .workaroundFilter(function(marker) { return SearchService.isResult(marker.location, $scope.query); })
+            .sort(sortFunction);
+
+        function getDistanceToGeolocation(marker) {
+            if ($scope.geolocation.marker && $scope.geolocation.marker.map) {
+                return marker.location.getDistanceToPositionInKm($scope.geolocation.marker.position);
+            } else {
+                return 1;
+            }
+        }
+    }
+
+    function updateOrder() {
+        $scope.filteredMarkers = getFilteredMarkers();
     }
 
     function updateGeolocationMarker() {

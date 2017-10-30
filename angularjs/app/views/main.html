@@ -157,7 +157,7 @@
                 </section>
             </form>
             <ul class="resultsList">
-                <li ng-repeat="marker in filteredMarkers | orderBy : order : false : localeSensitiveComparator" id="{{marker.location.id}}">
+                <li ng-repeat="marker in filteredMarkers" id="{{marker.location.id}}">
                     <div class="locationHeadingContainer flex-container-nowrap">
                         <h1>
                             <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
