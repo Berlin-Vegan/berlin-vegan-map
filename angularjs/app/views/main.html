@@ -97,14 +97,14 @@
                                 <option value="all">{{i18n.enums.weekday.all}}</option>
                                 <option ng-repeat="i in [1, 2, 3, 4, 5, 6, 0]" value="{{i}}">{{i18n.enums.weekday[i + ""]}}</option>
                             </select>
-                            <input 
-                                name="openAtTimeInput" 
-                                type="time" 
-                                ng-model="query.openAtTime" 
-                                placeholder="{{i18n.openingTimes.timePlaceholder.notOpenNow}}" 
-                                ng-disabled="query.openAtWeekDay === 'all'" 
-                                ng-change="updateMarkers()" 
-                                size="15" 
+                            <input
+                                name="openAtTimeInput"
+                                type="time"
+                                ng-model="query.openAtTime"
+                                placeholder="{{i18n.openingTimes.timePlaceholder.notOpenNow}}"
+                                ng-disabled="query.openAtWeekDay === 'all'"
+                                ng-change="updateMarkers()"
+                                size="15"
                                 maxlength="5"
                             />
                         </span>
@@ -163,10 +163,10 @@
                             <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
                         </h1>
                         <div>
-                            <img 
+                            <img
                                 ng-click="openInfoWindow($event, marker)"
-                                title="{{i18n.showOnMap}}" 
-                                src="{{getMarkerImageUrl(marker.location)}}" 
+                                title="{{i18n.showOnMap}}"
+                                src="{{getMarkerImageUrl(marker.location)}}"
                                 style="height: 25px; width: auto; position:relative; bottom: -6px;"
                             />
                         </div>
@@ -180,24 +180,24 @@
                     <div class="addressWithDistanceContainer flex-container-nowrap">
                         <div>{{marker.location.address}}</div>
                         <div ng-show="geolocation.marker.map">
-                        <!-- 
-                            Even when not shown because geolocation.marker.map is undefined/null, the following 
-                            expression gets evaluated, so we use the dummy value 0 to prevent an error when trying 
+                        <!--
+                            Even when not shown because geolocation.marker.map is undefined/null, the following
+                            expression gets evaluated, so we use the dummy value 0 to prevent an error when trying
                             to get the distance when geolocation.marker.map is undefined/null.
-                            If one could prevent AngularJS from evaluating, would be more elegant. 
+                            If one could prevent AngularJS from evaluating, would be more elegant.
                             No idea if this is possible.
                         -->
-                        {{ 
+                        {{
                             geolocation.marker.position ? marker.location.getDistanceToPositionInKm(geolocation.marker.position) : 0
-                            | 
+                            |
                             kilometer
                         }}
                         </div>
                     </div>
                     <div>
                         <span>{{marker.location.openingTimes.getTodayFriendly()}}</span>
-                        <span ng-show="marker.location.openComment" 
-                            title={{marker.location.getOpenComment()}} 
+                        <span ng-show="marker.location.openComment"
+                            title={{marker.location.getOpenComment()}}
                             ng-click="display.expandOpenComments = !display.expandOpenComments"
                         >
                             <span class="fa fa-info-circle"></span>
