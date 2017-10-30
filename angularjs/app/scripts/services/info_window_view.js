@@ -21,7 +21,7 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
                 ""
             )
             + "</header>" 
-            + "<p>" + formatTags(i18n, location.tags) + " (" + i18n.enums.veganCategory.verbose[location.getVeganCategory()] + ")</p>"
+            + "<p>" + location.tagsFriendly + " (" + i18n.enums.veganCategory.verbose[location.getVeganCategory()] + ")</p>"
             + "<p>" + location.address + "</p>"
             + (currentPosition ? "<p>" + i18n.infoWindow.distance + ": " + kilometerFilter(location.getDistanceToPositionInKm(currentPosition)) + "</p>" : "")
             + "<h2>" + i18n.infoWindow.openingTimes + "</h2>"
@@ -31,11 +31,6 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
             + "</article>";
     };
 
-    // Redundantly defined elewhere. TODO
-    function formatTags(i18n, tags) {
-        return tags.map(function(it) { return i18n.enums.tag[it]; }).join(", ");
-    }
-    
     function getOpeningTimesInnerHtml(location) {
     
         var html = "";

@@ -48,9 +48,6 @@ app.controller('MainController', function (
         }
         $timeout(function() { $window.document.getElementById("pre-search-div").scrollIntoView(); });
     }
-    $scope.formatTags = function(tags) {
-        return tags.map(function(it) { return $scope.i18n.enums.tag[it]; }).join(", ");
-    }
 
     $scope.getColor = ConfigurationService.getColor;
     $scope.getMarkerImageUrl = getMarkerImageUrl;

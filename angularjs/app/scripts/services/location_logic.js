@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory('LocationLogicService', function(OpeningTimesService) {
+app.factory('LocationLogicService', function(OpeningTimesService, I18nService) {
 
     var veganCategories = [];
     veganCategories[5] = "vegan";
@@ -18,6 +18,7 @@ app.factory('LocationLogicService', function(OpeningTimesService) {
     function enhanceLocation(location) {
     
         location.tags = location.tags.sort();
+        location.tagsFriendly = location.tags.map(function(it) { return I18nService.getI18n().enums.tag[it]; }).join(", ");
         location.commentWithoutFormatting = removeFormatting(location.comment);
         location.commentEnglishWithoutFormatting = removeFormatting(location.commentEnglish);
         
