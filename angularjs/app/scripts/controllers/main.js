@@ -152,8 +152,6 @@ app.controller('MainController', function (
         }
     }
 
-    Array.prototype.workaroundFilter = Array.prototype.filter;
-
     function getFilteredMarkers() {
         var sortFunction;
 
