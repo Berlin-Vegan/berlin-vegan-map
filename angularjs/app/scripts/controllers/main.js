@@ -108,10 +108,9 @@ app.controller('MainController', function (
         google.maps.event.addListener(marker, 'click', function() {
 
             var content = InfoWindowViewService.getContent(
-                $scope.i18n,
-                $scope.language,
                 marker.location,
-                $scope.geolocation.marker ? $scope.geolocation.marker.position : undefined);
+                $scope.geolocation.marker ? $scope.geolocation.marker.position : undefined
+            );
 
             infoWindow.setContent(content);
             infoWindow.open($scope.map, marker);

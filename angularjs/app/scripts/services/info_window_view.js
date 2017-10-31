@@ -4,14 +4,16 @@
  * There have been great technical diffculties when trying to define the google.maps.InfoWindow content HTML 
  * with a proper AngularJS template. So, to at least have it in a dedicated file, we use this service.
  */
-app.factory("InfoWindowViewService", function(kilometerFilter) {
+app.factory("InfoWindowViewService", function(kilometerFilter, I18nService) {
 
     var extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
     var linkSymbol = "🔗"; // Your editor may not have this.
+    var language = I18nService.getLanguage();
+    var i18n = I18nService.getI18n();
     
     var service = {};
     
-    service.getContent = function(i18n, language, location, currentPosition) {
+    service.getContent = function(location, currentPosition) {
         return "<article class='infoWindow'>"
             + "<header class='flex-container-nowrap'>" 
             + "<h1>" + location.name + "</h1>"
@@ -27,7 +29,7 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
             + "<h2>" + i18n.infoWindow.openingTimes + "</h2>"
             + "<p>" + getOpeningTimesInnerHtml(location) + "</p>"
             + getOpenCommentInnerHtml(location)
-            + "<p>" + getCommentAndReviewInnerHtml(i18n, language, location) + "</p>"
+            + "<p>" + getCommentAndReviewInnerHtml(location) + "</p>"
             + "</article>";
     };
 
@@ -60,7 +62,7 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
         return openComment ? "<p>" + openComment + "</p>" : "";
     }
     
-    function getCommentAndReviewInnerHtml(i18n, language, location) {
+    function getCommentAndReviewInnerHtml(location) {
         return language === "en" ?
             location.commentEnglish + "<br/>" + (location.reviewURL ? getReviewAnchor() : "")
             :
@@ -72,8 +74,8 @@ app.factory("InfoWindowViewService", function(kilometerFilter) {
     }
 
     return {
-        getContent: function(i18n, language, location, currentPosition) {
-            return service.getContent(i18n, language, location, currentPosition);
+        getContent: function(location, currentPosition) {
+            return service.getContent(location, currentPosition);
         }
     };
 });
