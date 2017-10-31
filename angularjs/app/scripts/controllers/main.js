@@ -21,8 +21,8 @@ app.controller('MainController', function (
 ) {
     var jsCommon = new JsCommon();
 
+    $scope.locationsLength = null;
     $scope.query = null;
-    $scope.locations = null;
     $scope.tags = null;
     $scope.veganCategories = null;
     $scope.geolocation = { show: false, supported: navigator.geolocation ? true : false };
@@ -58,13 +58,13 @@ app.controller('MainController', function (
     var infoWindow = new google.maps.InfoWindow();
 
     $http({ method: 'GET', url: ConfigurationService.locationsUrl })
-        .success(function(data) {
-            $scope.locations = data;
-            LocationLogicService.enhanceLocations($scope.locations);
+        .success(function(locations) {
+            LocationLogicService.enhanceLocations(locations);
+            initMap(locations);
+            $scope.locationsLength = locations.length;
             $scope.query = SearchService.getInitialQuery();
             $scope.tags = LocationLogicService.getSortedTags();
             $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
-            initMap();
             updateMarkers();
         });
 
@@ -72,7 +72,7 @@ app.controller('MainController', function (
         return ResourcesService.getDotImageUrl(ConfigurationService.getColor(location.getVeganCategory()));
     }
 
-    function initMap() {
+    function initMap(locations) {
         var center = ConfigurationService.mapCenter;
         var mapOptions = {
             zoom: 12,
@@ -83,8 +83,8 @@ app.controller('MainController', function (
         $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
         $scope.markers = [];
 
-        for (var i = 0; i < $scope.locations.length; i++){
-            createMarker($scope.locations[i]);
+        for (var i = 0; i < locations.length; i++){
+            createMarker(locations[i]);
         }
 
         $scope.openInfoWindow = function(e, selectedMarker){
