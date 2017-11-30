@@ -94,8 +94,7 @@ app.factory('SearchService', function(I18nService, LocationLogicService) {
             return !query.review || location.reviewURL;
         }
 
-        return !!location
-            && filter0()
+        return filter0()
             && filter1()
             && filter2()
             && filter3()

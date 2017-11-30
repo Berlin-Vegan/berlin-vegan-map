@@ -136,23 +136,22 @@ app.controller('MainController', function (
 
     function showLocationMarkers() {
 
-        $scope.filteredMarkers = getFilteredMarkers();
+        $scope.filteredLocationMarkers = getFilteredLocationMarkers();
+        var locationMarkers = getLocationMarkers();
 
-        for (var i = 0; i < $scope.markers.length; i++) {
+        for (var i = 0; i < locationMarkers.length; i++) {
 
-            var marker = $scope.markers[i];
+            var marker = locationMarkers[i];
 
-            if (marker !== $scope.geolocation.marker){
-                if ($scope.filteredMarkers.indexOf(marker) >= 0) {
-                    marker.setMap($scope.map);
-                } else {
-                    marker.setMap(null);
-                }
+            if ($scope.filteredLocationMarkers.indexOf(marker) >= 0) {
+                marker.setMap($scope.map);
+            } else {
+                marker.setMap(null);
             }
         }
     }
 
-    function getFilteredMarkers() {
+    function getFilteredLocationMarkers() {
         var sortFunction;
 
         switch ($scope.orderSelection) {
@@ -170,7 +169,7 @@ app.controller('MainController', function (
               console.log("Unexpected value for orderSelection: " + $scope.orderSelection); // TODO
         }
 
-        return $scope.markers
+        return getLocationMarkers()
             .workaroundFilter(function(marker) { return SearchService.isResult(marker.location, $scope.query); })
             .sort(sortFunction);
 
@@ -183,8 +182,12 @@ app.controller('MainController', function (
         }
     }
 
+    function getLocationMarkers() {
+        return $scope.markers.workaroundFilter(function(marker) { return !!marker.location; })
+    }
+
     function updateOrder() {
-        $scope.filteredMarkers = getFilteredMarkers();
+        $scope.filteredLocationMarkers = getFilteredLocationMarkers();
     }
 
     function updateGeolocationMarker() {

@@ -153,11 +153,11 @@
                             <option value="distance" ng-if="!geolocation.marker.map" ng-disabled="true" title="{{i18n.sortBy.distanceRequiresGeolocation}}">{{i18n.sortBy.distance}}</option>
                         </select>
                     </div>
-                    <div>{{filteredMarkers.length + i18n.resultsLength + locationsLength}}</div>
+                    <div>{{filteredLocationMarkers.length + i18n.resultsLength + locationsLength}}</div>
                 </section>
             </form>
             <ul class="resultsList">
-                <li ng-repeat="marker in filteredMarkers" id="{{marker.location.id}}">
+                <li ng-repeat="marker in filteredLocationMarkers" id="{{marker.location.id}}">
                     <div class="locationHeadingContainer flex-container-nowrap">
                         <h1>
                             <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.location.name}}</a>
