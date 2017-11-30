@@ -51,7 +51,7 @@ app.controller('MainController', function (
 
     $scope.getColor = ConfigurationService.getColor;
     $scope.getMarkerImageUrl = getMarkerImageUrl;
-    $scope.updateMarkers = updateMarkers;
+    $scope.showLocationMarkers = showLocationMarkers;
     $scope.updateGeolocationMarker = updateGeolocationMarker;
     $scope.updateOrder = updateOrder;
 
@@ -65,7 +65,7 @@ app.controller('MainController', function (
             $scope.query = SearchService.getInitialQuery();
             $scope.tags = LocationLogicService.getSortedTags();
             $scope.veganCategories = LocationLogicService.getSortedVeganCategories();
-            updateMarkers();
+            showLocationMarkers();
         });
 
     function getMarkerImageUrl(location) {
@@ -134,7 +134,7 @@ app.controller('MainController', function (
         );
     }
 
-    function updateMarkers() {
+    function showLocationMarkers() {
 
         $scope.filteredMarkers = getFilteredMarkers();
 
@@ -273,7 +273,7 @@ app.controller('MainController', function (
 
             if ($scope.query.distance.enabled) {
                 $scope.query.distance.enabled = false;
-                $scope.updateMarkers();
+                $scope.showLocationMarkers();
             }
 
             $scope.query.distance.position = null;
