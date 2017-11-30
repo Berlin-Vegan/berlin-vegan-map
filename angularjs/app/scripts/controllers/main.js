@@ -140,14 +140,8 @@ app.controller('MainController', function (
         var locationMarkers = getLocationMarkers();
 
         for (var i = 0; i < locationMarkers.length; i++) {
-
-            var marker = locationMarkers[i];
-
-            if ($scope.filteredLocationMarkers.indexOf(marker) >= 0) {
-                marker.setMap($scope.map);
-            } else {
-                marker.setMap(null);
-            }
+            var map = $scope.filteredLocationMarkers.indexOf(marker) >= 0 ? $scope.map : null;
+            locationMarkers[i].setMap(map);
         }
     }
 
