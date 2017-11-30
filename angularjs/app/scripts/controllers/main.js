@@ -10,7 +10,6 @@
 app.controller('MainController', function (
     $scope,
     $http,
-    $timeout,
     $window,
     ConfigurationService,
     LocationLogicService,
@@ -36,7 +35,7 @@ app.controller('MainController', function (
     $scope.fullMapView = false;
     $scope.enableFullMapView = function() {
         $scope.fullMapView = true;
-        $timeout(function() { google.maps.event.trigger($scope.map, "resize"); });
+        setTimeout(function() { google.maps.event.trigger($scope.map, "resize"); }, 0);
     }
     $scope.disableFullMapView = function() {
         $scope.fullMapView = false;
@@ -46,7 +45,7 @@ app.controller('MainController', function (
         {
             $scope.disableFullMapView();
         }
-        $timeout(function() { $window.document.getElementById("pre-search-div").scrollIntoView(); });
+        setTimeout(function() { $window.document.getElementById("pre-search-div").scrollIntoView(); }, 0);
     }
 
     $scope.getColor = ConfigurationService.getColor;
@@ -92,7 +91,7 @@ app.controller('MainController', function (
             if (!window.matchMedia("(min-width: 568px)").matches) {
                 $scope.enableFullMapView();
             }
-            $timeout(function() { google.maps.event.trigger(selectedMarker, 'click'); });
+            setTimeout(function() { google.maps.event.trigger(selectedMarker, 'click'); }, 0);
         };
     }
 
@@ -193,7 +192,7 @@ app.controller('MainController', function (
             }
 
             // Workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=675533
-            $timeout(
+            setTimeout(
                 function() {
                     if ($scope.geolocation.info === $scope.i18n.geolocation.detecting) {
                         $scope.geolocation.error = $scope.i18n.geolocation.theError;
