@@ -51,16 +51,16 @@
             <div id="pre-search-div"></div>
             <form name="form" novalidate>
                 <section class="searchTextContainer flex-container-wrap">
-                    <input type="text" ng-model="query.text" placeholder="{{i18n.search.text.placeholder}}" ng-change="showLocationMarkers()"/>
+                    <input type="text" ng-model="query.text" placeholder="{{i18n.search.text.placeholder}}" ng-change="filterLocationMarkers()"/>
                     <label>
-                        <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="showLocationMarkers()"/>{{i18n.search.text.namesOnly}}
+                        <input type="checkbox" ng-model="query.textAppliesToNamesOnly" ng-change="filterLocationMarkers()"/>{{i18n.search.text.namesOnly}}
                     </label>
                 </section>
                 <section class="flex-container-wrap">
                     <h1>{{i18n.category.header}}</h1>
                     <div class="flex-container-wrap">
                         <label ng-repeat="veganCategory in veganCategories" title="{{i18n.enums.veganCategory.verbose[veganCategory]}}">
-                            <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="showLocationMarkers()"
+                            <input type="checkbox" ng-model="query.veganCategories[veganCategory]" ng-change="filterLocationMarkers()"
                             /><span ng-style="{'border-bottom': '3px dotted ' + getColor(veganCategory)}">{{i18n.enums.veganCategory.concise[veganCategory]}}</span>
                         </label>
                     </div>
@@ -69,31 +69,31 @@
                     <h1>{{i18n.tag.header}}</h1>
                     <div class="flex-container-wrap">
                         <label ng-repeat="tag in tags">
-                            <input type="checkbox" ng-model="query.tags[tag]" ng-change="showLocationMarkers()"/>{{i18n.enums.tag[tag]}}
+                            <input type="checkbox" ng-model="query.tags[tag]" ng-change="filterLocationMarkers()"/>{{i18n.enums.tag[tag]}}
                         </label>
                     </div>
                 </section>
                 <section class="flex-container-wrap">
                     <div class="feature-col">
-                        <label><input type="checkbox" ng-model="query.organic" ng-change="showLocationMarkers()"/>{{i18n.features.organic}}</label>
-                        <label><input type="checkbox" ng-model="query.dog" ng-change="showLocationMarkers()"/>{{i18n.features.dog}}</label>
-                        <label><input type="checkbox" ng-model="query.handicappedAccessible" ng-change="showLocationMarkers()"/>{{i18n.features.handicappedAccessible}}</label>
-                        <label><input type="checkbox" ng-model="query.delivery" ng-change="showLocationMarkers()"/>{{i18n.features.delivery}}</label>
-                        <label><input type="checkbox" ng-model="query.wlan" ng-change="showLocationMarkers()"/>{{i18n.features.wlan}}</label>
+                        <label><input type="checkbox" ng-model="query.organic" ng-change="filterLocationMarkers()"/>{{i18n.features.organic}}</label>
+                        <label><input type="checkbox" ng-model="query.dog" ng-change="filterLocationMarkers()"/>{{i18n.features.dog}}</label>
+                        <label><input type="checkbox" ng-model="query.handicappedAccessible" ng-change="filterLocationMarkers()"/>{{i18n.features.handicappedAccessible}}</label>
+                        <label><input type="checkbox" ng-model="query.delivery" ng-change="filterLocationMarkers()"/>{{i18n.features.delivery}}</label>
+                        <label><input type="checkbox" ng-model="query.wlan" ng-change="filterLocationMarkers()"/>{{i18n.features.wlan}}</label>
                     </div>
                     <div class="feature-col">
-                        <label><input type="checkbox" ng-model="query.glutenFree" ng-change="showLocationMarkers()"/>{{i18n.features.glutenFree}}</label>
-                        <label><input type="checkbox" ng-model="query.childChair" ng-change="showLocationMarkers()"/>{{i18n.features.childChair}}</label>
-                        <label><input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="showLocationMarkers()"/>{{i18n.features.handicappedAccessibleWc}}</label>
-                        <label><input type="checkbox" ng-model="query.catering" ng-change="showLocationMarkers()"/>{{i18n.features.catering}}</label>
-                        <label><input type="checkbox" ng-model="query.review" ng-change="showLocationMarkers()"/>{{i18n.features.review}}</label>
+                        <label><input type="checkbox" ng-model="query.glutenFree" ng-change="filterLocationMarkers()"/>{{i18n.features.glutenFree}}</label>
+                        <label><input type="checkbox" ng-model="query.childChair" ng-change="filterLocationMarkers()"/>{{i18n.features.childChair}}</label>
+                        <label><input type="checkbox" ng-model="query.handicappedAccessibleWc" ng-change="filterLocationMarkers()"/>{{i18n.features.handicappedAccessibleWc}}</label>
+                        <label><input type="checkbox" ng-model="query.catering" ng-change="filterLocationMarkers()"/>{{i18n.features.catering}}</label>
+                        <label><input type="checkbox" ng-model="query.review" ng-change="filterLocationMarkers()"/>{{i18n.features.review}}</label>
                     </div>
                 </section>
                 <section class="flex-container-wrap">
                     <h1>{{i18n.openingTimes.header}}</h1>
                     <div>
                         <span ng-hide="query.openNow">
-                            <select ng-model="query.openAtWeekDay" ng-change="showLocationMarkers()">
+                            <select ng-model="query.openAtWeekDay" ng-change="filterLocationMarkers()">
                                 <option value="all">{{i18n.enums.weekday.all}}</option>
                                 <option ng-repeat="i in [1, 2, 3, 4, 5, 6, 0]" value="{{i}}">{{i18n.enums.weekday[i + ""]}}</option>
                             </select>
@@ -103,7 +103,7 @@
                                 ng-model="query.openAtTime"
                                 placeholder="{{i18n.openingTimes.timePlaceholder.notOpenNow}}"
                                 ng-disabled="query.openAtWeekDay === 'all'"
-                                ng-change="showLocationMarkers()"
+                                ng-change="filterLocationMarkers()"
                                 size="15"
                                 maxlength="5"
                             />
@@ -116,7 +116,7 @@
                             <input type="time" placeholder="{{i18n.openingTimes.timePlaceholder.openNow}}" ng-disabled="true" size="15"/>
                         </span>
                         <label>
-                            <input type="checkbox" ng-model="query.openNow" ng-change="showLocationMarkers()"/>{{i18n.openingTimes.nowCheckbox}}
+                            <input type="checkbox" ng-model="query.openNow" ng-change="filterLocationMarkers()"/>{{i18n.openingTimes.nowCheckbox}}
                         </label>
                         <span class="error" ng-show="form.openAtTimeInput.$error.time">{{i18n.openingTimes.invalidTime}}</span>
                     </div>
@@ -136,9 +136,9 @@
                     </div>
                     <div class="distanceContainer flex-container-wrap" ng-show="geolocation.marker.map">
                         <label>
-                            <input type="checkbox" ng-model="query.distance.enabled" ng-change="showLocationMarkers()"/>{{i18n.geolocation.distance}}:
+                            <input type="checkbox" ng-model="query.distance.enabled" ng-change="filterLocationMarkers()"/>{{i18n.geolocation.distance}}:
                         </label>
-                        <input type="range" min="0.1" max="10" step="0.1" ng-model="query.distance.km" ng-change="query.distance.enabled = true; showLocationMarkers()" />
+                        <input type="range" min="0.1" max="10" step="0.1" ng-model="query.distance.km" ng-change="query.distance.enabled = true; filterLocationMarkers()" />
                         <span ng-bind-template="{{query.distance.km | kilometer }}"/>
                     </div>
                 </section>
