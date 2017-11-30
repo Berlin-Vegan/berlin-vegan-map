@@ -10,7 +10,6 @@
 app.controller('MainController', function (
     $scope,
     $http,
-    $window,
     ConfigurationService,
     LocationLogicService,
     InfoWindowViewService,
@@ -45,7 +44,7 @@ app.controller('MainController', function (
         {
             $scope.disableFullMapView();
         }
-        setTimeout(function() { $window.document.getElementById("pre-search-div").scrollIntoView(); }, 0);
+        setTimeout(function() { document.getElementById("pre-search-div").scrollIntoView(); }, 0);
     }
 
     $scope.getColor = ConfigurationService.getColor;
@@ -114,7 +113,7 @@ app.controller('MainController', function (
             infoWindow.setContent(content);
             infoWindow.open($scope.map, marker);
 
-            var locationElement = $window.document.getElementById(marker.location.id);
+            var locationElement = document.getElementById(marker.location.id);
 
             if (!jsCommon.domUtil.isElementVisible(locationElement)) {
                 locationElement.scrollIntoView();
