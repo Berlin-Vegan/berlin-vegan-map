@@ -49,7 +49,7 @@
     <main class="flex-container-nowrap">
         <div class="col-left" ng-hide="fullMapView" >
             <div id="pre-search-div"></div>
-            <form name="form" novalidate>
+            <form name="searchForm" novalidate>
                 <section class="searchTextContainer flex-container-wrap">
                     <input type="text" ng-model="query.text" placeholder="{{i18n.search.text.placeholder}}" ng-change="filterLocationMarkers()"/>
                     <label>
@@ -118,7 +118,7 @@
                         <label>
                             <input type="checkbox" ng-model="query.openNow" ng-change="filterLocationMarkers()"/>{{i18n.openingTimes.nowCheckbox}}
                         </label>
-                        <span class="error" ng-show="form.openAtTimeInput.$error.time">{{i18n.openingTimes.invalidTime}}</span>
+                        <span class="error" ng-show="searchForm.openAtTimeInput.$error.time">{{i18n.openingTimes.invalidTime}}</span>
                     </div>
                 </section>
                 <section ng-show="geolocation.supported">
@@ -142,7 +142,9 @@
                         <span ng-bind-template="{{query.distance.km | kilometer }}"/>
                     </div>
                 </section>
-                <hr/>
+            </form>
+            <hr/>
+            <form name="sortForm" novalidate>
                 <section class="sortContainer flex-container-nowrap">
                     <div class="flex-container-wrap">
                         <h1>{{i18n.sortBy.header}}</h1>

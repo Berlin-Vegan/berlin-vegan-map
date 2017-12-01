@@ -74,7 +74,7 @@ a:hover {
   text-decoration: underline;
 }
 
-form {
+form[name="sortForm"] {
   border-bottom: 3px solid rgb(100, 141, 36);
   margin-bottom: 1em;
 }
