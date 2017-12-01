@@ -181,19 +181,8 @@
                     </div>
                     <div class="addressWithDistanceContainer flex-container-nowrap">
                         <div>{{marker.location.address}}</div>
-                        <div ng-show="geolocation.marker.map">
-                        <!--
-                            Even when not shown because geolocation.marker.map is undefined/null, the following
-                            expression gets evaluated, so we use the dummy value 0 to prevent an error when trying
-                            to get the distance when geolocation.marker.map is undefined/null.
-                            If one could prevent AngularJS from evaluating, would be more elegant.
-                            No idea if this is possible.
-                        -->
-                        {{
-                            geolocation.marker.position ? marker.location.getDistanceToPositionInKm(geolocation.marker.position) : 0
-                            |
-                            kilometer
-                        }}
+                        <div ng-if="geolocation.marker.map">
+                        {{ marker.location.getDistanceToPositionInKm(geolocation.marker.position) | kilometer }}
                         </div>
                     </div>
                     <div>
