@@ -144,20 +144,18 @@
                 </section>
             </form>
             <hr/>
-            <form name="sortForm" novalidate>
-                <section class="sortContainer flex-container-nowrap">
-                    <div class="flex-container-wrap">
-                        <h1>{{i18n.sortBy.header}}</h1>
-                        <select ng-model="orderSelection" ng-change="updateOrder()">
-                            <!-- TODO: Find out why in production (but not in dev mode) we need the value attribute even if it equals the text. -->
-                            <option value="name">{{i18n.sortBy.name}}</option>
-                            <option value="distance" ng-if="geolocation.marker.map">{{i18n.sortBy.distance}}</option>
-                            <option value="distance" ng-if="!geolocation.marker.map" ng-disabled="true" title="{{i18n.sortBy.distanceRequiresGeolocation}}">{{i18n.sortBy.distance}}</option>
-                        </select>
-                    </div>
-                    <div>{{filteredLocationMarkers.length + i18n.resultsLength + locationsLength}}</div>
-                </section>
-            </form>
+            <div class="sortFormAndStatisticsContainer flex-container-nowrap">
+                <form name="sortForm" class="flex-container-wrap" novalidate>
+                    <h1>{{i18n.sortBy.header}}</h1>
+                    <select ng-model="orderSelection" ng-change="updateOrder()">
+                        <!-- TODO: Find out why in production (but not in dev mode) we need the value attribute even if it equals the text. -->
+                        <option value="name">{{i18n.sortBy.name}}</option>
+                        <option value="distance" ng-if="geolocation.marker.map">{{i18n.sortBy.distance}}</option>
+                        <option value="distance" ng-if="!geolocation.marker.map" ng-disabled="true" title="{{i18n.sortBy.distanceRequiresGeolocation}}">{{i18n.sortBy.distance}}</option>
+                    </select>
+                </form>
+                <div class="statistics">{{filteredLocationMarkers.length + i18n.resultsLength + locationsLength}}</div>
+            </div>
             <ul class="resultsList">
                 <li ng-repeat="marker in filteredLocationMarkers" id="{{marker.location.id}}">
                     <div class="locationHeadingContainer flex-container-nowrap">
