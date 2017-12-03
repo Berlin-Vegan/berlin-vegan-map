@@ -58,6 +58,12 @@ hr {
   margin-bottom: 0.5em;
 }
 
+hr.fat {
+  border: none;
+  background-color: rgb(100, 141, 36);
+  height: 3px;
+}
+
 h1 {
   font-size: 1.3em;
   font-weight: 500;
@@ -237,10 +243,8 @@ header nav a {
 }
 
 .sortFormAndStatisticsContainer {
-  border-bottom: 3px solid rgb(100, 141, 36);
   margin-top: 1em;
   margin-bottom: 1em;
-  padding-bottom: 1em;
 }
 
 form[name="sortForm"] {
