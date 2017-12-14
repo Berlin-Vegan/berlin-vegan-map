@@ -1,27 +1,25 @@
-
 # Requirements
 
-* node js
+* Install Node.js
+* Change directory to `angular/`
 
 # Installation
  ```
-npm install -g bower grunt-cli yo generator-angular
 npm install
-bower install
 ```
 # Run
 ```
-grunt serve  (dev mode)
-grunt serve:dist (production mode)
+npm start
 ```
 # Test
 ```
-grunt test
+npm test
+npm run lint
 ```
 
 # Build and Deploy
 ```
-deploy.sh
+sh deploy.sh
 ```
 
 <a href="https://www.browserstack.com/">
