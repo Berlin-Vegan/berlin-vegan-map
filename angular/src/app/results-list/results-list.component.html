@@ -1,0 +1,41 @@
+<ul class="resultsList">
+    <li *ngFor="let location of locations" id="{{location.id}}">
+        <div class="locationHeadingContainer flex-container-nowrap">
+            <h1>
+                <a 
+                    href="" 
+                    (click)="$event.preventDefault(); locationSelect.emit(location)"
+                >{{location.name}}</a>
+            </h1>
+            <div>
+                <img
+                    title="{{i18n.showOnMap}}"
+                    src="{{getMarkerImageUrl(location)}}"
+                    style="height: 25px; width: auto; position:relative; bottom: -6px;"
+                    (click)="locationSelect.emit(location)"
+                />
+            </div>
+        </div>
+        <div>
+            <span>{{location.tagsFriendly}}</span>
+            <span title="{{i18n.enums.veganCategory.verbose[location.getVeganCategory()]}}">
+                ({{i18n.enums.veganCategory.concise[location.getVeganCategory()]}})
+            </span>
+        </div>
+        <div class="addressWithDistanceContainer flex-container-nowrap">
+            <div>{{location.address}}</div>
+            <div *ngIf="geoPosition">{{ location.getDistanceToPositionInKm(geoPosition) | kilometer }}</div>
+        </div>
+        <div>
+            <span>{{location.openingTimes.getTodayFriendly()}}</span>
+            <span
+                [hidden]="!location.openComment"
+                title={{location.getOpenComment()}}
+                (click)="expandOpenComments.set(location, !expandOpenComments.get(location));"
+            >
+                <span class="fa fa-info-circle"></span>
+                <span [hidden]="!expandOpenComments.get(location)">{{location.getOpenComment()}}</span>
+            </span>
+        </div>
+    </li>
+</ul>

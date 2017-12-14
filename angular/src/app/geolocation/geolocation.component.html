@@ -1,0 +1,14 @@
+<div *ngIf="isGeolocationSupported">
+    <div>
+        <label>
+            <input type="checkbox" name="checkbox" [(ngModel)]="isChecked" (change)="onChange()"/>
+            <span *ngIf="!geoposition">{{i18n.geolocation.header}}</span>
+            <a *ngIf="geoposition" href="#" (click)="highlightRequest.emit()">{{i18n.geolocation.header}}</a>
+        </label>
+    </div>
+    <div>
+        <img *ngIf="info === i18n.geolocation.detecting" src="assets/images/ajax-loader.gif"/>
+        <span>{{info}}</span>
+        <span class="error">{{error}}</span>
+    </div>
+</div>

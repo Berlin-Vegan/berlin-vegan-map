@@ -1,0 +1,55 @@
+<header class="flex-container-wrap">
+    <div class="imgContainer flex-container-nowrap">
+        <div>
+            <a href="http://www.berlin-vegan.de/">
+                <img src="assets/images/bv-header-left.png"/>
+            </a>
+        </div>
+        <div class="flex-container-nowrap">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <nav class="flex-container-nowrap">
+        <div>
+            <button title="{{i18n.header.searchButtonTitle}}" (click)="searchClick.emit()">
+                <span class="fa fa-search"></span>
+            </button>
+            <button title="{{i18n.header.fullMapViewbuttonTitle}}" (click)="fullMapViewClick.emit()" [disabled]="fullMapView">
+                <span class="fa fa-map-o"></span>
+            </button>
+        </div>
+        <ul>
+            <li>
+                <a href="http://www.berlin-vegan.de/">Berlin&#8209;Vegan</a>
+            </li>
+            <li>
+                <a href="http://www.berlin-vegan.de/bv-guide/"><span class="mobile">Mobile&nbsp;</span>App</a>
+            </li>
+            <li>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGdCRVpeBX2KWoAOn9LHx__uzTFBknz9au0LVYI5hLlIXZOw/viewform">{{i18n.header.reportNewLocation}}</a>
+            </li>
+            <li>
+                <a href="mailto:karte@berlin-vegan.de">{{i18n.header.reportProblem}}</a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <span *ngIf="language === 'de'" class="selectedLanguage">{{i18n.header.language.de}}</span>
+                <a 
+                    *ngIf="language !== 'de'" 
+                    href="" 
+                    (click)="$event.preventDefault(); i18nService.setLanguage('de')"
+                >{{i18n.header.language.de}}</a>
+            </li>
+            <li>
+                <span *ngIf="language === 'en'" class="selectedLanguage">{{i18n.header.language.en}}</span>
+                <a 
+                    *ngIf="language !== 'en'" 
+                    href="" 
+                    (click)="$event.preventDefault(); i18nService.setLanguage('en')"
+                >{{i18n.header.language.en}}</a>
+            </li>
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,13 @@
+<form name="sortForm" class="flex-container-wrap">
+    <h1>{{i18n.sortBy.header}}</h1>
+    <select name="order" [(ngModel)]="sortOrder" (change)="sortOrderChange.emit(sortOrder)">
+        <!--
+            TODO (maybe obsolete in Angular):
+            Find out why in production (but not in dev mode) we need the value attribute even
+            if it equals the text.
+         -->
+        <option value="name">{{i18n.sortBy.name}}</option>
+        <option value="distance" *ngIf="isDistanceEnabled">{{i18n.sortBy.distance}}</option>
+        <option value="distance" *ngIf="!isDistanceEnabled" [disabled]="true" title="{{i18n.sortBy.distanceRequiresGeolocation}}">{{i18n.sortBy.distance}}</option>
+    </select>
+</form>
