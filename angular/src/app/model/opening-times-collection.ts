@@ -1,5 +1,5 @@
 import { DayOfWeek } from "./day-of-week";
-import { I18nService } from "./i18n.service";
+import { I18nService } from "../i18n.service";
 import { OpeningTime } from "./opening-time";
 
 declare var JsCommon: () => void; // TODO

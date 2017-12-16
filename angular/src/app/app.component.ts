@@ -1,9 +1,9 @@
 import { Component,  OnInit, ViewChild } from "@angular/core";
 
-import { GastroLocation } from "./gastro-location";
+import { GastroLocation } from "./model/gastro-location";
 import { GoogleMapComponent } from "./google-map/google-map.component";
 import { I18nService } from "./i18n.service";
-import { Location } from "./location";
+import { Location } from "./model/location";
 import { LocationService } from "./location.service";
 import { ResultsListComponent } from "./results-list/results-list.component";
 import { SearchService } from "./search.service";

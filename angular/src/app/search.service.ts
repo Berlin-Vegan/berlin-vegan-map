@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 
-import { DayOfWeek } from "./day-of-week";
-import { GastroLocation } from "./gastro-location";
-import { GastroTag } from "./gastro-tag";
+import { DayOfWeek } from "./model/day-of-week";
+import { GastroLocation } from "./model/gastro-location";
+import { GastroTag } from "./model/gastro-tag";
 import { I18nService } from "./i18n.service";
 import { LocationService } from "./location.service";
 

@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
-import { GastroLocation } from "../gastro-location";
+import { GastroLocation } from "../model/gastro-location";
 import { I18nService } from "../i18n.service";
-import { Location } from "../location";
+import { Location } from "../model/location";
 import { ResourcesService } from "../resources.service";
 
 declare var JsCommon: () => void; // TODO

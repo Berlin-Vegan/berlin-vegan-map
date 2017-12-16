@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { InfoWindowViewService } from "../info-window-view.service";
-import { Location } from "../location";
+import { Location } from "../model/location";
 import { ResourcesService } from "../resources.service";
 
 declare var google: any; // Maybe TODO

@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 
-import { DayOfWeek } from "./day-of-week";
+import { DayOfWeek } from "./model/day-of-week";
 import { I18nService } from "./i18n.service";
-import { GastroLocation } from "./gastro-location";
+import { GastroLocation } from "./model/gastro-location";
 import { KilometerPipe } from "./kilometer.pipe";
-import { Location } from "./location";
+import { Location } from "./model/location";
 
 const extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
 const linkSymbol = "🔗"; // Your editor may not have this.

@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
-import { GastroLocation } from "./gastro-location";
-import { GastroTag } from "./gastro-tag";
-import { VeganCategory } from "./vegan-category";
+import { GastroLocation } from "./model/gastro-location";
+import { GastroTag } from "./model/gastro-tag";
+import { VeganCategory } from "./model/vegan-category";
 import { I18nService } from "./i18n.service";
 import { OpeningTimesService } from "./opening-times.service";
 

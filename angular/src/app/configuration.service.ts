@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { environment } from "../environments/environment";
-import { VeganCategory } from "./vegan-category";
+import { VeganCategory } from "./model/vegan-category";
 
 @Injectable()
 export class ConfigurationService {

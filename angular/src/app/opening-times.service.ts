@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 
 import { I18nService } from "./i18n.service";
-import { Location } from "./location";
-import { TimeInterval } from "./time-interval";
-import { OpeningTimeInterval } from "./opening-time-interval";
-import { OpeningTime } from "./opening-time";
-import { OpeningTimesCollection } from "./opening-times-collection";
+import { Location } from "./model/location";
+import { TimeInterval } from "./model/time-interval";
+import { OpeningTimeInterval } from "./model/opening-time-interval";
+import { OpeningTime } from "./model/opening-time";
+import { OpeningTimesCollection } from "./model/opening-times-collection";
 
 declare var JsCommon: () => void; // TODO
 const jsCommon = new JsCommon();

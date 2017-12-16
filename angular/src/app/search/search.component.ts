@@ -3,8 +3,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { LocationService } from "../location.service";
-import { GastroTag } from "../gastro-tag";
-import { VeganCategory } from "../vegan-category";
+import { GastroTag } from "../model/gastro-tag";
+import { VeganCategory } from "../model/vegan-category";
 
 @Component({
     selector: "app-search",
