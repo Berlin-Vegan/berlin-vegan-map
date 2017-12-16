@@ -1,16 +1,15 @@
 import { Injectable } from "@angular/core";
 
+import { environment } from "../environments/environment";
 import { VeganCategory } from "./vegan-category";
-
-const debugMode = false; // TODO: Set something like that depending on build.
 
 @Injectable()
 export class ConfigurationService {
 
-    readonly locationsUrl = (debugMode ? "assets/" : "/app/data/") + "GastroLocations.json";
+    readonly locationsUrl = (environment.production ? "/app/data/" : "assets/") + "GastroLocations.json";
     readonly mapCenter = { lat: 52.5200070, lng: 13.4049540 };
-    readonly geoLocationTimeoutMillis = debugMode ? 5000 : 15000;
-    readonly geoLocationFirefoxWorkaroundTimeoutMillis = debugMode ? 8000 : 16000;
+    readonly geoLocationTimeoutMillis = environment.production ? 15000 : 5000;
+    readonly geoLocationFirefoxWorkaroundTimeoutMillis = environment.production ? 16000 : 8000;
 
     getColor (veganCategory: VeganCategory): string {
         switch (veganCategory) {
