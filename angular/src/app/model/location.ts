@@ -29,4 +29,5 @@ export interface Location {
     commentWithoutFormatting: string;
     commentEnglish: string;
     commentEnglishWithoutFormatting: string;
+    tagsFriendly: string;
 }

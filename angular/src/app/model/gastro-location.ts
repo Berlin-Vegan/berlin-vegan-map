@@ -5,7 +5,6 @@ type YesNoUnknown = 1 | 0 | -1;
 
 export interface GastroLocation extends Location {
     // TODO: Check types for null/undefined.
-    tagsFriendly: string;
     reviewURL: string;
     organic: YesNoUnknown;
     glutenFree: YesNoUnknown;
