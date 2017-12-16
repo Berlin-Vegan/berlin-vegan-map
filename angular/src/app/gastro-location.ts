@@ -1,3 +1,4 @@
+import { GastroTag } from "./gastro-tag";
 import { Location } from "./location";
 
 type YesNoUnknown = 1 | 0 | -1;
@@ -17,5 +18,5 @@ export interface GastroLocation extends Location {
     wlan: YesNoUnknown;
     district: string;
     publicTransport: string;
-    tags: string[];
+    tags: GastroTag[];
 }
