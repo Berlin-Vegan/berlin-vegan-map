@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { DayOfWeek } from "./day-of-week";
 import { GastroLocation } from "./gastro-location";
+import { GastroTag } from "./gastro-tag";
 import { I18nService } from "./i18n.service";
 import { LocationService } from "./location.service";
 
@@ -79,7 +80,7 @@ export class SearchService {
 
             for (const tag in query.tags) {
                 if (query.tags.hasOwnProperty(tag) && query.tags[tag]) { // Tag is selected...
-                    if (location.tags.indexOf(tag) >= 0) { // ... and location has tag
+                    if (location.tags.indexOf(tag as GastroTag) >= 0) { // ... and location has tag
                         return true;
                     }
                 }
