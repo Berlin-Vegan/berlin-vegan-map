@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { LocationService } from "../location.service";
-import { Tag } from "../tag";
+import { GastroTag } from "../gastro-tag";
 import { VeganCategory } from "../vegan-category";
 
 @Component({
@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
 
     readonly i18n = this.i18nService.getI18n();
     readonly veganCategories = this.locationService.getSortedVeganCategories();
-    readonly tags: Tag[]= this.locationService.getSortedTags();
+    readonly tags: GastroTag[]= this.locationService.getSortedGastroTags();
     query: any; // TODO: Type
 
     ngOnInit() {

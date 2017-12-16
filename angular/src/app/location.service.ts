@@ -3,7 +3,7 @@ import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
 import { GastroLocation } from "./gastro-location";
-import { Tag } from "./tag";
+import { GastroTag } from "./gastro-tag";
 import { VeganCategory } from "./vegan-category";
 import { I18nService } from "./i18n.service";
 import { OpeningTimesService } from "./opening-times.service";
@@ -76,7 +76,7 @@ export class LocationService {
         return locationComment ? locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ") : locationComment;
     }
 
-    getSortedTags(): Tag[] {
+    getSortedGastroTags(): GastroTag[] {
         return ["Cafe", "Eiscafe", "Imbiss", "Restaurant"];
     }
 

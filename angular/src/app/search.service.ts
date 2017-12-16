@@ -119,7 +119,7 @@ export class SearchService {
 
         const tagsMap = {};
 
-        for (const tag of this.locationService.getSortedTags()) {
+        for (const tag of this.locationService.getSortedGastroTags()) {
             tagsMap[tag] = true;
         }
 
