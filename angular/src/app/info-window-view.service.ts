@@ -5,7 +5,6 @@ import { I18nService } from "./i18n.service";
 import { GastroLocation } from "./gastro-location";
 import { KilometerPipe } from "./kilometer.pipe";
 import { Location } from "./location";
-import { Tag } from "./tag";
 
 const extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
 const linkSymbol = "🔗"; // Your editor may not have this.
