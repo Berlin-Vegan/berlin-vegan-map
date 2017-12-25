@@ -21,7 +21,7 @@ export class InfoWindowViewService {
         this.i18n = i18nService.getI18n();
     }
 
-    getContent(location: GastroLocation, currentPosition?) { // TODO: Type
+    getContent(location: Location, currentPosition?) { // TODO: Type
         return "<article class='infoWindow'>"
             + "<header class='flex-container-nowrap'>"
             + "<h1>" + location.name + "</h1>"
@@ -31,7 +31,7 @@ export class InfoWindowViewService {
                 ""
             )
             + "</header>"
-            + "<p>" + location.tagsFriendly + " (" + this.i18n.enums.veganCategory.verbose[location.getVeganCategory()] + ")</p>"
+            + "<p>" + location.tagsFriendly + " (" + this.i18n.enums.veganCategory.verbose[location.veganCategory] + ")</p>"
             + "<p>" + location.address + "</p>"
             + (currentPosition ?
                 "<p>" + this.i18n.infoWindow.distance + ": "
@@ -42,7 +42,12 @@ export class InfoWindowViewService {
             + "<h2>" + this.i18n.infoWindow.openingTimes + "</h2>"
             + "<p>" + this.getOpeningTimesInnerHtml(location) + "</p>"
             + this.getOpenCommentInnerHtml(location)
-            + "<p>" + this.getCommentAndReviewInnerHtml(location) + "</p>"
+            + (
+                location instanceof GastroLocation ?
+                "<p>" + this.getCommentAndReviewInnerHtml(location as GastroLocation) + "</p>"
+                :
+                ""
+            )
             + "</article>";
     }
 
@@ -71,7 +76,7 @@ export class InfoWindowViewService {
     }
 
     private getOpenCommentInnerHtml(location: Location): string {
-        const openComment = location.getOpenComment();
+        const openComment = location.localizedOpenComment;
         return openComment ? "<p>" + openComment + "</p>" : "";
     }
 

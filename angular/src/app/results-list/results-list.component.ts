@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
-import { GastroLocation } from "../model/gastro-location";
 import { I18nService } from "../i18n.service";
 import { Location } from "../model/location";
 import { ResourcesService } from "../resources.service";
@@ -21,7 +20,7 @@ export class ResultsListComponent implements OnInit {
         private readonly resourcesService: ResourcesService,
     ) { }
 
-    @Input() locations: GastroLocation[];
+    @Input() locations: Location[];
     @Input() geoPosition; // TODO: Type
     @Output() readonly locationSelect = new EventEmitter<Location>();
 
@@ -35,10 +34,10 @@ export class ResultsListComponent implements OnInit {
     }
 
     getMarkerImageUrl(location: Location) {
-        return this.resourcesService.getDotImageUrl(this.configurationService.getColor(location.getVeganCategory()));
+        return this.resourcesService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
     }
 
-    makeVisible(location: GastroLocation | null) {
+    makeVisible(location: Location | null) {
         const locationElement = document.getElementById(location.id); // TODO
 
         if (!jsCommon.domUtil.isElementVisible(locationElement)) {

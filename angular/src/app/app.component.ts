@@ -1,11 +1,15 @@
 import { Component,  OnInit, ViewChild } from "@angular/core";
 
 import { GastroLocation } from "./model/gastro-location";
+import { GastroQuery } from "./model/gastro-query";
+import { ShoppingLocation } from "./model/shopping-location";
+import { ShoppingQuery } from "./model/shopping-query";
 import { GoogleMapComponent } from "./google-map/google-map.component";
 import { I18nService } from "./i18n.service";
 import { Location } from "./model/location";
 import { LocationService } from "./location.service";
 import { ResultsListComponent } from "./results-list/results-list.component";
+import { SearchComponent } from "./search/search.component";
 import { SearchService } from "./search.service";
 import { SortOrder } from "./sort/sort-order";
 
@@ -25,17 +29,27 @@ export class AppComponent implements OnInit {
         private readonly searchService: SearchService,
     ) {}
 
+    @ViewChild(SearchComponent) searchComponent: SearchComponent;
     @ViewChild(ResultsListComponent) resultsListComponent: ResultsListComponent;
     @ViewChild(GoogleMapComponent) googleMapComponent: GoogleMapComponent;
 
-    allLocations: GastroLocation[] = [];
-    filteredLocations: GastroLocation[] = [];
-    query = this.searchService.getInitialQuery();
+    readonly i18n = this.i18nService.getI18n();
+    allLocations: (GastroLocation | ShoppingLocation)[] = [];
+    filteredLocations: (GastroLocation | ShoppingLocation)[] = [];
+    query: GastroQuery | ShoppingQuery;
+    isGastro: boolean | undefined;
     sortOrder: SortOrder = "name";
     fullMapView = false;
     geoPosition = null; // TODO
 
     ngOnInit() {
+        this.initGastro();
+    }
+
+    initGastro() {
+        this.query = new GastroQuery();
+        this.searchComponent.init(this.query);
+        this.isGastro = true;
         this.locationService.getGastroLocations()
             .then(locations => {
                 this.allLocations = locations;
@@ -44,7 +58,19 @@ export class AppComponent implements OnInit {
             });
     }
 
-    onQueryChange(query) { // TODO: Type
+    initShopping() {
+        this.query = new ShoppingQuery();
+        this.searchComponent.init(this.query);
+        this.isGastro = false;
+        this.locationService.getShoppingLocations()
+            .then(locations => {
+                this.allLocations = locations;
+                this.filteredLocations = locations;
+                this.googleMapComponent.init(locations);
+            });
+    }
+
+    onQueryChange(query: GastroQuery | ShoppingQuery) {
         this.query = query;
         this.updateFilteredLocations();
     }

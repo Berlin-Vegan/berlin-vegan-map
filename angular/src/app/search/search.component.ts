@@ -1,35 +1,43 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
-import { LocationService } from "../location.service";
-import { GastroTag } from "../model/gastro-tag";
-import { VeganCategory } from "../model/vegan-category";
+import { GastroQuery } from "../model/gastro-query";
+import { GastroTag, getGastroTags } from "../model/gastro-tag";
+import { ShoppingQuery } from "../model/shopping-query";
+import { ShoppingTag, getShoppingTags } from "../model/shopping-tag";
+import { VeganCategory, getVeganCategories } from "../model/vegan-category";
 
 @Component({
     selector: "app-search",
     templateUrl: "./search.component.html",
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
     constructor(
         readonly configurationService: ConfigurationService,
         private readonly i18nService: I18nService,
-        private readonly locationService: LocationService,
     ) { }
 
-    @Input() initialQuery; // TODO: Type
-    @Output() readonly queryChange = new EventEmitter<any>(); // TODO: Type
+    @Output() readonly queryChange = new EventEmitter<GastroQuery | ShoppingQuery>();
     @Output() readonly geopositionChange = new EventEmitter<any>(); // TODO: Type
     @Output() readonly geopositionHighlightRequest = new EventEmitter<any>(); // TODO: Type
 
     readonly i18n = this.i18nService.getI18n();
-    readonly veganCategories = this.locationService.getSortedVeganCategories();
-    readonly tags: GastroTag[]= this.locationService.getSortedGastroTags();
-    query: any; // TODO: Type
+    readonly veganCategories = getVeganCategories();
+    tags: (GastroTag | ShoppingTag)[] | undefined;
+    query: GastroQuery | ShoppingQuery | undefined;
+    isGastro: boolean | undefined;
 
-    ngOnInit() {
-        this.query = this.initialQuery;
+    init(query: GastroQuery | ShoppingQuery) {
+        if (query instanceof GastroQuery) {
+            this.tags = getGastroTags();
+            this.isGastro = true;
+        } else {
+            this.tags = getShoppingTags();
+            this.isGastro = false;
+        }
+        this.query = query;
     }
 
     onQueryChange() {

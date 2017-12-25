@@ -1,4 +1,4 @@
-<form name="searchForm">
+<form *ngIf="query" name="searchForm">
     <section class="searchTextContainer flex-container-wrap">
         <input
             type="text"
@@ -34,18 +34,28 @@
     </section>
     <section class="flex-container-wrap">
         <h1>{{i18n.tag.header}}</h1>
-        <div class="flex-container-wrap">
+        <div *ngIf="isGastro" class="flex-container-wrap">
             <label *ngFor="let tag of tags">
                 <input
                     type="checkbox"
                     name="tags"
                     [(ngModel)]="query.tags[tag]"
                     (change)="onQueryChange()"
-                />{{i18n.enums.tag[tag]}}
+                />{{i18n.enums.gastroTag[tag]}}
+            </label>
+        </div>
+        <div *ngIf="!isGastro" class="flex-container-wrap">
+            <label *ngFor="let tag of tags">
+                <input
+                    type="checkbox"
+                    name="tags"
+                    [(ngModel)]="query.tags[tag]"
+                    (change)="onQueryChange()"
+                />{{i18n.enums.shoppingTag[tag]}}
             </label>
         </div>
     </section>
-    <section class="flex-container-wrap">
+    <section *ngIf="isGastro" class="flex-container-wrap">
         <div class="feature-col">
             <label *ngFor="let feature of ['organic', 'dog', 'handicappedAccessible', 'delivery', 'wlan']">
                 <input

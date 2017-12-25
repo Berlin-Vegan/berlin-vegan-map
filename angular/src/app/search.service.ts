@@ -2,31 +2,28 @@ import { Injectable } from "@angular/core";
 
 import { DayOfWeek } from "./model/day-of-week";
 import { GastroLocation } from "./model/gastro-location";
-import { GastroTag } from "./model/gastro-tag";
+import { GastroQuery } from "./model/gastro-query";
+import { GastroTag, getGastroTags } from "./model/gastro-tag";
+import { ShoppingLocation } from "./model/shopping-location";
+import { ShoppingQuery } from "./model/shopping-query";
+import { getVeganCategories } from "./model/vegan-category";
 import { I18nService } from "./i18n.service";
-import { LocationService } from "./location.service";
+import { ShoppingTag } from "./model/shopping-tag";
 
 @Injectable()
 export class SearchService {
 
-    constructor(
-        private readonly i18nService: I18nService,
-        private readonly locationService: LocationService
-    ) {}
+    constructor(private readonly i18nService: I18nService) {}
 
-    isResult(location: GastroLocation, query): boolean { // TODO: query type
+    isResult(location: GastroLocation | ShoppingLocation, query: GastroQuery | ShoppingQuery): boolean {
 
-        const filter0 = () => {
-            return (!query.organic || location.organic === 1)
-                && (!query.glutenFree || location.glutenFree === 1)
-                && (!query.dog || location.dog === 1)
-                && (!query.childChair || location.childChair === 1)
-                && (!query.handicappedAccessible || location.handicappedAccessible === 1)
-                && (!query.handicappedAccessibleWc || location.handicappedAccessibleWc === 1)
-                && (!query.delivery || location.delivery === 1)
-                && (!query.catering || location.catering === 1)
-                && (!query.wlan || location.wlan === 1);
-        };
+        if (
+            (location instanceof GastroLocation && query instanceof ShoppingQuery)
+            ||
+            (location instanceof ShoppingLocation && query instanceof GastroQuery)
+        ) {
+            throw new Error();
+        }
 
         const filter1 = () => {
 
@@ -57,8 +54,6 @@ export class SearchService {
                 searchedValues = searchedValues.concat([
                     location.street,
                     location.cityCode + "",
-                    location.district,
-                    location.publicTransport,
                     location.telephone,
                     location.website,
                     location.email,
@@ -68,6 +63,13 @@ export class SearchService {
                         location.commentWithoutFormatting
                     )
                 ]);
+
+                if (location instanceof GastroLocation) {
+                    searchedValues = searchedValues.concat([
+                        location.district,
+                        location.publicTransport,
+                    ]);
+                }
 
                 searchedValues = searchedValues.concat(location.tags);
             }
@@ -80,7 +82,12 @@ export class SearchService {
 
             for (const tag in query.tags) {
                 if (query.tags.hasOwnProperty(tag) && query.tags[tag]) { // Tag is selected...
-                    if (location.tags.indexOf(tag as GastroTag) >= 0) { // ... and location has tag
+                    if (
+                        (location instanceof GastroLocation && location.tags.includes(tag as GastroTag))
+                        ||
+                        (location instanceof ShoppingLocation && location.tags.includes(tag as ShoppingTag))
+                    ) {
+                        // ... and location has tag
                         return true;
                     }
                 }
@@ -96,7 +103,7 @@ export class SearchService {
                     query.veganCategories.hasOwnProperty(veganCategory)
                     && query.veganCategories[veganCategory]
                 ) { // Vegan category is selected...
-                    if (location.getVeganCategory() === veganCategory) { // ... and location belongs to it
+                    if (location.veganCategory === veganCategory) { // ... and location belongs to it
                         return true;
                     }
                 }
@@ -105,41 +112,32 @@ export class SearchService {
             return false;
         };
 
-        const filter6 = () => !query.review || !!location.reviewURL;
+        let filter6 = () => true;
+        let filter7 = () => true;
 
-        return filter0()
-            && filter1()
+        if (location instanceof GastroLocation && query instanceof GastroQuery) {
+            filter6 = () => !query.review || !!location.reviewURL;
+
+            filter7 = () => {
+                return (!query.organic || location.organic === 1)
+                    && (!query.glutenFree || location.glutenFree === 1)
+                    && (!query.dog || location.dog === 1)
+                    && (!query.childChair || location.childChair === 1)
+                    && (!query.handicappedAccessible || location.handicappedAccessible === 1)
+                    && (!query.handicappedAccessibleWc || location.handicappedAccessibleWc === 1)
+                    && (!query.delivery || location.delivery === 1)
+                    && (!query.catering || location.catering === 1)
+                    && (!query.wlan || location.wlan === 1);
+            };
+        }
+
+        return filter1()
             && filter2()
             && filter3()
             && filter4()
             && filter5()
-            && filter6();
-    }
-
-    getInitialQuery() { // TODO: query type
-
-        const tagsMap = {};
-
-        for (const tag of this.locationService.getSortedGastroTags()) {
-            tagsMap[tag] = true;
-        }
-
-        const veganCategoriesMap = {};
-
-        for (const veganCategory of this.locationService.getSortedVeganCategories()) {
-            veganCategoriesMap[veganCategory] = true;
-        }
-
-        return {
-            text: "",
-            openAtWeekDay: "all",
-            tags: tagsMap,
-            veganCategories: veganCategoriesMap,
-            allWeekDays: function() { return this.openAtWeekDay === "all"; },
-            distance: { enabled: false, position: null, km: 1},
-            openAtTime: "",
-            openAtTimeAsDate: function() { return parseTime(this.openAtTime); },
-        };
+            && filter6()
+            && filter7();
     }
 }
 
@@ -157,20 +155,4 @@ function normalizeText(text: string | undefined): string {
         .replace(/ó|ô/g, "o")
         .replace(/ñ/g, "n")
         .toLowerCase();
-}
-
-// TODO: Refactor to library
-function parseTime(hoursAndMinutes: string): Date | undefined {
-    const parts = hoursAndMinutes.split(":");
-    if (parts.length === 2 && parts[0].length === 2 && parts[1].length === 2) {
-        const hours = parseInt(parts[0], 10);
-        const minutes = parseInt(parts[1], 10);
-        if (0 <= hours && hours <= 23 && 0 <= minutes && minutes <= 59) {
-            const timeAsDate = new Date(0);
-            timeAsDate.setHours(hours);
-            timeAsDate.setMinutes(minutes);
-            return timeAsDate;
-        }
-    }
-    return undefined;
 }

@@ -1,1 +1,2 @@
-export type VeganCategory = "omnivorous" | "vegetarian" | "vegan"; // TODO: Consider enum and default export
+export type VeganCategory = "vegan" | "vegetarian" | "omnivorous";
+export function getVeganCategories(): VeganCategory[] { return ["vegan", "vegetarian", "omnivorous"]; }

@@ -6,7 +6,9 @@ import { VeganCategory } from "./model/vegan-category";
 @Injectable()
 export class ConfigurationService {
 
-    readonly locationsUrl = (environment.production ? "/app/data/" : "assets/") + "GastroLocations.json";
+    private readonly locationsBaseUrl = (environment.production ? "/app/data/" : "assets/");
+    readonly gastroLocationsUrl = this.locationsBaseUrl + "GastroLocations.json";
+    readonly shoppingLocationsUrl = this.locationsBaseUrl + "ShoppingLocations.json";
     readonly mapCenter = { lat: 52.5200070, lng: 13.4049540 };
     readonly geoLocationTimeoutMillis = environment.production ? 15000 : 5000;
     readonly geoLocationFirefoxWorkaroundTimeoutMillis = environment.production ? 16000 : 8000;

@@ -1,1 +1,2 @@
-export type GastroTag = "Cafe" | "Eiscafe" | "Imbiss" | "Restaurant"; // TODO: Consider enum and default export
+export type GastroTag = "Cafe" | "Eiscafe" | "Imbiss" | "Restaurant";
+export function getGastroTags(): GastroTag[] { return ["Cafe", "Eiscafe", "Imbiss", "Restaurant"]; }

@@ -37,7 +37,7 @@ const i18n = {
                 },
             },
         },
-        tag: {
+        gastroTag: {
             // Capitalized values because they are capitalized in the data source.
             Cafe: {
                 en: "Cafe",
@@ -54,6 +54,25 @@ const i18n = {
             Restaurant: {
                 en: "Restaurant",
                 de: "Restaurant",
+            },
+        },
+        shoppingTag: {
+            // Capitalized values because they are capitalized in the data source.
+            Bio: {
+                en: "Organic",
+                de: "Bio",
+            },
+            Backwaren: {
+                en: "Baked goods",
+                de: "Backwaren",
+            },
+            Eis: {
+                en: "Ice cream",
+                de: "Eis",
+            },
+            Kleidung: {
+                en: "Clothing",
+                de: "Kleidung",
             },
         },
         weekday: {
@@ -93,6 +112,16 @@ const i18n = {
                 en: "Saturday",
                 de: "Samstag",
             },
+        },
+    },
+    locationSwitch: {
+        gastro: {
+            en: "Food & beverages",
+            de: "Essen & Trinken",
+        },
+        shopping: {
+            en: "Shopping",
+            de: "Einkaufen",
         },
     },
     search: {

@@ -18,8 +18,8 @@
         </div>
         <div>
             <span>{{location.tagsFriendly}}</span>
-            <span title="{{i18n.enums.veganCategory.verbose[location.getVeganCategory()]}}">
-                ({{i18n.enums.veganCategory.concise[location.getVeganCategory()]}})
+            <span title="{{i18n.enums.veganCategory.verbose[location.veganCategory]}}">
+                ({{i18n.enums.veganCategory.concise[location.veganCategory]}})
             </span>
         </div>
         <div class="addressWithDistanceContainer flex-container-nowrap">
@@ -30,11 +30,11 @@
             <span>{{location.openingTimes.getTodayFriendly()}}</span>
             <span
                 [hidden]="!location.openComment"
-                title={{location.getOpenComment()}}
+                title={{location.localizedOpenComment}}
                 (click)="expandOpenComments.set(location, !expandOpenComments.get(location));"
             >
                 <span class="fa fa-info-circle"></span>
-                <span [hidden]="!expandOpenComments.get(location)">{{location.getOpenComment()}}</span>
+                <span [hidden]="!expandOpenComments.get(location)">{{location.localizedOpenComment}}</span>
             </span>
         </div>
     </li>

@@ -1,33 +1,43 @@
 import { VeganCategory } from "./vegan-category";
 import { OpeningTimesCollection } from "./opening-times-collection";
 
-export interface Location {
+declare var JsCommon: () => void; // TODO
+const jsCommon = new JsCommon(); // TODO
+
+export class Location {
     // TODO: Check types for null/undefined.
-    id: string;
-    name: string;
-    street: string;
-    cityCode: number;
-    address: string;
-    latCoord: number;
-    longCoord: number;
-    telephone: string;
-    website: string;
-    email: string;
-    otSun: string;
-    otMon: string;
-    otTue: string;
-    otWed: string;
-    otThu: string;
-    otFri: string;
-    otSat: string;
-    openingTimes: OpeningTimesCollection;
-    openComment: string;
-    getOpenComment: () => string;
-    getDistanceToPositionInKm: (position: any) => number; // TODO: Type
-    getVeganCategory: () => VeganCategory;
-    comment: string;
-    commentWithoutFormatting: string;
-    commentEnglish: string;
-    commentEnglishWithoutFormatting: string;
-    tagsFriendly: string;
+    constructor(
+        public readonly id: string,
+        public readonly name: string,
+        public readonly street: string,
+        public readonly cityCode: number,
+        public readonly latCoord: number, // TODO: Needed?
+        public readonly longCoord: number, // TODO: Needed?
+        public readonly telephone: string,
+        public readonly website: string,
+        public readonly email: string,
+        public readonly openingTimes: OpeningTimesCollection,
+        public readonly localizedOpenComment: string,
+        public readonly veganCategory: VeganCategory,
+        public readonly comment: string,
+        public readonly commentWithoutFormatting: string,
+        public readonly commentEnglish: string,
+        public readonly commentEnglishWithoutFormatting: string,
+        public readonly tagsFriendly: string,
+    ) {}
+
+    private get position() { // TODO: Type
+        return {
+            lat: () => this.latCoord,
+            lng: () => this.longCoord,
+        };
+    }
+
+    getDistanceToPositionInKm(position) { // TODO: Type
+        return jsCommon.geoUtil.getDistanceInKm(position, this.position);
+    }
+
+    get address(): string {
+        return this.street + ", " + this.cityCode + " Berlin";
+    }
 }

@@ -2,11 +2,13 @@ import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
+import { ConfigurationService } from "./configuration.service";
 import { GastroLocation } from "./model/gastro-location";
 import { GastroTag } from "./model/gastro-tag";
 import { VeganCategory } from "./model/vegan-category";
 import { I18nService } from "./i18n.service";
 import { OpeningTimesService } from "./opening-times.service";
+import { ShoppingLocation } from "./model/shopping-location";
 
 declare var JsCommon: () => void; // TODO
 
@@ -21,66 +23,97 @@ export class LocationService {
 
     constructor(
         private readonly http: Http,
+        private readonly configurationService: ConfigurationService,
         private readonly openingTimesService: OpeningTimesService,
         private readonly i18nService: I18nService
     ) {}
 
     getGastroLocations(): Promise<GastroLocation[]> {
-        return this.http.get("assets/GastroLocations.json")
+        return this.http.get(this.configurationService.gastroLocationsUrl)
             .toPromise()
             .then(response => response.json())
-            .then(locations => { this.enhanceLocations(locations); return locations; });
+            .then(locations => locations.map(it => this.newGastroLocation(it)));
     }
 
-    private enhanceLocations(locations: any[]) { // TODO: location type
-        for (const location of locations) {
-            this.enhanceLocation(location);
-        }
+    getShoppingLocations(): Promise<ShoppingLocation[]> {
+        return this.http.get(this.configurationService.shoppingLocationsUrl)
+            .toPromise()
+            .then(response => response.json())
+            // Temporary fixes for bad data TODO
+            .then(locations => locations.filter(it => it.tags))
+            .then(locations => { locations.forEach(it => it.tags = it.tags.map(tag => tag.trim())); return locations; })
+            // (end)
+            .then(locations => locations.map(it => this.newShoppingLocation(it)));
     }
 
-    private enhanceLocation(location) { // TODO: location type
-
-        location.tags = location.tags.sort();
-        location.tagsFriendly = location.tags.map(it => this.i18nService.getI18n().enums.tag[it]).join(", ");
-        location.commentWithoutFormatting = this.removeFormatting(location.comment);
-        location.commentEnglishWithoutFormatting = this.removeFormatting(location.commentEnglish);
-
-        if (location.reviewURL) {
+    private newGastroLocation(location) { // TODO: location type
+        return new GastroLocation(
+            location.id,
+            location.name,
+            location.street,
+            location.cityCode,
+            location.latCoord,
+            location.longCoord,
+            location.telephone,
+            location.website,
+            location.email,
+            this.openingTimesService.getOpeningTimesCollection(location),
+            this.openingTimesService.getOpenComment(location),
+            this.getVeganCategory(location),
+            location.comment,
+            this.removeFormatting(location.comment),
+            location.commentEnglish,
+            this.removeFormatting(location.commentEnglish),
+            location.tags.map(it => this.i18nService.getI18n().enums.gastroTag[it]).join(", "),
             // Possibly not necessary in production. TODO: Configure
-            location.reviewURL = "http://www.berlin-vegan.de/essen-und-trinken/kritiken/" + location.reviewURL;
+            location.reviewURL ? "http://www.berlin-vegan.de/essen-und-trinken/kritiken/" + location.reviewURL : location.reviewURL,
+            location.organic,
+            location.glutenFree,
+            location.dog,
+            location.childChair,
+            location.handicappedAccessible,
+            location.handicappedAccessibleWc,
+            location.delivery,
+            location.catering,
+            location.wlan,
+            location.district,
+            location.publicTransport,
+            location.tags.sort(),
+        );
+    }
+
+    private newShoppingLocation(location) { // TODO: location type
+        return new ShoppingLocation(
+            location.id,
+            location.name,
+            location.street,
+            location.cityCode,
+            location.latCoord,
+            location.longCoord,
+            location.telephone,
+            location.website,
+            location.email,
+            this.openingTimesService.getOpeningTimesCollection(location),
+            this.openingTimesService.getOpenComment(location),
+            this.getVeganCategory(location),
+            location.comment,
+            this.removeFormatting(location.comment),
+            location.commentEnglish,
+            this.removeFormatting(location.commentEnglish),
+            location.tags.map(it => this.i18nService.getI18n().enums.shoppingTag[it]).join(", "),
+            location.tags.sort(),
+        );
+    }
+
+    private getVeganCategory(location): VeganCategory { // TODO: Type
+        const veganCategory = veganCategories[location.vegan];
+        if (!veganCategory) {
+            throw new Error("Unexpected value for vegan: " + location.vegan);
         }
-
-        location.address = location.street + ", " + location.cityCode + " " + location.district;
-        location.openingTimes = this.openingTimesService.getOpeningTimesCollection(location);
-        location.getOpenComment = () => this.openingTimesService.getOpenComment(location);
-
-        location.position = {
-            lat: function() { return location.latCoord; },
-            lng: function() { return location.longCoord; }
-        };
-
-        location.getDistanceToPositionInKm = function(position) {
-            return jsCommon.geoUtil.getDistanceInKm(position, this.position);
-        };
-
-        location.getVeganCategory = function() {
-            const veganCategory = veganCategories[this.vegan];
-            if (!veganCategory) {
-                throw new Error("Unexpected value for vegan: " + this.vegan);
-            }
-            return veganCategory;
-        };
+        return veganCategory;
     }
 
     private removeFormatting(locationComment: string | undefined): string | undefined {
         return locationComment ? locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ") : locationComment;
-    }
-
-    getSortedGastroTags(): GastroTag[] {
-        return ["Cafe", "Eiscafe", "Imbiss", "Restaurant"];
-    }
-
-    getSortedVeganCategories(): VeganCategory[] {
-        return veganCategories.filter(it => !!it).reverse();
     }
 }

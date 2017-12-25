@@ -15,7 +15,7 @@ export class OpeningTimesService {
 
     constructor(private readonly i18nService: I18nService) {}
 
-    getOpeningTimesCollection(location: Location): OpeningTimesCollection {
+    getOpeningTimesCollection(location): OpeningTimesCollection { // TODO: type
         return new OpeningTimesCollection(
         [
             new OpeningTime(0, this.parseOpeningTimeInterval(location.otSun), this.i18nService),
@@ -29,7 +29,7 @@ export class OpeningTimesService {
         this.i18nService);
     }
 
-    getOpenComment(location: Location): string {
+    getOpenComment(location): string { // TODO: type
         return location.openComment && this.i18nService.getLanguage() === "en" ?
             "Please see location website for opening time details!"
             :

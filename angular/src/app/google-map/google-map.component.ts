@@ -131,7 +131,7 @@ export class GoogleMapComponent {
 
     // TODO: Refactor, because it is duplicated somewhere else.
     private getMarkerImageUrl(location: Location) {
-        return this.resourcesService.getDotImageUrl(this.configurationService.getColor(location.getVeganCategory()));
+        return this.resourcesService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
     }
 
     selectLocation(location: Location) {
