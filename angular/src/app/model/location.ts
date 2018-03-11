@@ -11,6 +11,7 @@ export class Location {
         public readonly name: string,
         public readonly street: string,
         public readonly cityCode: number,
+        public readonly city: string,
         public readonly latCoord: number, // TODO: Needed?
         public readonly longCoord: number, // TODO: Needed?
         public readonly telephone: string,
@@ -38,6 +39,6 @@ export class Location {
     }
 
     get address(): string {
-        return this.street + ", " + this.cityCode + " Berlin";
+        return this.street + ", " + this.cityCode + " " + this.city;
     }
 }
