@@ -29,7 +29,7 @@
         <div>
             <span>{{location.openingTimes.getTodayFriendly()}}</span>
             <span
-                [hidden]="!location.openComment"
+                [hidden]="!location.localizedOpenComment"
                 title={{location.localizedOpenComment}}
                 (click)="expandOpenComments.set(location, !expandOpenComments.get(location));"
             >
