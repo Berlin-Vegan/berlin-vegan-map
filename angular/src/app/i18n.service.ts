@@ -70,6 +70,10 @@ const i18n = {
                 en: "Ice cream",
                 de: "Eis",
             },
+            Drogerie: {
+                en: "Drug store",
+                de: "Drogerie",
+            },
             Kleidung: {
                 en: "Clothing",
                 de: "Kleidung",
