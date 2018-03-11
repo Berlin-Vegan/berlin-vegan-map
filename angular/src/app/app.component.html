@@ -7,10 +7,10 @@
     <main class="flex-container-nowrap">
         <div class="col-left" [hidden]="fullMapView">
             <div id="pre-search-div"></div>
-            <section>
+            <nav>
                 <button [disabled]="isGastro" (click)="initGastro()">{{i18n.locationSwitch.gastro}}</button>
                 <button [disabled]="!isGastro" (click)="initShopping()">{{i18n.locationSwitch.shopping}}</button>
-            </section>
+            </nav>
             <app-search
                 (queryChange)="onQueryChange($event)"
                 (geopositionChange)="onGeopositionChange($event)"
