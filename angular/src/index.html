@@ -79,11 +79,6 @@
             document.head.appendChild(script);
         }
 
-        // Build process seems to have a problem with an array's filter function.
-        // The problem shows up at runtime in production.
-        // So we use this workaround:
-        Array.prototype.workaroundFilter = Array.prototype.filter;
-
         exports = {}; // Hack to be able to use libraries from the assets folder. TODO
     </script>
     <!-- Hacky way to use index.js from https://github.com/marco-eckstein/js-common TODO -->
