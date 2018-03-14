@@ -10,7 +10,7 @@ body {
     margin-bottom: 0;
 }
 
-app-root > div {
+app-main > div {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@ app-root > div {
         margin-top: 2vh;
     }
 
-    app-root > div {
+    app-main > div {
         height: 98vh;
     }
 }

@@ -8,8 +8,16 @@
         <div class="col-left" [hidden]="fullMapView">
             <div id="pre-search-div"></div>
             <nav>
-                <button [disabled]="isGastro" (click)="initGastro()">{{i18n.locationSwitch.gastro}}</button>
-                <button [disabled]="!isGastro" (click)="initShopping()">{{i18n.locationSwitch.shopping}}</button>
+                <ul>
+                    <li>
+                        <a routerLink="/gastro" [class.disabled]="isGastro" (click)="initGastro()"
+                        >{{i18n.locationSwitch.gastro}}</a>
+                    </li>
+                    <li>
+                        <a routerLink="/shopping" [class.disabled]="!isGastro" (click)="initShopping()"
+                        >{{i18n.locationSwitch.shopping}}</a>
+                    </li>
+                </ul>
             </nav>
             <app-search
                 (queryChange)="onQueryChange($event)"
