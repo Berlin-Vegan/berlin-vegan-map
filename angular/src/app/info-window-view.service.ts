@@ -39,6 +39,7 @@ export class InfoWindowViewService {
                 + "</p>"
                 :
                 "")
+            + (location.telephone ? "<p>" + this.i18n.infoWindow.phone + ": " + location.telephone + "</p>" : "")
             + "<h2>" + this.i18n.infoWindow.openingTimes + "</h2>"
             + "<p>" + this.getOpeningTimesInnerHtml(location) + "</p>"
             + this.getOpenCommentInnerHtml(location)

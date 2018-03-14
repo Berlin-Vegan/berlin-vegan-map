@@ -295,6 +295,10 @@ const i18n = {
             en: "Distance",
             de: "Entfernung",
         },
+        phone: {
+            en: "Phone",
+            de: "Tel.",
+        },
         openingTimes: {
             en: "Opening hours",
             de: "Öffnungszeiten",
