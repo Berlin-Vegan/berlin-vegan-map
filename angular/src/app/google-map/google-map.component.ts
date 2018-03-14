@@ -13,6 +13,7 @@ const jsCommon = new JsCommon();
 @Component({
     selector: "app-google-map",
     template: `<div id="map"></div>`,
+    styles: [ `div { width: 100%; height: 100%; }` ],
 })
 export class GoogleMapComponent {
 

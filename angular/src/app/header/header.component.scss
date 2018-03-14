@@ -1,0 +1,94 @@
+@import "variables";
+
+.imgContainer {
+    flex: 1;
+
+    img {
+        height: 7vh;
+    }
+
+    div:nth-of-type(2) {
+        flex: 1;
+    }
+
+    div:nth-of-type(2) div:nth-of-type(1) {
+        width: 21vh; /* 21 = 3 * 7. Indeed vh, not vw! */
+        background-image: url("../../assets/images/bv-header-center.png");
+        background-repeat: no-repeat;
+        background-size: auto 7vh;
+    }
+
+    div:nth-of-type(2) div:nth-of-type(2) {
+        flex: 1;
+        background-image: url("../../assets/images/bv-header-right.png");
+        background-repeat: repeat-x;
+        background-size: auto 7vh;
+    }
+}
+
+nav {
+    width: 100%;
+    align-items: flex-end;
+    color: white;
+    margin-top: -8px;
+    padding-top: -8px;
+    padding-bottom: 4px;
+    background-color: $bv-green;
+
+    div {
+        width: 23%;
+        text-align: left;
+        padding-left: 0.3%;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul:nth-of-type(1) {
+        width: 54%;
+        text-align: center;
+    }
+
+    ul:nth-of-type(2) {
+        width: 23%;
+        text-align: right;
+        padding-right: 0.5%;
+    }
+
+    ul li {
+        display: inline;
+    }
+
+    ul:first-of-type li::before {
+        content: '|'
+    }
+
+    ul:first-of-type li:first-of-type::before {
+        content: ''
+    }
+
+    ul:last-of-type li:last-of-type::before {
+        @media #{$min-width-1} {
+            content: '|'
+        }
+    }
+
+    a {
+        color: white;
+    }
+}
+
+.selectedLanguage {
+    color: $very-bright-green;
+}
+
+.selectedLanguage, .mobile {
+    display: none;
+
+    @media #{$min-width-1} {
+      display: inline; /* initial is more elegant, but does not work in IE11. */
+    }
+}

@@ -5,6 +5,7 @@ import { I18nService } from "../i18n.service";
 @Component({
     selector: "app-statistics",
     templateUrl: "./statistics.component.html",
+    styleUrls: [ "./statistics.component.scss" ],
 })
 export class StatisticsComponent {
 

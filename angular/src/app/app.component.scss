@@ -1,0 +1,92 @@
+@import "variables";
+
+main {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+}
+
+nav {
+    background-color: $bv-green;
+    margin-top: 0;
+    padding-top: 0.8em;
+}
+
+button {
+    background-color: $bv-green;
+    color: white;
+    border: none;
+    font-size: 1em;
+}
+
+button:disabled {
+    font-weight: bold;
+}
+
+button:enabled:hover {
+    background-color: $bright-green;
+}
+
+hr {
+    color: rgb(230, 255, 230);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+hr.fat {
+    border: none;
+    background-color: $bv-green;
+    height: 3px;
+}
+
+.sortAndStatisticsContainer {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+app-sort {
+    width: 55%;
+}
+
+app-statistics {
+    width: 45%;
+}
+
+.col-left {
+    width: 100%;
+    padding-right: 6px;
+    overflow-y: scroll;
+  }
+
+.col-right {
+    width: 0%;
+}
+
+@media #{$min-width-1} {
+    .col-left { width: 60%; }
+    .col-right { width: 40%; }
+}
+
+@media #{$min-width-2} {
+    .col-left { width: 50%; }
+    .col-right { width: 50%; }
+}
+
+@media #{$min-width-3} {
+    .col-left { width: 40%; }
+    .col-right { width: 60%; }
+}
+
+@media #{$min-width-4} {
+    .col-left { width: 30%; }
+    .col-right { width: 70%; }
+}
+
+@media #{$min-width-5} {
+    .col-left { width: 25%; }
+    .col-right { width: 75%; }
+}
+
+.fullMapView {
+    width: 100%;
+}

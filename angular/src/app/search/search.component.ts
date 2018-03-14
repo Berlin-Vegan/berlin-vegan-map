@@ -11,6 +11,7 @@ import { VeganCategory, getVeganCategories } from "../model/vegan-category";
 @Component({
     selector: "app-search",
     templateUrl: "./search.component.html",
+    styleUrls: [ "./search.component.scss" ],
 })
 export class SearchComponent {
 

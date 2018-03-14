@@ -1,0 +1,36 @@
+@import "variables";
+
+ul {
+    padding: 0;
+    list-style-type: none;
+
+    li {
+        margin-top: 0.5em;
+        padding-bottom: 0.5em;
+        border-bottom: 0.06em solid $bv-green;
+    }
+}
+
+.locationHeadingContainer {
+    h1 {
+        flex: 1;
+    }
+
+    div {
+        text-align: right;
+    }
+}
+
+.addressWithDistanceContainer {
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    div:nth-of-type(1) {
+        width: 83%;
+    }
+
+    div:nth-of-type(2) {
+        width: 17%;
+        text-align: right;
+    }
+}

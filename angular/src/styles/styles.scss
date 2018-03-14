@@ -1,0 +1,106 @@
+@import "variables";
+
+* {
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+app-root > div {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+  This media query essentially asks for IE using a trick.
+  The adjustments make the layout in IE less horrible.
+  */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    body {
+        margin-top: 2vh;
+    }
+
+    app-root > div {
+        height: 98vh;
+    }
+}
+
+.flex-container-nowrap {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.flex-container-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+a {
+    text-decoration: none;
+    color: $bv-green;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-top: 0em;
+    margin-bottom: 0.5em;
+}
+
+form {
+    h1 {
+        font-size: 1em;
+        font-weight: normal;
+        margin: 0; /* initial is more elegant, but does not work in IE11. */
+    }
+
+    h1:after {
+        content: ":";
+    }
+
+    label {
+        font-weight: normal;
+        white-space: nowrap;
+    }
+
+    select {
+        margin-left: 0.3em;
+    }
+}
+
+.error {
+    color: red;
+}
+
+.infoWindow {
+    font-size: initial;
+
+    header {
+        padding-top: 0.2em;
+        padding-bottom: 0.4em;
+        border-bottom: 0.06em solid $bv-green;
+    }
+
+    header * {
+        font-size: 1.2em;
+        font-weight: 500;
+        padding: 0;
+        margin: 0 0.2em 0 0;
+    }
+
+    h2 {
+        font-size: 1em;
+        font-weight: bold;
+        margin-top: 0px;
+        margin-bottom: -12px;
+    }
+}

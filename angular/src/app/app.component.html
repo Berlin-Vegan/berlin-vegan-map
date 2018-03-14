@@ -1,4 +1,4 @@
-<div class="main">
+<div>
     <app-header
         [fullMapView]="fullMapView"
         (searchClick)="scrollSearchIntoView()"
@@ -17,7 +17,7 @@
                 (geopositionHighlightRequest)="onGeopositionHighlightRequest()"
             ></app-search>
             <hr/>
-            <div class="sortFormAndStatisticsContainer flex-container-nowrap">
+            <div class="sortAndStatisticsContainer flex-container-nowrap">
                 <app-sort
                     [initialSortOrder]="sortOrder"
                     [isDistanceEnabled]="!!geoPosition"
