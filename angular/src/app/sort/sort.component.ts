@@ -15,7 +15,10 @@ export class SortComponent implements OnInit {
 
     @Input() set isDistanceEnabled(isDistanceEnabled: boolean) {
         this._isDistanceEnabled = isDistanceEnabled;
-        if (!isDistanceEnabled && this.sortOrder !== "name") {
+        if (isDistanceEnabled && this.sortOrder !== "distance") {
+            this.sortOrder = "distance";
+            this.sortOrderChange.emit("distance");
+        } else if (!isDistanceEnabled && this.sortOrder !== "name") {
             this.sortOrder = "name";
             this.sortOrderChange.emit("name");
         }
