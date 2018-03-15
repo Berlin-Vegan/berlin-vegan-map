@@ -15,6 +15,14 @@
       "es2017",
       "dom"
     ],
-    "noUnusedLocals": true
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    // TODO: Use "strict" later, which includes the following four rules:
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true
   }
 }
