@@ -17,7 +17,10 @@
     ],
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+
+    // Causes false positives in production build.
+    // TODO: Update Angular and check if it can be turned on again.
+    // "noUnusedParameters": true,
 
     // TODO: Use "strict" later, which includes the following four rules:
     "noImplicitThis": true,
