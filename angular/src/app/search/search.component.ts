@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
@@ -6,7 +6,7 @@ import { GastroQuery } from "../model/gastro-query";
 import { GastroTag, getGastroTags } from "../model/gastro-tag";
 import { ShoppingQuery } from "../model/shopping-query";
 import { ShoppingTag, getShoppingTags } from "../model/shopping-tag";
-import { VeganCategory, getVeganCategories } from "../model/vegan-category";
+import { getVeganCategories } from "../model/vegan-category";
 
 @Component({
     selector: "app-search",

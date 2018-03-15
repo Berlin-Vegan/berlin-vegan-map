@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";

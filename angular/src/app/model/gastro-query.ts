@@ -1,4 +1,4 @@
-import { GastroTag, getGastroTags } from "./gastro-tag";
+import { getGastroTags } from "./gastro-tag";
 import { Query } from "./query";
 
 export class GastroQuery extends Query {

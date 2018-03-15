@@ -4,19 +4,15 @@ import "rxjs/add/operator/toPromise";
 
 import { ConfigurationService } from "./configuration.service";
 import { GastroLocation } from "./model/gastro-location";
-import { GastroTag } from "./model/gastro-tag";
 import { VeganCategory } from "./model/vegan-category";
 import { I18nService } from "./i18n.service";
 import { OpeningTimesService } from "./opening-times.service";
 import { ShoppingLocation } from "./model/shopping-location";
 
-declare var JsCommon: () => void; // TODO
-
 const veganCategories = [];
 veganCategories[5] = "vegan";
 veganCategories[4] = "vegetarian";
 veganCategories[2] = "omnivorous";
-const jsCommon = new JsCommon(); // TODO
 
 @Injectable()
 export class LocationService {

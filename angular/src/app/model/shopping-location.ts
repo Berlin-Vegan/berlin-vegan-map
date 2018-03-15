@@ -3,8 +3,6 @@ import { Location } from "./location";
 import { OpeningTimesCollection } from "./opening-times-collection";
 import { VeganCategory } from "./vegan-category";
 
-type YesNoUnknown = 1 | 0 | -1;
-
 export class ShoppingLocation extends Location {
     constructor(
         id: string,

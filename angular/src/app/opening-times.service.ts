@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 
 import { I18nService } from "./i18n.service";
-import { Location } from "./model/location";
 import { TimeInterval } from "./model/time-interval";
 import { OpeningTimeInterval } from "./model/opening-time-interval";
 import { OpeningTime } from "./model/opening-time";

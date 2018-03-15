@@ -1,5 +1,4 @@
-import { DayOfWeek } from "./day-of-week";
-import { VeganCategory, getVeganCategories } from "./vegan-category";
+import { getVeganCategories } from "./vegan-category";
 
 export class Query {
     text = "";

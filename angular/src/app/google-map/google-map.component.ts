@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
@@ -7,8 +7,6 @@ import { Location } from "../model/location";
 import { ResourcesService } from "../resources.service";
 
 declare var google: any; // Maybe TODO
-declare var JsCommon: () => void; // TODO
-const jsCommon = new JsCommon();
 
 @Component({
     selector: "app-google-map",

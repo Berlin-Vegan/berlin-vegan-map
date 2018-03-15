@@ -1,4 +1,4 @@
-import { ShoppingTag, getShoppingTags } from "./shopping-tag";
+import { getShoppingTags } from "./shopping-tag";
 import { Query } from "./query";
 
 export class ShoppingQuery extends Query {

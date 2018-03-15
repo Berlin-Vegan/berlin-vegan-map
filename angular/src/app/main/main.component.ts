@@ -14,10 +14,6 @@ import { SearchComponent } from "../search/search.component";
 import { SearchService } from "../search.service";
 import { SortOrder } from "../sort/sort-order";
 
-declare var google: any; // Maybe TODO
-declare var JsCommon: () => void; // TODO
-const jsCommon = new JsCommon();
-
 @Component({
     selector: "app-main",
     templateUrl: "./main.component.html",

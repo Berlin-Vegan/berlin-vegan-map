@@ -3,10 +3,9 @@ import { Injectable } from "@angular/core";
 import { DayOfWeek } from "./model/day-of-week";
 import { GastroLocation } from "./model/gastro-location";
 import { GastroQuery } from "./model/gastro-query";
-import { GastroTag, getGastroTags } from "./model/gastro-tag";
+import { GastroTag } from "./model/gastro-tag";
 import { ShoppingLocation } from "./model/shopping-location";
 import { ShoppingQuery } from "./model/shopping-query";
-import { getVeganCategories } from "./model/vegan-category";
 import { I18nService } from "./i18n.service";
 import { ShoppingTag } from "./model/shopping-tag";
 
