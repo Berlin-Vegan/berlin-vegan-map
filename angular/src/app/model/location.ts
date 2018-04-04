@@ -16,7 +16,6 @@ export class Location {
         public readonly longCoord: number, // TODO: Needed?
         public readonly telephone: string,
         public readonly website: string,
-        public readonly email: string,
         public readonly openingTimes: OpeningTimesCollection,
         public readonly localizedOpenComment: string,
         public readonly veganCategory: VeganCategory,

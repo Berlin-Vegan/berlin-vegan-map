@@ -55,7 +55,6 @@ export class SearchService {
                     location.cityCode + "",
                     location.telephone,
                     location.website,
-                    location.email,
                     (this.i18nService.getLanguage() === "en" ?
                         location.commentEnglishWithoutFormatting
                         :
@@ -67,6 +66,7 @@ export class SearchService {
                     searchedValues = searchedValues.concat([
                         location.district,
                         location.publicTransport,
+                        location.email,
                     ]);
                 }
 

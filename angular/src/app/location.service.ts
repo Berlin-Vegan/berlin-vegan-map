@@ -48,7 +48,6 @@ export class LocationService {
             location.longCoord,
             location.telephone,
             location.website,
-            location.email,
             this.openingTimesService.getOpeningTimesCollection(location),
             this.openingTimesService.getOpenComment(location),
             this.getVeganCategory(location),
@@ -59,6 +58,7 @@ export class LocationService {
             location.tags.map(it => this.i18nService.getI18n().enums.gastroTag[it]).join(", "),
             // Possibly not necessary in production. TODO: Configure
             location.reviewURL ? "http://www.berlin-vegan.de/essen-und-trinken/kritiken/" + location.reviewURL : location.reviewURL,
+            location.email,
             location.organic,
             location.glutenFree,
             location.dog,
@@ -85,7 +85,6 @@ export class LocationService {
             location.longCoord,
             location.telephone,
             location.website,
-            location.email,
             this.openingTimesService.getOpeningTimesCollection(location),
             this.openingTimesService.getOpenComment(location),
             this.getVeganCategory(location),
