@@ -9,11 +9,6 @@ import { I18nService } from "./i18n.service";
 import { OpeningTimesService } from "./opening-times.service";
 import { ShoppingLocation } from "./model/shopping-location";
 
-const veganCategories = [];
-veganCategories[5] = "vegan";
-veganCategories[4] = "vegetarian";
-veganCategories[2] = "omnivorous";
-
 @Injectable()
 export class LocationService {
 
@@ -104,11 +99,16 @@ export class LocationService {
     }
 
     private getVeganCategory(location): VeganCategory { // TODO: Type
-        const veganCategory = veganCategories[location.vegan];
-        if (!veganCategory) {
-            throw new Error("Unexpected value for vegan: " + location.vegan);
+        switch (location.vegan) {
+            case 5:
+                return "vegan";
+            case 4:
+                return "vegetarian";
+            case 2:
+                return "omnivorous";
+            default:
+                throw new Error("Unexpected value for vegan: " + location.vegan);
         }
-        return veganCategory;
     }
 
     private removeFormatting(locationComment: string | undefined): string | undefined {
