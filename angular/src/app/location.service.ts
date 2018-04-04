@@ -3,6 +3,9 @@ import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
 import { ConfigurationService } from "./configuration.service";
+import { JsonGastroLocation } from "./model/json/json-gastro-location";
+import { JsonLocation } from "./model/json/json-location";
+import { JsonShoppingLocation } from "./model/json/json-shopping-location";
 import { GastroLocation } from "./model/gastro-location";
 import { VeganCategory } from "./model/vegan-category";
 import { I18nService } from "./i18n.service";
@@ -23,7 +26,7 @@ export class LocationService {
         return this.http.get(this.configurationService.gastroLocationsUrl)
             .toPromise()
             .then(response => response.json())
-            .then(locations => locations.map(it => this.newGastroLocation(it)));
+            .then((locations: JsonGastroLocation[]) => locations.map(it => this.newGastroLocation(it)));
     }
 
     getShoppingLocations(): Promise<ShoppingLocation[]> {
@@ -34,10 +37,10 @@ export class LocationService {
             .then(locations => locations.filter(it => it.tags))
             .then(locations => { locations.forEach(it => it.tags = it.tags.map(tag => tag.trim())); return locations; })
             // (end)
-            .then(locations => locations.map(it => this.newShoppingLocation(it)));
+            .then((locations: JsonShoppingLocation[]) => locations.map(it => this.newShoppingLocation(it)));
     }
 
-    private newGastroLocation(location) { // TODO: location type
+    private newGastroLocation(location: JsonGastroLocation) {
         return new GastroLocation(
             location.id,
             location.name,
@@ -74,7 +77,7 @@ export class LocationService {
         );
     }
 
-    private newShoppingLocation(location) { // TODO: location type
+    private newShoppingLocation(location: JsonShoppingLocation) {
         return new ShoppingLocation(
             location.id,
             location.name,
@@ -97,14 +100,14 @@ export class LocationService {
         );
     }
 
-    private getOpenComment(location): string {
+    private getOpenComment(location: JsonGastroLocation): string {
         return location.openComment && this.i18nService.getLanguage() === "en" ?
             "Please see location website for opening time details!"
             :
             location.openComment;
     }
 
-    private getVeganCategory(location): VeganCategory { // TODO: Type
+    private getVeganCategory(location: JsonLocation): VeganCategory {
         switch (location.vegan) {
             case 5:
                 return "vegan";

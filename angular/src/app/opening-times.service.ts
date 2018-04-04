@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { I18nService } from "./i18n.service";
+import { JsonLocation } from "./model/json/json-location";
 import { TimeInterval } from "./model/time-interval";
 import { OpeningTimeInterval } from "./model/opening-time-interval";
 import { OpeningTime } from "./model/opening-time";
@@ -14,7 +15,7 @@ export class OpeningTimesService {
 
     constructor(private readonly i18nService: I18nService) {}
 
-    getOpeningTimesCollection(location): OpeningTimesCollection { // TODO: type
+    getOpeningTimesCollection(location: JsonLocation): OpeningTimesCollection {
         return new OpeningTimesCollection(
         [
             new OpeningTime(0, this.parseOpeningTimeInterval(location.otSun), this.i18nService),
