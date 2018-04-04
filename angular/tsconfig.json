@@ -26,6 +26,6 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "strictFunctionTypes": true,
-    "strictPropertyInitialization": true
+    // "strictPropertyInitialization": true // Typescript 2.7 feature
   }
 }
