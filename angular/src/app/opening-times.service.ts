@@ -56,7 +56,7 @@ export class OpeningTimesService {
         const end = parseTimeAsDate(parts[1]);
         return new TimeInterval(begin, end);
 
-        function parseTimeAsDate(timeString) {
+        function parseTimeAsDate(timeString: string) {
             const time = jsCommon.dateUtil.parseTime(timeString);
             const date = new Date(0);
             date.setHours(time.hours, time.minutes);
