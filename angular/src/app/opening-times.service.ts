@@ -28,13 +28,6 @@ export class OpeningTimesService {
         this.i18nService);
     }
 
-    getOpenComment(location): string { // TODO: type
-        return location.openComment && this.i18nService.getLanguage() === "en" ?
-            "Please see location website for opening time details!"
-            :
-            location.openComment;
-    }
-
     private parseOpeningTimeInterval(otString: string): OpeningTimeInterval {
         let timeInterval;
         let friendly;

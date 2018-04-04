@@ -49,7 +49,7 @@ export class LocationService {
             location.telephone,
             location.website,
             this.openingTimesService.getOpeningTimesCollection(location),
-            this.openingTimesService.getOpenComment(location),
+            this.getOpenComment(location),
             this.getVeganCategory(location),
             location.comment,
             this.removeFormatting(location.comment),
@@ -86,7 +86,7 @@ export class LocationService {
             location.telephone,
             location.website,
             this.openingTimesService.getOpeningTimesCollection(location),
-            this.openingTimesService.getOpenComment(location),
+            "",
             this.getVeganCategory(location),
             location.comment,
             this.removeFormatting(location.comment),
@@ -95,6 +95,13 @@ export class LocationService {
             location.tags.map(it => this.i18nService.getI18n().enums.shoppingTag[it]).join(", "),
             location.tags.sort(),
         );
+    }
+
+    private getOpenComment(location): string {
+        return location.openComment && this.i18nService.getLanguage() === "en" ?
+            "Please see location website for opening time details!"
+            :
+            location.openComment;
     }
 
     private getVeganCategory(location): VeganCategory { // TODO: Type
