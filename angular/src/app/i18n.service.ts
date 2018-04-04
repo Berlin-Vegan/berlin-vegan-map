@@ -78,6 +78,10 @@ const i18n = {
                 en: "Clothing",
                 de: "Kleidung",
             },
+            Naturkostladen: {
+                en: "Health food store",
+                de: "Naturkostladen",
+            },
         },
         weekday: {
             all: {
