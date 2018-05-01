@@ -59,8 +59,8 @@ export class LocationService {
             location.commentEnglish,
             this.removeFormatting(location.commentEnglish),
             location.tags.map(it => this.i18nService.getI18n().enums.gastroTag[it]).join(", "),
-            // Possibly not necessary in production. TODO: Configure
-            location.reviewURL ? "http://www.berlin-vegan.de/essen-und-trinken/kritiken/" + location.reviewURL : location.reviewURL,
+            // Base URL possibly not necessary in production:
+            location.reviewURL ? this.configurationService.reviewBaseUrl + location.reviewURL : undefined,
             location.email,
             location.organic,
             location.glutenFree,
