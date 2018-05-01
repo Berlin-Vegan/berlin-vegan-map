@@ -1,4 +1,4 @@
-import { Component,  OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { GastroLocation } from "../model/gastro-location";
@@ -31,6 +31,7 @@ export class MainComponent implements OnInit {
     @ViewChild(SearchComponent) searchComponent: SearchComponent;
     @ViewChild(ResultsListComponent) resultsListComponent: ResultsListComponent;
     @ViewChild(GoogleMapComponent) googleMapComponent: GoogleMapComponent;
+    @ViewChild("preSearchDiv") preSearchDiv: ElementRef;
 
     readonly i18n = this.i18nService.getI18n();
     allLocations: (GastroLocation | ShoppingLocation)[] = [];
@@ -115,7 +116,7 @@ export class MainComponent implements OnInit {
         if (this.fullMapView) {
             this.fullMapView = false;
         }
-        setTimeout(function() { document.getElementById("pre-search-div").scrollIntoView(); }, 0); // TODO
+        setTimeout(() => { this.preSearchDiv.nativeElement.scrollIntoView(); }, 0);
     }
 
     enableFullMapView() {

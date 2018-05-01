@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
@@ -10,7 +10,7 @@ declare var google: any; // Maybe TODO
 
 @Component({
     selector: "app-google-map",
-    template: `<div id="map"></div>`,
+    template: `<div #mapDiv></div>`,
     styles: [ `div { width: 100%; height: 100%; }` ],
 })
 export class GoogleMapComponent {
@@ -72,6 +72,8 @@ export class GoogleMapComponent {
 
     @Output() readonly locationSelect = new EventEmitter<any>(); // TODO: Type
 
+    @ViewChild("mapDiv") mapDiv: ElementRef;
+
     map: any; // Maybe TODO: Type
     locationMarkers: any[] = []; // Maybe TODO: Type
     locationsToMarkers = new Map<Location, any>(); // TODO: Type
@@ -87,7 +89,7 @@ export class GoogleMapComponent {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-        this.map = new google.maps.Map(document.getElementById("map"), mapOptions); // TODO
+        this.map = new google.maps.Map(this.mapDiv.nativeElement, mapOptions);
 
         for (const location of locations){
             this.createMarker(location);
