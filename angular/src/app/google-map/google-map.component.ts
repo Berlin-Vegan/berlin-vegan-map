@@ -70,7 +70,7 @@ export class GoogleMapComponent {
 
     private _geoPosition; // TODO: Type
 
-    @Output() readonly locationSelect = new EventEmitter<any>(); // TODO: Type
+    @Output() readonly locationSelect = new EventEmitter<Location>();
 
     @ViewChild("mapDiv") mapDiv: ElementRef;
 

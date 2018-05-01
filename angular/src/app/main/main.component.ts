@@ -108,7 +108,7 @@ export class MainComponent implements OnInit {
         this.googleMapComponent.selectLocation(location);
     }
 
-    onLocationSelectInGoogleMap(location: GastroLocation) {
+    onLocationSelectInGoogleMap(location: Location) {
         this.resultsListComponent.makeVisible(location);
     }
 

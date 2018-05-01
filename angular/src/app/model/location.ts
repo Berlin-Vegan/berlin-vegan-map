@@ -33,7 +33,7 @@ export class Location {
         };
     }
 
-    getDistanceToPositionInKm(position) { // TODO: Type
+    getDistanceToPositionInKm(position): number { // TODO: Type
         return jsCommon.geoUtil.getDistanceInKm(position, this.position);
     }
 
