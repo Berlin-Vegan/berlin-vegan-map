@@ -6,7 +6,6 @@ import { VeganCategory } from "./vegan-category";
 type YesNoUnknown = 1 | 0 | -1;
 
 export class GastroLocation extends Location {
-    // TODO: Check types for null/undefined.
     constructor(
         id: string,
         name: string,
@@ -15,18 +14,18 @@ export class GastroLocation extends Location {
         city: string,
         latCoord: number,
         longCoord: number,
-        telephone: string,
-        website: string,
+        telephone: string | undefined,
+        website: string | undefined,
         openingTimes: OpeningTimesCollection,
-        localizedOpenComment: string,
+        localizedOpenComment: string | undefined,
         veganCategory: VeganCategory,
-        comment: string,
-        commentWithoutFormatting: string,
-        commentEnglish: string,
-        commentEnglishWithoutFormatting: string,
+        comment: string | undefined,
+        commentWithoutFormatting: string | undefined,
+        commentEnglish: string | undefined,
+        commentEnglishWithoutFormatting: string | undefined,
         tagsFriendly: string,
-        public readonly reviewURL: string,
-        public readonly email: string,
+        public readonly reviewURL: string | undefined,
+        public readonly email: string | undefined,
         public readonly organic: YesNoUnknown,
         public readonly glutenFree: YesNoUnknown,
         public readonly dog: YesNoUnknown,

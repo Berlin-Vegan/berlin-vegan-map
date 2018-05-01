@@ -86,7 +86,7 @@ export class InfoWindowViewService {
             (location.commentEnglish ? location.commentEnglish + "<br/>" : "")
             + (location.reviewURL ? this.getReviewAnchor(location) : "")
             :
-            (location.reviewURL ? this.getReviewAnchor(location) : location.comment);
+            (location.reviewURL ? this.getReviewAnchor(location) : location.comment || "");
     }
 
     private getReviewAnchor(location: GastroLocation): string {

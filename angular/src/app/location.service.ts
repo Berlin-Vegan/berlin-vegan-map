@@ -100,7 +100,7 @@ export class LocationService {
         );
     }
 
-    private getOpenComment(location: JsonGastroLocation): string {
+    private getOpenComment(location: JsonGastroLocation): string | undefined {
         return location.openComment && this.i18nService.getLanguage() === "en" ?
             "Please see location website for opening time details!"
             :

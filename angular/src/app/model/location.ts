@@ -5,7 +5,6 @@ declare var JsCommon: () => void; // TODO
 const jsCommon = new JsCommon(); // TODO
 
 export class Location {
-    // TODO: Check types for null/undefined.
     constructor(
         public readonly id: string,
         public readonly name: string,
@@ -14,15 +13,15 @@ export class Location {
         public readonly city: string,
         public readonly latCoord: number, // TODO: Needed?
         public readonly longCoord: number, // TODO: Needed?
-        public readonly telephone: string,
-        public readonly website: string,
+        public readonly telephone: string | undefined,
+        public readonly website: string | undefined,
         public readonly openingTimes: OpeningTimesCollection,
-        public readonly localizedOpenComment: string,
+        public readonly localizedOpenComment: string | undefined,
         public readonly veganCategory: VeganCategory,
-        public readonly comment: string,
-        public readonly commentWithoutFormatting: string,
-        public readonly commentEnglish: string,
-        public readonly commentEnglishWithoutFormatting: string,
+        public readonly comment: string | undefined,
+        public readonly commentWithoutFormatting: string | undefined,
+        public readonly commentEnglish: string | undefined,
+        public readonly commentEnglishWithoutFormatting: string | undefined,
         public readonly tagsFriendly: string,
     ) {}
 

@@ -41,7 +41,7 @@ export class OpeningTimesCollection {
         return compressedOts;
     }
 
-    isOpen(weekDay: DayOfWeek, time: Date): boolean {
+    isOpen(weekDay: DayOfWeek, time?: Date): boolean {
         return jsCommon.openingTimesUtil.isOpen(
             this.openingTimes.map(it => it.interval.timeInterval),
             weekDay,

@@ -53,20 +53,20 @@ export class SearchService {
                 searchedValues = searchedValues.concat([
                     location.street,
                     location.cityCode + "",
-                    location.telephone,
-                    location.website,
+                    location.telephone || "",
+                    location.website || "",
                     (this.i18nService.getLanguage() === "en" ?
                         location.commentEnglishWithoutFormatting
                         :
                         location.commentWithoutFormatting
-                    )
+                    ) || ""
                 ]);
 
                 if (location instanceof GastroLocation) {
                     searchedValues = searchedValues.concat([
                         location.district,
                         location.publicTransport,
-                        location.email,
+                        location.email || "",
                     ]);
                 }
 

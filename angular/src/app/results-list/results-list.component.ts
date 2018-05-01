@@ -38,8 +38,8 @@ export class ResultsListComponent implements OnInit {
         return this.resourcesService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
     }
 
-    makeVisible(location: Location | null) {
-        const locationElement = document.getElementById(location.id); // TODO
+    makeVisible(location: Location) {
+        const locationElement = document.getElementById(location.id)!; // TODO
 
         if (!jsCommon.domUtil.isElementVisible(locationElement)) {
             locationElement.scrollIntoView();

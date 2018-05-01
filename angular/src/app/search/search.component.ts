@@ -26,9 +26,9 @@ export class SearchComponent {
 
     readonly i18n = this.i18nService.getI18n();
     readonly veganCategories = getVeganCategories();
-    tags: (GastroTag | ShoppingTag)[] | undefined;
-    query: GastroQuery | ShoppingQuery | undefined;
-    isGastro: boolean | undefined;
+    tags: (GastroTag | ShoppingTag)[];
+    query: GastroQuery | ShoppingQuery;
+    isGastro: boolean;
 
     init(query: GastroQuery | ShoppingQuery) {
         if (query instanceof GastroQuery) {
