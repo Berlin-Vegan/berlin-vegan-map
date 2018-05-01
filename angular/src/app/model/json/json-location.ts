@@ -6,8 +6,8 @@ export interface JsonLocation {
     city: string; // non-empty
     latCoord: number;
     longCoord: number;
-    telephone: string | undefined; // non-empty
-    website: string | undefined; // non-empty
+    telephone?: string; // non-empty
+    website?: string; // non-empty
     otMon: string; // possibly empty
     otTue: string; // possibly empty
     otWed: string; // possibly empty
@@ -16,6 +16,6 @@ export interface JsonLocation {
     otSat: string; // possibly empty
     otSun: string; // possibly empty
     vegan: 2 | 4 | 5;
-    comment: string | undefined; // non-empty
-    commentEnglish: string | undefined; // non-empty
+    comment?: string; // non-empty
+    commentEnglish?: string; // non-empty
 }

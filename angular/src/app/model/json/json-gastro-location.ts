@@ -24,7 +24,7 @@ export interface JsonGastroLocation extends JsonLocation {
     wlan: YesNoUnknown;
     glutenFree: YesNoUnknown;
     tags: ("Restaurant" | "Imbiss" | "Eiscafe" | "Cafe")[]; // 1..4
-    openComment: string | undefined; // possibly empty
-    reviewURL: string | undefined; // non-empty
-    email: string | undefined; // non-empty
+    openComment?: string; // possibly empty
+    reviewURL?: string; // non-empty
+    email?: string; // non-empty
 }
