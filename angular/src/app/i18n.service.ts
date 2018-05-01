@@ -39,6 +39,10 @@ const i18n = {
         },
         gastroTag: {
             // Capitalized values because they are capitalized in the data source.
+            Bar: {
+                en: "Bar",
+                de: "Bar",
+            },
             Cafe: {
                 en: "Cafe",
                 de: "Café",
