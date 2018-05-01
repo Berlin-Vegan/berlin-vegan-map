@@ -55,7 +55,7 @@ export class MainComponent implements OnInit {
                         this.initShopping();
                         break;
                     default:
-                        alert("Unexpected path: " + path);
+                        throw new Error("Unexpected path: " + path);
                 }
             });
     }
@@ -133,7 +133,7 @@ export class MainComponent implements OnInit {
                 return (locationA, locationB) =>
                     this.getDistanceToGeolocation(locationA) - this.getDistanceToGeolocation(locationB);
             default:
-              console.log("Unexpected value for SortOrder: " + this.sortOrder);
+                throw new Error("Unexpected value for SortOrder: " + this.sortOrder);
         }
     }
 
