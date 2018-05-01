@@ -67,13 +67,13 @@ export class GeolocationComponent {
     private getErrorMessage(positionError: PositionError): string {
         let reason;
         switch (positionError.code) {
-            case 1: // PositionError.PERMISSION_DENIED:
+            case positionError.PERMISSION_DENIED:
                 reason = this.i18n.geolocation.PERMISSION_DENIED;
                 break;
-            case 2: // PositionError.POSITION_UNAVAILABLE:
+            case positionError.POSITION_UNAVAILABLE:
                 reason = this.i18n.geolocation.POSITION_UNAVAILABLE;
                 break;
-            case 3: // PositionError.TIMEOUT:
+            case positionError.TIMEOUT:
                 reason = this.i18n.geolocation.TIMEOUT;
                 break;
         }
