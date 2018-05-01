@@ -32,7 +32,7 @@ export class ResultsListComponent implements OnInit {
         }
     }
 
-    getMarkerImageUrl(location: Location) {
+    getIconUrl(location: Location) {
         return this.configurationService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
     }
 

@@ -100,7 +100,7 @@ export class GoogleMapComponent {
             position: new google.maps.LatLng(location.latCoord, location.longCoord),
             title: location.name,
             location: location,
-            icon: this.getMarkerImage(location)
+            icon: this.getIcon(location)
         });
 
         this.locationsToMarkers.set(location, marker);
@@ -119,17 +119,17 @@ export class GoogleMapComponent {
         this.locationMarkers.push(marker);
     }
 
-    private getMarkerImage(location: Location) {
-        return new google.maps.MarkerImage(
-            this.getMarkerImageUrl(location),
-            new google.maps.Size(50, 50),
-            new google.maps.Point(0, 0),
-            new google.maps.Point(15, 34)
-        );
+    private getIcon(location: Location) {
+        return {
+            url: this.getIconUrl(location),
+            size: new google.maps.Size(50, 50),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(15, 34)
+        };
     }
 
     // TODO: Refactor, because it is duplicated somewhere else.
-    private getMarkerImageUrl(location: Location) {
+    private getIconUrl(location: Location) {
         return this.configurationService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
     }
 
