@@ -23,8 +23,8 @@ export class GoogleMapComponent {
     @Input() set locations(locations: Location[]) {
         this._locations = locations;
 
-        for (const marker of this.locationMarkers) {
-            const map = locations.includes(marker.location) ? this.map : null;
+        for (const [marker, location] of this.markersToLocations.entries()) {
+            const map = locations.includes(location) ? this.map : null;
             if (marker.map !== map) {
                 marker.setMap(map);
             }
@@ -74,7 +74,7 @@ export class GoogleMapComponent {
 
     private map: any; // Maybe TODO: Type
     private geoPositionMarker: any; // Maybe TODO: Type
-    private readonly locationMarkers: any[] = []; // Maybe TODO: Type
+    private readonly markersToLocations = new Map<any, Location>(); // TODO: Type
     private readonly locationsToMarkers = new Map<Location, any>(); // TODO: Type
     private readonly infoWindow = new google.maps.InfoWindow();
     private readonly i18n = this.i18nService.getI18n();
@@ -99,20 +99,18 @@ export class GoogleMapComponent {
             map: this.map,
             position: new google.maps.LatLng(location.latCoord, location.longCoord),
             title: location.name,
-            location: location,
             icon: this.getIcon(location)
         });
 
-        this.locationsToMarkers.set(location, marker);
-
         google.maps.event.addListener(marker, "click", () => {
-            const content = this.infoWindowViewService.getContent(marker.location, this.geoPosition);
+            const content = this.infoWindowViewService.getContent(location, this.geoPosition);
             this.infoWindow.setContent(content);
             this.infoWindow.open(this.map, marker);
-            this.locationSelect.emit(marker.location);
+            this.locationSelect.emit(location);
         });
 
-        this.locationMarkers.push(marker);
+        this.markersToLocations.set(marker, location);
+        this.locationsToMarkers.set(location, marker);
     }
 
     private getIcon(location: Location) {
