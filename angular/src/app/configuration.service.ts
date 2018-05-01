@@ -13,7 +13,7 @@ export class ConfigurationService {
     readonly geoLocationTimeoutMillis = environment.production ? 15000 : 5000;
     readonly geoLocationFirefoxWorkaroundTimeoutMillis = environment.production ? 16000 : 8000;
 
-    getColor (veganCategory: VeganCategory): string {
+    getColor(veganCategory: VeganCategory): string {
         switch (veganCategory) {
             case "omnivorous":
                 return "red";
@@ -26,7 +26,15 @@ export class ConfigurationService {
         }
     }
 
-    getDotImageUrl(colorString: string): string {
+    getIconUrl(veganCategory: VeganCategory): string {
+        return this.getIconUrlByColor(this.getColor(veganCategory));
+    }
+
+    getIconUrlForGeoPosition(): string {
+        return this.getIconUrlByColor("blue");
+    }
+
+    private getIconUrlByColor(colorString: string): string {
         return "https://maps.google.com/mapfiles/ms/icons/" + colorString + "-dot.png";
     }
 }

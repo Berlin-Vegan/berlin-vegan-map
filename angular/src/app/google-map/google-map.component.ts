@@ -45,7 +45,7 @@ export class GoogleMapComponent {
                 map: this.map,
                 position: new google.maps.LatLng(geoPosition.lat(), geoPosition.lng()),
                 title: this.i18n.geolocation.currentLocation,
-                icon: this.configurationService.getDotImageUrl("blue")
+                icon: this.configurationService.getIconUrlForGeoPosition()
             });
 
             this.geoPositionMarker = marker;
@@ -121,16 +121,11 @@ export class GoogleMapComponent {
 
     private getIcon(location: Location) {
         return {
-            url: this.getIconUrl(location),
+            url: this.configurationService.getIconUrl(location.veganCategory),
             size: new google.maps.Size(50, 50),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(15, 34)
         };
-    }
-
-    // TODO: Refactor, because it is duplicated somewhere else.
-    private getIconUrl(location: Location) {
-        return this.configurationService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
     }
 
     selectLocation(location: Location) {

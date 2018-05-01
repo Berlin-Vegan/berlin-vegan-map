@@ -15,7 +15,7 @@ const jsCommon = new JsCommon();
 export class ResultsListComponent implements OnInit {
 
     constructor(
-        private readonly configurationService: ConfigurationService,
+        readonly configurationService: ConfigurationService,
         private readonly i18nService: I18nService,
     ) { }
 
@@ -30,10 +30,6 @@ export class ResultsListComponent implements OnInit {
         for (const location of this.locations) {
             this.expandOpenComments.set(location, false);
         }
-    }
-
-    getIconUrl(location: Location) {
-        return this.configurationService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
     }
 
     makeVisible(location: Location) {

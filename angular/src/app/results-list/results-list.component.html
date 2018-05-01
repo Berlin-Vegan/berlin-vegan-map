@@ -10,7 +10,7 @@
             <div>
                 <img
                     title="{{i18n.showOnMap}}"
-                    src="{{getIconUrl(location)}}"
+                    src="{{configurationService.getIconUrl(location.veganCategory)}}"
                     style="height: 25px; width: auto; position:relative; bottom: -6px;"
                     (click)="locationSelect.emit(location)"
                 />
