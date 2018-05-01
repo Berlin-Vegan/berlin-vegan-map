@@ -72,11 +72,11 @@ export class GoogleMapComponent {
 
     @ViewChild("mapDiv") mapDiv: ElementRef;
 
-    map: any; // Maybe TODO: Type
-    locationMarkers: any[] = []; // Maybe TODO: Type
-    locationsToMarkers = new Map<Location, any>(); // TODO: Type
-    geoPositionMarker: any; // Maybe TODO: Type
-    infoWindow = new google.maps.InfoWindow();
+    private map: any; // Maybe TODO: Type
+    private geoPositionMarker: any; // Maybe TODO: Type
+    private readonly locationMarkers: any[] = []; // Maybe TODO: Type
+    private readonly locationsToMarkers = new Map<Location, any>(); // TODO: Type
+    private readonly infoWindow = new google.maps.InfoWindow();
     private readonly i18n = this.i18nService.getI18n();
 
     init(locations: Location[]) {
@@ -106,11 +106,7 @@ export class GoogleMapComponent {
         this.locationsToMarkers.set(location, marker);
 
         google.maps.event.addListener(marker, "click", () => {
-            const content = this.infoWindowViewService.getContent(
-                marker.location,
-                this.geoPosition ? this.geoPosition : undefined // TODO
-            );
-
+            const content = this.infoWindowViewService.getContent(marker.location, this.geoPosition);
             this.infoWindow.setContent(content);
             this.infoWindow.open(this.map, marker);
             this.locationSelect.emit(marker.location);
