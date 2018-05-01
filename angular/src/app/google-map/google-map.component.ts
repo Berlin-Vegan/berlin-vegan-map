@@ -91,7 +91,7 @@ export class GoogleMapComponent {
 
         this.map = new google.maps.Map(this.mapDiv.nativeElement, mapOptions);
 
-        for (const location of locations){
+        for (const location of locations) {
             this.createMarker(location);
         }
     }
