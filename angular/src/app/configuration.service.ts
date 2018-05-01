@@ -25,4 +25,8 @@ export class ConfigurationService {
                 throw new Error("Unexpected value for veganCategory: " + veganCategory);
         }
     }
+
+    getDotImageUrl(colorString: string): string {
+        return "https://maps.google.com/mapfiles/ms/icons/" + colorString + "-dot.png";
+    }
 }

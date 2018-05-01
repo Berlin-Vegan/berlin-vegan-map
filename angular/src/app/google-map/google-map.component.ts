@@ -4,7 +4,6 @@ import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { InfoWindowViewService } from "../info-window-view.service";
 import { Location } from "../model/location";
-import { ResourcesService } from "../resources.service";
 
 declare var google: any; // Maybe TODO
 
@@ -19,7 +18,6 @@ export class GoogleMapComponent {
         private readonly configurationService: ConfigurationService,
         private readonly i18nService: I18nService,
         private readonly infoWindowViewService: InfoWindowViewService,
-        private readonly resourcesService: ResourcesService
     ) {}
 
     @Input() set locations(locations: Location[]) {
@@ -47,7 +45,7 @@ export class GoogleMapComponent {
                 map: this.map,
                 position: new google.maps.LatLng(geoPosition.lat(), geoPosition.lng()),
                 title: this.i18n.geolocation.currentLocation,
-                icon: this.resourcesService.getDotImageUrl("blue")
+                icon: this.configurationService.getDotImageUrl("blue")
             });
 
             this.geoPositionMarker = marker;
@@ -132,7 +130,7 @@ export class GoogleMapComponent {
 
     // TODO: Refactor, because it is duplicated somewhere else.
     private getMarkerImageUrl(location: Location) {
-        return this.resourcesService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
+        return this.configurationService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
     }
 
     selectLocation(location: Location) {

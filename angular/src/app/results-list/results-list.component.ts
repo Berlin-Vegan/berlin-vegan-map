@@ -3,7 +3,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { Location } from "../model/location";
-import { ResourcesService } from "../resources.service";
 
 declare var JsCommon: () => void; // TODO
 const jsCommon = new JsCommon();
@@ -18,7 +17,6 @@ export class ResultsListComponent implements OnInit {
     constructor(
         private readonly configurationService: ConfigurationService,
         private readonly i18nService: I18nService,
-        private readonly resourcesService: ResourcesService,
     ) { }
 
     @Input() locations: Location[];
@@ -35,7 +33,7 @@ export class ResultsListComponent implements OnInit {
     }
 
     getMarkerImageUrl(location: Location) {
-        return this.resourcesService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
+        return this.configurationService.getDotImageUrl(this.configurationService.getColor(location.veganCategory));
     }
 
     makeVisible(location: Location) {

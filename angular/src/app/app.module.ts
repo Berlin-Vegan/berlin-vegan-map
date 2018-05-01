@@ -15,7 +15,6 @@ import { KilometerPipe } from "./kilometer.pipe";
 import { LocationService } from "./location.service";
 import { MainComponent } from "./main/main.component";
 import { OpeningTimesService } from "./opening-times.service";
-import { ResourcesService } from "./resources.service";
 import { ResultsListComponent } from "./results-list/results-list.component";
 import { SearchComponent } from "./search/search.component";
 import { SearchService } from "./search.service";
@@ -53,7 +52,6 @@ const appRoutes: Routes = [
         InfoWindowViewService,
         LocationService,
         OpeningTimesService,
-        ResourcesService,
         SearchService,
     ],
     bootstrap: [AppComponent]
