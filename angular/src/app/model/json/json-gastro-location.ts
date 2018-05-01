@@ -23,6 +23,8 @@ export interface JsonGastroLocation extends JsonLocation {
     seatsIndoor: number;
     wlan: YesNoUnknown;
     glutenFree: YesNoUnknown;
+    breakfast: YesNoUnknown;
+    brunch: YesNoUnknown;
     tags: ("Bar" | "Cafe" | "Eiscafe" | "Imbiss" | "Restaurant")[]; // 1..4
     openComment?: string; // possibly empty
     reviewURL?: string; // non-empty

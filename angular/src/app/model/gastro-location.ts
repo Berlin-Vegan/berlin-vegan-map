@@ -28,6 +28,8 @@ export class GastroLocation extends Location {
         public readonly email: string | undefined,
         public readonly organic: YesNoUnknown,
         public readonly glutenFree: YesNoUnknown,
+        public readonly breakfast: YesNoUnknown,
+        public readonly brunch: YesNoUnknown,
         public readonly dog: YesNoUnknown,
         public readonly childChair: YesNoUnknown,
         public readonly handicappedAccessible: YesNoUnknown,

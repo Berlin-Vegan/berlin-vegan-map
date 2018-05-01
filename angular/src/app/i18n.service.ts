@@ -169,6 +169,14 @@ const i18n = {
             en: "Gluten-free food",
             de: "Glutenfreie Speisen",
         },
+        breakfast: {
+            en: "Breakfast",
+            de: "Frühstück",
+        },
+        brunch: {
+            en: "Brunch",
+            de: "Brunch",
+        },
         dog: {
             en: "Dogs allowed",
             de: "Hunde erlaubt",

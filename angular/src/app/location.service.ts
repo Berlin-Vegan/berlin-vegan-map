@@ -64,6 +64,8 @@ export class LocationService {
             location.email,
             location.organic,
             location.glutenFree,
+            location.breakfast,
+            location.brunch,
             location.dog,
             location.childChair,
             location.handicappedAccessible,

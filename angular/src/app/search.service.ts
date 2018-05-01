@@ -120,6 +120,8 @@ export class SearchService {
             filter7 = () => {
                 return (!query.organic || location.organic === 1)
                     && (!query.glutenFree || location.glutenFree === 1)
+                    && (!query.breakfast || location.breakfast === 1)
+                    && (!query.brunch || location.brunch === 1)
                     && (!query.dog || location.dog === 1)
                     && (!query.childChair || location.childChair === 1)
                     && (!query.handicappedAccessible || location.handicappedAccessible === 1)

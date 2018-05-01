@@ -5,6 +5,8 @@ export class GastroQuery extends Query {
     tags: { [key: string]: boolean; } = {};
     organic = false;
     glutenFree = false;
+    breakfast = false;
+    brunch = false;
     dog = false;
     childChair = false;
     handicappedAccessible = false;
