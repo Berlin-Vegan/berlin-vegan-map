@@ -10,6 +10,6 @@ export class KilometerPipe implements PipeTransform {
     constructor(private readonly i18nService: I18nService) {}
 
     transform(number: number): string {
-        return number ? this.i18nService.formatNumberString(number.toFixed(1)) + nbsp + "km" : undefined;
+        return this.i18nService.formatNumberString(number.toFixed(1)) + nbsp + "km";
     }
 }
