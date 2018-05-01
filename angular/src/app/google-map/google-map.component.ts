@@ -25,7 +25,7 @@ export class GoogleMapComponent {
 
         for (const [marker, location] of this.markersToLocations.entries()) {
             const map = locations.includes(location) ? this.map : null;
-            if (marker.map !== map) {
+            if (marker.getMap() !== map) {
                 marker.setMap(map);
             }
         }
