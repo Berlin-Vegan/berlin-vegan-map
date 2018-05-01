@@ -1,11 +1,10 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import {} from "@types/googlemaps";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { InfoWindowViewService } from "../info-window-view.service";
 import { Location } from "../model/location";
-
-declare var google: any; // Maybe TODO
 
 @Component({
     selector: "app-google-map",
@@ -72,10 +71,10 @@ export class GoogleMapComponent {
 
     @ViewChild("mapDiv") mapDiv: ElementRef;
 
-    private map: any; // Maybe TODO: Type
+    private map: google.maps.Map;
     private geoPositionMarker: any; // Maybe TODO: Type
-    private readonly markersToLocations = new Map<any, Location>(); // TODO: Type
-    private readonly locationsToMarkers = new Map<Location, any>(); // TODO: Type
+    private readonly markersToLocations = new Map<google.maps.Marker, Location>();
+    private readonly locationsToMarkers = new Map<Location, google.maps.Marker>();
     private readonly infoWindow = new google.maps.InfoWindow();
     private readonly i18n = this.i18nService.getI18n();
 
@@ -113,7 +112,7 @@ export class GoogleMapComponent {
         this.locationsToMarkers.set(location, marker);
     }
 
-    private getIcon(location: Location) {
+    private getIcon(location: Location): google.maps.Icon {
         return {
             url: this.configurationService.getIconUrl(location.veganCategory),
             size: new google.maps.Size(50, 50),
