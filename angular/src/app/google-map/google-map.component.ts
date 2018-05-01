@@ -52,7 +52,7 @@ export class GoogleMapComponent {
 
             google.maps.event.addListener(marker, "click", () => {
                 this.map.setCenter(marker.getPosition());
-                this.infoWindow.setContent("<h2>" + marker.title + "</h2>");
+                this.infoWindow.setContent("<h2>" + marker.getTitle() + "</h2>");
                 this.infoWindow.open(this.map, marker);
             });
 
