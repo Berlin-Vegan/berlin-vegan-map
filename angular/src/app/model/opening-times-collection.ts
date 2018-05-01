@@ -18,7 +18,7 @@ export class OpeningTimesCollection {
     }
 
     getCompressed(): OpeningTime[][] {
-        const compressedOts = [];
+        const compressedOts: OpeningTime[][] = [];
 
         for (let day = 1; day <= 7; day++) {
 
@@ -34,8 +34,7 @@ export class OpeningTimesCollection {
                 }
             }
 
-            const group = [];
-            group.push(ot);
+            const group = [ot];
             compressedOts.push(group);
         }
 
