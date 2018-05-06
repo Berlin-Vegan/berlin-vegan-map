@@ -36,7 +36,7 @@ export class GeolocationComponent {
     }
 
     private detectGeoposition() {
-        assert(!!navigator.geolocation);
+        assert(navigator.geolocation);
         assert(this.geoposition === null);
         assert(this.info === "");
         assert(this.error === "");
@@ -90,8 +90,8 @@ export class GeolocationComponent {
     }
 }
 
-function assert(condition: boolean) {
-    if (!condition) {
+function assert(expression: any) {
+    if (!expression) {
         alert("Unexpected condition");
     }
 }
