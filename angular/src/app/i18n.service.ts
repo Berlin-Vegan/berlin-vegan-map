@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { I18nUtil } from "@marco-eckstein/js-utils";
 
-declare var global_language: "de" | "en"; // TODO
+declare var global_language: "de" | "en";
 
 const nbsp = "\xa0"; // Non-breaking space
 const i18n = {
