@@ -31,7 +31,7 @@ export class OpeningTimesService {
         let timeInterval;
         let friendly;
 
-        if (!!otString) {
+        if (otString) {
             timeInterval = this.parseTimeInterval(otString);
             friendly = this.i18nService.formatTimeInterval(timeInterval.begin, timeInterval.end); // TODO
         } else {
