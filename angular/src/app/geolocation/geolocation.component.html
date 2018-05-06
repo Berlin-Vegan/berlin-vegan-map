@@ -3,7 +3,7 @@
         <label>
             <input type="checkbox" name="checkbox" [(ngModel)]="isChecked" (change)="onChange()"/>
             <span *ngIf="!geoposition">{{i18n.geolocation.header}}</span>
-            <a *ngIf="geoposition" href="#" (click)="highlightRequest.emit()">{{i18n.geolocation.header}}</a>
+            <a *ngIf="geoposition" href="#" (click)="$event.preventDefault(); highlightRequest.emit()">{{i18n.geolocation.header}}</a>
         </label>
     </div>
     <div>
