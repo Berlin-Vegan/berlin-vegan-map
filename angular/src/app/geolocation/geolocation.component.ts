@@ -45,13 +45,17 @@ export class GeolocationComponent {
 
         navigator.geolocation.getCurrentPosition(
             position => {
-                this.info = "";
-                this.coordinates = position.coords;
-                this.coordinatesChange.emit(this.coordinates);
+                if (this.isChecked) {
+                    this.info = "";
+                    this.coordinates = position.coords;
+                    this.coordinatesChange.emit(this.coordinates);
+                }
             },
             positionError => {
-                this.info = "";
-                this.error = this.getErrorMessage(positionError);
+                if (this.isChecked) {
+                    this.info = "";
+                    this.error = this.getErrorMessage(positionError);
+                }
             },
             this.options
         );
