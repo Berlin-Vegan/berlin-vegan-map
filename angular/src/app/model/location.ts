@@ -1,4 +1,4 @@
-import { GeoUtil } from "@marco-eckstein/js-utils";
+import { GeoUtil, LatitudeLongitude } from "@marco-eckstein/js-utils";
 
 import { VeganCategory } from "./vegan-category";
 import { OpeningTimesCollection } from "./opening-times-collection";
@@ -10,8 +10,8 @@ export class Location {
         public readonly street: string,
         public readonly cityCode: number,
         public readonly city: string,
-        public readonly latCoord: number, // TODO: Needed?
-        public readonly longCoord: number, // TODO: Needed?
+        public readonly latCoord: number,
+        public readonly longCoord: number,
         public readonly telephone: string | undefined,
         public readonly website: string | undefined,
         public readonly openingTimes: OpeningTimesCollection,
@@ -24,26 +24,18 @@ export class Location {
         public readonly tagsFriendly: string,
     ) {}
 
-    private get position() { // TODO: Type
+    private get latitudeLongitude(): LatitudeLongitude {
         return {
-            lat: () => this.latCoord,
-            lng: () => this.longCoord,
+            latitude: this.latCoord,
+            longitude: this.longCoord,
         };
     }
 
     getDistanceToCoordinatesInKm(coordinates: Coordinates): number {
-        return GeoUtil.getDistanceInKm(this.transformCoordinates(coordinates), this.position);
+        return GeoUtil.getDistanceInKm(coordinates, this.latitudeLongitude);
     }
 
     get address(): string {
         return this.street + ", " + this.cityCode + " " + this.city;
-    }
-
-    // TODO
-    private transformCoordinates(coordinates: Coordinates): any {
-        return {
-            lat: () => coordinates.latitude,
-            lng: () => coordinates.longitude,
-        };
     }
 }
