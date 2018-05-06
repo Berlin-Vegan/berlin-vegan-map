@@ -20,7 +20,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
 
-    // TODO: Use "strict" later, which includes the following four rules:
+    // TODO: Use "strict" later, which includes the following five rules:
+    "noImplicitAny": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
     "strictFunctionTypes": true,

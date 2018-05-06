@@ -34,8 +34,11 @@ export class LocationService {
             .toPromise()
             .then(response => response.json())
             // Temporary fixes for bad data TODO
-            .then(locations => locations.filter(it => it.tags))
-            .then(locations => { locations.forEach(it => it.tags = it.tags.map(tag => tag.trim())); return locations; })
+            .then((locations: any[]) => locations.filter(it => it.tags))
+            .then((locations: any[]) => {
+                locations.forEach(it => it.tags = it.tags.map((tag: string) => tag.trim()));
+                return locations;
+            })
             // (end)
             .then((locations: JsonShoppingLocation[]) => locations.map(it => this.newShoppingLocation(it)));
     }

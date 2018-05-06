@@ -28,8 +28,8 @@ export class OpeningTimesService {
     }
 
     private parseOpeningTimeInterval(otString: string): OpeningTimeInterval {
-        let timeInterval;
-        let friendly;
+        let timeInterval: TimeInterval | null;
+        let friendly: string;
 
         if (otString) {
             timeInterval = this.parseTimeInterval(otString);
