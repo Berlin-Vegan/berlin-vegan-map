@@ -72,9 +72,9 @@ export class SearchService {
 
                 searchedValues = searchedValues.concat(location.tags);
             }
-            return searchedValues.some(function(property) {
-                return normalizeText(property).includes(normalizeText(query.text));
-            });
+            return searchedValues.some(property =>
+                normalizeText(property).includes(normalizeText(query.text))
+            );
         };
 
         const filter4 = () => {
