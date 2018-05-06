@@ -21,14 +21,14 @@
             </nav>
             <app-search
                 (queryChange)="onQueryChange($event)"
-                (geopositionChange)="onGeopositionChange($event)"
-                (geopositionHighlightRequest)="onGeopositionHighlightRequest()"
+                (coordinatesChange)="onCoordinatesChange($event)"
+                (coordinatesHighlightRequest)="onCoordinatesHighlightRequest()"
             ></app-search>
             <hr/>
             <div class="sortAndStatisticsContainer flex-container-nowrap">
                 <app-sort
                     [initialSortOrder]="sortOrder"
-                    [isDistanceEnabled]="!!geoPosition"
+                    [isDistanceEnabled]="!!coordinates"
                     (sortOrderChange)="onSortOrderChange($event)"
                 ></app-sort>
                 <app-statistics
@@ -39,14 +39,14 @@
             <hr class="fat"/>
             <app-results-list
                 [locations]="filteredLocations"
-                [geoPosition]="geoPosition"
+                [coordinates]="coordinates"
                 (locationSelect)="onLocationSelectInResultsList($event)"
             ></app-results-list>
         </div>
         <div class="col-right" [ngClass]="{fullMapView: fullMapView}">
             <app-google-map
                 [locations]="filteredLocations"
-                [geoPosition]="geoPosition"
+                [coordinates]="coordinates"
                 (locationSelect)="onLocationSelectInGoogleMap($event)"
             ></app-google-map>
         </div>

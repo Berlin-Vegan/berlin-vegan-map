@@ -32,11 +32,19 @@ export class Location {
         };
     }
 
-    getDistanceToPositionInKm(position): number { // TODO: Type
-        return jsCommon.geoUtil.getDistanceInKm(position, this.position);
+    getDistanceToCoordinatesInKm(coordinates: Coordinates): number {
+        return jsCommon.geoUtil.getDistanceInKm(this.transformCoordinates(coordinates), this.position);
     }
 
     get address(): string {
         return this.street + ", " + this.cityCode + " " + this.city;
+    }
+
+    // TODO
+    private transformCoordinates(coordinates: Coordinates): any {
+        return {
+            lat: () => coordinates.latitude,
+            lng: () => coordinates.longitude,
+        };
     }
 }

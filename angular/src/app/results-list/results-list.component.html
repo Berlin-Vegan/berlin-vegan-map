@@ -24,7 +24,7 @@
         </div>
         <div class="addressWithDistanceContainer flex-container-nowrap">
             <div>{{location.address}}</div>
-            <div *ngIf="geoPosition">{{ location.getDistanceToPositionInKm(geoPosition) | kilometer }}</div>
+            <div *ngIf="coordinates">{{ location.getDistanceToCoordinatesInKm(coordinates) | kilometer }}</div>
         </div>
         <div>
             <span>{{location.openingTimes.getTodayFriendly()}}</span>

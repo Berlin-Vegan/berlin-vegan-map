@@ -38,8 +38,8 @@ export class SearchService {
 
         const filter2 = () => {
 
-            if (query.distance.enabled) {
-                return location.getDistanceToPositionInKm(query.distance.position) <= query.distance.km;
+            if (query.distance.enabled && query.distance.coordinates) {
+                return location.getDistanceToCoordinatesInKm(query.distance.coordinates) <= query.distance.km;
             } else {
                 return true;
             }

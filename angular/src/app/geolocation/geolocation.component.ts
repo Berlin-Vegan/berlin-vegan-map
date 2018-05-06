@@ -14,7 +14,7 @@ export class GeolocationComponent {
         private readonly i18nService: I18nService,
     ) { }
 
-    @Output() readonly positionChange = new EventEmitter<any>(); // TODO: Type
+    @Output() readonly coordinatesChange = new EventEmitter<Coordinates | null>();
     @Output() readonly highlightRequest = new EventEmitter<void>();
     private readonly options = {
         enableHighAccuracy: true,
@@ -23,21 +23,21 @@ export class GeolocationComponent {
     readonly i18n = this.i18nService.getI18n();
     readonly isGeolocationSupported = !!navigator.geolocation;
     isChecked = false;
-    geoposition = null; // TODO: Type
+    coordinates: Coordinates | null = null;
     info = "";
     error = "";
 
     onChange() {
         if (this.isChecked) {
-            this.detectGeoposition();
+            this.detectCoordinates();
         } else {
-            this.clearGeoposition();
+            this.clearCoordinates();
         }
     }
 
-    private detectGeoposition() {
+    private detectCoordinates() {
         assert(navigator.geolocation);
-        assert(this.geoposition === null);
+        assert(this.coordinates === null);
         assert(this.info === "");
         assert(this.error === "");
 
@@ -46,8 +46,8 @@ export class GeolocationComponent {
         navigator.geolocation.getCurrentPosition(
             position => {
                 this.info = "";
-                this.geoposition = this.transformGeoposition(position);
-                this.positionChange.emit(this.geoposition);
+                this.coordinates = position.coords;
+                this.coordinatesChange.emit(this.coordinates);
             },
             positionError => {
                 this.info = "";
@@ -55,13 +55,6 @@ export class GeolocationComponent {
             },
             this.options
         );
-    }
-
-    private transformGeoposition(position: Position): any { // TODO: Type
-        return {
-            lat: () => position.coords.latitude,
-            lng: () => position.coords.longitude,
-        };
     }
 
     private getErrorMessage(positionError: PositionError): string {
@@ -80,12 +73,12 @@ export class GeolocationComponent {
         return this.i18n.geolocation.theError + ": " + reason;
     }
 
-    private clearGeoposition() {
+    private clearCoordinates() {
         this.info = "";
         this.error = "";
-        if (this.geoposition !== null) {
-            this.geoposition = null;
-            this.positionChange.emit(null);
+        if (this.coordinates !== null) {
+            this.coordinates = null;
+            this.coordinatesChange.emit(null);
         }
     }
 }

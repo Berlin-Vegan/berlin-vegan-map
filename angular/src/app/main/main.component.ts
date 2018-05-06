@@ -40,7 +40,7 @@ export class MainComponent implements OnInit {
     isGastro: boolean | undefined;
     sortOrder: SortOrder = "name";
     fullMapView = false;
-    geoPosition = null; // TODO
+    coordinates: Coordinates | null = null;
 
     ngOnInit() {
         this.route
@@ -131,21 +131,21 @@ export class MainComponent implements OnInit {
                     locationA.name.localeCompare(locationB.name, this.i18nService.getLanguage());
             case "distance":
                 return (locationA, locationB) =>
-                    this.getDistanceToGeolocation(locationA) - this.getDistanceToGeolocation(locationB);
+                    this.getDistanceToCoordinates(locationA) - this.getDistanceToCoordinates(locationB);
             default:
                 throw new Error("Unexpected value for SortOrder: " + this.sortOrder);
         }
     }
 
-    private getDistanceToGeolocation(location: Location) {
-        return this.geoPosition ? location.getDistanceToPositionInKm(this.geoPosition) : 1;
+    private getDistanceToCoordinates(location: Location) {
+        return this.coordinates ? location.getDistanceToCoordinatesInKm(this.coordinates) : 1;
     }
 
-    onGeopositionChange(geoposition) {
-        this.geoPosition = geoposition;
+    onCoordinatesChange(coordinates: Coordinates | null) {
+        this.coordinates = coordinates;
     }
 
-    onGeopositionHighlightRequest() {
-        this.googleMapComponent.selectGeoPosition();
+    onCoordinatesHighlightRequest() {
+        this.googleMapComponent.selectCoordinates();
     }
 }

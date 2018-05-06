@@ -20,7 +20,7 @@ export class ResultsListComponent implements OnInit {
     ) { }
 
     @Input() locations: Location[];
-    @Input() geoPosition; // TODO: Type
+    @Input() coordinates: Coordinates | null;
     @Output() readonly locationSelect = new EventEmitter<Location>();
 
     readonly i18n = this.i18nService.getI18n();

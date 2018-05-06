@@ -118,10 +118,10 @@
     </section>
     <section>
         <app-geolocation
-            (positionChange)="onGeopositionChange($event)"
-            (highlightRequest)="geopositionHighlightRequest.emit()"
+            (coordinatesChange)="onCoordinatesChange($event)"
+            (highlightRequest)="coordinatesHighlightRequest.emit()"
         ></app-geolocation>
-        <div class="distanceContainer flex-container-wrap" *ngIf="query.distance.position">
+        <div class="distanceContainer flex-container-wrap" *ngIf="query.distance.coordinates">
             <label>
                 <input
                     type="checkbox"

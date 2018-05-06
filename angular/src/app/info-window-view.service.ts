@@ -21,7 +21,7 @@ export class InfoWindowViewService {
         this.i18n = i18nService.getI18n();
     }
 
-    getContent(location: Location, currentPosition?) { // TODO: Type
+    getContent(location: Location, coordinates: Coordinates | null) {
         return "<article class='infoWindow'>"
             + "<header class='flex-container-nowrap'>"
             + "<h1>" + location.name + "</h1>"
@@ -33,9 +33,9 @@ export class InfoWindowViewService {
             + "</header>"
             + "<p>" + location.tagsFriendly + " (" + this.i18n.enums.veganCategory.verbose[location.veganCategory] + ")</p>"
             + "<p>" + location.address + "</p>"
-            + (currentPosition ?
+            + (coordinates ?
                 "<p>" + this.i18n.infoWindow.distance + ": "
-                + this.kilometerPipe.transform(location.getDistanceToPositionInKm(currentPosition))
+                + this.kilometerPipe.transform(location.getDistanceToCoordinatesInKm(coordinates))
                 + "</p>"
                 :
                 "")

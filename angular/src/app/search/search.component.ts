@@ -21,8 +21,8 @@ export class SearchComponent {
     ) { }
 
     @Output() readonly queryChange = new EventEmitter<GastroQuery | ShoppingQuery>();
-    @Output() readonly geopositionChange = new EventEmitter<any>(); // TODO: Type
-    @Output() readonly geopositionHighlightRequest = new EventEmitter<any>(); // TODO: Type
+    @Output() readonly coordinatesChange = new EventEmitter<Coordinates | null>();
+    @Output() readonly coordinatesHighlightRequest = new EventEmitter<void>();
 
     readonly i18n = this.i18nService.getI18n();
     readonly veganCategories = getVeganCategories();
@@ -45,12 +45,12 @@ export class SearchComponent {
         this.queryChange.emit(this.query);
     }
 
-    onGeopositionChange(geoposition) {
-        if (!geoposition) {
+    onCoordinatesChange(coordinates: Coordinates | null) {
+        if (!coordinates) {
             this.query.distance.enabled = false;
         }
-        this.query.distance.position = geoposition;
+        this.query.distance.coordinates = coordinates;
         this.queryChange.emit(this.query);
-        this.geopositionChange.emit(geoposition);
+        this.coordinatesChange.emit(coordinates);
     }
 }

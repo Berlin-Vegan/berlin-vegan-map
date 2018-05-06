@@ -1,5 +1,11 @@
 import { getVeganCategories } from "./vegan-category";
 
+interface Distance {
+    enabled: boolean;
+    coordinates: Coordinates | null;
+    km: number;
+}
+
 export class Query {
     text = "";
     textAppliesToNamesOnly = false;
@@ -7,7 +13,7 @@ export class Query {
     openAtWeekDay: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "all" = "all";
     openAtTime = "";
     openNow = false;
-    distance = { enabled: false, position: null, km: 1 }; // TODO: Position type
+    distance: Distance = { enabled: false, coordinates: null, km: 1 };
 
     constructor() {
         for (const veganCategory of getVeganCategories()) {

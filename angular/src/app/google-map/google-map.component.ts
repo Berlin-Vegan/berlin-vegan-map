@@ -36,18 +36,18 @@ export class GoogleMapComponent {
 
     private _locations: Location[];
 
-    @Input() set geoPosition(geoPosition) { // TODO: Type
-        this._geoPosition = geoPosition;
+    @Input() set coordinates(coordinates: Coordinates | null) {
+        this._coordinates = coordinates;
 
-        if (geoPosition) {
+        if (coordinates) {
             const marker = new google.maps.Marker({
                 map: this.map,
-                position: new google.maps.LatLng(geoPosition.lat(), geoPosition.lng()),
+                position: new google.maps.LatLng(coordinates.latitude, coordinates.longitude),
                 title: this.i18n.geolocation.currentLocation,
-                icon: this.configurationService.getIconUrlForGeoPosition()
+                icon: this.configurationService.getIconUrlForCoordinates()
             });
 
-            this.geoPositionMarker = marker;
+            this.coordinatesMarker = marker;
 
             google.maps.event.addListener(marker, "click", () => {
                 this.map.setCenter(marker.getPosition());
@@ -56,23 +56,23 @@ export class GoogleMapComponent {
             });
 
             google.maps.event.trigger(marker, "click");
-        } else if (this.geoPositionMarker) {
-            this.geoPositionMarker.setMap(null);
+        } else if (this.coordinatesMarker) {
+            this.coordinatesMarker.setMap(null);
         }
     }
 
-    get geoPosition() { // TODO: Type
-        return this._geoPosition;
+    get coordinates(): Coordinates | null {
+        return this._coordinates;
     }
 
-    private _geoPosition; // TODO: Type
+    private _coordinates: Coordinates | null;
 
     @Output() readonly locationSelect = new EventEmitter<Location>();
 
     @ViewChild("mapDiv") mapDiv: ElementRef;
 
     private map: google.maps.Map;
-    private geoPositionMarker: any; // Maybe TODO: Type
+    private coordinatesMarker: google.maps.Marker;
     private readonly markersToLocations = new Map<google.maps.Marker, Location>();
     private readonly locationsToMarkers = new Map<Location, google.maps.Marker>();
     private readonly infoWindow = new google.maps.InfoWindow();
@@ -102,7 +102,7 @@ export class GoogleMapComponent {
         });
 
         google.maps.event.addListener(marker, "click", () => {
-            const content = this.infoWindowViewService.getContent(location, this.geoPosition);
+            const content = this.infoWindowViewService.getContent(location, this.coordinates);
             this.infoWindow.setContent(content);
             this.infoWindow.open(this.map, marker);
             this.locationSelect.emit(location);
@@ -125,8 +125,8 @@ export class GoogleMapComponent {
         setTimeout(() => { google.maps.event.trigger(this.locationsToMarkers.get(location), "click"); }, 0);
     }
 
-    selectGeoPosition() {
-        setTimeout(() => { google.maps.event.trigger(this.geoPositionMarker, "click"); }, 0);
+    selectCoordinates() {
+        setTimeout(() => { google.maps.event.trigger(this.coordinatesMarker, "click"); }, 0);
     }
 
     resize() {

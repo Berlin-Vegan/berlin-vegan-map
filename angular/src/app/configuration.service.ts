@@ -31,7 +31,7 @@ export class ConfigurationService {
         return this.getIconUrlByColor(this.getColor(veganCategory));
     }
 
-    getIconUrlForGeoPosition(): string {
+    getIconUrlForCoordinates(): string {
         return this.getIconUrlByColor("blue");
     }
 
