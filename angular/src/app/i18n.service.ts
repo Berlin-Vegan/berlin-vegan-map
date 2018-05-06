@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
+import { I18nUtil } from "@marco-eckstein/js-utils";
 
-declare var JsCommon: () => void; // TODO
-declare var global_language: string; // TODO
+declare var global_language: "de" | "en"; // TODO
 
-const i18nUtil = new JsCommon().i18nUtil;
 const nbsp = "\xa0"; // Non-breaking space
 const i18n = {
     enums: {
@@ -355,7 +354,7 @@ const i18n = {
     }
 };
 
-const transformedI18n = i18nUtil.transform(i18n, global_language);
+const transformedI18n = I18nUtil.transform(i18n, global_language);
 
 @Injectable()
 export class I18nService {
@@ -379,14 +378,14 @@ export class I18nService {
     }
 
     formatNumberString(numberString: string): string {
-        return i18nUtil.formatNumberString(numberString, global_language);
+        return I18nUtil.formatNumberString(numberString, global_language);
     }
 
     abbreviateWeekDay(weekday: string): string {
-        return i18nUtil.abbreviateWeekDay(weekday, global_language);
+        return I18nUtil.abbreviateWeekDay(weekday, global_language);
     }
 
     formatTimeInterval(beginDate: Date, endDate: Date): string {
-        return i18nUtil.formatTimeInterval(beginDate, endDate, global_language);
+        return I18nUtil.formatTimeInterval(beginDate, endDate, global_language);
     }
 }

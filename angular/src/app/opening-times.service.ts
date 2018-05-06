@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { DateUtil } from "@marco-eckstein/js-utils";
 
 import { I18nService } from "./i18n.service";
 import { JsonLocation } from "./model/json/json-location";
@@ -6,9 +7,6 @@ import { TimeInterval } from "./model/time-interval";
 import { OpeningTimeInterval } from "./model/opening-time-interval";
 import { OpeningTime } from "./model/opening-time";
 import { OpeningTimesCollection } from "./model/opening-times-collection";
-
-declare var JsCommon: () => void; // TODO
-const jsCommon = new JsCommon();
 
 @Injectable()
 export class OpeningTimesService {
@@ -51,7 +49,7 @@ export class OpeningTimesService {
         return new TimeInterval(begin, end);
 
         function parseTimeAsDate(timeString: string) {
-            const time = jsCommon.dateUtil.parseTime(timeString);
+            const time = DateUtil.parseTime(timeString);
             const date = new Date(0);
             date.setHours(time.hours, time.minutes);
             return date;

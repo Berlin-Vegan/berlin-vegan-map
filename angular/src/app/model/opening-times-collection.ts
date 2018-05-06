@@ -1,9 +1,8 @@
+import { OpeningTimesUtil } from "@marco-eckstein/js-utils";
+
 import { DayOfWeek } from "./day-of-week";
 import { I18nService } from "../i18n.service";
 import { OpeningTime } from "./opening-time";
-
-declare var JsCommon: () => void; // TODO
-const jsCommon = new JsCommon();
 
 export class OpeningTimesCollection {
 
@@ -42,7 +41,7 @@ export class OpeningTimesCollection {
     }
 
     isOpen(weekDay: DayOfWeek, time?: Date): boolean {
-        return jsCommon.openingTimesUtil.isOpen(
+        return OpeningTimesUtil.isOpen(
             this.openingTimes.map(it => it.interval.timeInterval),
             weekDay,
             time

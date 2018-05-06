@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { DomUtil } from "@marco-eckstein/js-utils";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { Location } from "../model/location";
-
-declare var JsCommon: () => void; // TODO
-const jsCommon = new JsCommon();
 
 @Component({
     selector: "app-results-list",
@@ -35,7 +33,7 @@ export class ResultsListComponent implements OnInit {
     makeVisible(location: Location) {
         const locationElement = document.getElementById(location.id)!; // TODO
 
-        if (!jsCommon.domUtil.isElementVisible(locationElement)) {
+        if (!DomUtil.isElementVisible(locationElement)) {
             locationElement.scrollIntoView();
         }
     }

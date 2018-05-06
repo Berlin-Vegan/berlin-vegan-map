@@ -1,8 +1,7 @@
+import { GeoUtil } from "@marco-eckstein/js-utils";
+
 import { VeganCategory } from "./vegan-category";
 import { OpeningTimesCollection } from "./opening-times-collection";
-
-declare var JsCommon: () => void; // TODO
-const jsCommon = new JsCommon(); // TODO
 
 export class Location {
     constructor(
@@ -33,7 +32,7 @@ export class Location {
     }
 
     getDistanceToCoordinatesInKm(coordinates: Coordinates): number {
-        return jsCommon.geoUtil.getDistanceInKm(this.transformCoordinates(coordinates), this.position);
+        return GeoUtil.getDistanceInKm(this.transformCoordinates(coordinates), this.position);
     }
 
     get address(): string {
