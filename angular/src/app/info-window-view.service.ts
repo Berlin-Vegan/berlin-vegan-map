@@ -12,9 +12,9 @@ const linkSymbol = "🔗"; // Your editor may not have this.
 @Injectable()
 export class InfoWindowViewService {
 
-    language: string;
-    i18n: any; // TODO: Type
-    kilometerPipe = new KilometerPipe(this.i18nService);
+    private readonly language: string;
+    private readonly i18n: any; // TODO: Type
+    private readonly kilometerPipe = new KilometerPipe(this.i18nService);
 
     constructor(private readonly i18nService: I18nService) {
         this.language = i18nService.getLanguage();
