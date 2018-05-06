@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
+import { DayOfWeek } from "@marco-eckstein/js-utils";
 
-import { DayOfWeek } from "./model/day-of-week";
 import { I18nService } from "./i18n.service";
 import { GastroLocation } from "./model/gastro-location";
 import { KilometerPipe } from "./kilometer.pipe";

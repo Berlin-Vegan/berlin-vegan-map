@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
+import { DayOfWeek } from "@marco-eckstein/js-utils";
 
-import { DayOfWeek } from "./model/day-of-week";
 import { GastroLocation } from "./model/gastro-location";
 import { GastroQuery } from "./model/gastro-query";
 import { GastroTag } from "./model/gastro-tag";

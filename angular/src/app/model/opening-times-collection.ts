@@ -1,6 +1,5 @@
-import { OpeningTimesUtil } from "@marco-eckstein/js-utils";
+import { DayOfWeek, OpeningTimesUtil } from "@marco-eckstein/js-utils";
 
-import { DayOfWeek } from "./day-of-week";
 import { I18nService } from "../i18n.service";
 import { OpeningTime } from "./opening-time";
 
