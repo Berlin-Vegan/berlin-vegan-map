@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { I18nUtil } from "@marco-eckstein/js-utils";
 
+import { TimeInterval } from "./model/time-interval";
+
 declare var global_language: "de" | "en";
 
 const nbsp = "\xa0"; // Non-breaking space
@@ -385,7 +387,7 @@ export class I18nService {
         return I18nUtil.abbreviateWeekDay(weekday, global_language);
     }
 
-    formatTimeInterval(beginDate: Date, endDate: Date): string {
-        return I18nUtil.formatTimeInterval(beginDate, endDate, global_language);
+    formatTimeInterval(timeInterval: TimeInterval): string {
+        return I18nUtil.formatTimeInterval(timeInterval.begin, timeInterval.end, global_language);
     }
 }

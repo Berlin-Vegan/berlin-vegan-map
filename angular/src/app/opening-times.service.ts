@@ -33,7 +33,7 @@ export class OpeningTimesService {
 
         if (otString) {
             timeInterval = this.parseTimeInterval(otString);
-            friendly = this.i18nService.formatTimeInterval(timeInterval.begin, timeInterval.end); // TODO
+            friendly = this.i18nService.formatTimeInterval(timeInterval);
         } else {
             timeInterval = null;
             friendly = this.i18nService.getI18n().openingTimes.isClosed;
