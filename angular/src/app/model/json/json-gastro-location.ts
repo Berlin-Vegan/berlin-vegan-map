@@ -11,7 +11,7 @@ type YesNoUnknown = 1 | 0 | -1;
 export interface JsonGastroLocation extends JsonLocation {
     district: string; // non-empty
     pictures: Picture[]; // 0..*
-    publicTransport: string; // non-empty
+    publicTransport?: string; // non-empty
     handicappedAccessible: YesNoUnknown;
     handicappedAccessibleWc: YesNoUnknown;
     dog: YesNoUnknown;

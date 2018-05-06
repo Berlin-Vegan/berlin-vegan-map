@@ -65,7 +65,7 @@ export class SearchService {
                 if (location instanceof GastroLocation) {
                     searchedValues = searchedValues.concat([
                         location.district,
-                        location.publicTransport,
+                        location.publicTransport || "",
                         location.email || "",
                     ]);
                 }

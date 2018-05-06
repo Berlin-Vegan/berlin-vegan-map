@@ -38,7 +38,7 @@ export class GastroLocation extends Location {
         public readonly catering: YesNoUnknown,
         public readonly wlan: YesNoUnknown,
         public readonly district: string,
-        public readonly publicTransport: string,
+        public readonly publicTransport: string | undefined,
         public readonly tags: GastroTag[],
     ) {
         super(
