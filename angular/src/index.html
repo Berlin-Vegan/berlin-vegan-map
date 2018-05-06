@@ -64,6 +64,13 @@
             global_language = prefLang || "de";
         }
 
+        if (global_language !== "de" && global_language !== "en") {
+            alert("Illegal value '" + global_language + "' for language. "
+                + "Expected 'en' or 'de'. Defaulting to 'en'."
+            );
+            global_language = "en";
+        }
+
         var global_region = (global_language === "en") ? "us" : "de";
 
         function getPreferredSupportedLanguage() {
