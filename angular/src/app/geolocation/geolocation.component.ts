@@ -22,10 +22,10 @@ export class GeolocationComponent {
     readonly i18n = this.i18nService.getI18n();
     readonly isGeolocationSupported = !!navigator.geolocation;
     isChecked = false;
-    mode: "detect" | "select" = "detect";
     coordinates: Coordinates | null = null;
     info = "";
     error = "";
+    private mode: "detect" | "select" = "detect";
 
     onChange() {
         if (this.isChecked) {
