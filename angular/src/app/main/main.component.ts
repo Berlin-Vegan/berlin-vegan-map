@@ -34,11 +34,12 @@ export class MainComponent implements OnInit {
     @ViewChild("preSearchDiv") preSearchDiv: ElementRef;
 
     readonly i18n = this.i18nService.getI18n();
+    readonly initialSortOrder = "name";
+    sortOrder: SortOrder = this.initialSortOrder;
     allLocations: (GastroLocation | ShoppingLocation)[] = [];
     filteredLocations: (GastroLocation | ShoppingLocation)[] = [];
     query: GastroQuery | ShoppingQuery;
     isGastro: boolean | undefined;
-    sortOrder: SortOrder = "name";
     fullMapView = false;
     coordinates: Coordinates | null = null;
 
