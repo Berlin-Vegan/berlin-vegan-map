@@ -36,8 +36,8 @@
                 (click)="expandOpenComments.set(location, !expandOpenComments.get(location));"
             >
                 <span class="fa fa-info-circle"></span>
-                <span [hidden]="!expandOpenComments.get(location)">{{location.localizedOpenComment}}</span>
             </span>
+            <span [hidden]="!expandOpenComments.get(location)">{{location.localizedOpenComment}}</span>
         </div>
     </li>
 </ul>
