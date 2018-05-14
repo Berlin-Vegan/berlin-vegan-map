@@ -71,6 +71,7 @@
             global_language = "en";
         }
 
+        document.documentElement.setAttribute("lang", global_language);
         var global_region = (global_language === "en") ? "us" : "de";
 
         function getPreferredSupportedLanguage() {
