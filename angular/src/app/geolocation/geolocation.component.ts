@@ -16,10 +16,6 @@ export class GeolocationComponent {
 
     @Output() readonly coordinatesChange = new EventEmitter<Coordinates | null>();
     @Output() readonly highlightRequest = new EventEmitter<void>();
-    private readonly options = {
-        enableHighAccuracy: true,
-        timeout: this.configurationService.geoLocationTimeoutMillis
-    };
     readonly i18n = this.i18nService.getI18n();
     readonly isGeolocationSupported = !!navigator.geolocation;
     isChecked = false;
@@ -72,7 +68,10 @@ export class GeolocationComponent {
                             }
                         }
                     },
-                    this.options
+                    {
+                        enableHighAccuracy: true,
+                        timeout: this.configurationService.geoLocationTimeoutMillis
+                    }
                 );
             }
         }, timeout);
