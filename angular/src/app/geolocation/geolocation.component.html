@@ -1,9 +1,18 @@
 <div *ngIf="isGeolocationSupported">
     <div>
         <label>
-            <input type="checkbox" name="checkbox" [(ngModel)]="isChecked" (change)="onChange()"/>
-            <span *ngIf="!coordinates">{{i18n.geolocation.header}}</span>
-            <a *ngIf="coordinates" href="#" (click)="$event.preventDefault(); highlightRequest.emit()">{{i18n.geolocation.header}}</a>
+            <input
+                type="checkbox"
+                name="checkbox"
+                [(ngModel)]="isChecked"
+                (change)="onChange()"
+            /><span 
+                *ngIf="!coordinates">{{i18n.geolocation.header}}
+            </span><a 
+                *ngIf="coordinates" 
+                href="#" 
+                (click)="$event.preventDefault(); highlightRequest.emit()">{{i18n.geolocation.header}}
+            </a>
         </label>
     </div>
     <div>
