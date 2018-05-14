@@ -36,9 +36,6 @@ export class GeolocationComponent {
     }
 
     detectCoordinates() {
-        assert(navigator.geolocation);
-        assert(this.info === "");
-        assert(this.error === "");
         this.isChecked = true;
         this.mode = "detect";
         this.placeSelectionComponent.clear();
@@ -120,11 +117,5 @@ export class GeolocationComponent {
             this.coordinates = null;
             this.coordinatesChange.emit(null);
         }
-    }
-}
-
-function assert(expression: any) {
-    if (!expression) {
-        alert("Unexpected condition");
     }
 }
