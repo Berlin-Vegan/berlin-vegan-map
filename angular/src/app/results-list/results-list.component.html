@@ -2,7 +2,8 @@
     <li *ngFor="let location of locations" id="{{location.id}}">
         <div class="locationHeadingContainer flex-container-nowrap">
             <h1>
-                <a 
+                <a
+                    title="{{i18n.showOnMap}}"
                     href="" 
                     (click)="$event.preventDefault(); locationSelect.emit(location)"
                 >{{location.name}}</a>
