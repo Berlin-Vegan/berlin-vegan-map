@@ -7,11 +7,13 @@
                 [(ngModel)]="isChecked"
                 (change)="onChange()"
             /><span 
-                *ngIf="!coordinates">{{i18n.geolocation.header}}
+                *ngIf="!coordinates"
+            >{{i18n.geolocation.header}}:
             </span><a 
                 *ngIf="coordinates" 
                 href="#" 
-                (click)="$event.preventDefault(); highlightRequest.emit()">{{i18n.geolocation.header}}
+                (click)="$event.preventDefault(); highlightRequest.emit()"
+            >{{i18n.geolocation.header}}:
             </a>
         </label>
     </div>
