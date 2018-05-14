@@ -40,24 +40,29 @@ export class GoogleMapComponent {
         this._coordinates = coordinates;
 
         if (coordinates) {
-            const marker = new google.maps.Marker({
-                map: this.map,
-                position: new google.maps.LatLng(coordinates.latitude, coordinates.longitude),
-                title: this.i18n.geolocation.currentLocation,
-                icon: this.configurationService.getIconUrlForCoordinates()
-            });
+            const position = new google.maps.LatLng(coordinates.latitude, coordinates.longitude);
 
-            this.coordinatesMarker = marker;
+            if (this.coordinatesMarker) {
+                this.coordinatesMarker.setPosition(position);
+            } else {
+                this.coordinatesMarker = new google.maps.Marker({
+                    map: this.map,
+                    position: position,
+                    title: this.i18n.geolocation.currentLocation,
+                    icon: this.configurationService.getIconUrlForCoordinates()
+                });
 
-            google.maps.event.addListener(marker, "click", () => {
-                this.map.setCenter(marker.getPosition());
-                this.infoWindow.setContent("<h2>" + marker.getTitle() + "</h2>");
-                this.infoWindow.open(this.map, marker);
-            });
+                google.maps.event.addListener(this.coordinatesMarker, "click", () => {
+                    this.map.setCenter(this.coordinatesMarker.getPosition());
+                    this.infoWindow.setContent("<h2>" + this.coordinatesMarker.getTitle() + "</h2>");
+                    this.infoWindow.open(this.map, this.coordinatesMarker);
+                });
 
-            google.maps.event.trigger(marker, "click");
+                google.maps.event.trigger(this.coordinatesMarker, "click");
+            }
         } else if (this.coordinatesMarker) {
             this.coordinatesMarker.setMap(null);
+            delete this.coordinatesMarker;
         }
     }
 

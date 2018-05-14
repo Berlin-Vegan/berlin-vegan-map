@@ -40,25 +40,42 @@ export class GeolocationComponent {
         assert(this.coordinates === null);
         assert(this.info === "");
         assert(this.error === "");
-
         this.info = this.i18n.geolocation.detecting;
+        this.updateCoordinates(0, false);
+    }
 
-        navigator.geolocation.getCurrentPosition(
-            position => {
-                if (this.isChecked) {
-                    this.info = "";
-                    this.coordinates = position.coords;
-                    this.coordinatesChange.emit(this.coordinates);
-                }
-            },
-            positionError => {
-                if (this.isChecked) {
-                    this.info = "";
-                    this.error = this.getErrorMessage(positionError);
-                }
-            },
-            this.options
-        );
+    private updateCoordinates(timeout: number, retry: boolean) {
+        setTimeout(() => {
+            if (this.isChecked) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        if (this.isChecked) {
+                            this.info = "";
+                            this.error = "";
+                            this.coordinates = position.coords;
+                            this.coordinatesChange.emit(this.coordinates);
+                            this.updateCoordinates(
+                                this.configurationService.refreshCoordinatesTimeoutMillis,
+                                true
+                            );
+                        }
+                    },
+                    positionError => {
+                        if (this.isChecked) {
+                            this.info = "";
+                            this.error = this.getErrorMessage(positionError);
+                            if (retry) {
+                                this.updateCoordinates(
+                                    this.configurationService.refreshCoordinatesTimeoutMillis,
+                                    true
+                                );
+                            }
+                        }
+                    },
+                    this.options
+                );
+            }
+        }, timeout);
     }
 
     private getErrorMessage(positionError: PositionError): string {

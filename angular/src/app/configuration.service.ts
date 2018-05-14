@@ -13,6 +13,7 @@ export class ConfigurationService {
     readonly mapCenter = { lat: 52.5200070, lng: 13.4049540 };
     readonly geoLocationTimeoutMillis = environment.production ? 15000 : 5000;
     readonly geoLocationFirefoxWorkaroundTimeoutMillis = environment.production ? 16000 : 8000;
+    readonly refreshCoordinatesTimeoutMillis = environment.production ? 20000 : 5000;
 
     getColor(veganCategory: VeganCategory): string {
         switch (veganCategory) {
