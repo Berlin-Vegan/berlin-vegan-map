@@ -31,11 +31,13 @@
         <div>
             <span>{{location.openingTimes.getTodayFriendly()}}</span>
             <span
-                [hidden]="!location.localizedOpenComment"
+                role="button"
                 title={{location.localizedOpenComment}}
+                attr.aria-label={{i18n.openingHoursInfo}}
+                [hidden]="!location.localizedOpenComment"
                 (click)="expandOpenComments.set(location, !expandOpenComments.get(location));"
             >
-                <span class="fa fa-info-circle"></span>
+                <span class="fa fa-info-circle" aria-hidden></span>
             </span>
             <span [hidden]="!expandOpenComments.get(location)">{{location.localizedOpenComment}}</span>
         </div>

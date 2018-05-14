@@ -315,6 +315,10 @@ const i18n = {
         en: "Show on map",
         de: "Auf der Karte anzeigen",
     },
+    openingHoursInfo: {
+        en: "Opening hours info",
+        de: "Info zu Öffnungszeiten",
+    },
     infoWindow: {
         distance: {
             en: "Distance",
