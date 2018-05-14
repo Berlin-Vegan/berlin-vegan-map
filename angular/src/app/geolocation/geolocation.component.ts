@@ -105,6 +105,8 @@ export class GeolocationComponent {
     selectCoordinates(coordinates: Coordinates) {
         this.isChecked = true;
         this.mode = "select";
+        this.info = "";
+        this.error = "";
         this.coordinates = coordinates;
         this.coordinatesChange.emit(this.coordinates);
         this.highlightRequest.emit();
