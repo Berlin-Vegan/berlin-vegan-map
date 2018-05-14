@@ -1,11 +1,13 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Output, ViewChild } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
+import { PlaceSelectComponent } from "../place-select/place-select.component";
 import { I18nService } from "../i18n.service";
 
 @Component({
     selector: "app-geolocation",
     templateUrl: "./geolocation.component.html",
+    styleUrls: [ "./geolocation.component.scss" ],
 })
 export class GeolocationComponent {
 
@@ -16,9 +18,11 @@ export class GeolocationComponent {
 
     @Output() readonly coordinatesChange = new EventEmitter<Coordinates | null>();
     @Output() readonly highlightRequest = new EventEmitter<void>();
+    @ViewChild(PlaceSelectComponent) placeSelectionComponent: PlaceSelectComponent;
     readonly i18n = this.i18nService.getI18n();
     readonly isGeolocationSupported = !!navigator.geolocation;
     isChecked = false;
+    mode: "detect" | "select" = "detect";
     coordinates: Coordinates | null = null;
     info = "";
     error = "";
@@ -27,43 +31,48 @@ export class GeolocationComponent {
         if (this.isChecked) {
             this.detectCoordinates();
         } else {
-            this.clearCoordinates();
+            this.clear();
         }
     }
 
-    private detectCoordinates() {
+    detectCoordinates() {
         assert(navigator.geolocation);
-        assert(this.coordinates === null);
         assert(this.info === "");
         assert(this.error === "");
+        this.isChecked = true;
+        this.mode = "detect";
+        this.placeSelectionComponent.clear();
         this.info = this.i18n.geolocation.detecting;
-        this.updateCoordinates(0, false);
+        this.updateCoordinates(0, true);
     }
 
-    private updateCoordinates(timeout: number, retry: boolean) {
+    private updateCoordinates(timeout: number, firstCall: boolean) {
         setTimeout(() => {
-            if (this.isChecked) {
+            if (this.isChecked && this.mode === "detect") {
                 navigator.geolocation.getCurrentPosition(
                     position => {
-                        if (this.isChecked) {
+                        if (this.isChecked && this.mode === "detect") {
                             this.info = "";
                             this.error = "";
                             this.coordinates = position.coords;
                             this.coordinatesChange.emit(this.coordinates);
+                            if (firstCall) {
+                                this.highlightRequest.emit();
+                            }
                             this.updateCoordinates(
                                 this.configurationService.refreshCoordinatesTimeoutMillis,
-                                true
+                                false
                             );
                         }
                     },
                     positionError => {
-                        if (this.isChecked) {
+                        if (this.isChecked && this.mode === "detect") {
                             this.info = "";
                             this.error = this.getErrorMessage(positionError);
-                            if (retry) {
+                            if (!firstCall) {
                                 this.updateCoordinates(
                                     this.configurationService.refreshCoordinatesTimeoutMillis,
-                                    true
+                                    false
                                 );
                             }
                         }
@@ -93,9 +102,18 @@ export class GeolocationComponent {
         return this.i18n.geolocation.theError + ": " + reason;
     }
 
-    private clearCoordinates() {
+    selectCoordinates(coordinates: Coordinates) {
+        this.isChecked = true;
+        this.mode = "select";
+        this.coordinates = coordinates;
+        this.coordinatesChange.emit(this.coordinates);
+        this.highlightRequest.emit();
+    }
+
+    private clear() {
         this.info = "";
         this.error = "";
+        this.placeSelectionComponent.clear();
         if (this.coordinates !== null) {
             this.coordinates = null;
             this.coordinatesChange.emit(null);

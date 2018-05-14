@@ -249,12 +249,16 @@ const i18n = {
     },
     geolocation: {
         header: {
-            en: "Geolocation",
-            de: "Standorterkennung",
+            en: "Position",
+            de: "Standort",
         },
-        currentLocation: {
-            en: "Current location",
-            de: "Aktueller Standort",
+        currentPosition: {
+            en: "Position",
+            de: "Standort",
+        },
+        detectButton: {
+            en: "Detect",
+            de: "Erkennen",
         },
         distance: {
             en: "Distance",
@@ -280,6 +284,10 @@ const i18n = {
             en: "Timeout",
             de: "Zeitüberschreitung",
         },
+        placeSelectPlaceholder: {
+            en: "Or enter an address",
+            de: "Oder geben Sie eine Adresse ein.",
+        },
     },
     sortBy: {
         header: {
@@ -294,9 +302,9 @@ const i18n = {
             en: "Distance",
             de: "Entfernung",
         },
-        distanceRequiresGeolocation: {
-            en: "Geolocation required",
-            de: "Standorterkennung erforderlich",
+        distanceRequiresPosition: {
+            en: "Position required",
+            de: "Standort erforderlich",
         },
     },
     resultsLength: {

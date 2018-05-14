@@ -15,6 +15,7 @@ import { KilometerPipe } from "./kilometer.pipe";
 import { LocationService } from "./location.service";
 import { MainComponent } from "./main/main.component";
 import { OpeningTimesService } from "./opening-times.service";
+import { PlaceSelectComponent } from "./place-select/place-select.component";
 import { ResultsListComponent } from "./results-list/results-list.component";
 import { SearchComponent } from "./search/search.component";
 import { SearchService } from "./search.service";
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
         HeaderComponent,
         KilometerPipe,
         MainComponent,
+        PlaceSelectComponent,
         ResultsListComponent,
         SearchComponent,
         SortComponent,

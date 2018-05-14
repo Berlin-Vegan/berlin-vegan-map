@@ -1,5 +1,5 @@
 <div *ngIf="isGeolocationSupported">
-    <div>
+    <div class="flex-container-wrap">
         <label>
             <input
                 type="checkbox"
@@ -16,6 +16,11 @@
             >{{i18n.geolocation.header}}:
             </a>
         </label>
+        <button (click)="detectCoordinates()">{{i18n.geolocation.detectButton}}</button>
+        <app-place-select
+            [placeholder]="i18n.geolocation.placeSelectPlaceholder"
+            (coordinatesChange)="selectCoordinates($event)"
+        ></app-place-select>
     </div>
     <div>
         <img *ngIf="info === i18n.geolocation.detecting" src="assets/images/ajax-loader.gif"/>

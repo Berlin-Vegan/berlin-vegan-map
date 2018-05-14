@@ -48,7 +48,7 @@ export class GoogleMapComponent {
                 this.coordinatesMarker = new google.maps.Marker({
                     map: this.map,
                     position: position,
-                    title: this.i18n.geolocation.currentLocation,
+                    title: this.i18n.geolocation.currentPosition,
                     icon: this.configurationService.getIconUrlForCoordinates()
                 });
 
@@ -57,8 +57,6 @@ export class GoogleMapComponent {
                     this.infoWindow.setContent("<h2>" + this.coordinatesMarker.getTitle() + "</h2>");
                     this.infoWindow.open(this.map, this.coordinatesMarker);
                 });
-
-                google.maps.event.trigger(this.coordinatesMarker, "click");
             }
         } else if (this.coordinatesMarker) {
             this.coordinatesMarker.setMap(null);
