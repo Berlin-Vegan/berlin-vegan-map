@@ -18,8 +18,17 @@ npm run lint
 ```
 
 # Build and Deploy
+
+## Staging
+
 ```
 sh deploy.sh
+```
+
+## Production
+
+```
+sh deploy.sh production
 ```
 
 # License
