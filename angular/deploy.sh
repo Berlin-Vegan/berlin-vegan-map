@@ -23,6 +23,10 @@ MSYS2_ARG_CONV_EXCL="--base-href" npm run build -- --base-href=$BASE_HREF
 rm dist/assets/*.json
 
 DEPLOY_DIR="/var/www/berlin-vegan-wp"$BASE_HREF
-rsync -avz dist/ deploy@berlin-vegan.de:$DEPLOY_DIR
-# On Windows, you may use this instead of rsync (rm -rf * in $DEPLOY_DIR on server before):
-# scp -r dist/* deploy@berlin-vegan.de:$DEPLOY_DIR
+
+if command -v rsync &> /dev/null; then # if rsync is available
+    rsync -avz dist/ deploy@berlin-vegan.de:$DEPLOY_DIR
+else
+    read -p "rm -rf * in $DEPLOY_DIR on server! Then, press ENTER!"
+    scp -r dist/* deploy@berlin-vegan.de:$DEPLOY_DIR
+fi
