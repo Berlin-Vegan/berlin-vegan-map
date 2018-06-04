@@ -33,13 +33,6 @@ export class LocationService {
         return this.http.get(this.configurationService.shoppingLocationsUrl)
             .toPromise()
             .then(response => response.json())
-            // Temporary fixes for bad data TODO
-            .then((locations: any[]) => locations.filter(it => it.tags))
-            .then((locations: any[]) => {
-                locations.forEach(it => it.tags = it.tags.map((tag: string) => tag.trim()));
-                return locations;
-            })
-            // (end)
             .then((locations: JsonShoppingLocation[]) => locations.map(it => this.newShoppingLocation(it)));
     }
 
