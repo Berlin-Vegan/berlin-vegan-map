@@ -1,4 +1,4 @@
-export type ShoppingTag = "Bio" | "Backwaren" | "Eis" | "Drogerie" | "Kleidung" | "Naturkostladen";
+export type ShoppingTag = "foods" | "beverages" | "clothing" | "toiletries" | "supermarket" | "bakery";
 export function getShoppingTags(): ShoppingTag[] {
-    return ["Bio", "Backwaren", "Eis", "Drogerie", "Kleidung", "Naturkostladen"];
+    return ["foods", "beverages", "clothing", "toiletries", "supermarket", "bakery"];
 }

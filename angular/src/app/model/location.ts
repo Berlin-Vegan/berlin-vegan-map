@@ -2,6 +2,7 @@ import { GeoUtil, LatitudeLongitude } from "@marco-eckstein/js-utils";
 
 import { VeganCategory } from "./vegan-category";
 import { OpeningTimesCollection } from "./opening-times-collection";
+import { YesNoUnknown } from "./yes-no-unknown";
 
 export class Location {
     constructor(
@@ -21,6 +22,10 @@ export class Location {
         public readonly commentWithoutFormatting: string | undefined,
         public readonly commentEnglish: string | undefined,
         public readonly commentEnglishWithoutFormatting: string | undefined,
+        public readonly reviewURL: string | undefined,
+        public readonly delivery: YesNoUnknown,
+        public readonly organic: YesNoUnknown,
+        public readonly handicappedAccessible: YesNoUnknown,
         public readonly tagsFriendly: string,
     ) {}
 

@@ -111,22 +111,24 @@ export class SearchService {
             return false;
         };
 
-        let filter6 = () => true;
-        let filter7 = () => true;
+        const filter6 = () => !query.review || !!location.reviewURL;
+
+        const filter7 = () => {
+            return (!query.organic || location.organic === 1)
+                && (!query.handicappedAccessible || location.handicappedAccessible === 1)
+                && (!query.delivery || location.delivery === 1);
+        };
+
+        let filter8 = () => true;
 
         if (location instanceof GastroLocation && query instanceof GastroQuery) {
-            filter6 = () => !query.review || !!location.reviewURL;
-
-            filter7 = () => {
-                return (!query.organic || location.organic === 1)
-                    && (!query.glutenFree || location.glutenFree === 1)
+            filter8 = () => {
+                return (!query.glutenFree || location.glutenFree === 1)
                     && (!query.breakfast || location.breakfast === 1)
                     && (!query.brunch || location.brunch === 1)
                     && (!query.dog || location.dog === 1)
                     && (!query.childChair || location.childChair === 1)
-                    && (!query.handicappedAccessible || location.handicappedAccessible === 1)
                     && (!query.handicappedAccessibleWc || location.handicappedAccessibleWc === 1)
-                    && (!query.delivery || location.delivery === 1)
                     && (!query.catering || location.catering === 1)
                     && (!query.wlan || location.wlan === 1);
             };
@@ -138,7 +140,8 @@ export class SearchService {
             && filter4()
             && filter5()
             && filter6()
-            && filter7();
+            && filter7()
+            && filter8();
     }
 }
 

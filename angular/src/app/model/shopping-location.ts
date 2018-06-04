@@ -2,6 +2,7 @@ import { ShoppingTag } from "./shopping-tag";
 import { Location } from "./location";
 import { OpeningTimesCollection } from "./opening-times-collection";
 import { VeganCategory } from "./vegan-category";
+import { YesNoUnknown } from "./yes-no-unknown";
 
 export class ShoppingLocation extends Location {
     constructor(
@@ -15,12 +16,16 @@ export class ShoppingLocation extends Location {
         telephone: string | undefined,
         website: string | undefined,
         openingTimes: OpeningTimesCollection,
-        localizedOpenComment: string,
+        localizedOpenComment: string | undefined,
         veganCategory: VeganCategory,
         comment: string | undefined,
         commentWithoutFormatting: string | undefined,
         commentEnglish: string | undefined,
         commentEnglishWithoutFormatting: string | undefined,
+        reviewURL: string | undefined,
+        delivery: YesNoUnknown,
+        organic: YesNoUnknown,
+        handicappedAccessible: YesNoUnknown,
         tagsFriendly: string,
         public readonly tags: ShoppingTag[],
     ) {
@@ -41,6 +46,10 @@ export class ShoppingLocation extends Location {
             commentWithoutFormatting,
             commentEnglish,
             commentEnglishWithoutFormatting,
+            reviewURL,
+            delivery,
+            organic,
+            handicappedAccessible,
             tagsFriendly,
         );
     }

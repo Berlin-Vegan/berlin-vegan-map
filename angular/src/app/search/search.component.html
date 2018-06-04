@@ -55,9 +55,9 @@
             </label>
         </div>
     </section>
-    <section *ngIf="isGastro" class="flex-container-wrap">
+    <section class="flex-container-wrap">
         <div class="feature-col">
-            <label *ngFor="let feature of ['organic', 'breakfast', 'dog', 'handicappedAccessible', 'delivery', 'wlan']">
+            <label *ngFor="let feature of getFeatureList1()">
                 <input
                     type="checkbox"
                     name="{{feature}}"
@@ -67,7 +67,7 @@
             </label>
         </div>
         <div class="feature-col">
-            <label *ngFor="let feature of ['glutenFree', 'brunch', 'childChair', 'handicappedAccessibleWc', 'catering', 'review']">
+            <label *ngFor="let feature of getFeatureList2()">
                 <input
                     type="checkbox"
                     name="{{feature}}"

@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { DayOfWeek } from "@marco-eckstein/js-utils";
 
 import { I18nService } from "./i18n.service";
-import { GastroLocation } from "./model/gastro-location";
 import { KilometerPipe } from "./kilometer.pipe";
 import { Location } from "./model/location";
 
@@ -43,12 +42,7 @@ export class InfoWindowViewService {
             + "<h2>" + this.i18n.infoWindow.openingTimes + "</h2>"
             + "<p>" + this.getOpeningTimesInnerHtml(location) + "</p>"
             + this.getOpenCommentInnerHtml(location)
-            + (
-                location instanceof GastroLocation ?
-                "<p>" + this.getCommentAndReviewInnerHtml(location as GastroLocation) + "</p>"
-                :
-                ""
-            )
+            + "<p>" + this.getCommentAndReviewInnerHtml(location) + "</p>"
             + "</article>";
     }
 
@@ -81,7 +75,7 @@ export class InfoWindowViewService {
         return openComment ? "<p>" + openComment + "</p>" : "";
     }
 
-    private getCommentAndReviewInnerHtml(location: GastroLocation): string {
+    private getCommentAndReviewInnerHtml(location: Location): string {
         return this.language === "en" ?
             (location.commentEnglish ? location.commentEnglish + "<br/>" : "")
             + (location.reviewURL ? this.getReviewAnchor(location) : "")
@@ -89,7 +83,7 @@ export class InfoWindowViewService {
             (location.reviewURL ? this.getReviewAnchor(location) : location.comment || "");
     }
 
-    private getReviewAnchor(location: GastroLocation): string {
+    private getReviewAnchor(location: Location): string {
         return "<a target='_blank' href='" + location.reviewURL + "'>" + this.i18n.infoWindow.review + "</a>";
     }
 }

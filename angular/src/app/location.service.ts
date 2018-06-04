@@ -61,19 +61,19 @@ export class LocationService {
             this.removeFormatting(location.comment),
             location.commentEnglish,
             this.removeFormatting(location.commentEnglish),
-            location.tags.map(it => this.i18nService.getI18n().enums.gastroTag[it]).join(", "),
             // Base URL possibly not necessary in production:
             location.reviewURL ? this.configurationService.reviewBaseUrl + location.reviewURL : undefined,
-            location.email,
+            location.delivery,
             location.organic,
+            location.handicappedAccessible,
+            location.tags.map(it => this.i18nService.getI18n().enums.gastroTag[it]).join(", "),
+            location.email,
             location.glutenFree,
             location.breakfast,
             location.brunch,
             location.dog,
             location.childChair,
-            location.handicappedAccessible,
             location.handicappedAccessibleWc,
-            location.delivery,
             location.catering,
             location.wlan,
             location.district,
@@ -94,18 +94,23 @@ export class LocationService {
             location.telephone,
             location.website,
             this.openingTimesService.getOpeningTimesCollection(location),
-            "",
+            this.getOpenComment(location),
             this.getVeganCategory(location),
             location.comment,
             this.removeFormatting(location.comment),
             location.commentEnglish,
             this.removeFormatting(location.commentEnglish),
+            // Base URL possibly not necessary in production:
+            location.reviewURL ? this.configurationService.reviewBaseUrl + location.reviewURL : undefined,
+            location.delivery,
+            location.organic,
+            location.handicappedAccessible,
             location.tags.map(it => this.i18nService.getI18n().enums.shoppingTag[it]).join(", "),
             location.tags.sort(),
         );
     }
 
-    private getOpenComment(location: JsonGastroLocation): string | undefined {
+    private getOpenComment(location: JsonLocation): string | undefined {
         return location.openComment && this.i18nService.getLanguage() === "en" ?
             "Please see location website for opening time details!"
             :

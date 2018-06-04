@@ -53,4 +53,18 @@ export class SearchComponent {
         this.queryChange.emit(this.query);
         this.coordinatesChange.emit(coordinates);
     }
+
+    getFeatureList1(): string[] {
+        return this.isGastro ?
+            ["organic", "breakfast", "dog", "handicappedAccessible", "delivery", "wlan"]
+            :
+            ["organic", "handicappedAccessible", "delivery"];
+    }
+
+    getFeatureList2(): string[] {
+        return this.isGastro ?
+            ["glutenFree", "brunch", "childChair", "handicappedAccessibleWc", "catering", "review"]
+            :
+            ["review"];
+    }
 }

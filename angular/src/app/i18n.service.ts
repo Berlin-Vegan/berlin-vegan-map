@@ -62,30 +62,29 @@ const i18n = {
             },
         },
         shoppingTag: {
-            // Capitalized values because they are capitalized in the data source.
-            Bio: {
-                en: "Organic",
-                de: "Bio",
+            foods: {
+                en: "Foods",
+                de: "Essen",
             },
-            Backwaren: {
-                en: "Baked goods",
-                de: "Backwaren",
+            beverages: {
+                en: "Beverages",
+                de: "Getränke",
             },
-            Eis: {
-                en: "Ice cream",
-                de: "Eis",
-            },
-            Drogerie: {
-                en: "Drug store",
-                de: "Drogerie",
-            },
-            Kleidung: {
+            clothing: {
                 en: "Clothing",
                 de: "Kleidung",
             },
-            Naturkostladen: {
-                en: "Health food store",
-                de: "Naturkostladen",
+            toiletries: {
+                en: "Toiletries",
+                de: "Hygieneartikel",
+            },
+            supermarket: {
+                en: "Supermarket",
+                de: "Supermarkt",
+            },
+            bakery: {
+                en: "Bakery",
+                de: "Bäckerei",
             },
         },
         weekday: {

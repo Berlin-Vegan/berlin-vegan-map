@@ -14,6 +14,10 @@ export class Query {
     openAtTime = "";
     openNow = false;
     distance: Distance = { enabled: false, coordinates: null, km: 1 };
+    review = false;
+    organic = false;
+    handicappedAccessible = false;
+    delivery = false;
 
     constructor() {
         for (const veganCategory of getVeganCategories()) {

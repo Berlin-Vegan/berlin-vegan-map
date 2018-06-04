@@ -1,3 +1,5 @@
+import { YesNoUnknown } from "./yes-no-unknown";
+
 export interface JsonLocation {
     id: string; // non-empty
     name: string; // non-empty
@@ -15,7 +17,12 @@ export interface JsonLocation {
     otFri: string; // possibly empty
     otSat: string; // possibly empty
     otSun: string; // possibly empty
+    openComment?: string; // possibly empty
     vegan: 2 | 4 | 5;
     comment?: string; // non-empty
     commentEnglish?: string; // non-empty
+    delivery: YesNoUnknown;
+    organic: YesNoUnknown;
+    handicappedAccessible: YesNoUnknown;
+    reviewURL?: string; // non-empty
 }

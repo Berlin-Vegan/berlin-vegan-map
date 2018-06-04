@@ -1,4 +1,5 @@
 import { JsonLocation } from "./json-location";
+import { YesNoUnknown } from "./yes-no-unknown";
 
 interface Picture {
     url: string; // non-empty
@@ -6,19 +7,14 @@ interface Picture {
     height: number;
 }
 
-type YesNoUnknown = 1 | 0 | -1;
-
 export interface JsonGastroLocation extends JsonLocation {
     district: string; // non-empty
     pictures: Picture[]; // 0..*
     publicTransport?: string; // non-empty
-    handicappedAccessible: YesNoUnknown;
     handicappedAccessibleWc: YesNoUnknown;
     dog: YesNoUnknown;
     childChair: YesNoUnknown;
     catering: YesNoUnknown;
-    delivery: YesNoUnknown;
-    organic: YesNoUnknown;
     seatsOutdoor: number;
     seatsIndoor: number;
     wlan: YesNoUnknown;
@@ -26,7 +22,5 @@ export interface JsonGastroLocation extends JsonLocation {
     breakfast: YesNoUnknown;
     brunch: YesNoUnknown;
     tags: ("Bar" | "Cafe" | "Eiscafe" | "Imbiss" | "Restaurant")[]; // 1..5
-    openComment?: string; // possibly empty
-    reviewURL?: string; // non-empty
     email?: string; // non-empty
 }
