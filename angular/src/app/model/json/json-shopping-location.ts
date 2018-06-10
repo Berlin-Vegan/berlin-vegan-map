@@ -1,5 +1,10 @@
 import { JsonLocation } from "./json-location";
 
 export interface JsonShoppingLocation extends JsonLocation {
-    tags: ("foods" | "clothing" | "toiletries" | "supermarket")[]; // 1..4
+
+    /**
+     * Tags.
+     * 1 to 4 items.
+     */
+    tags: ("foods" | "clothing" | "toiletries" | "supermarket")[];
 }
