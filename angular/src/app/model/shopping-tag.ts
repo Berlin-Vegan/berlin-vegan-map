@@ -1,4 +1,4 @@
-export type ShoppingTag = "foods" | "beverages" | "clothing" | "toiletries" | "supermarket" | "bakery";
+export type ShoppingTag = "foods" | "clothing" | "toiletries" | "supermarket";
 export function getShoppingTags(): ShoppingTag[] {
-    return ["foods", "beverages", "clothing", "toiletries", "supermarket", "bakery"];
+    return ["foods", "clothing", "toiletries", "supermarket"];
 }

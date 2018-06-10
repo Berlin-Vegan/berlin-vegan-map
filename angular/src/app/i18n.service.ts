@@ -66,10 +66,6 @@ const i18n = {
                 en: "Foods",
                 de: "Essen",
             },
-            beverages: {
-                en: "Beverages",
-                de: "Getränke",
-            },
             clothing: {
                 en: "Clothing",
                 de: "Kleidung",
@@ -81,10 +77,6 @@ const i18n = {
             supermarket: {
                 en: "Supermarket",
                 de: "Supermarkt",
-            },
-            bakery: {
-                en: "Bakery",
-                de: "Bäckerei",
             },
         },
         weekday: {
