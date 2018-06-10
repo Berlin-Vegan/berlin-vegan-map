@@ -23,7 +23,7 @@ MSYS2_ARG_CONV_EXCL="--base-href" npm run build -- --base-href=$BASE_HREF
 
 # The .json files are only needed for development.
 rm dist/assets/*.json
-mv $HTACCESS_FILE dist/.htaccess
+cp $HTACCESS_FILE dist/.htaccess
 
 DEPLOY_DIR="/var/www/berlin-vegan-wp"$BASE_HREF
 SERVER="deploy@berlin-vegan.de"
