@@ -49,7 +49,7 @@ export interface JsonLocation {
     telephone?: string;
 
     /**
-     * Website URL
+     * Website URL.
      * Non-empty.
      */
     website?: string;

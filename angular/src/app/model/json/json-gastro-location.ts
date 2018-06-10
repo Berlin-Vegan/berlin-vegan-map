@@ -35,7 +35,7 @@ export interface JsonGastroLocation extends JsonLocation {
     publicTransport?: string;
 
     /**
-     * WC/toilet is handicapped accessible
+     * WC/toilet is handicapped accessible.
      */
     handicappedAccessibleWc: YesNoUnknown;
 
