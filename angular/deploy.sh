@@ -24,10 +24,11 @@ rm dist/assets/*.json
 mv dist/assets/htaccess dist/.htaccess
 
 DEPLOY_DIR="/var/www/berlin-vegan-wp"$BASE_HREF
+SERVER="deploy@berlin-vegan.de"
 
 if command -v rsync &> /dev/null; then # if rsync is available
-    rsync -avz dist/ deploy@berlin-vegan.de:$DEPLOY_DIR
+    rsync -avz dist/ $SERVER:$DEPLOY_DIR
 else
-    read -p "rm -rf * in $DEPLOY_DIR on server! Then, press ENTER!"
-    scp -r dist/* deploy@berlin-vegan.de:$DEPLOY_DIR
+    read -p "ssh $SERVER; then cd $DEPLOY_DIR; then rm -rf *; then, press ENTER!"
+    scp -r dist/* $SERVER:$DEPLOY_DIR
 fi
