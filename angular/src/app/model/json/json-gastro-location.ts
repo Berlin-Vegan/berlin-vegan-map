@@ -65,7 +65,7 @@ export interface JsonGastroLocation extends JsonLocation {
     seatsIndoor: number;
 
     /**
-     * Free WiFi is availyble.
+     * Free WiFi is available.
      */
     wlan: YesNoUnknown;
 
