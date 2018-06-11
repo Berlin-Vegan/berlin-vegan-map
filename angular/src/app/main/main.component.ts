@@ -48,36 +48,24 @@ export class MainComponent implements OnInit {
             .url
             .subscribe(url => {
                 const path = url[0].path;
-                switch (path) {
-                    case "gastro":
-                        this.initGastro();
-                        break;
-                    case "shopping":
-                        this.initShopping();
-                        break;
-                    default:
-                        throw new Error("Unexpected path: " + path);
+                if (path === "gastro" || path === "shopping") {
+                    this.init(path);
+                } else {
+                    throw new Error("Unexpected path: " + path);
                 }
             });
     }
 
-    initGastro() {
-        this.query = new GastroQuery();
+    init(path: "gastro" | "shopping") {
+        this.isGastro = (path === "gastro");
+        this.query = this.isGastro ? new GastroQuery() : new ShoppingQuery();
         this.searchComponent.init(this.query);
-        this.isGastro = true;
-        this.locationService.getGastroLocations()
-            .then(locations => {
-                this.allLocations = locations;
-                this.filteredLocations = locations.sort(this.getSortFunction());
-                this.googleMapComponent.init(locations);
-            });
-    }
-
-    initShopping() {
-        this.query = new ShoppingQuery();
-        this.searchComponent.init(this.query);
-        this.isGastro = false;
-        this.locationService.getShoppingLocations()
+        const locationPromise: Promise<(GastroLocation | ShoppingLocation)[]> =
+            this.isGastro ?
+            this.locationService.getGastroLocations()
+            :
+            this.locationService.getShoppingLocations();
+        locationPromise
             .then(locations => {
                 this.allLocations = locations;
                 this.filteredLocations = locations.sort(this.getSortFunction());

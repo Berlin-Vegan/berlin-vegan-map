@@ -10,11 +10,11 @@
             <nav>
                 <ul>
                     <li>
-                        <a routerLink="/gastro" [class.disabled]="isGastro" (click)="initGastro()"
+                        <a routerLink="/gastro" [class.disabled]="isGastro" (click)="init('gastro')"
                         >{{i18n.locationSwitch.gastro}}</a>
                     </li>
                     <li>
-                        <a routerLink="/shopping" [class.disabled]="!isGastro" (click)="initShopping()"
+                        <a routerLink="/shopping" [class.disabled]="!isGastro" (click)="init('shopping')"
                         >{{i18n.locationSwitch.shopping}}</a>
                     </li>
                 </ul>
