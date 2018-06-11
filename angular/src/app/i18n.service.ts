@@ -64,7 +64,7 @@ const i18n = {
         shoppingTag: {
             foods: {
                 en: "Foods",
-                de: "Essen",
+                de: "Lebensmittel",
             },
             clothing: {
                 en: "Clothing",
