@@ -68,7 +68,7 @@ export class MainComponent implements OnInit {
         this.locationService.getGastroLocations()
             .then(locations => {
                 this.allLocations = locations;
-                this.filteredLocations = locations;
+                this.filteredLocations = locations.sort(this.getSortFunction());
                 this.googleMapComponent.init(locations);
             });
     }
@@ -80,7 +80,7 @@ export class MainComponent implements OnInit {
         this.locationService.getShoppingLocations()
             .then(locations => {
                 this.allLocations = locations;
-                this.filteredLocations = locations;
+                this.filteredLocations = locations.sort(this.getSortFunction());
                 this.googleMapComponent.init(locations);
             });
     }
