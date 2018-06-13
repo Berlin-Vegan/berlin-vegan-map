@@ -19,6 +19,8 @@ nav {
 
         li {
             display: inline;
+            text-transform: uppercase;
+            font-size: 1.18em;
         }
 
         li:last-of-type::before {
@@ -37,6 +39,7 @@ nav {
     }
 
     a.disabled {
+        color: $very-bright-green;
         font-weight: bold;
         pointer-events: none;
         cursor: default;
