@@ -20,7 +20,7 @@ export class LocalStorageService {
         return settingsJson ? new Settings(JSON.parse(settingsJson)) : new Settings();
     }
 
-    saveSettings(settings: Settings) {
-        localStorage.setItem(settingsKey, JSON.stringify(settings));
+    saveSettings() {
+        localStorage.setItem(settingsKey, JSON.stringify(this.settings));
     }
 }
