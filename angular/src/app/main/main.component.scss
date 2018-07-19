@@ -106,6 +106,33 @@ app-statistics {
     .col-right { width: 75%; }
 }
 
+.fullHeightMap {
+    height: 100%;
+}
+
+.infoBox {
+    height: 42%;
+}
+
+.reducedHeightMap {
+    height: 58%;
+}
+
+@media #{$min-height-1} {
+    .infoBox { height: 39%; }
+    .reducedHeightMap { height: 61%; }
+}
+
+@media #{$min-height-2} {
+    .infoBox { height: 36%; }
+    .reducedHeightMap { height: 64%; }
+}
+
+@media #{$min-height-3} {
+    .infoBox { height: 33%; }
+    .reducedHeightMap { height: 67%; }
+}
+
 .fullMapView {
     width: 100%;
 }

@@ -44,11 +44,20 @@
             ></app-results-list>
         </div>
         <div class="col-right" [ngClass]="{fullMapView: fullMapView}">
-            <app-google-map
-                [locations]="filteredLocations"
-                [coordinates]="coordinates"
-                (locationSelect)="onLocationSelectInGoogleMap($event)"
-            ></app-google-map>
+            <div [ngClass]="isInfoBoxVisible ? 'reducedHeightMap' : 'fullHeightMap'">
+                <app-google-map
+                    [locations]="filteredLocations"
+                    [coordinates]="coordinates"
+                    (locationSelect)="onLocationSelectInGoogleMap($event)"
+                ></app-google-map>
+            </div>
+            <div *ngIf="isInfoBoxVisible" class="infoBox">
+                <app-info-box
+                    [location]="selectedLocation"
+                    [coordinates]="coordinates"
+                    (close)="onInfoBoxClose()"
+                ></app-info-box>
+            </div>
         </div>
     </main>
 </div>

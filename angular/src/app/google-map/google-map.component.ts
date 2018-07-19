@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, ElementRef, EventEmitter, Input, NgZone, Output, ViewChild } from "@angular/core";
 import {} from "@types/googlemaps";
 
 import { ConfigurationService } from "../configuration.service";
@@ -17,6 +17,7 @@ export class GoogleMapComponent {
         private readonly configurationService: ConfigurationService,
         private readonly i18nService: I18nService,
         private readonly infoWindowViewService: InfoWindowViewService,
+        private readonly ngZone: NgZone,
     ) {}
 
     @Input() set locations(locations: Location[]) {
@@ -70,7 +71,7 @@ export class GoogleMapComponent {
 
     private _coordinates: Coordinates | null;
 
-    @Output() readonly locationSelect = new EventEmitter<Location>();
+    @Output() readonly locationSelect = new EventEmitter<Location | null>();
 
     @ViewChild("mapDiv") mapDiv: ElementRef;
 
@@ -108,7 +109,11 @@ export class GoogleMapComponent {
             const content = this.infoWindowViewService.getContent(location, this.coordinates);
             this.infoWindow.setContent(content);
             this.infoWindow.open(this.map, marker);
-            this.locationSelect.emit(location);
+            this.ngZone.run(() => this.locationSelect.emit(location));
+        });
+
+        google.maps.event.addListener(this.infoWindow, "closeclick", () => {
+            this.ngZone.run(() => this.locationSelect.emit(null));
         });
 
         this.markersToLocations.set(marker, location);
@@ -124,8 +129,12 @@ export class GoogleMapComponent {
         };
     }
 
-    selectLocation(location: Location) {
-        setTimeout(() => { google.maps.event.trigger(this.locationsToMarkers.get(location), "click"); }, 0);
+    selectLocation(location: Location | null) {
+        if (location) {
+            setTimeout(() => { google.maps.event.trigger(this.locationsToMarkers.get(location), "click"); }, 0);
+        } else {
+            this.infoWindow.close();
+        }
     }
 
     selectCoordinates() {

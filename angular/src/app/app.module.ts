@@ -10,6 +10,7 @@ import { GeolocationComponent } from "./geolocation/geolocation.component";
 import { GoogleMapComponent } from "./google-map/google-map.component";
 import { HeaderComponent } from "./header/header.component";
 import { I18nService } from "./i18n.service";
+import { InfoBoxComponent } from "./info-box/info-box.component";
 import { InfoWindowViewService } from "./info-window-view.service";
 import { KilometerPipe } from "./kilometer.pipe";
 import { LocationService } from "./location.service";
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
         GeolocationComponent,
         GoogleMapComponent,
         HeaderComponent,
+        InfoBoxComponent,
         KilometerPipe,
         MainComponent,
         PlaceSelectComponent,

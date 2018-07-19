@@ -42,6 +42,11 @@ export class MainComponent implements OnInit {
     isGastro: boolean | undefined;
     fullMapView = false;
     coordinates: Coordinates | null = null;
+    selectedLocation: Location | null = null;
+
+    get isInfoBoxVisible(): boolean {
+        return !!this.selectedLocation;
+    }
 
     ngOnInit() {
         this.route
@@ -95,10 +100,14 @@ export class MainComponent implements OnInit {
             this.enableFullMapView();
         }
         this.googleMapComponent.selectLocation(location);
+        this.selectedLocation = location;
     }
 
-    onLocationSelectInGoogleMap(location: Location) {
-        this.resultsListComponent.makeVisible(location);
+    onLocationSelectInGoogleMap(location: Location | null) {
+        if (location) {
+            this.resultsListComponent.makeVisible(location);
+        }
+        this.selectedLocation = location;
     }
 
     scrollSearchIntoView() {
@@ -136,5 +145,10 @@ export class MainComponent implements OnInit {
 
     onCoordinatesHighlightRequest() {
         this.googleMapComponent.selectCoordinates();
+    }
+
+    onInfoBoxClose() {
+        this.selectedLocation = null;
+        this.googleMapComponent.selectLocation(null);
     }
 }
