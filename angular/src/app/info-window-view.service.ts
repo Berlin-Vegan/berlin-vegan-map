@@ -22,31 +22,32 @@ export class InfoWindowViewService {
 
     getContent(location: Location, coordinates: Coordinates | null, mode: "full" | "minimal") {
         return mode === "full" ?
-            "<article class='infoWindow'>"
-            + "<header class='flex-container-nowrap'>"
-            + "<h1>" + location.name + "</h1>"
+            `<article class="infoWindow">`
+            + `<header class="flex-container-nowrap">`
+            + `<h1>${location.name}</h1>`
             + (location.website ?
-                "<a target='_blank' href='" + location.website + "' title='" + location.website + "'>" + linkSymbol + "</a>"
+                `<a target="_blank" href="${location.website}" title="${location.website}">${linkSymbol}</a>`
                 :
-                ""
+                ``
             )
-            + "</header>"
-            + "<p>" + location.tagsFriendly + " (" + this.i18n.enums.veganCategory.verbose[location.veganCategory] + ")</p>"
-            + "<p>" + location.address + "</p>"
+            + `</header>`
+            + `<p>${location.tagsFriendly} `
+            + `(${this.i18n.enums.veganCategory.verbose[location.veganCategory]})</p>`
+            + `<p>${location.address}</p>`
             + (coordinates ?
-                "<p>" + this.i18n.infoWindow.distance + ": "
+                `<p>${this.i18n.infoWindow.distance}": `
                 + this.kilometerPipe.transform(location.getDistanceToCoordinatesInKm(coordinates))
-                + "</p>"
+                + `</p>`
                 :
-                "")
-            + (location.telephone ? "<p>" + this.i18n.infoWindow.phone + ": " + location.telephone + "</p>" : "")
-            + "<h2>" + this.i18n.infoWindow.openingTimes + "</h2>"
-            + "<p>" + this.getOpeningTimesInnerHtml(location) + "</p>"
+                ``)
+            + (location.telephone ? `<p>${this.i18n.infoWindow.phone}: ${location.telephone}</p>` : ``)
+            + `<h2>${this.i18n.infoWindow.openingTimes}</h2>`
+            + `<p>${this.getOpeningTimesInnerHtml(location)}"</p>`
             + this.getOpenCommentInnerHtml(location)
-            + "<p>" + this.getCommentAndReviewInnerHtml(location) + "</p>"
-            + "</article>"
+            + `<p>${this.getCommentAndReviewInnerHtml(location)}</p>`
+            + `</article>`
             :
-            "<h2>" + location.name + "</h2>";
+            `<h2>${location.name}</h2>`;
     }
 
     private getOpeningTimesInnerHtml(location: Location): string {
@@ -60,13 +61,16 @@ export class InfoWindowViewService {
             const firstOt = group[0];
             const lastOt = group[group.length - 1];
             const interval = firstOt.interval.friendly;
-            const days = firstOt.friendlyDayShort + (firstOt === lastOt ? "" : extraLongHyphen + lastOt.friendlyDayShort);
+            const days =
+                firstOt.friendlyDayShort
+                + (firstOt === lastOt ? `` : extraLongHyphen + lastOt.friendlyDayShort);
 
-            const groupContainsToday = group.map(ot => ot.dayIndex).indexOf(new Date().getDay() as DayOfWeek) >= 0;
-            html += "<b>" + days + ":</b> " + (groupContainsToday ? "<b>" + interval + "</b>" : interval);
+            const groupContainsToday =
+                group.map(ot => ot.dayIndex).indexOf(new Date().getDay() as DayOfWeek) >= 0;
+            html += `<b>${days}:</b> ` + (groupContainsToday ? `<b>${interval}</b>` : interval);
 
             if (i < compressedOts.length - 1) {
-                html += "<br/>";
+                html += `<br/>`;
             }
         }
 
@@ -75,18 +79,18 @@ export class InfoWindowViewService {
 
     private getOpenCommentInnerHtml(location: Location): string {
         const openComment = location.localizedOpenComment;
-        return openComment ? "<p>" + openComment + "</p>" : "";
+        return openComment ? `<p>${openComment}</p>` : ``;
     }
 
     private getCommentAndReviewInnerHtml(location: Location): string {
         return this.language === "en" ?
-            (location.commentEnglish ? location.commentEnglish + "<br/>" : "")
-            + (location.reviewURL ? this.getReviewAnchor(location) : "")
+            (location.commentEnglish ? `${location.commentEnglish}<br/>` : ``)
+            + (location.reviewURL ? this.getReviewAnchor(location) : ``)
             :
-            (location.reviewURL ? this.getReviewAnchor(location) : location.comment || "");
+            (location.reviewURL ? this.getReviewAnchor(location) : location.comment || ``);
     }
 
     private getReviewAnchor(location: Location): string {
-        return "<a target='_blank' href='" + location.reviewURL + "'>" + this.i18n.infoWindow.review + "</a>";
+        return `<a target="_blank" href="${location.reviewURL}">${this.i18n.infoWindow.review}</a>`;
     }
 }
