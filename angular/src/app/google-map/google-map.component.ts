@@ -5,6 +5,7 @@ import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { InfoWindowViewService } from "../info-window-view.service";
 import { Location } from "../model/location";
+import { SettingsService } from "../settings.service";
 
 @Component({
     selector: "app-google-map",
@@ -17,6 +18,7 @@ export class GoogleMapComponent {
         private readonly configurationService: ConfigurationService,
         private readonly i18nService: I18nService,
         private readonly infoWindowViewService: InfoWindowViewService,
+        private readonly settingsService: SettingsService,
         private readonly ngZone: NgZone,
     ) {}
 
@@ -106,7 +108,8 @@ export class GoogleMapComponent {
         });
 
         google.maps.event.addListener(marker, "click", () => {
-            const content = this.infoWindowViewService.getContent(location, this.coordinates);
+            const mode = this.settingsService.settings.infoMode === "popUp" ? "full" : "minimal";
+            const content = this.infoWindowViewService.getContent(location, this.coordinates, mode);
             this.infoWindow.setContent(content);
             this.infoWindow.open(this.map, marker);
             this.ngZone.run(() => this.locationSelect.emit(location));

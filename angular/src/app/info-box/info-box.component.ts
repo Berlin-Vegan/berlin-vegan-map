@@ -20,6 +20,6 @@ export class InfoBoxComponent implements AfterContentChecked {
     innerhtml: string;
 
     ngAfterContentChecked() {
-        this.innerhtml = this.infoWindowViewService.getContent(this.location, this.coordinates);
+        this.innerhtml = this.infoWindowViewService.getContent(this.location, this.coordinates, "full");
     }
 }

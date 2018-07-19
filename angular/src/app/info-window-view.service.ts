@@ -20,8 +20,9 @@ export class InfoWindowViewService {
         this.i18n = i18nService.getI18n();
     }
 
-    getContent(location: Location, coordinates: Coordinates | null) {
-        return "<article class='infoWindow'>"
+    getContent(location: Location, coordinates: Coordinates | null, mode: "full" | "minimal") {
+        return mode === "full" ?
+            "<article class='infoWindow'>"
             + "<header class='flex-container-nowrap'>"
             + "<h1>" + location.name + "</h1>"
             + (location.website ?
@@ -43,7 +44,9 @@ export class InfoWindowViewService {
             + "<p>" + this.getOpeningTimesInnerHtml(location) + "</p>"
             + this.getOpenCommentInnerHtml(location)
             + "<p>" + this.getCommentAndReviewInnerHtml(location) + "</p>"
-            + "</article>";
+            + "</article>"
+            :
+            "<h2>" + location.name + "</h2>";
     }
 
     private getOpeningTimesInnerHtml(location: Location): string {
