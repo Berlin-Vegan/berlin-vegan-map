@@ -388,9 +388,9 @@ const i18n = {
                 de: "Pop-up",
             },
         },
-        xxx: {
-            en: "",
-            de: "",
+        noLocalStorageWarning: {
+            en: "Local storage is unavailable or disabled in your browser. Nothing will be saved permanently.",
+            de: "Local Storage ist in deinem Browser nicht vorhanden oder deaktiviert. Nichts wird dauerhaft gespeichert.",
         },
     }
 };

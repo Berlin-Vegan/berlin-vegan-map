@@ -7,6 +7,7 @@
             </button>
         </p>
         <h1>Settings</h1>
+        <p *ngIf="!isLocalStorageAvailable" class="warning">{{i18n.settings.noLocalStorageWarning}}</p>
         <form name="searchForm">
             <label>
                 <input

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Settings } from "./model/settings";
+import * as localStorageWrapper from "./local-storage-wrapper";
 
 const settingsKey = "berlin-vegan-map.settings";
 
@@ -16,11 +17,10 @@ export class LocalStorageService {
     }
 
     private loadSettings(): Settings {
-        const settingsJson = localStorage.getItem(settingsKey);
-        return settingsJson ? new Settings(JSON.parse(settingsJson)) : new Settings();
+        return new Settings(localStorageWrapper.getObject(settingsKey));
     }
 
     saveSettings() {
-        localStorage.setItem(settingsKey, JSON.stringify(this.settings));
+        localStorageWrapper.setObject(settingsKey, this.settings);
     }
 }

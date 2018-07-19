@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { I18nService } from "../i18n.service";
 import { Location } from "@angular/common";
 import { LocalStorageService } from "../local-storage.service";
+import { isLocalStorageAvailable } from "../local-storage-wrapper";
 
 @Component({
     selector: "app-settings",
@@ -16,6 +17,10 @@ export class SettingsComponent {
     ) {}
 
     readonly i18n = this.i18nService.getI18n();
+
+    get isLocalStorageAvailable(): boolean {
+        return isLocalStorageAvailable();
+    }
 
     onBackButtonClick() {
         this.location.back();
