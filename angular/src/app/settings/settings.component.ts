@@ -18,10 +18,10 @@ export class SettingsComponent implements OnInit {
     ) {}
 
     readonly i18n = this.i18nService.getI18n();
-    settings = new Settings();
+    settings: Settings;
 
     ngOnInit(): void {
-        this.settings = this.settingsService.getSettings();
+        this.settings = this.settingsService.settings;
     }
 
     onBackButtonClick() {
