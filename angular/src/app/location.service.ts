@@ -124,6 +124,9 @@ export class LocationService {
     }
 
     private removeFormatting(locationComment: string | undefined): string | undefined {
-        return locationComment ? locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ") : locationComment;
+        return locationComment ?
+            locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ")
+            :
+            locationComment;
     }
 }

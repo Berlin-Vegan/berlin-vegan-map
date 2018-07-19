@@ -30,7 +30,10 @@ export class SearchService {
                 const now = new Date(Date.now());
                 return location.openingTimes.isOpen(now.getDay() as DayOfWeek, now);
             } else if (!query.allWeekDays()) {
-                return location.openingTimes.isOpen(parseInt(query.openAtWeekDay, 10) as DayOfWeek, query.openAtTimeAsDate());
+                return location.openingTimes.isOpen(
+                    parseInt(query.openAtWeekDay, 10) as DayOfWeek,
+                    query.openAtTimeAsDate()
+                );
             } else {
                 return true;
             }
