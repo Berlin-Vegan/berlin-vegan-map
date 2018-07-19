@@ -4,7 +4,7 @@ import { Settings } from "./model/settings";
 const settingsKey = "berlin-vegan-map.settings";
 
 @Injectable()
-export class SettingsService {
+export class LocalStorageService {
 
     private _settings: Settings | null;
 

@@ -3,7 +3,7 @@ import { I18nService } from "../i18n.service";
 import { Location } from "@angular/common";
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
 import { Settings } from "../model/settings";
-import { SettingsService } from "../settings.service";
+import { LocalStorageService } from "../local-storage.service";
 
 @Component({
     selector: "app-settings",
@@ -12,7 +12,7 @@ import { SettingsService } from "../settings.service";
 export class SettingsComponent implements OnInit {
 
     constructor(
-        private readonly settingsService: SettingsService,
+        private readonly localStorageService: LocalStorageService,
         private readonly i18nService: I18nService,
         private readonly location: Location
     ) {}
@@ -21,7 +21,7 @@ export class SettingsComponent implements OnInit {
     settings: Settings;
 
     ngOnInit(): void {
-        this.settings = this.settingsService.settings;
+        this.settings = this.localStorageService.settings;
     }
 
     onBackButtonClick() {
@@ -29,6 +29,6 @@ export class SettingsComponent implements OnInit {
     }
 
     onQueryChange() {
-        this.settingsService.saveSettings(this.settings);
+        this.localStorageService.saveSettings(this.settings);
     }
 }

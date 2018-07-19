@@ -13,7 +13,7 @@ import { ResultsListComponent } from "../results-list/results-list.component";
 import { SearchComponent } from "../search/search.component";
 import { SearchService } from "../search.service";
 import { SortOrder } from "../sort/sort-order";
-import { SettingsService } from "../settings.service";
+import { LocalStorageService } from "../local-storage.service";
 
 @Component({
     selector: "app-main",
@@ -27,7 +27,7 @@ export class MainComponent implements OnInit {
         private readonly i18nService: I18nService,
         private readonly locationService: LocationService,
         private readonly searchService: SearchService,
-        private readonly settingsService: SettingsService,
+        private readonly localStorageService: LocalStorageService,
     ) {}
 
     @ViewChild(SearchComponent) searchComponent: SearchComponent;
@@ -47,7 +47,7 @@ export class MainComponent implements OnInit {
     selectedLocation: Location | null = null;
 
     get isInfoBoxVisible(): boolean {
-        return !!this.selectedLocation && this.settingsService.settings.infoMode === "box";
+        return !!this.selectedLocation && this.localStorageService.settings.infoMode === "box";
     }
 
     ngOnInit() {

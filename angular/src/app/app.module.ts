@@ -13,6 +13,7 @@ import { I18nService } from "./i18n.service";
 import { InfoBoxComponent } from "./info-box/info-box.component";
 import { InfoWindowViewService } from "./info-window-view.service";
 import { KilometerPipe } from "./kilometer.pipe";
+import { LocalStorageService } from "./local-storage.service";
 import { LocationService } from "./location.service";
 import { MainComponent } from "./main/main.component";
 import { OpeningTimesService } from "./opening-times.service";
@@ -21,7 +22,6 @@ import { ResultsListComponent } from "./results-list/results-list.component";
 import { SearchComponent } from "./search/search.component";
 import { SearchService } from "./search.service";
 import { SettingsComponent } from "./settings/settings.component";
-import { SettingsService } from "./settings.service";
 import { SortComponent } from "./sort/sort.component";
 import { StatisticsComponent } from "./statistics/statistics.component";
 
@@ -58,10 +58,10 @@ const appRoutes: Routes = [
         ConfigurationService,
         I18nService,
         InfoWindowViewService,
+        LocalStorageService,
         LocationService,
         OpeningTimesService,
         SearchService,
-        SettingsService,
     ],
     bootstrap: [AppComponent]
 })
