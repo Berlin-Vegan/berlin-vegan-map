@@ -16,6 +16,7 @@
                 title="{{i18n.header.searchButtonTitle}}"
                 attr.aria-label="{{i18n.header.searchButtonTitle}}"
                 (click)="searchClick.emit()"
+                [disabled]="showingSettings"
             >
                 <span class="fa fa-search" aria-hidden></span>
             </button>
@@ -23,10 +24,19 @@
                 title="{{i18n.header.fullMapViewbuttonTitle}}"
                 attr.aria-label="{{i18n.header.fullMapViewbuttonTitle}}"
                 (click)="fullMapViewClick.emit()"
-                [disabled]="fullMapView"
+                [disabled]="fullMapView || showingSettings"
             >
                 <span class="fa fa-map-o" aria-hidden></span>
             </button>
+            <a routerLink="/settings" [class.disabled]="showingSettings">
+                <button 
+                    title="{{i18n.header.settingsButtonTitle}}"
+                    attr.aria-label="{{i18n.header.settingsButtonTitle}}"
+                    [disabled]="showingSettings"
+                >
+                    <span class="fa fa-wrench" aria-hidden></span>
+                </button>
+            </a>
         </div>
         <ul>
             <li>

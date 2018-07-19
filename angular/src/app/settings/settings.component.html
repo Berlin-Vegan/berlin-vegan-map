@@ -1,0 +1,42 @@
+<div>
+    <app-header [showingSettings]="true"></app-header>
+    <main>
+        <p>
+            <button (click)="onBackButtonClick()">
+                <span class="fa fa-arrow-left" aria-hidden></span> {{i18n.settings.backButtonText}}
+            </button>
+        </p>
+        <h1>Settings</h1>
+        <form name="searchForm">
+            <label>
+                <input
+                    type="checkbox"
+                    name="rememberLastQuery"
+                    [(ngModel)]="settings.rememberLastQuery"
+                    (change)="onQueryChange()"
+                />{{i18n.settings.rememberLastQuery}}
+            </label>
+            <fieldset id="infoMode">
+                {{i18n.settings.infoMode.heading}}:<br/>
+                <label>
+                    <input
+                        type="radio"
+                        name="infoMode"
+                        [(ngModel)]="settings.infoMode"
+                        (change)="onQueryChange()"
+                        value="box"
+                    />{{i18n.settings.infoMode.box}}
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="infoMode"
+                        [(ngModel)]="settings.infoMode"
+                        (change)="onQueryChange()"
+                        value="popUp"
+                    />{{i18n.settings.infoMode.popUp}}
+                </label>
+            </fieldset>
+        </form>
+    </main>
+</div>

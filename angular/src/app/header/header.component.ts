@@ -11,7 +11,8 @@ export class HeaderComponent {
 
     constructor(readonly i18nService: I18nService) { }
 
-    @Input() fullMapView: boolean;
+    @Input() fullMapView = false;
+    @Input() showingSettings = false;
     @Output() readonly searchClick = new EventEmitter<void>();
     @Output() readonly fullMapViewClick = new EventEmitter<void>();
 

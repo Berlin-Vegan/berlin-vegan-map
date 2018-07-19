@@ -20,12 +20,15 @@ import { PlaceSelectComponent } from "./place-select/place-select.component";
 import { ResultsListComponent } from "./results-list/results-list.component";
 import { SearchComponent } from "./search/search.component";
 import { SearchService } from "./search.service";
+import { SettingsComponent } from "./settings/settings.component";
+import { SettingsService } from "./settings.service";
 import { SortComponent } from "./sort/sort.component";
 import { StatisticsComponent } from "./statistics/statistics.component";
 
 const appRoutes: Routes = [
     { path: "gastro", component: MainComponent },
     { path: "shopping", component: MainComponent },
+    { path: "settings", component: SettingsComponent },
     { path: "**", redirectTo: "gastro" },
 ];
 
@@ -41,6 +44,7 @@ const appRoutes: Routes = [
         PlaceSelectComponent,
         ResultsListComponent,
         SearchComponent,
+        SettingsComponent,
         SortComponent,
         StatisticsComponent,
     ],
@@ -57,6 +61,7 @@ const appRoutes: Routes = [
         LocationService,
         OpeningTimesService,
         SearchService,
+        SettingsService,
     ],
     bootstrap: [AppComponent]
 })

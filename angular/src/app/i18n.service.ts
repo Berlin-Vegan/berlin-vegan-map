@@ -345,6 +345,10 @@ const i18n = {
             en: "Show search form",
             de: "Suchformular anzeigen",
         },
+        settingsButtonTitle: {
+            en: "Open settings",
+            de: "Einstellungen öffnen",
+        },
         language: {
             // A bit dirty, but we want to display the language in its language.
             en: {
@@ -355,6 +359,38 @@ const i18n = {
                 en: "Deutsch",
                 de: "Deutsch",
             },
+        },
+    },
+    settings: {
+        backButtonText: {
+            en: "Back to map",
+            de: "Zurück zur Karte",
+        },
+        heading: {
+            en: "Settings",
+            de: "Einstellungen",
+        },
+        rememberLastQuery: {
+            en: "Remember last query",
+            de: "Letzte Suche merken",
+        },
+        infoMode: {
+            heading: {
+                en: "Show location details as",
+                de: "Location-Details anzeigen als",
+            },
+            box: {
+                en: "Box",
+                de: "Box",
+            },
+            popUp: {
+                en: "Pop-up",
+                de: "Pop-up",
+            },
+        },
+        xxx: {
+            en: "",
+            de: "",
         },
     }
 };
