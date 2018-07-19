@@ -1,4 +1,7 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+
+import { AppComponent } from "./../app.component";
 import { I18nService } from "../i18n.service";
 import { Location } from "@angular/common";
 import { LocalStorageService } from "../local-storage.service";
@@ -13,7 +16,8 @@ export class SettingsComponent {
     constructor(
         readonly localStorageService: LocalStorageService,
         private readonly i18nService: I18nService,
-        private readonly location: Location
+        private readonly router: Router,
+        private readonly location: Location,
     ) {}
 
     readonly i18n = this.i18nService.getI18n();
@@ -23,7 +27,11 @@ export class SettingsComponent {
     }
 
     onBackButtonClick() {
-        this.location.back();
+        if (AppComponent.previousUrl) {
+            this.location.back();
+        } else {
+            this.router.navigate([""]);
+        }
     }
 
     onQueryChange() {
