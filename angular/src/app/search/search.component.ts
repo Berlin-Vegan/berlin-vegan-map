@@ -21,7 +21,6 @@ export class SearchComponent {
     ) { }
 
     @Output() readonly queryChange = new EventEmitter<GastroQuery | ShoppingQuery>();
-    @Output() readonly coordinatesChange = new EventEmitter<Coordinates | null>();
     @Output() readonly coordinatesHighlightRequest = new EventEmitter<void>();
 
     readonly i18n = this.i18nService.getI18n();
@@ -51,7 +50,6 @@ export class SearchComponent {
         }
         this.query.distance.coordinates = coordinates;
         this.queryChange.emit(this.query);
-        this.coordinatesChange.emit(coordinates);
     }
 
     getFeatureList1(): string[] {

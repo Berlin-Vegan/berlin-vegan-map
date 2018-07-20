@@ -43,7 +43,6 @@ export class MainComponent implements OnInit {
     query: GastroQuery | ShoppingQuery;
     isGastro: boolean | undefined;
     fullMapView = false;
-    coordinates: Coordinates | null = null;
     selectedLocation: Location | null = null;
 
     get isInfoBoxVisible(): boolean {
@@ -138,11 +137,8 @@ export class MainComponent implements OnInit {
     }
 
     private getDistanceToCoordinates(location: Location) {
-        return this.coordinates ? location.getDistanceToCoordinatesInKm(this.coordinates) : 1;
-    }
-
-    onCoordinatesChange(coordinates: Coordinates | null) {
-        this.coordinates = coordinates;
+        const coordinates = this.query.distance.coordinates;
+        return coordinates ? location.getDistanceToCoordinatesInKm(coordinates) : 1;
     }
 
     onCoordinatesHighlightRequest() {
