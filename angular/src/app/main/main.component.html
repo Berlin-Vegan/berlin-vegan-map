@@ -27,7 +27,7 @@
             <div class="sortAndStatisticsContainer flex-container-nowrap">
                 <app-sort
                     [initialSortOrder]="initialSortOrder"
-                    [isDistanceEnabled]="!!query.distance.coordinates"
+                    [isDistanceEnabled]="!!query?.distance?.coordinates"
                     (sortOrderChange)="onSortOrderChange($event)"
                 ></app-sort>
                 <app-statistics
@@ -38,7 +38,7 @@
             <hr class="fat"/>
             <app-results-list
                 [locations]="filteredLocations"
-                [coordinates]="query.distance.coordinates"
+                [coordinates]="query?.distance?.coordinates"
                 (locationSelect)="onLocationSelectInResultsList($event)"
             ></app-results-list>
         </div>
@@ -46,14 +46,14 @@
             <div [ngClass]="isInfoBoxVisible ? 'reducedHeightMap' : 'fullHeightMap'">
                 <app-google-map
                     [locations]="filteredLocations"
-                    [coordinates]="query.distance.coordinates"
+                    [coordinates]="query?.distance?.coordinates"
                     (locationSelect)="onLocationSelectInGoogleMap($event)"
                 ></app-google-map>
             </div>
             <div *ngIf="isInfoBoxVisible" class="infoBox">
                 <app-info-box
                     [location]="selectedLocation"
-                    [coordinates]="query.distance.coordinates"
+                    [coordinates]="query?.distance?.coordinates"
                     (close)="onInfoBoxClose()"
                 ></app-info-box>
             </div>
