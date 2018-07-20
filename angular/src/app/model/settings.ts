@@ -1,10 +1,8 @@
 export class Settings {
-    rememberLastQuery: boolean;
-    infoMode: "box" | "popUp";
+    rememberLastQuery = true;
+    infoMode: "box" | "popUp" = "box";
 
-    constructor(any?: any) {
-        const props = any ? any : {};
-        this.rememberLastQuery = props.rememberLastQuery || true;
-        this.infoMode = props.infoMode || "box";
+    constructor(props: any = {}) {
+        Object.assign(this, props);
     }
 }
