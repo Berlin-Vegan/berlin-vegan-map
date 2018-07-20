@@ -22,7 +22,7 @@
             <label *ngFor="let veganCategory of veganCategories" title="{{i18n.enums.veganCategory.verbose[veganCategory]}}">
                 <input
                     type="checkbox"
-                    name="veganCategory"
+                    [name]="'veganCategories-' + veganCategory"
                     [(ngModel)]="query.veganCategories[veganCategory]"
                     (change)="onQueryChange()"
                 /><span
@@ -38,7 +38,7 @@
             <label *ngFor="let tag of tags">
                 <input
                     type="checkbox"
-                    name="tags"
+                    [name]="'tags-' + tag"
                     [(ngModel)]="query.tags[tag]"
                     (change)="onQueryChange()"
                 />{{i18n.enums.gastroTag[tag]}}
@@ -48,7 +48,7 @@
             <label *ngFor="let tag of tags">
                 <input
                     type="checkbox"
-                    name="tags"
+                    [name]="'tags-' + tag"
                     [(ngModel)]="query.tags[tag]"
                     (change)="onQueryChange()"
                 />{{i18n.enums.shoppingTag[tag]}}
@@ -118,6 +118,7 @@
     </section>
     <section>
         <app-geolocation
+            [coordinates]="query.distance.coordinates"
             (coordinatesChange)="onCoordinatesChange($event)"
             (highlightRequest)="coordinatesHighlightRequest.emit()"
         ></app-geolocation>
