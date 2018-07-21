@@ -13,25 +13,25 @@
     <nav class="flex-container-nowrap">
         <div>
             <button
-                title="{{i18n.header.searchButtonTitle}}"
-                attr.aria-label="{{i18n.header.searchButtonTitle}}"
+                [title]="i18n.header.searchButtonTitle"
+                [attr.aria-label]="i18n.header.searchButtonTitle"
                 (click)="searchClick.emit()"
                 [disabled]="showingSettings"
             >
                 <span class="fa fa-search" aria-hidden></span>
             </button>
             <button
-                title="{{i18n.header.fullMapViewbuttonTitle}}"
-                attr.aria-label="{{i18n.header.fullMapViewbuttonTitle}}"
+                [title]="i18n.header.fullMapViewbuttonTitle"
+                [attr.aria-label]="i18n.header.fullMapViewbuttonTitle"
                 (click)="fullMapViewClick.emit()"
                 [disabled]="fullMapView || showingSettings"
             >
                 <span class="fa fa-map-o" aria-hidden></span>
             </button>
             <a routerLink="/settings" [class.disabled]="showingSettings">
-                <button 
-                    title="{{i18n.header.settingsButtonTitle}}"
-                    attr.aria-label="{{i18n.header.settingsButtonTitle}}"
+                <button
+                    [title]="i18n.header.settingsButtonTitle"
+                    [attr.aria-label]="i18n.header.settingsButtonTitle"
                     [disabled]="showingSettings"
                 >
                     <span class="fa fa-wrench" aria-hidden></span>
@@ -55,17 +55,17 @@
         <ul>
             <li>
                 <span *ngIf="language === 'de'" class="selectedLanguage">{{i18n.header.language.de}}</span>
-                <a 
-                    *ngIf="language !== 'de'" 
-                    href="" 
+                <a
+                    *ngIf="language !== 'de'"
+                    href=""
                     (click)="$event.preventDefault(); i18nService.setLanguage('de')"
                 >{{i18n.header.language.de}}</a>
             </li>
             <li>
                 <span *ngIf="language === 'en'" class="selectedLanguage">{{i18n.header.language.en}}</span>
-                <a 
-                    *ngIf="language !== 'en'" 
-                    href="" 
+                <a
+                    *ngIf="language !== 'en'"
+                    href=""
                     (click)="$event.preventDefault(); i18nService.setLanguage('en')"
                 >{{i18n.header.language.en}}</a>
             </li>

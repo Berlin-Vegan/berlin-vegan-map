@@ -4,7 +4,7 @@
             <h1>
                 <a
                     title="{{i18n.showOnMap}}"
-                    href="" 
+                    href=""
                     (click)="$event.preventDefault(); locationSelect.emit(location)"
                 >{{location.name}}</a>
             </h1>
@@ -30,10 +30,11 @@
         </div>
         <div>
             <span>{{location.openingTimes.getTodayFriendly()}}</span>
+            <!-- TODO: Re-consider following spans: -->
             <span
                 role="button"
-                title={{location.localizedOpenComment}}
-                attr.aria-label={{i18n.openingHoursInfo}}
+                [title]="location.localizedOpenComment"
+                [attr.aria-label]="i18n.openingHoursInfo"
                 [hidden]="!location.localizedOpenComment"
                 (click)="expandOpenComments.set(location, !expandOpenComments.get(location));"
             >
