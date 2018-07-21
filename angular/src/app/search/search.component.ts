@@ -27,16 +27,14 @@ export class SearchComponent {
     readonly veganCategories = getVeganCategories();
     tags: (GastroTag | ShoppingTag)[];
     query: GastroQuery | ShoppingQuery;
-    isGastro: boolean;
+
+    // In template, there is no instanceof.
+    get isGastro(): boolean {
+        return this.query instanceof GastroQuery;
+    }
 
     init(query: GastroQuery | ShoppingQuery) {
-        if (query instanceof GastroQuery) {
-            this.tags = getGastroTags();
-            this.isGastro = true;
-        } else {
-            this.tags = getShoppingTags();
-            this.isGastro = false;
-        }
+        this.tags = query instanceof GastroQuery ? getGastroTags() : getShoppingTags();
         this.query = query;
     }
 
