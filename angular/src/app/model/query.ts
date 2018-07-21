@@ -36,7 +36,8 @@ export class Query {
 
     // Used by JSON.stringify().
     toJSON(): Query {
-        const clone = JSON.parse(JSON.stringify(this));
+        const clone: any = {};
+        Object.assign(clone, this);
         if (this.distance.coordinates) {
             clone.distance.coordinates = toSerializableCoordinates(this.distance.coordinates);
         }
