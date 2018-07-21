@@ -6,7 +6,7 @@
                 <span class="fa fa-arrow-left" aria-hidden></span> {{i18n.settings.backButtonText}}
             </button>
         </p>
-        <h1>Settings</h1>
+        <h1>{{i18n.settings.heading}}</h1>
         <p *ngIf="!isLocalStorageAvailable" class="warning">{{i18n.settings.noLocalStorageWarning}}</p>
         <form name="searchForm">
             <label>
