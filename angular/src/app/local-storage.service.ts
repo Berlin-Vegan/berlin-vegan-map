@@ -5,12 +5,44 @@ import { Settings } from "./model/settings";
 import { ShoppingQuery } from "./model/shopping-query";
 import * as localStorageWrapper from "./local-storage-wrapper";
 
-const keyPrefix = "berlin-vegan-map.";
-const keys = {
-    settings: keyPrefix + "settings",
-    gastroQuery: keyPrefix + "gastroQuery",
-    shoppingQuery: keyPrefix + "shoppingQuery",
+// ----------------------------------------
+// TODO: Move to external utils library.
+
+String.prototype.trimX = function (this: string, x: string) {
+    let trimmed = this;
+    while (trimmed.startsWith(x)) {
+        trimmed = trimmed.substring(x.length);
+    }
+    while (trimmed.endsWith(x)) {
+        trimmed = trimmed.substring(0, trimmed.length - x.length);
+    }
+    return trimmed;
 };
+
+declare global {
+    interface String {
+        trimX: (x: string) => string;
+    }
+}
+
+function getRelativeBasePath() {
+    return document.baseURI ?
+        document.baseURI.substring(document.location.origin.trimX("/").length).trimX("/")
+        :
+        "";
+}
+
+// ----------------------------------------
+
+const keys = (function () {
+    const path = getRelativeBasePath();
+    const keyPrefix = (path ? path + ":" : "") + "berlin-vegan-map.";
+    return {
+        settings: keyPrefix + "settings",
+        gastroQuery: keyPrefix + "gastroQuery",
+        shoppingQuery: keyPrefix + "shoppingQuery",
+    };
+})();
 
 @Injectable()
 export class LocalStorageService {
