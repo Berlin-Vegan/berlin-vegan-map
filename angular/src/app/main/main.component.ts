@@ -79,6 +79,7 @@ export class MainComponent implements OnInit {
             });
     }
 
+    // tslint:disable-next-line no-shadowed-variable
     onQueryChange(query: GastroQuery | ShoppingQuery) {
         this.query = query;
         this.updateFilteredLocations();
