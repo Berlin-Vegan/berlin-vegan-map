@@ -19,10 +19,11 @@ export class Query {
     handicappedAccessible = false;
     delivery = false;
 
-    constructor() {
+    constructor(props: any = {}) {
         for (const veganCategory of getVeganCategories()) {
             this.veganCategories[veganCategory] = true;
         }
+        Object.assign(this, props);
     }
 
     allWeekDays(): boolean {
@@ -32,6 +33,30 @@ export class Query {
     openAtTimeAsDate(): Date | undefined {
         return parseTime(this.openAtTime);
     }
+
+    // Used by JSON.stringify().
+    toJSON(): Query {
+        const clone = JSON.parse(JSON.stringify(this));
+        if (this.distance.coordinates) {
+            clone.distance.coordinates = toSerializableCoordinates(this.distance.coordinates);
+        }
+        return clone;
+    }
+}
+
+// Coordinates returned from the browser may not be serializable with JSON.stringify,
+// so we convert them to a simple object.
+// See http://www.allannienhuis.com/archives/2015/02/04/beware-json-stringify/.
+function toSerializableCoordinates(coordinates: Coordinates): Coordinates {
+    return {
+        accuracy: coordinates.accuracy,
+        altitude: coordinates.altitude,
+        altitudeAccuracy: coordinates.altitudeAccuracy,
+        heading: coordinates.heading,
+        latitude: coordinates.latitude,
+        longitude: coordinates.longitude,
+        speed: coordinates.speed,
+    };
 }
 
 // TODO: Refactor to library

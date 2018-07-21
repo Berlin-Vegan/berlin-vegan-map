@@ -108,7 +108,7 @@
     </section>
     <section>
         <app-geolocation
-            [coordinates]="query.distance.coordinates"
+            [(coordinates)]="query.distance.coordinates"
             (coordinatesChange)="onCoordinatesChange($event)"
             (highlightRequest)="coordinatesHighlightRequest.emit()"
         ></app-geolocation>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
 import { PlaceSelectComponent } from "../place-select/place-select.component";
@@ -16,13 +16,22 @@ export class GeolocationComponent {
         private readonly i18nService: I18nService,
     ) { }
 
+    @Input() set coordinates(coordinates: Coordinates | null) {
+        if (coordinates) {
+            this.isChecked = true;
+        }
+        this._coordinates = coordinates;
+    }
+    get coordinates(): Coordinates | null { return this._coordinates; }
+
+    private _coordinates: Coordinates | null = null;
+
     @Output() readonly coordinatesChange = new EventEmitter<Coordinates | null>();
     @Output() readonly highlightRequest = new EventEmitter<void>();
     @ViewChild(PlaceSelectComponent) placeSelectionComponent: PlaceSelectComponent;
     readonly i18n = this.i18nService.getI18n();
     readonly isGeolocationSupported = !!navigator.geolocation;
     isChecked = false;
-    coordinates: Coordinates | null = null;
     info = "";
     error = "";
     private mode: "detect" | "select" = "detect";
@@ -51,8 +60,7 @@ export class GeolocationComponent {
                         if (this.isChecked && this.mode === "detect") {
                             this.info = "";
                             this.error = "";
-                            this.coordinates = position.coords;
-                            this.coordinatesChange.emit(this.coordinates);
+                            this.coordinatesChange.emit(position.coords);
                             if (firstCall) {
                                 this.highlightRequest.emit();
                             }
@@ -114,7 +122,6 @@ export class GeolocationComponent {
         this.error = "";
         this.placeSelectionComponent.clear();
         if (this.coordinates !== null) {
-            this.coordinates = null;
             this.coordinatesChange.emit(null);
         }
     }

@@ -20,3 +20,9 @@ export function setItem(key: string, data: string): void {
         localStorage.setItem(key, data);
     }
 }
+
+export function removeItem(key: string): void {
+    if (localStorage) {
+        localStorage.removeItem(key);
+    }
+}

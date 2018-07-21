@@ -12,10 +12,11 @@ export class GastroQuery extends Query {
     catering = false;
     wlan = false;
 
-    constructor() {
+    constructor(props: any = {}) {
         super();
         for (const tag of getGastroTags()) {
             this.tags[tag] = true;
         }
+        Object.assign(this, props);
     }
 }

@@ -393,6 +393,10 @@ const i18n = {
             de: "Local Storage ist in deinem Browser nicht vorhanden oder deaktiviert. "
                 + "Nichts wird dauerhaft gespeichert.",
         },
+        deleteQueriesConfirmation: {
+            en: "Delete last queries?",
+            de: "Letzte Suchen löschen?",
+        }
     }
 };
 

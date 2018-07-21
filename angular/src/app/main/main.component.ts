@@ -62,27 +62,44 @@ export class MainComponent implements OnInit {
             });
     }
 
-    init(path: "gastro" | "shopping") {
+    private init(path: "gastro" | "shopping") {
         this.isGastro = (path === "gastro");
-        this.query = this.isGastro ? new GastroQuery() : new ShoppingQuery();
-        this.searchComponent.init(this.query);
         const locationPromise: Promise<(GastroLocation | ShoppingLocation)[]> =
             this.isGastro ?
-            this.locationService.getGastroLocations()
-            :
-            this.locationService.getShoppingLocations();
+                this.locationService.getGastroLocations()
+                :
+                this.locationService.getShoppingLocations();
         locationPromise
             .then(locations => {
                 this.allLocations = locations;
-                this.filteredLocations = locations.sort(this.getSortFunction());
+                this.query = this.getInitialQuery();
                 this.googleMapComponent.init(locations);
+                this.searchComponent.init(this.query);
+                this.updateFilteredLocations();
+                if (this.query.distance.coordinates) {
+                    this.googleMapComponent.selectCoordinates();
+                }
             });
+    }
+
+    private getInitialQuery(): GastroQuery | ShoppingQuery {
+        return this.localStorageService.settings.rememberLastQuery ?
+            (this.isGastro ? this.localStorageService.gastroQuery : this.localStorageService.shoppingQuery)
+            :
+            (this.isGastro ? new GastroQuery() : new ShoppingQuery());
     }
 
     // tslint:disable-next-line no-shadowed-variable
     onQueryChange(query: GastroQuery | ShoppingQuery) {
         this.query = query;
         this.updateFilteredLocations();
+        if (this.localStorageService.settings.rememberLastQuery) {
+            if (query instanceof GastroQuery) {
+                this.localStorageService.saveGastroQuery();
+            } else {
+                this.localStorageService.saveShoppingQuery();
+            }
+        }
     }
 
     onSortOrderChange(sortOrder: SortOrder) {

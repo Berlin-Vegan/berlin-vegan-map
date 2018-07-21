@@ -35,6 +35,11 @@ export class SettingsComponent {
     }
 
     onQueryChange() {
+        if (!this.localStorageService.settings.rememberLastQuery) {
+            if (confirm(this.i18n.settings.deleteQueriesConfirmation)) {
+                this.localStorageService.deleteQueries();
+            }
+        }
         this.localStorageService.saveSettings();
     }
 }

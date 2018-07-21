@@ -46,7 +46,6 @@ export class SearchComponent {
         if (!coordinates) {
             this.query.distance.enabled = false;
         }
-        this.query.distance.coordinates = coordinates;
         this.queryChange.emit(this.query);
     }
 
