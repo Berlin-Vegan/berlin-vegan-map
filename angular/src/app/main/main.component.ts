@@ -49,6 +49,10 @@ export class MainComponent implements OnInit {
         return !!this.selectedLocation && this.localStorageService.settings.infoMode === "box";
     }
 
+    get isInitializing(): boolean {
+        return !this.query;
+    }
+
     ngOnInit() {
         this.route
             .url

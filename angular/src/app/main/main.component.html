@@ -36,26 +36,39 @@
                 ></app-statistics>
             </div>
             <hr class="fat"/>
-            <app-results-list
+            <div *ngIf="isInitializing">
+                <span class="fa fa-spinner fa-spin" aria-hidden></span>
+                {{i18n.loadingLocations}}
+            </div>
+            <app-results-list [hidden]="isInitializing"
                 [locations]="filteredLocations"
                 [coordinates]="query?.distance?.coordinates"
                 (locationSelect)="onLocationSelectInResultsList($event)"
             ></app-results-list>
         </div>
         <div class="col-right" [ngClass]="{fullMapView: fullMapView}">
-            <div [ngClass]="isInfoBoxVisible ? 'reducedHeightMap' : 'fullHeightMap'">
-                <app-google-map
-                    [locations]="filteredLocations"
-                    [coordinates]="query?.distance?.coordinates"
-                    (locationSelect)="onLocationSelectInGoogleMap($event)"
-                ></app-google-map>
+            <div *ngIf="isInitializing"
+                class="big-spinner"
+                [title]="i18n.loadingLocations"
+                [attr.aria-label]="i18n.loadingLocations"
+            >
+                <span class="fa fa-spinner fa-spin" aria-hidden></span>
             </div>
-            <div *ngIf="isInfoBoxVisible" class="infoBox">
-                <app-info-box
-                    [location]="selectedLocation"
-                    [coordinates]="query?.distance?.coordinates"
-                    (close)="onInfoBoxClose()"
-                ></app-info-box>
+            <div [hidden]="isInitializing">
+                <div [ngClass]="isInfoBoxVisible ? 'reducedHeightMap' : 'fullHeightMap'">
+                    <app-google-map
+                        [locations]="filteredLocations"
+                        [coordinates]="query?.distance?.coordinates"
+                        (locationSelect)="onLocationSelectInGoogleMap($event)"
+                    ></app-google-map>
+                </div>
+                <div *ngIf="isInfoBoxVisible" class="infoBox">
+                    <app-info-box
+                        [location]="selectedLocation"
+                        [coordinates]="query?.distance?.coordinates"
+                        (close)="onInfoBoxClose()"
+                    ></app-info-box>
+                </div>
             </div>
         </div>
     </main>

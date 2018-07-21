@@ -118,6 +118,10 @@ const i18n = {
             },
         },
     },
+    loadingLocations: {
+        en: "Loading locations...",
+        de: "Lade Locations...",
+    },
     locationSwitch: {
         gastro: {
             en: "Food & beverages",

@@ -28,7 +28,7 @@ nav {
             content: '|'
         }
     }
-    
+
     a {
         color: white;
     }
@@ -77,6 +77,11 @@ app-statistics {
 
 .col-right {
     width: 0%;
+
+    > div {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 @media #{$min-width-1} {
@@ -133,4 +138,13 @@ app-statistics {
 
 .fullMapView {
     width: 100%;
+}
+
+.big-spinner {
+    font-size: 3em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
