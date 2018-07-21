@@ -62,7 +62,7 @@ export class MainComponent implements OnInit {
             });
     }
 
-    private init(path: "gastro" | "shopping") {
+    init(path: "gastro" | "shopping") {
         this.isGastro = (path === "gastro");
         const locationPromise: Promise<(GastroLocation | ShoppingLocation)[]> =
             this.isGastro ?
