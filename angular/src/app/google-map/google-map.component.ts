@@ -57,7 +57,7 @@ export class GoogleMapComponent {
 
                 google.maps.event.addListener(this.coordinatesMarker, "click", () => {
                     this.map.setCenter(this.coordinatesMarker.getPosition());
-                    this.infoWindow.setContent("<h2>" + this.coordinatesMarker.getTitle() + "</h2>");
+                    this.infoWindow.setContent(this.coordinatesMarker.getTitle());
                     this.infoWindow.open(this.map, this.coordinatesMarker);
                 });
             }

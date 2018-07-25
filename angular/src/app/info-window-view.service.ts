@@ -47,7 +47,7 @@ export class InfoWindowViewService {
             + `<p>${this.getCommentAndReviewInnerHtml(location)}</p>`
             + `</article>`
             :
-            `<h2>${location.name}</h2>`;
+            location.name;
     }
 
     private getOpeningTimesInnerHtml(location: Location): string {
