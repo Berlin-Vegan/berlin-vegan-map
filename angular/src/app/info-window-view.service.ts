@@ -42,7 +42,7 @@ export class InfoWindowViewService {
                 ``)
             + (location.telephone ? `<p>${this.i18n.infoWindow.phone}: ${location.telephone}</p>` : ``)
             + `<h2>${this.i18n.infoWindow.openingTimes}</h2>`
-            + `<p>${this.getOpeningTimesInnerHtml(location)}"</p>`
+            + `<p>${this.getOpeningTimesInnerHtml(location)}</p>`
             + this.getOpenCommentInnerHtml(location)
             + `<p>${this.getCommentAndReviewInnerHtml(location)}</p>`
             + `</article>`
