@@ -14,6 +14,7 @@ import { SearchComponent } from "../search/search.component";
 import { SearchService } from "../search.service";
 import { SortOrder } from "../sort/sort-order";
 import { LocalStorageService } from "../local-storage.service";
+import { ConfigurationService } from "../configuration.service";
 
 @Component({
     selector: "app-main",
@@ -27,6 +28,7 @@ export class MainComponent implements OnInit {
         private readonly i18nService: I18nService,
         private readonly locationService: LocationService,
         private readonly searchService: SearchService,
+        private readonly configurationService: ConfigurationService,
         private readonly localStorageService: LocalStorageService,
     ) {}
 
@@ -119,7 +121,7 @@ export class MainComponent implements OnInit {
     }
 
     onLocationSelectInResultsList(location: Location) {
-        if (!window.matchMedia("(min-width: 568px)").matches) {
+        if (!window.matchMedia(this.configurationService.mediaQueries["min-width-1"]).matches) {
             this.enableFullMapView();
         }
         this.googleMapComponent.selectLocation(location);
