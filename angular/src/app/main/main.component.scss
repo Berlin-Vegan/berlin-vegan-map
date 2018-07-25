@@ -77,6 +77,7 @@ app-statistics {
 
 .col-right {
     width: 0%;
+    overflow: hidden;
 
     > div {
         width: 100%;
@@ -86,7 +87,7 @@ app-statistics {
 
 @media #{$min-width-1} {
     .col-left { width: 60%; }
-    .col-right { width: 40%; }
+    .col-right { width: 40%; overflow: visible; }
 }
 
 @media #{$min-width-2} {
@@ -107,6 +108,11 @@ app-statistics {
 @media #{$min-width-5} {
     .col-left { width: 25%; }
     .col-right { width: 75%; }
+}
+
+.fullMapView {
+    width: 100%;
+    overflow: visible;
 }
 
 .fullHeightMap {
@@ -134,10 +140,6 @@ app-statistics {
 @media #{$min-height-3} {
     .infoBox { height: 33%; }
     .reducedHeightMap { height: 67%; }
-}
-
-.fullMapView {
-    width: 100%;
 }
 
 .big-spinner {
