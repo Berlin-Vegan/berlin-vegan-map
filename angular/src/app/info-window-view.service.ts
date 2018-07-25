@@ -35,7 +35,7 @@ export class InfoWindowViewService {
             + `(${this.i18n.enums.veganCategory.verbose[location.veganCategory]})</p>`
             + `<p>${location.address}</p>`
             + (coordinates ?
-                `<p>${this.i18n.infoWindow.distance}": `
+                `<p>${this.i18n.infoWindow.distance}: `
                 + this.kilometerPipe.transform(location.getDistanceToCoordinatesInKm(coordinates))
                 + `</p>`
                 :
