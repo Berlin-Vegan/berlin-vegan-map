@@ -95,6 +95,11 @@ export class GoogleMapComponent {
 
         this.map = new google.maps.Map(this.mapDiv.nativeElement, mapOptions);
 
+        // For accessibility. See https://stackoverflow.com/a/50845779.
+        google.maps.event.addListenerOnce(this.map, "idle", () => {
+            this.mapDiv.nativeElement.getElementsByTagName("iframe")[0].title = "Google Maps";
+        });
+
         for (const location of locations) {
             this.createMarker(location);
         }
