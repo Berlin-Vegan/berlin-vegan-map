@@ -1,0 +1,16 @@
+{
+  "name": "Berlin-Vegan-Karte",
+  "short_name": "BV-Karte",
+  "theme_color": "#648d24",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/images/icon.png",
+      "sizes": "200x200",
+      "type": "image/png"
+    }
+  ]
+}
