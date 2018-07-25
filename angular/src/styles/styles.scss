@@ -86,8 +86,13 @@ form {
     color: red;
 }
 
+// Class from Google Maps API
+.gm-style-iw {
+    font-size: initial !important; // Reset
+    font-weight: normal !important; // Reset
+}
+
 .infoWindow {
-    font-size: initial;
 
     header {
         padding-top: 0.2em;
