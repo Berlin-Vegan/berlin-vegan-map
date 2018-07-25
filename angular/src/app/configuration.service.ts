@@ -14,7 +14,7 @@ export class ConfigurationService {
     readonly geoLocationTimeoutMillis = environment.production ? 15000 : 5000;
     readonly geoLocationFirefoxWorkaroundTimeoutMillis = environment.production ? 16000 : 8000;
     readonly refreshCoordinatesTimeoutMillis = environment.production ? 20000 : 5000;
-    
+
     // Keep these in sync with styles/variables.scss!
     readonly mediaQueries = { "min-width-1": "all and (min-width: 568px)"};
 
