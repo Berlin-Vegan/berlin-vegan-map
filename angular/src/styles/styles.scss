@@ -10,6 +10,13 @@ body {
     margin-bottom: 0;
 }
 
+@supports (-moz-appearance: none) { // It is Firefox.
+    // Make these elements zoomable in Firefox:
+    input, button, select, option, textarea {
+        font-size: 0.9em; // 0.9em seems to be the default.
+    }
+}
+
 app-main > div {
     height: 100vh;
     display: flex;
