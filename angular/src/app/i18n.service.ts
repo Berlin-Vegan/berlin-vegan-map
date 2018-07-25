@@ -5,7 +5,6 @@ import { TimeInterval } from "./model/time-interval";
 
 declare var global_language: "de" | "en";
 
-const nbsp = "\xa0"; // Non-breaking space
 const i18n = {
     enums: {
         veganCategory: {
@@ -339,13 +338,35 @@ const i18n = {
         }
     },
     header: {
+        mobileApp: {
+            long: {
+                en: "Mobile App",
+                de: "Mobile App",
+            },
+            short: {
+                en: "App",
+                de: "App",
+            },
+        },
         reportNewLocation: {
-            en: "Report" + nbsp + "new" + nbsp + "location",
-            de: "Neueintrag" + nbsp + "melden",
+            long: {
+                en: "Report new location",
+                de: "Neueintrag melden",
+            },
+            short: {
+                en: "Report location",
+                de: "Neueintrag",
+            },
         },
         reportProblem: {
-            en: "Report" + nbsp + "problem",
-            de: "Problem" + nbsp + "melden",
+            long: {
+                en: "Report problem",
+                de: "Problem melden",
+            },
+            short: {
+                en: "Problem",
+                de: "Problem",
+            },
         },
         fullMapViewbuttonTitle: {
             en: "Full map view",

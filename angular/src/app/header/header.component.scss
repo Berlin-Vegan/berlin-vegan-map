@@ -85,7 +85,7 @@ nav {
     color: $very-bright-green;
 }
 
-.selectedLanguage, .mobile {
+.selectedLanguage {
     display: none;
 
     @media #{$min-width-1} {
