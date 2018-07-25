@@ -4,7 +4,8 @@
             type="text"
             name="text"
             [(ngModel)]="query.text"
-            placeholder="{{i18n.search.text.placeholder}}"
+            [placeholder]="i18n.search.text.placeholder"
+            [attr.aria-label]="i18n.search.text.placeholder"
             (keyup)="onQueryChange()"
         />
         <label>
@@ -71,13 +72,19 @@
         <h1>{{i18n.openingTimes.header}}</h1>
         <div>
             <span [hidden]="query.openNow">
-                <select name="openAtWeekDay" [(ngModel)]="query.openAtWeekDay" (change)="onQueryChange()">
+                <select 
+                    name="openAtWeekDay"
+                    [attr.aria-label]="i18n.openingTimes.openAtWeekDay"
+                    [(ngModel)]="query.openAtWeekDay"
+                    (change)="onQueryChange()"
+                >
                     <option value="all">{{i18n.enums.weekday.all}}</option>
                     <option *ngFor="let i of [1, 2, 3, 4, 5, 6, 0]" value="{{i}}">{{i18n.enums.weekday[i + ""]}}</option>
                 </select>
                 <input
                     name="openAtTime"
                     type="time"
+                    [attr.aria-label]="i18n.openingTimes.openAtTime"
                     [(ngModel)]="query.openAtTime"
                     placeholder="{{i18n.openingTimes.timePlaceholder.notOpenNow}}"
                     [disabled]="query.openAtWeekDay === 'all'"

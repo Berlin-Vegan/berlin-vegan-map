@@ -210,6 +210,14 @@ const i18n = {
             en: "Open",
             de: "Geöffnet",
         },
+        openAtWeekDay: {
+            en: "Open at week day",
+            de: "Geöffnet am Wochentag",
+        },
+        openAtTime: {
+            en: "Open at time",
+            de: "Geöffnet zur Uhrzeit",
+        },
         timePlaceholder: {
             openNow: {
                 en: "- Now -",
@@ -284,7 +292,7 @@ const i18n = {
         },
     },
     sortBy: {
-        header: {
+        label: {
             en: "Sort by",
             de: "Sortierung",
         },
