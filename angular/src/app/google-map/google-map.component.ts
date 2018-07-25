@@ -86,10 +86,11 @@ export class GoogleMapComponent {
 
     init(locations: Location[]) {
         const center = this.configurationService.mapCenter;
-        const mapOptions = {
+        const mapOptions: google.maps.MapOptions = {
             zoom: 12,
             center: new google.maps.LatLng(center.lat, center.lng),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            gestureHandling: "greedy",
         };
 
         this.map = new google.maps.Map(this.mapDiv.nativeElement, mapOptions);
