@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
 
 import { InfoWindowViewService } from "../info-window-view.service";
 import { Location } from "../model/location";
@@ -8,7 +8,7 @@ import { Location } from "../model/location";
     templateUrl: "info-box.component.html",
     styleUrls: [ "info-box.component.scss" ]
 })
-export class InfoBoxComponent implements AfterContentChecked {
+export class InfoBoxComponent implements OnChanges {
 
     constructor(private readonly infoWindowViewService: InfoWindowViewService) { }
 
@@ -19,7 +19,7 @@ export class InfoBoxComponent implements AfterContentChecked {
 
     innerhtml: string;
 
-    ngAfterContentChecked() {
+    ngOnChanges() {
         this.innerhtml = this.infoWindowViewService.getContent(this.location, this.coordinates, "full");
     }
 }
