@@ -332,6 +332,12 @@ const i18n = {
             de: "Rezension",
         },
     },
+    infoBox: {
+        close: {
+            en: "Close info",
+            de: "Info schließen",
+        }
+    },
     header: {
         reportNewLocation: {
             en: "Report" + nbsp + "new" + nbsp + "location",
