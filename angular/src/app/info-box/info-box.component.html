@@ -1,6 +1,13 @@
 <div class="outer flex-container-nowrap">
     <div class="content-column" [innerHtml]="innerhtml"></div>
     <div class="close-column">
-        <span role="button" (click)="close.emit()" class="fa fa-times"></span>
+        <div
+            class="button"
+            role="button"
+            [attr.aria-label]="i18n.infoBox.close"
+            (click)="close.emit()"
+        >
+            <span class="fa fa-times" aria-hidden></span>
+        </div>
     </div>
 </div>

@@ -14,7 +14,11 @@
     overflow-y: auto;
 }
 
-span {
-    color: gray;
-    cursor: pointer;
+.button {
+    display: inline;
+
+    span {
+        color: gray;
+        cursor: pointer;
+    }
 }
