@@ -1,5 +1,5 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
 import { ConfigurationService } from "./configuration.service";
@@ -16,23 +16,23 @@ import { ShoppingLocation } from "./model/shopping-location";
 export class LocationService {
 
     constructor(
-        private readonly http: Http,
+        private readonly httpClient: HttpClient,
         private readonly configurationService: ConfigurationService,
         private readonly openingTimesService: OpeningTimesService,
         private readonly i18nService: I18nService
     ) {}
 
     getGastroLocations(): Promise<GastroLocation[]> {
-        return this.http.get(this.configurationService.gastroLocationsUrl)
+        return this.httpClient.get(this.configurationService.gastroLocationsUrl)
             .toPromise()
-            .then(response => response.json())
+            .then(response => response as any)
             .then((locations: JsonGastroLocation[]) => locations.map(it => this.newGastroLocation(it)));
     }
 
     getShoppingLocations(): Promise<ShoppingLocation[]> {
-        return this.http.get(this.configurationService.shoppingLocationsUrl)
+        return this.httpClient.get(this.configurationService.shoppingLocationsUrl)
             .toPromise()
-            .then(response => response.json())
+            .then(response => response as any)
             .then((locations: JsonShoppingLocation[]) => locations.map(it => this.newShoppingLocation(it)));
     }
 
