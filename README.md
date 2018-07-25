@@ -4,7 +4,7 @@ https://www.berlin-vegan.de/map/
 
 # Requirements
 
-* Install Node.js
+* Install Node.js 8.9 or higher
 * Change directory to `angular/`
 
 # Installation
