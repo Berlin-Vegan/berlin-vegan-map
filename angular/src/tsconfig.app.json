@@ -9,5 +9,10 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    // See https://github.com/angular/angular-cli/issues/10859
+    // TODO: Check later if we still need this:
+    "preserveWhitespaces": true
+  },
 }

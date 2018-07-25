@@ -14,8 +14,12 @@ const interval = setInterval(
                 enableProdMode();
             }
 
-            platformBrowserDynamic().bootstrapModule(AppModule)
-                .catch(err => console.log(err));
+            platformBrowserDynamic().bootstrapModule(AppModule, {
+                // See https://github.com/angular/angular-cli/issues/10859
+                // TODO: Check later if we still need this:
+                preserveWhitespaces: true
+            })
+            .catch(err => console.log(err));
 
             clearInterval(interval);
         }
