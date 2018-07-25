@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, NgZone, Output, ViewChild } from "@angular/core";
+import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild } from "@angular/core";
 import {} from "@types/googlemaps";
 
 import { ConfigurationService } from "../configuration.service";
@@ -12,7 +12,7 @@ import { LocalStorageService } from "../local-storage.service";
     template: `<div #mapDiv></div>`,
     styles: [ `div { width: 100%; height: 100%; }` ],
 })
-export class GoogleMapComponent {
+export class GoogleMapComponent implements OnInit {
 
     constructor(
         private readonly configurationService: ConfigurationService,
@@ -84,7 +84,7 @@ export class GoogleMapComponent {
     private readonly infoWindow = new google.maps.InfoWindow();
     private readonly i18n = this.i18nService.getI18n();
 
-    init(locations: Location[]) {
+    ngOnInit() {
         const center = this.configurationService.mapCenter;
         const mapOptions: google.maps.MapOptions = {
             zoom: 12,
@@ -99,7 +99,9 @@ export class GoogleMapComponent {
         google.maps.event.addListenerOnce(this.map, "idle", () => {
             this.mapDiv.nativeElement.getElementsByTagName("iframe")[0].title = "Google Maps";
         });
+    }
 
+    init(locations: Location[]) {
         for (const location of locations) {
             this.createMarker(location);
         }
