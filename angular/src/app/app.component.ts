@@ -1,7 +1,6 @@
 import { NavigationEnd, Router } from "@angular/router";
 import { Component } from "@angular/core";
-import "rxjs/add/operator/filter";
-import "rxjs/add/operator/pairwise";
+import { filter, pairwise } from "rxjs/operators";
 
 @Component({
   selector: "app-root",
@@ -12,11 +11,11 @@ export class AppComponent {
     static previousUrl = "";
 
     constructor(router: Router) {
-        router.events
-            .filter(event => event instanceof NavigationEnd)
-            .pairwise()
-            .subscribe((pair: any) => {
-                AppComponent.previousUrl = pair[0].url;
-            });
+        router.events.pipe(
+            filter((event: Event) => event instanceof NavigationEnd),
+            pairwise(),
+        ).subscribe((pair: any) => {
+            AppComponent.previousUrl = pair[0].url;
+        });
     }
 }

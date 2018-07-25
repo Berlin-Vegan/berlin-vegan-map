@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import "rxjs/add/operator/toPromise";
 
 import { ConfigurationService } from "./configuration.service";
 import { JsonGastroLocation } from "./model/json/json-gastro-location";
