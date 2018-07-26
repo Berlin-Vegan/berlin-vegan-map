@@ -121,7 +121,7 @@ export class MainComponent implements OnInit {
     }
 
     onLocationSelectInResultsList(location: Location) {
-        if (!window.matchMedia(this.configurationService.mediaQueries["min-width-1"]).matches) {
+        if (this.hasMobileSize) {
             this.enableFullMapView();
         }
         this.googleMapComponent.selectLocation(location);
@@ -166,11 +166,19 @@ export class MainComponent implements OnInit {
     }
 
     onCoordinatesHighlightRequest() {
+        if (this.hasMobileSize) {
+            this.enableFullMapView();
+        }
+        this.selectedLocation = null;
         this.googleMapComponent.selectCoordinates();
     }
 
     onInfoBoxClose() {
         this.selectedLocation = null;
         this.googleMapComponent.selectLocation(null);
+    }
+
+    private get hasMobileSize(): boolean {
+        return !window.matchMedia(this.configurationService.mediaQueries["min-width-1"]).matches;
     }
 }
