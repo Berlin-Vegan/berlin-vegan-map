@@ -4,7 +4,7 @@ import "hammer-timejs";
 
 delete (window as any).Hammer.defaults.cssProps.userSelect; // Re-enable text selection
 
-class HammerConfig extends HammerGestureConfig  {
+export class HammerConfig extends HammerGestureConfig  {
     overrides = {
         "swipe": {
             velocity: 0.3, // Default: 0.3
