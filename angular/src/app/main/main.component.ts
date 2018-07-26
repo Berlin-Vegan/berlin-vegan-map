@@ -95,6 +95,18 @@ export class MainComponent implements OnInit {
             (this.isGastro ? new GastroQuery() : new ShoppingQuery());
     }
 
+    onSwipeleft() {
+        if (this.hasMobileSize && !this.fullMapView) {
+            this.enableFullMapView();
+        }
+    }
+
+    onSwiperight() {
+        if (this.hasMobileSize && this.fullMapView) {
+            this.scrollSearchIntoView();
+        }
+    }
+
     // tslint:disable-next-line no-shadowed-variable
     onQueryChange(query: GastroQuery | ShoppingQuery) {
         this.query = query;

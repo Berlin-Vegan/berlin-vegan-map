@@ -3,9 +3,11 @@
         [fullMapView]="fullMapView"
         (searchClick)="scrollSearchIntoView()"
         (fullMapViewClick)="enableFullMapView()"
+        (swipeleft)="onSwipeleft()"
+        (swiperight)="onSwiperight()"
     ></app-header>
     <main class="flex-container-nowrap">
-        <div class="col-left" [hidden]="fullMapView">
+        <div class="col-left" [hidden]="fullMapView" (swipeleft)="onSwipeleft()">
             <div #preSearchDiv></div>
             <nav>
                 <ul>
@@ -62,7 +64,7 @@
                         (locationSelect)="onLocationSelectInGoogleMap($event)"
                     ></app-google-map>
                 </div>
-                <div *ngIf="isInfoBoxVisible" class="infoBox">
+                <div *ngIf="isInfoBoxVisible" class="infoBox" (swiperight)="onSwiperight()">
                     <app-info-box
                         [location]="selectedLocation"
                         [coordinates]="query?.distance?.coordinates"

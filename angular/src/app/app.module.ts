@@ -11,6 +11,7 @@ import { AppComponent } from "./app.component";
 import { ConfigurationService } from "./configuration.service";
 import { GeolocationComponent } from "./geolocation/geolocation.component";
 import { GoogleMapComponent } from "./google-map/google-map.component";
+import { HammerProvider } from "./hammer-provider";
 import { HeaderComponent } from "./header/header.component";
 import { I18nService } from "./i18n.service";
 import { InfoBoxComponent } from "./info-box/info-box.component";
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
         LocationService,
         OpeningTimesService,
         SearchService,
+        HammerProvider,
     ],
     bootstrap: [AppComponent]
 })

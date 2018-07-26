@@ -24,6 +24,8 @@
     "@angular/service-worker": "6.0.9",
     "@marco-eckstein/js-utils": "^0.7.0",
     "core-js": "^2.5.4",
+    "hammer-timejs": "^1.1.0",
+    "hammerjs": "^2.0.8",
     "rxjs": "^6.2.2",
     "zone.js": "^0.8.26"
   },
