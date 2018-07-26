@@ -2,7 +2,6 @@ import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from "@angular/platform-br
 import "hammerjs";
 import "hammer-timejs";
 
-declare var Hammer: any;
 delete Hammer.defaults.cssProps.userSelect; // Re-enable text selection
 
 export class HammerConfig extends HammerGestureConfig  {
