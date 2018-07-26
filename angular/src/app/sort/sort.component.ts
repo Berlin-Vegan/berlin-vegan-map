@@ -11,6 +11,8 @@ export class SortComponent implements OnInit {
 
     constructor(private readonly i18nService: I18nService) { }
 
+    id = Math.random().toString();
+
     @Input() initialSortOrder: SortOrder;
 
     @Input() set isDistanceEnabled(isDistanceEnabled: boolean) {

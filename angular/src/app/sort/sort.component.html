@@ -1,10 +1,8 @@
 <form name="sortForm" class="flex-container-wrap">
-    <label>
-        {{i18n.sortBy.label}}
-        <select name="order" [(ngModel)]="sortOrder" (change)="sortOrderChange.emit(sortOrder)">
-            <option value="name">{{i18n.sortBy.name}}</option>
-            <option value="distance" *ngIf="isDistanceEnabled">{{i18n.sortBy.distance}}</option>
-            <option value="distance" *ngIf="!isDistanceEnabled" [disabled]="true" title="{{i18n.sortBy.distanceRequiresPosition}}">{{i18n.sortBy.distance}}</option>
-        </select>
-    </label>
+    <label [attr.for]="id">{{i18n.sortBy.label}}:</label>
+    <select [attr.id]="id" name="order" [(ngModel)]="sortOrder" (change)="sortOrderChange.emit(sortOrder)">
+        <option value="name">{{i18n.sortBy.name}}</option>
+        <option value="distance" *ngIf="isDistanceEnabled">{{i18n.sortBy.distance}}</option>
+        <option value="distance" *ngIf="!isDistanceEnabled" [disabled]="true" title="{{i18n.sortBy.distanceRequiresPosition}}">{{i18n.sortBy.distance}}</option>
+    </select>
 </form>
