@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
     readonly i18n = this.i18nService.getI18n();
     readonly language = this.i18nService.getLanguage();
-    mobileAppText = "";
+    nativeAppText = "";
     reportNewLocationText = "";
     reportProblemText = "";
 
@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
 
     private setTexts(long: boolean) {
         const mode = long ? "long" : "short";
-        this.mobileAppText = this.getText("mobileApp", mode);
+        this.nativeAppText = this.getText("nativeApp", mode);
         this.reportNewLocationText = this.getText("reportNewLocation", mode);
         this.reportProblemText = this.getText("reportProblem", mode);
     }

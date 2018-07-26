@@ -346,14 +346,14 @@ const i18n = {
         }
     },
     header: {
-        mobileApp: {
+        nativeApp: {
             long: {
-                en: "Mobile App",
-                de: "Mobile App",
+                en: "Mobile native app",
+                de: "Mobile native App",
             },
             short: {
-                en: "App",
-                de: "App",
+                en: "Native app",
+                de: "Native App",
             },
         },
         reportNewLocation: {
