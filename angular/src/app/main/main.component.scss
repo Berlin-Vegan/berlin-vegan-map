@@ -86,26 +86,41 @@ app-statistics {
 }
 
 @media #{$min-width-1} {
-    .col-left { width: 60%; }
-    .col-right { width: 40%; overflow: visible; }
+    .col-left { width: 56%; }
+    .col-right { width: 44%; overflow: visible; }
 }
 
 @media #{$min-width-2} {
+    .col-left { width: 53%; }
+    .col-right { width: 47%; }
+}
+
+@media #{$min-width-3} {
     .col-left { width: 50%; }
     .col-right { width: 50%; }
 }
 
-@media #{$min-width-3} {
+@media #{$min-width-4} {
+    .col-left { width: 45%; }
+    .col-right { width: 55%; }
+}
+
+@media #{$min-width-5} {
     .col-left { width: 40%; }
     .col-right { width: 60%; }
 }
 
-@media #{$min-width-4} {
+@media #{$min-width-6} {
+    .col-left { width: 35%; }
+    .col-right { width: 65%; }
+}
+
+@media #{$min-width-7} {
     .col-left { width: 30%; }
     .col-right { width: 70%; }
 }
 
-@media #{$min-width-5} {
+@media #{$min-width-8} {
     .col-left { width: 25%; }
     .col-right { width: 75%; }
 }
@@ -120,26 +135,31 @@ app-statistics {
 }
 
 .infoBox {
-    height: 42%;
+    height: 50%;
 }
 
 .reducedHeightMap {
-    height: 58%;
+    height: 50%;
 }
 
 @media #{$min-height-1} {
-    .infoBox { height: 39%; }
-    .reducedHeightMap { height: 61%; }
+    .infoBox { height: 46%; }
+    .reducedHeightMap { height: 54%; }
 }
 
 @media #{$min-height-2} {
-    .infoBox { height: 36%; }
-    .reducedHeightMap { height: 64%; }
+    .infoBox { height: 42%; }
+    .reducedHeightMap { height: 58%; }
 }
 
 @media #{$min-height-3} {
-    .infoBox { height: 33%; }
-    .reducedHeightMap { height: 67%; }
+    .infoBox { height: 38%; }
+    .reducedHeightMap { height: 62%; }
+}
+
+@media #{$min-height-4} {
+    .infoBox { height: 34%; }
+    .reducedHeightMap { height: 66%; }
 }
 
 .big-spinner {
