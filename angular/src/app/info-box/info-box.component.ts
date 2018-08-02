@@ -25,8 +25,7 @@ export class InfoBoxComponent {
         extraLongHyphen: "–", // Your editor may display this as a regular hyphen.
         linkSymbol: "🔗", // Your editor may not have this.
     };
-    readonly isPhone = isPhone;
-    private readonly language = this.i18nService.getLanguage();
+    readonly isPhone = isPhone();
 
     get openingTimesInnerHtml(): string {
 
@@ -56,7 +55,7 @@ export class InfoBoxComponent {
     }
 
     get commentAndReviewInnerHtml(): string {
-        return this.language === "en" ?
+        return this.i18nService.getLanguage() === "en" ?
             (this.location.commentEnglish ? `${this.location.commentEnglish}<br/>` : ``)
             + (this.location.reviewURL ? this.reviewAnchor : ``)
             :
@@ -71,7 +70,7 @@ export class InfoBoxComponent {
 // TODO: Move to library
 // Adapted from https://stackoverflow.com/a/11381730, which in turn was adapted from
 // http://detectmobilebrowsers.com/.
-function isPhone() {
+function isPhone(): boolean {
     let check = false;
     (function(a) {
         // tslint:disable-next-line max-line-length
