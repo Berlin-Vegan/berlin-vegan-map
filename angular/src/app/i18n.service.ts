@@ -413,20 +413,6 @@ const i18n = {
             en: "Remember last query",
             de: "Letzte Suche merken",
         },
-        infoMode: {
-            heading: {
-                en: "Show location details as",
-                de: "Location-Details anzeigen als",
-            },
-            box: {
-                en: "Box",
-                de: "Box",
-            },
-            popUp: {
-                en: "Pop-up",
-                de: "Pop-up",
-            },
-        },
         noLocalStorageWarning: {
             en: "Local storage is unavailable or disabled in your browser. Nothing will be saved permanently.",
             de: "Local Storage ist in deinem Browser nicht vorhanden oder deaktiviert. "

@@ -18,27 +18,6 @@
                     (change)="onQueryChange()"
                 />{{i18n.settings.rememberLastQuery}}
             </label>
-            <fieldset id="infoMode">
-                {{i18n.settings.infoMode.heading}}:<br/>
-                <label>
-                    <input
-                        type="radio"
-                        name="infoMode"
-                        [(ngModel)]="localStorageService.settings.infoMode"
-                        (change)="onQueryChange()"
-                        value="box"
-                    />{{i18n.settings.infoMode.box}}
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        name="infoMode"
-                        [(ngModel)]="localStorageService.settings.infoMode"
-                        (change)="onQueryChange()"
-                        value="popUp"
-                    />{{i18n.settings.infoMode.popUp}}
-                </label>
-            </fieldset>
         </form>
     </main>
 </div>

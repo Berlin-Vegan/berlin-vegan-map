@@ -1,5 +1,31 @@
 <div class="outer flex-container-nowrap">
-    <div class="content-column" [innerHtml]="innerhtml"></div>
+    <div class="content-column">
+        <article class="infoWindow">
+            <header class="flex-container-nowrap">
+                <h1>{{location.name}}</h1>
+                <a *ngIf="location.website"
+                    target="_blank"
+                    [href]="location.website"
+                    [title]="location.website"
+                >{{chars.linkSymbol}}</a>
+            </header>
+            <p>{{location.tagsFriendly}} ({{i18n.enums.veganCategory.verbose[location.veganCategory]}})</p>
+            <p>{{location.address}}</p>
+            <p *ngIf="coordinates">
+                {{i18n.infoWindow.distance}}:
+                {{location.getDistanceToCoordinatesInKm(coordinates) | kilometer}}
+            </p>
+            <p *ngIf="location.telephone">
+                {{i18n.infoWindow.phone}}:
+                <a *ngIf="isPhone();else justTelephone" href="tel:{{location.telephone}}">{{location.telephone}}</a>
+                <ng-template #justTelephone>{{location.telephone}}</ng-template>
+            </p>
+            <h2>{{i18n.infoWindow.openingTimes}}</h2>
+            <p [innerHTML]="openingTimesInnerHtml"></p>
+            <p *ngIf="location.localizedOpenComment">{{location.localizedOpenComment}}</p>
+            <p [innerHTML]="commentAndReviewInnerHtml"></p>
+        </article>
+    </div>
     <div class="close-column">
         <div
             class="button"

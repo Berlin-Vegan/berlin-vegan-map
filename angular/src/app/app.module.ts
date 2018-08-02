@@ -15,7 +15,6 @@ import { HammerProvider } from "./hammer-provider";
 import { HeaderComponent } from "./header/header.component";
 import { I18nService } from "./i18n.service";
 import { InfoBoxComponent } from "./info-box/info-box.component";
-import { InfoWindowViewService } from "./info-window-view.service";
 import { KilometerPipe } from "./kilometer.pipe";
 import { LocalStorageService } from "./local-storage.service";
 import { LocationService } from "./location.service";
@@ -62,7 +61,6 @@ const appRoutes: Routes = [
     providers: [
         ConfigurationService,
         I18nService,
-        InfoWindowViewService,
         LocalStorageService,
         LocationService,
         OpeningTimesService,

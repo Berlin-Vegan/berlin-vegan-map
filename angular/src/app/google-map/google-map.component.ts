@@ -3,9 +3,7 @@ import {} from "@types/googlemaps";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
-import { InfoWindowViewService } from "../info-window-view.service";
 import { Location } from "../model/location";
-import { LocalStorageService } from "../local-storage.service";
 
 @Component({
     selector: "app-google-map",
@@ -17,8 +15,6 @@ export class GoogleMapComponent implements OnInit {
     constructor(
         private readonly configurationService: ConfigurationService,
         private readonly i18nService: I18nService,
-        private readonly infoWindowViewService: InfoWindowViewService,
-        private readonly localStorageService: LocalStorageService,
         private readonly ngZone: NgZone,
     ) {}
 
@@ -116,9 +112,7 @@ export class GoogleMapComponent implements OnInit {
         });
 
         google.maps.event.addListener(marker, "click", () => {
-            const mode = this.localStorageService.settings.infoMode === "popUp" ? "full" : "minimal";
-            const content = this.infoWindowViewService.getContent(location, this.coordinates, mode);
-            this.infoWindow.setContent(content);
+            this.infoWindow.setContent(location.name);
             this.infoWindow.open(this.map, marker);
             this.ngZone.run(() => this.locationSelect.emit(location));
         });

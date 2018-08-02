@@ -48,7 +48,7 @@ export class MainComponent implements OnInit {
     selectedLocation: Location | null = null;
 
     get isInfoBoxVisible(): boolean {
-        return !!this.selectedLocation && this.localStorageService.settings.infoMode === "box";
+        return !!this.selectedLocation;
     }
 
     get isInitializing(): boolean {
