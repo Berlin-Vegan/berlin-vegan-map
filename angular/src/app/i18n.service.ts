@@ -124,7 +124,7 @@ const i18n = {
     locationSwitch: {
         gastro: {
             en: "Food & beverages",
-            de: "Essen & Trinken",
+            de: "Gastronomie",
         },
         shopping: {
             en: "Shopping",
