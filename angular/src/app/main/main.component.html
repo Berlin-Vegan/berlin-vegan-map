@@ -64,11 +64,12 @@
                         (locationSelect)="onLocationSelectInGoogleMap($event)"
                     ></app-google-map>
                 </div>
-                <div *ngIf="isInfoBoxVisible" class="infoBox" (swiperight)="onSwiperight()">
+                <div *ngIf="isInfoBoxVisible" class="infoBox">
                     <app-info-box
                         [location]="selectedLocation"
                         [coordinates]="query?.distance?.coordinates"
                         (close)="onInfoBoxClose()"
+                        (swiperight)="onSwiperight()"
                     ></app-info-box>
                 </div>
             </div>
