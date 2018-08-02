@@ -413,6 +413,10 @@ const i18n = {
             en: "Remember last query",
             de: "Letzte Suche merken",
         },
+        showPictures: {
+            en: "Show location pictures",
+            de: "Fotos der Locations anzeigen",
+        },
         noLocalStorageWarning: {
             en: "Local storage is unavailable or disabled in your browser. Nothing will be saved permanently.",
             de: "Local Storage ist in deinem Browser nicht vorhanden oder deaktiviert. "

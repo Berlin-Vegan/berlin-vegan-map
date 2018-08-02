@@ -5,6 +5,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { ServiceWorkerModule } from "@angular/service-worker";
 
+import { NgxGalleryModule } from "ngx-gallery";
+
 import { environment } from "../environments/environment";
 
 import { AppComponent } from "./app.component";
@@ -55,6 +57,7 @@ const appRoutes: Routes = [
         BrowserModule,
         FormsModule,
         HttpClientModule,
+        NgxGalleryModule,
         RouterModule.forRoot(appRoutes),
         ServiceWorkerModule.register("./ngsw-worker.js", { enabled: environment.production }),
     ],

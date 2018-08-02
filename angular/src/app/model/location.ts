@@ -2,6 +2,7 @@ import { GeoUtil, LatitudeLongitude } from "@marco-eckstein/js-utils";
 
 import { VeganCategory } from "./vegan-category";
 import { OpeningTimesCollection } from "./opening-times-collection";
+import { Picture } from "./picture";
 import { YesNoUnknown } from "./yes-no-unknown";
 
 export class Location {
@@ -26,6 +27,7 @@ export class Location {
         public readonly delivery: YesNoUnknown,
         public readonly organic: YesNoUnknown,
         public readonly handicappedAccessible: YesNoUnknown,
+        public readonly pictures: Picture[],
         public readonly tagsFriendly: string,
     ) {}
 

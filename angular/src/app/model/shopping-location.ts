@@ -1,6 +1,7 @@
-import { ShoppingTag } from "./shopping-tag";
 import { Location } from "./location";
 import { OpeningTimesCollection } from "./opening-times-collection";
+import { Picture } from "./picture";
+import { ShoppingTag } from "./shopping-tag";
 import { VeganCategory } from "./vegan-category";
 import { YesNoUnknown } from "./yes-no-unknown";
 
@@ -26,6 +27,7 @@ export class ShoppingLocation extends Location {
         delivery: YesNoUnknown,
         organic: YesNoUnknown,
         handicappedAccessible: YesNoUnknown,
+        pictures: Picture[],
         tagsFriendly: string,
         public readonly tags: ShoppingTag[],
     ) {
@@ -50,6 +52,7 @@ export class ShoppingLocation extends Location {
             delivery,
             organic,
             handicappedAccessible,
+            pictures,
             tagsFriendly,
         );
     }

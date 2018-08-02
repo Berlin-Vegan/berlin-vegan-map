@@ -1,17 +1,23 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+
 import { DayOfWeek } from "@marco-eckstein/js-utils";
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from "ngx-gallery";
 
 import { I18nService } from "../i18n.service";
+import { LocalStorageService } from "./../local-storage.service";
 import { Location } from "../model/location";
+import { ConfigurationService } from "../configuration.service";
 
 @Component({
     selector: "app-info-box",
     templateUrl: "info-box.component.html",
     styleUrls: [ "info-box.component.scss" ]
 })
-export class InfoBoxComponent {
+export class InfoBoxComponent implements OnChanges {
 
     constructor(
+        private readonly configurationService: ConfigurationService,
+        private readonly localStorageService: LocalStorageService,
         private readonly i18nService: I18nService,
     ) { }
 
@@ -26,6 +32,39 @@ export class InfoBoxComponent {
         linkSymbol: "🔗", // Your editor may not have this.
     };
     readonly isPhone = isPhone();
+    galleryOptions: NgxGalleryOptions[] = [
+        {
+            height: "29.5vh",
+            width: "100%",
+            thumbnailsMargin: 3,
+            thumbnailMargin: 3,
+            imageAnimation: NgxGalleryAnimation.Slide,
+            previewKeyboardNavigation: true,
+            previewSwipe: true,
+            previewAnimation: false,
+            previewZoom: true,
+            previewDownload: true,
+            previewCloseOnClick: true,
+            previewCloseOnEsc: true,
+        },
+        {
+            breakpoint: this.configurationService.minWidths[2] - 1,
+            thumbnailsMargin: 2,
+            thumbnailMargin: 2,
+        },
+        {
+            breakpoint: this.configurationService.minWidths[3] - 1,
+            thumbnailsMargin: 3,
+            thumbnailMargin: 3,
+            height: "40vh",
+        },
+        {
+            breakpoint: this.configurationService.minWidths[6] - 1,
+            thumbnailsMargin: 2,
+            thumbnailMargin: 2,
+        },
+    ];
+    galleryImages: NgxGalleryImage[] | null = null;
 
     get openingTimesInnerHtml(): string {
 
@@ -64,6 +103,19 @@ export class InfoBoxComponent {
 
     private get reviewAnchor(): string {
         return `<a target="_blank" href="${this.location.reviewURL}">${this.i18n.infoWindow.review}</a>`;
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes["location"] && this.localStorageService.settings.showPictures) {
+            this.galleryImages =
+                this.location.pictures.length > 0 ?
+                this.location.pictures
+                    .map(it => it.url)
+                    .map(it => it.replace("http://", "https://")) // TODO: Remove when replaced on server.
+                    .map(it => ({ small: it, medium: it, big: it }))
+                :
+                null;
+        }
     }
 }
 

@@ -18,6 +18,15 @@
                     (change)="onQueryChange()"
                 />{{i18n.settings.rememberLastQuery}}
             </label>
+            <br/>
+            <label>
+                <input
+                    type="checkbox"
+                    name="showPictures"
+                    [(ngModel)]="localStorageService.settings.showPictures"
+                    (change)="onQueryChange()"
+                />{{i18n.settings.showPictures}}
+            </label>
         </form>
     </main>
 </div>

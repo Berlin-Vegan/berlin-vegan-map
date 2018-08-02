@@ -148,18 +148,18 @@ app-statistics {
 }
 
 @media #{$min-height-2} {
-    .infoBox { height: 42%; }
-    .reducedHeightMap { height: 58%; }
+    .infoBox { height: 45%; }
+    .reducedHeightMap { height: 55%; }
 }
 
 @media #{$min-height-3} {
-    .infoBox { height: 38%; }
-    .reducedHeightMap { height: 62%; }
+    .infoBox { height: 44%; }
+    .reducedHeightMap { height: 56%; }
 }
 
 @media #{$min-height-4} {
-    .infoBox { height: 34%; }
-    .reducedHeightMap { height: 66%; }
+    .infoBox { height: 43%; }
+    .reducedHeightMap { height: 57%; }
 }
 
 .big-spinner {

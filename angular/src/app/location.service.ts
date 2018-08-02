@@ -58,6 +58,7 @@ export class LocationService {
             location.delivery,
             location.organic,
             location.handicappedAccessible,
+            location.pictures,
             location.tags.map(it => this.i18nService.getI18n().enums.gastroTag[it]).join(", "),
             location.email,
             location.glutenFree,
@@ -97,6 +98,7 @@ export class LocationService {
             location.delivery,
             location.organic,
             location.handicappedAccessible,
+            [],
             location.tags.map(it => this.i18nService.getI18n().enums.shoppingTag[it]).join(", "),
             location.tags.sort(),
         );

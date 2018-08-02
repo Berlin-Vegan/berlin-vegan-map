@@ -17,6 +17,7 @@ export class ConfigurationService {
 
     // Keep these in sync with styles/variables.scss!
     readonly mediaQueries = { "min-width-1": "all and (min-width: 568px)"};
+    readonly minWidths = [ 568, 655, 740, 1080, 1210, 1380, 1600, 1915 ];
 
     getColor(veganCategory: VeganCategory): string {
         switch (veganCategory) {

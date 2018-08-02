@@ -1,6 +1,7 @@
 import { GastroTag } from "./gastro-tag";
 import { Location } from "./location";
 import { OpeningTimesCollection } from "./opening-times-collection";
+import { Picture } from "./picture";
 import { VeganCategory } from "./vegan-category";
 import { YesNoUnknown } from "./yes-no-unknown";
 
@@ -26,6 +27,7 @@ export class GastroLocation extends Location {
         delivery: YesNoUnknown,
         organic: YesNoUnknown,
         handicappedAccessible: YesNoUnknown,
+        pictures: Picture[],
         tagsFriendly: string,
         public readonly email: string | undefined,
         public readonly glutenFree: YesNoUnknown,
@@ -61,6 +63,7 @@ export class GastroLocation extends Location {
             delivery,
             organic,
             handicappedAccessible,
+            pictures,
             tagsFriendly,
         );
     }
