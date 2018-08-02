@@ -103,7 +103,7 @@ export class MainComponent implements OnInit {
 
     onSwiperight() {
         if (this.hasMobileSize && this.fullMapView) {
-            this.scrollSearchIntoView();
+            this.fullMapView = false;
         }
     }
 
