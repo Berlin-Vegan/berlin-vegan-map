@@ -5,9 +5,14 @@
     font-family: "Roboto", Arial, sans-serif;
 }
 
+html, body { height: 100%; }
+
 body {
     margin-top: 0;
     margin-bottom: 0;
+    // ng add @angular/material wanted these, but we do not want them:
+    // margin: 0;
+    // font-family: "Roboto", sans-serif;
 }
 
 @supports (-moz-appearance: none) { // It is Firefox.
