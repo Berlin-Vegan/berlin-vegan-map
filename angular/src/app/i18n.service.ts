@@ -339,6 +339,24 @@ const i18n = {
             de: "Rezension",
         },
     },
+    address: {
+        locationInGoogleMaps: {
+            en: "Location in Google Maps",
+            de: "Location in Google Maps",
+        },
+        directionsInGoogleMaps: {
+            en: "Directions in Google Maps",
+            de: "Wegbeschreibung in Google Maps",
+        },
+        publicTransport: {
+            en: "Public transport (beta)",
+            de: "ÖPNV (beta)",
+        },
+        geolocationRequired: {
+            en: "Geolocation required",
+            de: "Standorterkennung erforderlich",
+        },
+    },
     infoBox: {
         close: {
             en: "Close info",

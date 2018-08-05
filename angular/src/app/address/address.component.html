@@ -1,0 +1,48 @@
+<a mat-button [matMenuTriggerFor]="menu" href="" (click)="$event.preventDefault()"
+>{{location.address}}</a>
+<mat-menu #menu="matMenu">
+
+    <a
+        mat-menu-item
+        href="{{googleMapsSearchUrl}}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span class="fa fa-map-marker-alt" aria-hidden="true"></span>&nbsp;&nbsp;
+        {{i18n.address.locationInGoogleMaps}}
+    </a>
+
+    <a *ngIf="googleMapsDirectionsUrl;else noDirections"
+        mat-menu-item
+        href="{{googleMapsDirectionsUrl}}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span class="fa fa-route" aria-hidden="true"></span>&nbsp;&nbsp;
+        {{i18n.address.directionsInGoogleMaps}}
+    </a>
+    <ng-template #noDirections>
+        <span mat-menu-item disabled class="unavailable">
+            <span class="fa fa-route" aria-hidden="true"></span>&nbsp;&nbsp;
+            {{i18n.address.directionsInGoogleMaps}} ({{i18n.address.geolocationRequired}})
+        </span>
+    </ng-template>
+
+    <div *ngIf="location.publicTransport">
+        <a *ngIf="bvgDirectionsUrl;else noPublicTransport"
+            mat-menu-item
+            href="{{bvgDirectionsUrl}}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span class="fa fa-subway" aria-hidden="true"></span>&nbsp;&nbsp;
+            {{i18n.address.publicTransport}}
+        </a>
+        <ng-template #noPublicTransport>
+            <span mat-menu-item disabled class="unavailable">
+                <span class="fa fa-subway" aria-hidden="true"></span>&nbsp;&nbsp;
+                {{i18n.address.publicTransport}} ({{i18n.address.geolocationRequired}})
+            </span>
+        </ng-template>
+    </div>
+</mat-menu>

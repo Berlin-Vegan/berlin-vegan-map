@@ -28,6 +28,7 @@ export class Location {
         public readonly organic: YesNoUnknown,
         public readonly handicappedAccessible: YesNoUnknown,
         public readonly pictures: Picture[],
+        public readonly publicTransport: string | undefined,
         public readonly tagsFriendly: string,
     ) {}
 

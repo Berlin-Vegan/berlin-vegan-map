@@ -28,6 +28,7 @@ export class ShoppingLocation extends Location {
         organic: YesNoUnknown,
         handicappedAccessible: YesNoUnknown,
         pictures: Picture[],
+        publicTransport: string | undefined,
         tagsFriendly: string,
         public readonly tags: ShoppingTag[],
     ) {
@@ -53,6 +54,7 @@ export class ShoppingLocation extends Location {
             organic,
             handicappedAccessible,
             pictures,
+            publicTransport,
             tagsFriendly,
         );
     }

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { MatMenuModule} from "@angular/material/menu";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { ServiceWorkerModule } from "@angular/service-worker";
@@ -9,6 +10,7 @@ import { NgxGalleryModule } from "ngx-gallery";
 
 import { environment } from "../environments/environment";
 
+import { AddressComponent } from "./address/address.component";
 import { AppComponent } from "./app.component";
 import { ConfigurationService } from "./configuration.service";
 import { GeolocationComponent } from "./geolocation/geolocation.component";
@@ -40,6 +42,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
+        AddressComponent,
         AppComponent,
         GeolocationComponent,
         GoogleMapComponent,
@@ -58,6 +61,7 @@ const appRoutes: Routes = [
         BrowserModule,
         FormsModule,
         HttpClientModule,
+        MatMenuModule,
         NgxGalleryModule,
         RouterModule.forRoot(appRoutes),
         ServiceWorkerModule.register("./ngsw-worker.js", { enabled: environment.production }),

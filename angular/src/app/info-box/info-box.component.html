@@ -13,7 +13,9 @@
             <div class="flex-container">
                 <div>
                     <p>{{location.tagsFriendly}} ({{i18n.enums.veganCategory.verbose[location.veganCategory]}})</p>
-                    <p>{{location.address}}</p>
+                    <p>
+                        <app-address [location]="location" [coordinates]="coordinates"></app-address>
+                    </p>
                     <p *ngIf="coordinates">
                         {{i18n.infoWindow.distance}}:
                         {{location.getDistanceToCoordinatesInKm(coordinates) | kilometer}}
