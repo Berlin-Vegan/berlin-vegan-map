@@ -137,11 +137,13 @@ export class GoogleMapComponent implements OnInit {
         };
     }
 
-    selectLocation(location: Location | null, center: boolean) {
+    selectLocation(location: Location | null, center = false) {
         if (location) {
             setTimeout(() => {
                 const marker = this.locationsToMarkers.get(location)!;
-                this.map.setCenter(marker.getPosition());
+                if (center) {
+                    this.map.setCenter(marker.getPosition());
+                }
                 google.maps.event.trigger(marker, "click");
             }, 0);
         } else {
