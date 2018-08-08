@@ -104,29 +104,6 @@ form {
     font-weight: normal !important; // Reset
 }
 
-.infoWindow {
-
-    header {
-        padding-top: 0.2em;
-        padding-bottom: 0.4em;
-        border-bottom: 0.06em solid $bv-green;
-    }
-
-    header > * {
-        font-size: 1.2em;
-        font-weight: 500;
-        padding: 0;
-        margin: 0 0.2em 0 0;
-    }
-
-    h2 {
-        font-size: 1em;
-        font-weight: bold;
-        margin-top: 0px;
-        margin-bottom: -12px;
-    }
-}
-
 // Material Menu:
 .mat-menu-panel {
     max-width: 100% !important;
