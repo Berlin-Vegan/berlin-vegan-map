@@ -45,7 +45,8 @@
             <app-results-list [hidden]="isInitializing"
                 [locations]="filteredLocations"
                 [coordinates]="query?.distance?.place?.coordinates"
-                (locationSelect)="onLocationSelectInResultsList($event)"
+                (locationSelect)="onLocationSelectInResultsList($event, false)"
+                (locationCenter)="onLocationSelectInResultsList($event, true)"
             ></app-results-list>
         </div>
         <div class="col-right" [ngClass]="{fullMapView: fullMapView}">

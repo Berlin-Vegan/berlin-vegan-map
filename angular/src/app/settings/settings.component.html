@@ -28,6 +28,15 @@
                 />{{i18n.settings.showPictures}}
             </label>
             <br/>
+            <label>
+                <input
+                    type="checkbox"
+                    name="clickInListCentersLocation"
+                    [(ngModel)]="localStorageService.settings.clickInListCentersLocation"
+                    (change)="onQueryChange()"
+                />{{i18n.settings.clickInListCentersLocation}}
+            </label>
+            <br/>
             <fieldset>
                 <legend>{{i18n.settings.map.header}}</legend>
                 <label>

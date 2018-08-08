@@ -132,11 +132,11 @@ export class MainComponent implements OnInit {
                 .sort(this.getSortFunction());
     }
 
-    onLocationSelectInResultsList(location: Location) {
+    onLocationSelectInResultsList(location: Location, center: boolean) {
         if (this.hasMobileSize) {
             this.enableFullMapView();
         }
-        this.googleMapComponent.selectLocation(location);
+        this.googleMapComponent.selectLocation(location, center);
         this.selectedLocation = location;
     }
 

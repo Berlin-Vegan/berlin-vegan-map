@@ -6,7 +6,7 @@
                     title="{{i18n.showOnMap}}"
                     href=""
                     role="button"
-                    (click)="$event.preventDefault(); locationSelect.emit(location)"
+                    (click)="$event.preventDefault(); onLocationClick(location)"
                 >{{location.name}}</a>
             </h1>
             <div>
@@ -15,7 +15,7 @@
                     src="{{configurationService.getIconUrl(location.veganCategory)}}"
                     style="height: 25px; width: auto; position:relative; bottom: -6px;"
                     role="button"
-                    (click)="locationSelect.emit(location)"
+                    (click)="onLocationClick(location)"
                     alt=""
                 />
             </div>

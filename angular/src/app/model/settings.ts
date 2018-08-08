@@ -1,6 +1,7 @@
 export class Settings {
     rememberLastQuery = true;
     showPictures = true;
+    clickInListCentersLocation = true;
     map = {
         mapTypeControl: true,
         zoomControl: false,

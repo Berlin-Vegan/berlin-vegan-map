@@ -439,6 +439,10 @@ const i18n = {
             en: "Show location pictures",
             de: "Fotos der Locations anzeigen",
         },
+        clickInListCentersLocation: {
+            en: "Click on location list centers location",
+            de: "Klick auf Location in der Liste zentriert die Location",
+        },
         map: {
             header: {
                 en: "Map",
