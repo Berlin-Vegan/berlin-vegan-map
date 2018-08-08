@@ -6,6 +6,7 @@
                 <h1>{{location.name}}</h1>
                 <a *ngIf="location.website"
                     target="_blank"
+                    rel="noopener"
                     [href]="location.website"
                     [title]="location.website"
                 >{{chars.linkSymbol}}</a>
