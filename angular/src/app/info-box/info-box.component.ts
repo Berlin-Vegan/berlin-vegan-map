@@ -28,11 +28,8 @@ export class InfoBoxComponent implements OnChanges {
     @Output() close = new EventEmitter<void>();
 
     readonly i18n = this.i18nService.getI18n();
-    readonly chars = {
-        extraLongHyphen: "–", // Your editor may display this as a regular hyphen.
-        linkSymbol: "🔗", // Your editor may not have this.
-    };
     readonly isPhone = isPhone();
+    private readonly extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
     galleryOptions: NgxGalleryOptions[] = [
         {
             height: "29.5vh",
@@ -80,7 +77,7 @@ export class InfoBoxComponent implements OnChanges {
             const interval = firstOt.interval.friendly;
             const days =
                 firstOt.friendlyDayShort
-                + (firstOt === lastOt ? `` : this.chars.extraLongHyphen + lastOt.friendlyDayShort);
+                + (firstOt === lastOt ? `` : this.extraLongHyphen + lastOt.friendlyDayShort);
 
             const groupContainsToday =
                 group.map(ot => ot.dayIndex).indexOf(new Date().getDay() as DayOfWeek) >= 0;
