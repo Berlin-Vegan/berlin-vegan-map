@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild } from "@angular/core";
 import {} from "@types/googlemaps";
+import { ConfigurationService } from "../configuration.service";
 
 @Component({
     selector: "app-place-select",
@@ -8,7 +9,10 @@ import {} from "@types/googlemaps";
 })
 export class PlaceSelectComponent implements OnInit {
 
-    constructor(private ngZone: NgZone) {}
+    constructor(
+        private readonly configurationService: ConfigurationService,
+        private readonly ngZone: NgZone
+    ) {}
 
     @Input() placeholder: string;
     @Output() readonly coordinatesChange = new EventEmitter<Coordinates>();
@@ -16,12 +20,9 @@ export class PlaceSelectComponent implements OnInit {
 
     ngOnInit() {
         const options = {
-            bounds: new google.maps.LatLngBounds(
-                new google.maps.LatLng(52.35, 13.1),
-                new google.maps.LatLng(52.65, 13.8),
-            ),
+            componentRestrictions: { country: this.configurationService.area.country },
+            bounds: this.configurationService.area.bounds,
             strictBounds: true,
-            componentRestrictions: { country: "de" },
             types: ["address"],
         };
         const autocomplete = new google.maps.places.Autocomplete(this.input.nativeElement, options);

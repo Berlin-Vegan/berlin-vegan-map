@@ -81,10 +81,9 @@ export class GoogleMapComponent implements OnInit {
     private readonly i18n = this.i18nService.getI18n();
 
     ngOnInit() {
-        const center = this.configurationService.mapCenter;
         const mapOptions: google.maps.MapOptions = {
-            zoom: 12,
-            center: new google.maps.LatLng(center.lat, center.lng),
+            zoom: this.configurationService.area.zoom,
+            center: this.configurationService.area.center,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             gestureHandling: "greedy",
         };

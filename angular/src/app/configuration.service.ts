@@ -10,10 +10,20 @@ export class ConfigurationService {
     readonly gastroLocationsUrl = this.locationsBaseUrl + "GastroLocations.json";
     readonly shoppingLocationsUrl = this.locationsBaseUrl + "ShoppingLocations.json";
     readonly reviewBaseUrl = "https://www.berlin-vegan.de/essen-und-trinken/kritiken/";
-    readonly mapCenter = { lat: 52.5200070, lng: 13.4049540 };
     readonly geoLocationTimeoutMillis = environment.production ? 15000 : 5000;
     readonly geoLocationFirefoxWorkaroundTimeoutMillis = environment.production ? 16000 : 8000;
     readonly refreshCoordinatesTimeoutMillis = environment.production ? 20000 : 5000;
+    readonly area = {
+        country: "de",
+        center: { lat: 52.5200070, lng: 13.4049540 },
+        bounds: {
+            north: 52.65,
+            south: 52.35,
+            west: 13.1,
+            east: 13.8,
+        },
+        zoom: 12,
+    };
 
     // Keep these in sync with styles/variables.scss!
     readonly mediaQueries = { "min-width-1": "all and (min-width: 568px)"};
