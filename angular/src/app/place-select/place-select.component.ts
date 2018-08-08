@@ -20,6 +20,7 @@ export class PlaceSelectComponent implements OnInit {
                 new google.maps.LatLng(52.35, 13.1),
                 new google.maps.LatLng(52.65, 13.8),
             ),
+            strictBounds: true,
             componentRestrictions: { country: "de" },
             types: ["address"],
         };
