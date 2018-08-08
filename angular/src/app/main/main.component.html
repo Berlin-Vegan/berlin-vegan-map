@@ -69,6 +69,7 @@
                     <app-info-box
                         [location]="selectedLocation"
                         [coordinates]="query?.distance?.place?.coordinates"
+                        (centerLocation)="onLocationCenterInInfoBox()"
                         (close)="onInfoBoxClose()"
                         (swiperight)="onSwiperight()"
                     ></app-info-box>

@@ -3,7 +3,14 @@
     <div class="content-column" (swiperight)="{}">
         <article class="infoWindow">
             <header class="flex-container-nowrap">
-                <h1>{{location.name}}</h1>
+                <h1>
+                    <a
+                        title="{{i18n.showOnMap}}"
+                        href=""
+                        role="button"
+                        (click)="$event.preventDefault(); centerLocation.emit($event)"
+                    >{{location.name}}</a>
+                </h1>
                 <a *ngIf="location.website"
                     target="_blank"
                     rel="noopener"

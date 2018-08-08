@@ -140,6 +140,10 @@ export class MainComponent implements OnInit {
         this.selectedLocation = location;
     }
 
+    onLocationCenterInInfoBox() {
+        this.googleMapComponent.selectLocation(this.selectedLocation, true);
+    }
+
     onLocationSelectInGoogleMap(location: Location | null) {
         if (location) {
             this.resultsListComponent.makeVisible(location);

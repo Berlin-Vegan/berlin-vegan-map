@@ -24,6 +24,7 @@ export class InfoBoxComponent implements OnChanges {
     @Input() location: Location;
     @Input() coordinates: Coordinates | null;
 
+    @Output() centerLocation = new EventEmitter<void>();
     @Output() close = new EventEmitter<void>();
 
     readonly i18n = this.i18nService.getI18n();
