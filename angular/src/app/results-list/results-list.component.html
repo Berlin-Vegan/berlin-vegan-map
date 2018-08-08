@@ -40,7 +40,7 @@
                 [hidden]="!location.localizedOpenComment"
                 (click)="expandOpenComments.set(location, !expandOpenComments.get(location));"
             >
-                <span class="fa fa-info-circle" aria-hidden="true"></span>
+                <span class="fas fa-info-circle" aria-hidden="true"></span>
             </span>
             <span [hidden]="!expandOpenComments.get(location)">{{location.localizedOpenComment}}</span>
         </div>

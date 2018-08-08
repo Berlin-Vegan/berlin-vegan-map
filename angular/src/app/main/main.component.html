@@ -39,7 +39,7 @@
             </div>
             <hr class="fat"/>
             <div *ngIf="isInitializing">
-                <span class="fa fa-spinner fa-spin" aria-hidden="true"></span>
+                <span class="fas fa-spinner fa-spin" aria-hidden="true"></span>
                 {{i18n.loadingLocations}}
             </div>
             <app-results-list [hidden]="isInitializing"
@@ -54,7 +54,7 @@
                 [title]="i18n.loadingLocations"
                 [attr.aria-label]="i18n.loadingLocations"
             >
-                <span class="fa fa-spinner fa-spin" aria-hidden="true"></span>
+                <span class="fas fa-spinner fa-spin" aria-hidden="true"></span>
             </div>
             <div [hidden]="isInitializing">
                 <div [ngClass]="isInfoBoxVisible ? 'reducedHeightMap' : 'fullHeightMap'">
