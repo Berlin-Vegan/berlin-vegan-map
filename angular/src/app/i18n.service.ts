@@ -353,12 +353,12 @@ const i18n = {
             de: "Wegbeschreibung in Google Maps",
         },
         publicTransport: {
-            en: "Public transport (beta)",
-            de: "ÖPNV (beta)",
+            en: "BVG (public transport) (beta)",
+            de: "BVG (beta)",
         },
         geolocationRequired: {
-            en: "Geolocation required",
-            de: "Standorterkennung erforderlich",
+            en: "Position required",
+            de: "Standort erforderlich",
         },
     },
     infoBox: {
