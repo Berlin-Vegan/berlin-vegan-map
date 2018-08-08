@@ -27,6 +27,30 @@
                     (change)="onQueryChange()"
                 />{{i18n.settings.showPictures}}
             </label>
+            <br/>
+            <fieldset>
+                <legend>{{i18n.settings.map.header}}</legend>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="map.mapTypeControl"
+                        [(ngModel)]="localStorageService.settings.map.mapTypeControl"
+                        (change)="onQueryChange()"
+                    />{{i18n.settings.map.mapTypeControl}}
+                </label>
+                <br/>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="map.zoomControl"
+                        [(ngModel)]="localStorageService.settings.map.zoomControl"
+                        (change)="onQueryChange()"
+                    />{{i18n.settings.map.zoomControl}}
+                </label>
+            </fieldset>
         </form>
+        <p>
+            <button (click)="onResetButtonClick()">{{i18n.settings.reset}}</button>
+        </p>
     </main>
 </div>

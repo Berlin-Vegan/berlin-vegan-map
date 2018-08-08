@@ -4,6 +4,7 @@ import {} from "@types/googlemaps";
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { Location } from "../model/location";
+import { LocalStorageService } from "../local-storage.service";
 
 @Component({
     selector: "app-google-map",
@@ -14,6 +15,7 @@ export class GoogleMapComponent implements OnInit {
 
     constructor(
         private readonly configurationService: ConfigurationService,
+        private readonly localStorageService: LocalStorageService,
         private readonly i18nService: I18nService,
         private readonly ngZone: NgZone,
     ) {}
@@ -86,6 +88,8 @@ export class GoogleMapComponent implements OnInit {
             center: this.configurationService.area.center,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             gestureHandling: "greedy",
+            mapTypeControl: this.localStorageService.settings.map.mapTypeControl,
+            zoomControl: this.localStorageService.settings.map.zoomControl,
         };
 
         this.map = new google.maps.Map(this.mapDiv.nativeElement, mapOptions);

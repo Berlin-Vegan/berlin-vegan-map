@@ -439,6 +439,20 @@ const i18n = {
             en: "Show location pictures",
             de: "Fotos der Locations anzeigen",
         },
+        map: {
+            header: {
+                en: "Map",
+                de: "Karte",
+            },
+            mapTypeControl: {
+                en: "Show map type controls (Map, Satellite)",
+                de: "Schalter für Kartenart anzeigen (Karte, Satellit)",
+            },
+            zoomControl: {
+                en: "Show zoom controls (+, -)",
+                de: "Schalter für Vergrößerung/Verkleinerung anzeigen (+, -)",
+            },
+        },
         noLocalStorageWarning: {
             en: "Local storage is unavailable or disabled in your browser. Nothing will be saved permanently.",
             de: "Local Storage ist in deinem Browser nicht vorhanden oder deaktiviert. "
@@ -447,7 +461,11 @@ const i18n = {
         deleteQueriesConfirmation: {
             en: "Delete last queries?",
             de: "Letzte Suchen löschen?",
-        }
+        },
+        reset: {
+            en: "Reset to defaults",
+            de: "Auf Standardeinstellungen zurücksetzen",
+        },
     }
 };
 
