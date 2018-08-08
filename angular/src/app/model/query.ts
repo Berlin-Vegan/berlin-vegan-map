@@ -36,13 +36,19 @@ export class Query {
 
     // Used by JSON.stringify().
     toJSON(): Query {
-        const clone: any = {};
-        Object.assign(clone, this);
-        if (this.distance.coordinates) {
-            clone.distance.coordinates = toSerializableCoordinates(this.distance.coordinates);
-        }
+        const clone = Object.assign({}, this);
+        clone.veganCategories = Object.assign({}, this.veganCategories);
+        clone.distance = toSerializableDistance(this.distance);
         return clone;
     }
+}
+
+function toSerializableDistance(distance: Distance) {
+    const clone = Object.assign({}, distance);
+    if (distance.coordinates) {
+        clone.coordinates = toSerializableCoordinates(distance.coordinates);
+    }
+    return clone;
 }
 
 // Coordinates returned from the browser may not be serializable with JSON.stringify,
