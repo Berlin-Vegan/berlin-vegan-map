@@ -1,6 +1,8 @@
 import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild } from "@angular/core";
 import {} from "@types/googlemaps";
+
 import { ConfigurationService } from "../configuration.service";
+import { Place } from "../model/place";
 
 @Component({
     selector: "app-place-select",
@@ -15,8 +17,18 @@ export class PlaceSelectComponent implements OnInit {
     ) {}
 
     @Input() placeholder: string;
-    @Output() readonly coordinatesChange = new EventEmitter<Coordinates>();
+
+    @Input() set place(place: Place | null) {
+        this._place = place;
+        this.address = place && place.address ? place.address : "";
+    }
+    get place(): Place | null { return this._place; }
+    private _place: Place | null;
+
+    @Output() readonly placeChange = new EventEmitter<Place>();
     @ViewChild("input") input: ElementRef;
+    address: string;
+    private autocomplete: google.maps.places.Autocomplete;
 
     ngOnInit() {
         const options = {
@@ -25,26 +37,29 @@ export class PlaceSelectComponent implements OnInit {
             strictBounds: true,
             types: ["address"],
         };
-        const autocomplete = new google.maps.places.Autocomplete(this.input.nativeElement, options);
-        autocomplete.addListener(
+        this.autocomplete = new google.maps.places.Autocomplete(this.input.nativeElement, options);
+        this.autocomplete.addListener(
             "place_changed",
-            () => this.ngZone.run(() => this.coordinatesChange.emit(toCoordinates(autocomplete.getPlace())))
+            () => this.ngZone.run(() => {
+                this.address = this.input.nativeElement.value;
+                this.placeChange.emit(this.getPlace());
+            })
         );
     }
 
-    clear() {
-        this.input.nativeElement.value = "";
+    getPlace(): Place {
+        const placeResult = this.autocomplete.getPlace();
+        return {
+            coordinates : {
+                accuracy: 1,
+                latitude: placeResult.geometry.location.lat(),
+                longitude: placeResult.geometry.location.lng(),
+                altitude: null,
+                altitudeAccuracy: null,
+                heading: null,
+                speed: null,
+            },
+            address: this.address,
+        };
     }
-}
-
-function toCoordinates(placeResult: google.maps.places.PlaceResult): Coordinates {
-    return {
-        accuracy: 1,
-        latitude: placeResult.geometry.location.lat(),
-        longitude: placeResult.geometry.location.lng(),
-        altitude: null,
-        altitudeAccuracy: null,
-        heading: null,
-        speed: null,
-    };
 }

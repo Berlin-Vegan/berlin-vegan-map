@@ -5,21 +5,23 @@
                 type="checkbox"
                 name="checkbox"
                 [(ngModel)]="isChecked"
-                (change)="onChange()"
+                (change)="onCheckboxChange()"
             /><span
-                *ngIf="!coordinates"
+                *ngIf="!place"
             >{{i18n.geolocation.header}}:
             </span><a
-                *ngIf="coordinates"
+                *ngIf="place"
                 href="#"
                 (click)="$event.preventDefault(); highlightRequest.emit()"
             >{{i18n.geolocation.header}}:
             </a>
         </label>
-        <button (click)="detectCoordinates()">{{i18n.geolocation.detectButton}}</button>
+        <span *ngIf="isDetecting">&nbsp;{{i18n.geolocation.latest}}&nbsp;</span>
+        <button *ngIf="!isDetecting" (click)="detectPlace()">{{i18n.geolocation.detectButton}}</button>
         <app-place-select
             [placeholder]="i18n.geolocation.placeSelectPlaceholder"
-            (coordinatesChange)="selectCoordinates($event)"
+            [place]="place"
+            (placeChange)="onPlaceChange($event)"
         ></app-place-select>
     </div>
     <div>

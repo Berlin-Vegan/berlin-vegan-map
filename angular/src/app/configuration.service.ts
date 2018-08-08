@@ -12,7 +12,7 @@ export class ConfigurationService {
     readonly reviewBaseUrl = "https://www.berlin-vegan.de/essen-und-trinken/kritiken/";
     readonly geoLocationTimeoutMillis = environment.production ? 15000 : 5000;
     readonly geoLocationFirefoxWorkaroundTimeoutMillis = environment.production ? 16000 : 8000;
-    readonly refreshCoordinatesTimeoutMillis = environment.production ? 20000 : 5000;
+    readonly geoLocationUpdateMillis = environment.production ? 20000 : 5000;
     readonly area = {
         country: "de",
         center: { lat: 52.5200070, lng: 13.4049540 },

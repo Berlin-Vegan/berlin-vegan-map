@@ -82,7 +82,7 @@ export class MainComponent implements OnInit {
                 this.googleMapComponent.init(locations);
                 this.searchComponent.init(this.query);
                 this.updateFilteredLocations();
-                if (this.query.distance.coordinates) {
+                if (this.query.distance.place) {
                     this.googleMapComponent.selectCoordinates();
                 }
             });
@@ -173,11 +173,11 @@ export class MainComponent implements OnInit {
     }
 
     private getDistanceToCoordinates(location: Location) {
-        const coordinates = this.query.distance.coordinates;
-        return coordinates ? location.getDistanceToCoordinatesInKm(coordinates) : 1;
+        const place = this.query.distance.place;
+        return place ? location.getDistanceToCoordinatesInKm(place.coordinates) : 1;
     }
 
-    onCoordinatesHighlightRequest() {
+    onPlaceHighlightRequest() {
         if (this.hasMobileSize) {
             this.enableFullMapView();
         }

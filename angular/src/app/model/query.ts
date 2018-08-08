@@ -1,8 +1,9 @@
 import { getVeganCategories } from "./vegan-category";
+import { Place } from "./place";
 
 interface Distance {
     enabled: boolean;
-    coordinates: Coordinates | null;
+    place: Place | null;
     km: number;
 }
 
@@ -13,7 +14,7 @@ export class Query {
     openAtWeekDay: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "all" = "all";
     openAtTime = "";
     openNow = false;
-    distance: Distance = { enabled: false, coordinates: null, km: 1 };
+    distance: Distance = { enabled: false, place: null, km: 1 };
     review = false;
     organic = false;
     handicappedAccessible = false;
@@ -45,9 +46,15 @@ export class Query {
 
 function toSerializableDistance(distance: Distance) {
     const clone = Object.assign({}, distance);
-    if (distance.coordinates) {
-        clone.coordinates = toSerializableCoordinates(distance.coordinates);
+    if (distance.place) {
+        clone.place = toSerializablePlace(distance.place);
     }
+    return clone;
+}
+
+function toSerializablePlace(place: Place) {
+    const clone = Object.assign({}, place);
+    clone.coordinates = toSerializableCoordinates(place.coordinates);
     return clone;
 }
 

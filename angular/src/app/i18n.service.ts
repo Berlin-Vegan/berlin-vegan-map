@@ -258,6 +258,10 @@ const i18n = {
             en: "Position",
             de: "Standort",
         },
+        latest: {
+            en: "Latest",
+            de: "Aktuell",
+        },
         detectButton: {
             en: "Detect",
             de: "Erkennen",

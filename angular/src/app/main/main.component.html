@@ -23,13 +23,13 @@
             </nav>
             <app-search
                 (queryChange)="onQueryChange($event)"
-                (coordinatesHighlightRequest)="onCoordinatesHighlightRequest()"
+                (placeHighlightRequest)="onPlaceHighlightRequest()"
             ></app-search>
             <hr/>
             <div class="sortAndStatisticsContainer flex-container-nowrap">
                 <app-sort
                     [initialSortOrder]="initialSortOrder"
-                    [isDistanceEnabled]="!!query?.distance?.coordinates"
+                    [isDistanceEnabled]="!!query?.distance?.place?.coordinates"
                     (sortOrderChange)="onSortOrderChange($event)"
                 ></app-sort>
                 <app-statistics
@@ -44,7 +44,7 @@
             </div>
             <app-results-list [hidden]="isInitializing"
                 [locations]="filteredLocations"
-                [coordinates]="query?.distance?.coordinates"
+                [coordinates]="query?.distance?.place?.coordinates"
                 (locationSelect)="onLocationSelectInResultsList($event)"
             ></app-results-list>
         </div>
@@ -60,14 +60,14 @@
                 <div [ngClass]="isInfoBoxVisible ? 'reducedHeightMap' : 'fullHeightMap'">
                     <app-google-map
                         [locations]="filteredLocations"
-                        [coordinates]="query?.distance?.coordinates"
+                        [coordinates]="query?.distance?.place?.coordinates"
                         (locationSelect)="onLocationSelectInGoogleMap($event)"
                     ></app-google-map>
                 </div>
                 <div *ngIf="isInfoBoxVisible" class="infoBox">
                     <app-info-box
                         [location]="selectedLocation"
-                        [coordinates]="query?.distance?.coordinates"
+                        [coordinates]="query?.distance?.place?.coordinates"
                         (close)="onInfoBoxClose()"
                         (swiperight)="onSwiperight()"
                     ></app-info-box>

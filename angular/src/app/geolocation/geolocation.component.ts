@@ -1,82 +1,84 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
-import { PlaceSelectComponent } from "../place-select/place-select.component";
 import { I18nService } from "../i18n.service";
+import { Place } from "../model/place";
 
 @Component({
     selector: "app-geolocation",
     templateUrl: "./geolocation.component.html",
     styleUrls: [ "./geolocation.component.scss" ],
 })
-export class GeolocationComponent {
+export class GeolocationComponent implements OnDestroy {
 
     constructor(
         private readonly configurationService: ConfigurationService,
         private readonly i18nService: I18nService,
     ) { }
 
-    @Input() set coordinates(coordinates: Coordinates | null) {
-        if (coordinates) {
+    @Input() set place(place: Place | null) {
+        if (place) {
             this.isChecked = true;
+            if (!place.address && !this.isDetecting) {
+                this.detectPlace();
+            }
         }
-        this._coordinates = coordinates;
+        this._place = place;
     }
-    get coordinates(): Coordinates | null { return this._coordinates; }
+    get place(): Place | null { return this._place; }
 
-    private _coordinates: Coordinates | null = null;
+    private _place: Place | null = null;
 
-    @Output() readonly coordinatesChange = new EventEmitter<Coordinates | null>();
+    @Output() readonly placeChange = new EventEmitter<Place | null>();
     @Output() readonly highlightRequest = new EventEmitter<void>();
-    @ViewChild(PlaceSelectComponent) placeSelectionComponent: PlaceSelectComponent;
     readonly i18n = this.i18nService.getI18n();
     readonly isGeolocationSupported = !!navigator.geolocation;
     isChecked = false;
     info = "";
     error = "";
-    private mode: "detect" | "select" = "detect";
+    isDetecting = false;
 
-    onChange() {
+    onCheckboxChange() {
         if (this.isChecked) {
-            this.detectCoordinates();
+            this.detectPlace();
         } else {
             this.clear();
         }
     }
 
-    detectCoordinates() {
+    detectPlace() {
         this.isChecked = true;
-        this.mode = "detect";
-        this.placeSelectionComponent.clear();
+        this.isDetecting = true;
         this.info = this.i18n.geolocation.detecting;
-        this.updateCoordinates(0, true);
+        this.updatePlace(0, true);
     }
 
-    private updateCoordinates(timeout: number, firstCall: boolean) {
+    private updatePlace(timeout: number, firstCall: boolean) {
         setTimeout(() => {
-            if (this.isChecked && this.mode === "detect") {
+            if (this.isChecked && this.isDetecting) {
                 navigator.geolocation.getCurrentPosition(
                     position => {
-                        if (this.isChecked && this.mode === "detect") {
+                        if (this.isChecked && this.isDetecting) {
                             this.info = "";
                             this.error = "";
-                            this.coordinatesChange.emit(position.coords);
+                            this.place = { coordinates: position.coords };
+                            this.placeChange.emit(this.place);
                             if (firstCall) {
                                 this.highlightRequest.emit();
                             }
-                            this.updateCoordinates(
-                                this.configurationService.refreshCoordinatesTimeoutMillis,
+                            this.updatePlace(
+                                this.configurationService.geoLocationUpdateMillis,
                                 false
                             );
                         }
                     },
                     positionError => {
-                        if (this.isChecked && this.mode === "detect") {
+                        if (this.isChecked && this.isDetecting) {
                             this.info = "";
                             this.error = this.getErrorMessage(positionError);
                             if (!firstCall) {
-                                this.updateCoordinates(
-                                    this.configurationService.refreshCoordinatesTimeoutMillis,
+                                this.updatePlace(
+                                    this.configurationService.geoLocationUpdateMillis,
                                     false
                                 );
                             }
@@ -107,22 +109,27 @@ export class GeolocationComponent {
         return this.i18n.geolocation.theError + ": " + reason;
     }
 
-    selectCoordinates(coordinates: Coordinates) {
+    onPlaceChange(place: Place) {
         this.isChecked = true;
-        this.mode = "select";
         this.info = "";
         this.error = "";
-        this.coordinates = coordinates;
-        this.coordinatesChange.emit(this.coordinates);
+        this.isDetecting = false;
+        this.place = place;
+        this.placeChange.emit(this.place);
         this.highlightRequest.emit();
     }
 
     private clear() {
         this.info = "";
         this.error = "";
-        this.placeSelectionComponent.clear();
-        if (this.coordinates !== null) {
-            this.coordinatesChange.emit(null);
+        this.isDetecting = false;
+        if (this.place !== null) {
+            this.place = null;
+            this.placeChange.emit(null);
         }
+    }
+
+    ngOnDestroy(): void {
+        this.isChecked = false; // Stops timeouts.
     }
 }

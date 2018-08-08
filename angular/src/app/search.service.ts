@@ -40,9 +40,9 @@ export class SearchService {
         };
 
         const filter2 = () => {
-
-            if (query.distance.enabled && query.distance.coordinates) {
-                return location.getDistanceToCoordinatesInKm(query.distance.coordinates) <= query.distance.km;
+            const distance = query.distance;
+            if (distance.enabled && distance.place) {
+                return location.getDistanceToCoordinatesInKm(distance.place.coordinates) <= query.distance.km;
             } else {
                 return true;
             }

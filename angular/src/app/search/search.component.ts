@@ -4,6 +4,7 @@ import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { GastroQuery } from "../model/gastro-query";
 import { GastroTag, getGastroTags } from "../model/gastro-tag";
+import { Place } from "../model/place";
 import { ShoppingQuery } from "../model/shopping-query";
 import { ShoppingTag, getShoppingTags } from "../model/shopping-tag";
 import { getVeganCategories } from "../model/vegan-category";
@@ -21,7 +22,7 @@ export class SearchComponent {
     ) { }
 
     @Output() readonly queryChange = new EventEmitter<GastroQuery | ShoppingQuery>();
-    @Output() readonly coordinatesHighlightRequest = new EventEmitter<void>();
+    @Output() readonly placeHighlightRequest = new EventEmitter<void>();
 
     readonly i18n = this.i18nService.getI18n();
     readonly veganCategories = getVeganCategories();
@@ -42,8 +43,8 @@ export class SearchComponent {
         this.queryChange.emit(this.query);
     }
 
-    onCoordinatesChange(coordinates: Coordinates | null) {
-        if (!coordinates) {
+    onPlaceChange(place: Place | null) {
+        if (!place) {
             this.query.distance.enabled = false;
         }
         this.queryChange.emit(this.query);
