@@ -14,3 +14,20 @@ section {
 .distanceContainer input {
     flex: 1;
 }
+
+form {
+    h1 {
+        font-size: 1em;
+        font-weight: normal;
+        margin: 0; /* initial is more elegant, but does not work in IE11. */
+    }
+
+    h1:after {
+        content: ":";
+    }
+
+    label {
+        font-weight: normal;
+        white-space: nowrap;
+    }
+}
