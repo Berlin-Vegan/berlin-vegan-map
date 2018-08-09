@@ -9,7 +9,11 @@
     <br/>
     <span title="Git description" aria-label="Git description">
         <span class="fas fa-code-branch" aria-hidden="true"></span>
-        {{versionInfo.gitDescription.raw}}{{versionInfo.gitDescription.dirty ? "" : " (clean)"}}
+        <span *ngIf="versionInfo.gitDescription.dirty; else clean">{{versionInfo.gitDescription.raw}}</span>
+        <ng-template #clean>
+            <a [href]="gitHubCommitUrl" target="_blank" rel="noopener"
+            >{{versionInfo.gitDescription.raw}} (clean)</a>
+        </ng-template>
     </span>
     <br/>
     <span title="Build time" aria-label="Build time">
