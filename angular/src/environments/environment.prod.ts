@@ -1,3 +1,6 @@
+import { versionInfo } from "./version-info";
+
 export const environment = {
-  production: true
+  production: true,
+  versionInfo: versionInfo,
 };

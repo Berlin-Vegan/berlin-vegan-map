@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { MatMenuModule} from "@angular/material/menu";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatMenuModule } from "@angular/material/menu";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { ServiceWorkerModule } from "@angular/service-worker";
@@ -10,6 +11,7 @@ import { NgxGalleryModule } from "ngx-gallery";
 
 import { environment } from "../environments/environment";
 
+import { AboutComponent } from "./about/about.component";
 import { AddressComponent } from "./address/address.component";
 import { AppComponent } from "./app.component";
 import { ConfigurationService } from "./configuration.service";
@@ -42,6 +44,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
+        AboutComponent,
         AddressComponent,
         AppComponent,
         GeolocationComponent,
@@ -61,6 +64,7 @@ const appRoutes: Routes = [
         BrowserModule,
         FormsModule,
         HttpClientModule,
+        MatExpansionModule,
         MatMenuModule,
         NgxGalleryModule,
         RouterModule.forRoot(appRoutes),

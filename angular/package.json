@@ -5,9 +5,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
-    "build": "ng build --prod",
+    "build": "node write-version-info.js && ng build --prod",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "postinstall": "node write-version-info.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Berlin-Vegan/berlin-vegan-map.git"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +48,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
+    "git-describe": "^4.0.3",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",

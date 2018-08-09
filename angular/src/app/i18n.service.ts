@@ -117,6 +117,10 @@ const i18n = {
             },
         },
     },
+    about: {
+        en: "About this app",
+        de: "Über diese App",
+    },
     loadingLocations: {
         en: "Loading locations...",
         de: "Lade Locations...",
