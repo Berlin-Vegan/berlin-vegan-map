@@ -3,8 +3,6 @@ import { I18nUtil } from "@marco-eckstein/js-utils";
 
 import { TimeInterval } from "./model/time-interval";
 
-declare var global_language: "de" | "en";
-
 const i18n = {
     enums: {
         veganCategory: {
@@ -477,10 +475,10 @@ const i18n = {
     }
 };
 
-const transformedI18n = I18nUtil.transform(i18n, global_language);
-
 @Injectable()
 export class I18nService {
+
+    private readonly transformedI18n = I18nUtil.transform(i18n, global_language);
 
     setLanguage(language: string) {
         if (localStorage) {
@@ -497,7 +495,7 @@ export class I18nService {
     }
 
     getI18n(): any {
-        return transformedI18n;
+        return this.transformedI18n;
     }
 
     formatNumberString(numberString: string): string {
