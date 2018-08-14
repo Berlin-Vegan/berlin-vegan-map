@@ -12,7 +12,6 @@ import { LocationService } from "../location.service";
 import { ResultsListComponent } from "../results-list/results-list.component";
 import { SearchComponent } from "../search/search.component";
 import { SearchService } from "../search.service";
-import { SortOrder } from "../model/sort-order";
 import { LocalStorageService } from "../local-storage.service";
 import { ConfigurationService } from "../configuration.service";
 
