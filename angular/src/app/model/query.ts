@@ -1,5 +1,6 @@
 import { getVeganCategories } from "./vegan-category";
 import { Place } from "./place";
+import { SortOrder } from "./sort-order";
 
 interface Distance {
     enabled: boolean;
@@ -19,6 +20,7 @@ export class Query {
     organic = false;
     handicappedAccessible = false;
     delivery = false;
+    sortOrder: SortOrder = "name";
 
     constructor(props: any = {}) {
         for (const veganCategory of getVeganCategories()) {

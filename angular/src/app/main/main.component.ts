@@ -12,7 +12,7 @@ import { LocationService } from "../location.service";
 import { ResultsListComponent } from "../results-list/results-list.component";
 import { SearchComponent } from "../search/search.component";
 import { SearchService } from "../search.service";
-import { SortOrder } from "../sort/sort-order";
+import { SortOrder } from "../model/sort-order";
 import { LocalStorageService } from "../local-storage.service";
 import { ConfigurationService } from "../configuration.service";
 
@@ -38,8 +38,6 @@ export class MainComponent implements OnInit {
     @ViewChild("preSearchDiv") preSearchDiv: ElementRef;
 
     readonly i18n = this.i18nService.getI18n();
-    readonly initialSortOrder = "name";
-    sortOrder: SortOrder = this.initialSortOrder;
     allLocations: (GastroLocation | ShoppingLocation)[] = [];
     filteredLocations: (GastroLocation | ShoppingLocation)[] = [];
     query: GastroQuery | ShoppingQuery;
@@ -117,11 +115,6 @@ export class MainComponent implements OnInit {
         }
     }
 
-    onSortOrderChange(sortOrder: SortOrder) {
-        this.sortOrder = sortOrder;
-        this.updateFilteredLocations();
-    }
-
     updateFilteredLocations() {
         this.filteredLocations =
             this.allLocations
@@ -161,7 +154,7 @@ export class MainComponent implements OnInit {
     }
 
     private getSortFunction(): (a: any, b: any) => number {
-        switch (this.sortOrder) {
+        switch (this.query.sortOrder) {
             case "name":
                 return (locationA, locationB) =>
                     locationA.name.localeCompare(locationB.name, this.i18nService.getLanguage());
@@ -169,7 +162,7 @@ export class MainComponent implements OnInit {
                 return (locationA, locationB) =>
                     this.getDistanceToCoordinates(locationA) - this.getDistanceToCoordinates(locationB);
             default:
-                throw new Error("Unexpected value for SortOrder: " + this.sortOrder);
+                throw new Error("Unexpected value for SortOrder: " + this.query.sortOrder);
         }
     }
 

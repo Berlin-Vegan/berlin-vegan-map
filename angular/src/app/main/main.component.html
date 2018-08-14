@@ -27,11 +27,11 @@
                 (placeHighlightRequest)="onPlaceHighlightRequest()"
             ></app-search>
             <hr/>
-            <div class="sortAndStatisticsContainer flex-container-nowrap">
+            <div *ngIf="query" class="sortAndStatisticsContainer flex-container-nowrap">
                 <app-sort
-                    [isDistanceEnabled]="!!query?.distance?.place?.coordinates"
-                    [initialSortOrder]="initialSortOrder"
-                    (sortOrderChange)="onSortOrderChange($event)"
+                    [isDistanceEnabled]="!!query.distance.place?.coordinates"
+                    [(sortOrder)]="query.sortOrder"
+                    (sortOrderChange)="onQueryChange()"
                 ></app-sort>
                 <app-statistics
                     [allLocationsCount]="allLocations.length"

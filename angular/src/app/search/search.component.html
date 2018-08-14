@@ -115,7 +115,7 @@
     </section>
     <section>
         <app-geolocation
-            [(place)]="query.distance.place"
+            [place]="query.distance.place"
             (placeChange)="onPlaceChange($event)"
             (highlightRequest)="placeHighlightRequest.emit()"
         ></app-geolocation>
