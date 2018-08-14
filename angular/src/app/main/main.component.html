@@ -21,44 +21,39 @@
                     </li>
                 </ul>
             </nav>
-            <app-search
-                [(query)]="query"
-                (queryChange)="onQueryChange()"
-                (placeHighlightRequest)="onPlaceHighlightRequest()"
-            ></app-search>
-            <hr/>
-            <div *ngIf="query" class="sortAndStatisticsContainer flex-container-nowrap">
-                <app-sort
-                    [isDistanceEnabled]="!!query.distance.place?.coordinates"
-                    [(sortOrder)]="query.sortOrder"
-                    (sortOrderChange)="onQueryChange()"
-                ></app-sort>
-                <app-statistics
-                    [allLocationsCount]="allLocations.length"
-                    [filteredLocationsCount]="filteredLocations.length"
-                ></app-statistics>
+            <div *ngIf="query">
+                <app-search
+                    [(query)]="query"
+                    (queryChange)="onQueryChange()"
+                    (placeHighlightRequest)="onPlaceHighlightRequest()"
+                ></app-search>
+                <hr/>
+                <div class="sortAndStatisticsContainer flex-container-nowrap">
+                    <app-sort
+                        [isDistanceEnabled]="!!query.distance.place?.coordinates"
+                        [(sortOrder)]="query.sortOrder"
+                        (sortOrderChange)="onQueryChange()"
+                    ></app-sort>
+                    <app-statistics
+                        [allLocationsCount]="allLocations.length"
+                        [filteredLocationsCount]="filteredLocations.length"
+                    ></app-statistics>
+                </div>
+                <hr class="fat"/>
+                <app-results-list
+                    [locations]="filteredLocations"
+                    [coordinates]="query?.distance?.place?.coordinates"
+                    (locationSelect)="onLocationSelectInResultsList($event, false)"
+                    (locationCenter)="onLocationSelectInResultsList($event, true)"
+                ></app-results-list>
             </div>
-            <hr class="fat"/>
-            <div *ngIf="isInitializing">
+            <p *ngIf="!query">
                 <span class="fas fa-spinner fa-spin" aria-hidden="true"></span>
                 {{i18n.loadingLocations}}
-            </div>
-            <app-results-list [hidden]="isInitializing"
-                [locations]="filteredLocations"
-                [coordinates]="query?.distance?.place?.coordinates"
-                (locationSelect)="onLocationSelectInResultsList($event, false)"
-                (locationCenter)="onLocationSelectInResultsList($event, true)"
-            ></app-results-list>
+            </p>
         </div>
         <div class="col-right" [ngClass]="{fullMapView: fullMapView}">
-            <div *ngIf="isInitializing"
-                class="big-spinner"
-                [title]="i18n.loadingLocations"
-                [attr.aria-label]="i18n.loadingLocations"
-            >
-                <span class="fas fa-spinner fa-spin" aria-hidden="true"></span>
-            </div>
-            <div [hidden]="isInitializing">
+            <div [hidden]="!query">
                 <div [ngClass]="isInfoBoxVisible ? 'reducedHeightMap' : 'fullHeightMap'">
                     <app-google-map
                         [locations]="filteredLocations"
@@ -75,6 +70,13 @@
                         (swiperight)="onSwiperight()"
                     ></app-info-box>
                 </div>
+            </div>
+            <div *ngIf="!query"
+                class="big-spinner"
+                [title]="i18n.loadingLocations"
+                [attr.aria-label]="i18n.loadingLocations"
+            >
+                <span class="fas fa-spinner fa-spin" aria-hidden="true"></span>
             </div>
         </div>
     </main>

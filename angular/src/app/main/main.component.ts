@@ -49,10 +49,6 @@ export class MainComponent implements OnInit {
         return !!this.selectedLocation;
     }
 
-    get isInitializing(): boolean {
-        return !this.query;
-    }
-
     ngOnInit() {
         this.route
             .url
