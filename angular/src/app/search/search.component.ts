@@ -37,6 +37,20 @@ export class SearchComponent {
         return this.query instanceof GastroQuery;
     }
 
+    get featureList1(): string[] {
+        return this.isGastro ?
+            ["organic", "breakfast", "dog", "handicappedAccessible", "delivery", "wlan"]
+            :
+            ["organic", "handicappedAccessible", "delivery"];
+    }
+
+    get featureList2(): string[] {
+        return this.isGastro ?
+            ["glutenFree", "brunch", "childChair", "handicappedAccessibleWc", "catering", "review"]
+            :
+            ["review"];
+    }
+
     onQueryChange() {
         this.queryChange.emit(this.query);
     }
@@ -50,19 +64,5 @@ export class SearchComponent {
         }
         this.query.distance.place = place;
         this.queryChange.emit(this.query);
-    }
-
-    getFeatureList1(): string[] {
-        return this.isGastro ?
-            ["organic", "breakfast", "dog", "handicappedAccessible", "delivery", "wlan"]
-            :
-            ["organic", "handicappedAccessible", "delivery"];
-    }
-
-    getFeatureList2(): string[] {
-        return this.isGastro ?
-            ["glutenFree", "brunch", "childChair", "handicappedAccessibleWc", "catering", "review"]
-            :
-            ["review"];
     }
 }

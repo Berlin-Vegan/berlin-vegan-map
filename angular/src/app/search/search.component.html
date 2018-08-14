@@ -48,7 +48,7 @@
     </section>
     <section class="flex-container-wrap">
         <div class="feature-col">
-            <label *ngFor="let feature of getFeatureList1()">
+            <label *ngFor="let feature of featureList1">
                 <input
                     type="checkbox"
                     name="{{feature}}"
@@ -58,7 +58,7 @@
             </label>
         </div>
         <div class="feature-col">
-            <label *ngFor="let feature of getFeatureList2()">
+            <label *ngFor="let feature of featureList2">
                 <input
                     type="checkbox"
                     name="{{feature}}"
