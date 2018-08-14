@@ -80,7 +80,6 @@ export class MainComponent implements OnInit {
                 this.allLocations = locations;
                 this.query = this.getInitialQuery();
                 this.googleMapComponent.init(locations);
-                this.searchComponent.init(this.query);
                 this.updateFilteredLocations();
                 if (this.query.distance.place) {
                     this.googleMapComponent.selectCoordinates();
@@ -107,12 +106,10 @@ export class MainComponent implements OnInit {
         }
     }
 
-    // tslint:disable-next-line no-shadowed-variable
-    onQueryChange(query: GastroQuery | ShoppingQuery) {
-        this.query = query;
+    onQueryChange() {
         this.updateFilteredLocations();
         if (this.localStorageService.settings.rememberLastQuery) {
-            if (query instanceof GastroQuery) {
+            if (this.query instanceof GastroQuery) {
                 this.localStorageService.saveGastroQuery();
             } else {
                 this.localStorageService.saveShoppingQuery();

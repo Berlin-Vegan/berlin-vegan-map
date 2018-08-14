@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
@@ -21,22 +21,20 @@ export class SearchComponent {
         private readonly i18nService: I18nService,
     ) { }
 
+    @Input() query: GastroQuery | ShoppingQuery;
     @Output() readonly queryChange = new EventEmitter<GastroQuery | ShoppingQuery>();
     @Output() readonly placeHighlightRequest = new EventEmitter<void>();
 
     readonly i18n = this.i18nService.getI18n();
     readonly veganCategories = getVeganCategories();
-    tags: (GastroTag | ShoppingTag)[];
-    query: GastroQuery | ShoppingQuery;
+
+    get tags(): (GastroTag | ShoppingTag)[] {
+        return this.query instanceof GastroQuery ? getGastroTags() : getShoppingTags();
+    }
 
     // In template, there is no instanceof.
     get isGastro(): boolean {
         return this.query instanceof GastroQuery;
-    }
-
-    init(query: GastroQuery | ShoppingQuery) {
-        this.tags = query instanceof GastroQuery ? getGastroTags() : getShoppingTags();
-        this.query = query;
     }
 
     onQueryChange() {

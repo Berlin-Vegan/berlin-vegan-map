@@ -22,7 +22,8 @@
                 </ul>
             </nav>
             <app-search
-                (queryChange)="onQueryChange($event)"
+                [(query)]="query"
+                (queryChange)="onQueryChange()"
                 (placeHighlightRequest)="onPlaceHighlightRequest()"
             ></app-search>
             <hr/>
