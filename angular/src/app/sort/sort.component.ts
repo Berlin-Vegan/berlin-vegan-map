@@ -11,10 +11,6 @@ export class SortComponent implements OnInit {
 
     constructor(private readonly i18nService: I18nService) { }
 
-    id = Math.random().toString();
-
-    @Input() initialSortOrder: SortOrder;
-
     @Input() set isDistanceEnabled(isDistanceEnabled: boolean) {
         this._isDistanceEnabled = isDistanceEnabled;
         if (isDistanceEnabled && this.sortOrder !== "distance") {
@@ -25,18 +21,16 @@ export class SortComponent implements OnInit {
             this.sortOrderChange.emit("name");
         }
     }
-
-    get isDistanceEnabled(): boolean {
-        return this._isDistanceEnabled;
-    }
-
+    get isDistanceEnabled(): boolean { return this._isDistanceEnabled; }
     private _isDistanceEnabled: boolean;
+
+    @Input() initialSortOrder: SortOrder;
 
     @Output() readonly sortOrderChange = new EventEmitter<SortOrder>();
 
     readonly i18n = this.i18nService.getI18n();
-
     sortOrder: SortOrder;
+    id = Math.random().toString();
 
     ngOnInit() {
         this.sortOrder = this.initialSortOrder;

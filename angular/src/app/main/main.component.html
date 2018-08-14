@@ -28,8 +28,8 @@
             <hr/>
             <div class="sortAndStatisticsContainer flex-container-nowrap">
                 <app-sort
-                    [initialSortOrder]="initialSortOrder"
                     [isDistanceEnabled]="!!query?.distance?.place?.coordinates"
+                    [initialSortOrder]="initialSortOrder"
                     (sortOrderChange)="onSortOrderChange($event)"
                 ></app-sort>
                 <app-statistics
