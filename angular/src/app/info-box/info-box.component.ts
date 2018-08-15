@@ -92,7 +92,7 @@ export class InfoBoxComponent implements OnChanges {
     }
 
     get commentAndReviewInnerHtml(): string {
-        return this.i18nService.getLanguage() === "en" ?
+        return this.localStorageService.getLanguage() === "en" ?
             (this.location.commentEnglish ? `${this.location.commentEnglish}<br/>` : ``)
             + (this.location.reviewURL ? this.reviewAnchor : ``)
             :

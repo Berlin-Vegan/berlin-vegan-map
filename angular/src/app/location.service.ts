@@ -8,6 +8,7 @@ import { JsonShoppingLocation } from "./model/json/json-shopping-location";
 import { GastroLocation } from "./model/gastro-location";
 import { VeganCategory } from "./model/vegan-category";
 import { I18nService } from "./i18n.service";
+import { LocalStorageService } from "./local-storage.service";
 import { OpeningTimesService } from "./opening-times.service";
 import { ShoppingLocation } from "./model/shopping-location";
 
@@ -18,7 +19,8 @@ export class LocationService {
         private readonly httpClient: HttpClient,
         private readonly configurationService: ConfigurationService,
         private readonly openingTimesService: OpeningTimesService,
-        private readonly i18nService: I18nService
+        private readonly i18nService: I18nService,
+        private readonly localStorageService: LocalStorageService,
     ) {}
 
     getGastroLocations(): Promise<GastroLocation[]> {
@@ -106,7 +108,7 @@ export class LocationService {
     }
 
     private getOpenComment(location: JsonLocation): string | undefined {
-        return location.openComment && this.i18nService.getLanguage() === "en" ?
+        return location.openComment && this.localStorageService.getLanguage() === "en" ?
             "Please see location website for opening time details!"
             :
             location.openComment;

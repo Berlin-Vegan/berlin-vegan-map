@@ -152,7 +152,7 @@ export class MainComponent implements OnInit {
         switch (this.query.sortOrder) {
             case "name":
                 return (locationA, locationB) =>
-                    locationA.name.localeCompare(locationB.name, this.i18nService.getLanguage());
+                    locationA.name.localeCompare(locationB.name, this.localStorageService.getLanguage());
             case "distance":
                 return (locationA, locationB) =>
                     this.getDistanceToCoordinates(locationA) - this.getDistanceToCoordinates(locationB);

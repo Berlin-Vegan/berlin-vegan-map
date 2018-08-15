@@ -1,14 +1,14 @@
+import { keys } from "./local-storage-keys";
+import { Language } from "./language";
+
 export {};
 
-type Language = "de" | "en";
-
-declare global {
-    var global_language: Language;
-}
+declare var global_language: Language;
 
 if (window.location.hostname !== "localhost" && window.location.protocol === "http:") {
     redirectToHttps();
 } else {
+    migrateLegacyKeys();
     global_language = getLanguage();
     document.documentElement.setAttribute("lang", global_language);
     appendScript(
@@ -26,13 +26,25 @@ function redirectToHttps() {
     window.location.replace(httpsUrl);
 }
 
+// Migrate legacy keys not using a namespace for URL and app.
+// TODO: Remove this code after a couple of months, e.g. January 2019.
+function migrateLegacyKeys() {
+    if (localStorage) {
+        const language = localStorage.getItem("lang");
+        if (language) {
+            localStorage.setItem(keys.language, language);
+            localStorage.removeItem("lang");
+        }
+    }
+}
+
 function getLanguage(): Language {
     let language: string;
 
     if (location.href.includes("lang=")) {
         language = location.href.split("lang=")[1];
     } else if (localStorage) {
-        language = localStorage.getItem("lang") || "de";
+        language = localStorage.getItem(keys.language) || "de";
     } else {
         const prefLang = getPreferredLanguages().find(it => it === "en" || it === "de");
         language = prefLang || "de";

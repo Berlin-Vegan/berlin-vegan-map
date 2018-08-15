@@ -58,7 +58,7 @@
                 <a
                     *ngIf="language !== 'de'"
                     href=""
-                    (click)="$event.preventDefault(); i18nService.setLanguage('de')"
+                    (click)="$event.preventDefault(); localStorageService.setLanguage('de')"
                 >{{i18n.header.language.de}}</a>
             </li>
             <li>
@@ -66,7 +66,7 @@
                 <a
                     *ngIf="language !== 'en'"
                     href=""
-                    (click)="$event.preventDefault(); i18nService.setLanguage('en')"
+                    (click)="$event.preventDefault(); localStorageService.setLanguage('en')"
                 >{{i18n.header.language.en}}</a>
             </li>
         </ul>

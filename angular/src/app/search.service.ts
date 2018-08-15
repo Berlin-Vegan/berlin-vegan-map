@@ -6,13 +6,13 @@ import { GastroQuery } from "./model/gastro-query";
 import { GastroTag } from "./model/gastro-tag";
 import { ShoppingLocation } from "./model/shopping-location";
 import { ShoppingQuery } from "./model/shopping-query";
-import { I18nService } from "./i18n.service";
+import { LocalStorageService } from "./local-storage.service";
 import { ShoppingTag } from "./model/shopping-tag";
 
 @Injectable()
 export class SearchService {
 
-    constructor(private readonly i18nService: I18nService) {}
+    constructor(private readonly localStorageService: LocalStorageService) {}
 
     isResult(location: GastroLocation | ShoppingLocation, query: GastroQuery | ShoppingQuery): boolean {
 
@@ -58,7 +58,7 @@ export class SearchService {
                     location.cityCode + "",
                     location.telephone || "",
                     location.website || "",
-                    (this.i18nService.getLanguage() === "en" ?
+                    (this.localStorageService.getLanguage() === "en" ?
                         location.commentEnglishWithoutFormatting
                         :
                         location.commentWithoutFormatting

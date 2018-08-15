@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, NgZone, OnInit, Output } from "@angular/core";
 
-import { I18nService } from "../i18n.service";
 import { ConfigurationService } from "../configuration.service";
+import { I18nService } from "../i18n.service";
+import { LocalStorageService } from "../local-storage.service";
 
 @Component({
     selector: "app-header",
@@ -12,7 +13,8 @@ export class HeaderComponent implements OnInit {
 
     constructor(
         private readonly configurationService: ConfigurationService,
-        readonly i18nService: I18nService,
+        readonly localStorageService: LocalStorageService,
+        private readonly i18nService: I18nService,
         private readonly ngZone: NgZone,
     ) { }
 
@@ -22,7 +24,7 @@ export class HeaderComponent implements OnInit {
     @Output() readonly fullMapViewClick = new EventEmitter<void>();
 
     readonly i18n = this.i18nService.getI18n();
-    readonly language = this.i18nService.getLanguage();
+    readonly language = this.localStorageService.getLanguage();
     nativeAppText = "";
     reportNewLocationText = "";
     reportProblemText = "";
