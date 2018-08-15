@@ -19,7 +19,6 @@ export class Query {
     review = false;
     organic = false;
     handicappedAccessible = false;
-    delivery = false;
     sortOrder: SortOrder = "name";
 
     constructor(props: any = {}) {

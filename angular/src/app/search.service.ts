@@ -118,8 +118,7 @@ export class SearchService {
 
         const filter7 = () => {
             return (!query.organic || location.organic === 1)
-                && (!query.handicappedAccessible || location.handicappedAccessible === 1)
-                && (!query.delivery || location.delivery === 1);
+                && (!query.handicappedAccessible || location.handicappedAccessible === 1);
         };
 
         let filter8 = () => true;
@@ -133,7 +132,8 @@ export class SearchService {
                     && (!query.childChair || location.childChair === 1)
                     && (!query.handicappedAccessibleWc || location.handicappedAccessibleWc === 1)
                     && (!query.catering || location.catering === 1)
-                    && (!query.wlan || location.wlan === 1);
+                    && (!query.wlan || location.wlan === 1)
+                    && (!query.delivery || location.delivery === 1);
             };
         }
 

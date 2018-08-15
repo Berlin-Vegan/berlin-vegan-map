@@ -11,6 +11,7 @@ export class GastroQuery extends Query {
     handicappedAccessibleWc = false;
     catering = false;
     wlan = false;
+    delivery = false;
 
     constructor(props: any = {}) {
         super();

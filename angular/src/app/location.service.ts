@@ -57,7 +57,6 @@ export class LocationService {
             this.removeFormatting(location.commentEnglish),
             // Base URL possibly not necessary in production:
             location.reviewURL ? this.configurationService.reviewBaseUrl + location.reviewURL : undefined,
-            location.delivery,
             location.organic,
             location.handicappedAccessible,
             location.pictures,
@@ -73,6 +72,7 @@ export class LocationService {
             location.catering,
             location.wlan,
             location.district,
+            location.delivery,
             location.tags.sort(),
         );
     }
@@ -97,7 +97,6 @@ export class LocationService {
             this.removeFormatting(location.commentEnglish),
             // Base URL possibly not necessary in production:
             location.reviewURL ? this.configurationService.reviewBaseUrl + location.reviewURL : undefined,
-            location.delivery,
             location.organic,
             location.handicappedAccessible,
             [],

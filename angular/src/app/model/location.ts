@@ -24,7 +24,6 @@ export class Location {
         public readonly commentEnglish: string | undefined,
         public readonly commentEnglishWithoutFormatting: string | undefined,
         public readonly reviewURL: string | undefined,
-        public readonly delivery: YesNoUnknown,
         public readonly organic: YesNoUnknown,
         public readonly handicappedAccessible: YesNoUnknown,
         public readonly pictures: Picture[],

@@ -124,12 +124,6 @@ export interface JsonLocation {
     commentEnglish?: string;
 
     /**
-     * Delivery service is available.
-     * Can be an online shop or ordering by phone.
-     */
-    delivery: YesNoUnknown;
-
-    /**
      * The food is mostly organic.
      */
     organic: YesNoUnknown;

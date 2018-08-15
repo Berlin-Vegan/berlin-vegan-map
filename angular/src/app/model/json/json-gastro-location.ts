@@ -85,6 +85,12 @@ export interface JsonGastroLocation extends JsonLocation {
     brunch: YesNoUnknown;
 
     /**
+     * Delivery service is available.
+     * Can be an online shop or ordering by phone.
+     */
+    delivery: YesNoUnknown;
+
+    /**
      * Tags.
      * 1 to 5 items.
      */

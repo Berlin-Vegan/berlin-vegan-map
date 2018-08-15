@@ -24,7 +24,6 @@ export class GastroLocation extends Location {
         commentEnglish: string | undefined,
         commentEnglishWithoutFormatting: string | undefined,
         reviewURL: string | undefined,
-        delivery: YesNoUnknown,
         organic: YesNoUnknown,
         handicappedAccessible: YesNoUnknown,
         pictures: Picture[],
@@ -40,6 +39,7 @@ export class GastroLocation extends Location {
         public readonly catering: YesNoUnknown,
         public readonly wlan: YesNoUnknown,
         public readonly district: string,
+        public readonly delivery: YesNoUnknown,
         public readonly tags: GastroTag[],
     ) {
         super(
@@ -60,7 +60,6 @@ export class GastroLocation extends Location {
             commentEnglish,
             commentEnglishWithoutFormatting,
             reviewURL,
-            delivery,
             organic,
             handicappedAccessible,
             pictures,
