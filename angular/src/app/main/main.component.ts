@@ -175,8 +175,8 @@ export class MainComponent implements OnInit {
         return place && place.coordinates ? location.getDistanceToCoordinatesInKm(place.coordinates) : 1;
     }
 
-    onPlaceHighlightRequest() {
-        if (this.hasMobileSize) {
+    onPlaceHighlightRequest(manual: boolean) {
+        if (manual && this.hasMobileSize) {
             this.enableFullMapView();
         }
         this.selectedLocation = null;

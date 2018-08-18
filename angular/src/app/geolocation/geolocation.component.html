@@ -13,7 +13,7 @@
                 </span><a
                     *ngIf="place"
                     href="#"
-                    (click)="$event.preventDefault(); highlightRequest.emit()"
+                    (click)="$event.preventDefault(); manualHighlightRequest.emit()"
                 >{{i18n.geolocation.header}}:
                 </a>
             </label>

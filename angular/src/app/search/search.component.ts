@@ -23,7 +23,8 @@ export class SearchComponent {
 
     @Input() query: GastroQuery | ShoppingQuery;
     @Output() readonly queryChange = new EventEmitter<GastroQuery | ShoppingQuery>();
-    @Output() readonly placeHighlightRequest = new EventEmitter<void>();
+    @Output() readonly manualPlaceHighlightRequest = new EventEmitter<void>();
+    @Output() readonly autoPlaceHighlightRequest = new EventEmitter<void>();
 
     readonly i18n = this.i18nService.getI18n();
     readonly veganCategories = getVeganCategories();

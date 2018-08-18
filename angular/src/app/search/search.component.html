@@ -117,7 +117,8 @@
         <app-geolocation
             [place]="query.distance.place"
             (placeChange)="onPlaceChange($event)"
-            (highlightRequest)="placeHighlightRequest.emit()"
+            (manualHighlightRequest)="manualPlaceHighlightRequest.emit()"
+            (autoHighlightRequest)="autoPlaceHighlightRequest.emit()"
         ></app-geolocation>
         <div class="distanceContainer flex-container-wrap" *ngIf="query.distance.place">
             <label>

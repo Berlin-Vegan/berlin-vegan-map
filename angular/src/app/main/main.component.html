@@ -25,7 +25,8 @@
                 <app-search
                     [(query)]="query"
                     (queryChange)="onQueryChange()"
-                    (placeHighlightRequest)="onPlaceHighlightRequest()"
+                    (manualPlaceHighlightRequest)="onPlaceHighlightRequest(true)"
+                    (autoPlaceHighlightRequest)="onPlaceHighlightRequest(false)"
                 ></app-search>
                 <hr/>
                 <div class="sortAndStatisticsContainer flex-container-nowrap">

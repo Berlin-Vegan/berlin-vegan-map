@@ -30,7 +30,8 @@ export class GeolocationComponent implements OnDestroy {
     private _place: Place | null = null;
 
     @Output() readonly placeChange = new EventEmitter<Place | null>();
-    @Output() readonly highlightRequest = new EventEmitter<void>();
+    @Output() readonly manualHighlightRequest = new EventEmitter<void>();
+    @Output() readonly autoHighlightRequest = new EventEmitter<void>();
     readonly i18n = this.i18nService.getI18n();
     readonly isGeolocationSupported = !!navigator.geolocation;
     isChecked = false;
@@ -64,7 +65,7 @@ export class GeolocationComponent implements OnDestroy {
                             this.place = { coordinates: position.coords };
                             this.placeChange.emit(this.place);
                             if (firstCall) {
-                                this.highlightRequest.emit();
+                                this.autoHighlightRequest.emit();
                             }
                             this.updatePlace(
                                 this.configurationService.geoLocationUpdateMillis,
@@ -116,7 +117,7 @@ export class GeolocationComponent implements OnDestroy {
         this.isDetecting = false;
         this.place = place;
         this.placeChange.emit(this.place);
-        this.highlightRequest.emit();
+        this.autoHighlightRequest.emit();
     }
 
     private clear() {
