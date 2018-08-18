@@ -1,3 +1,5 @@
+// TODO: Move to library
+
 export function isLocalStorageAvailable(): boolean {
     return !!localStorage;
 }
