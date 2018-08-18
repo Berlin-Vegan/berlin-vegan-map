@@ -163,7 +163,7 @@ export class MainComponent implements OnInit {
 
     private getDistanceToCoordinates(location: Location) {
         const place = this.query.distance.place;
-        return place ? location.getDistanceToCoordinatesInKm(place.coordinates) : 1;
+        return place && place.coordinates ? location.getDistanceToCoordinatesInKm(place.coordinates) : 1;
     }
 
     onPlaceHighlightRequest() {

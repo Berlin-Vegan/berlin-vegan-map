@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { GastroQuery } from "./model/gastro-query";
 import { keys } from "../local-storage-keys";
 import { Language } from "../language";
+import { Query } from "./model/query";
 import { Settings } from "./model/settings";
 import { ShoppingQuery } from "./model/shopping-query";
 import * as localStorageWrapper from "./local-storage-wrapper";
@@ -44,8 +45,7 @@ export class LocalStorageService {
     }
 
     saveGastroQuery() {
-        this.gastroQuery.storedAt = new Date();
-        localStorageWrapper.setObject(keys.gastroQuery, this.gastroQuery);
+        this.saveQuery(keys.gastroQuery, this.gastroQuery);
     }
 
     get shoppingQuery(): ShoppingQuery {
@@ -60,8 +60,13 @@ export class LocalStorageService {
     }
 
     saveShoppingQuery() {
-        this.shoppingQuery.storedAt = new Date();
-        localStorageWrapper.setObject(keys.shoppingQuery, this.shoppingQuery);
+        this.saveQuery(keys.shoppingQuery, this.shoppingQuery);
+    }
+
+    private saveQuery(key: string, query: Query) {
+        query.storedAt = new Date();
+        const queryForStorage = forStorage(query);
+        localStorageWrapper.setObject(key, queryForStorage);
     }
 
     deleteQueries() {
@@ -84,4 +89,14 @@ export class LocalStorageService {
     getLanguage(): Language {
         return global_language;
     }
+}
+
+function forStorage(query: Query): Query {
+    const clone = JSON.parse(JSON.stringify(query));
+    if (clone.distance.place && !clone.distance.place.address) {
+        // The place is current. For privacy reasons, we do not store it.
+        // It is not used again anyway, because it must be re-detected.
+        delete clone.distance.place.coordinates;
+    }
+    return clone;
 }

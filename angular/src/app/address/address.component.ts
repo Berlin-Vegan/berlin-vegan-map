@@ -13,7 +13,7 @@ export class AddressComponent {
     constructor(private readonly i18nService: I18nService) { }
 
     @Input() location: Location;
-    @Input() coordinates: Coordinates | null;
+    @Input() coordinates: Coordinates | undefined;
 
     readonly i18n = this.i18nService.getI18n();
 

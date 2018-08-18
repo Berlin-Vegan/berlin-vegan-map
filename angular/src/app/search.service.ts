@@ -41,7 +41,7 @@ export class SearchService {
 
         const filter2 = () => {
             const distance = query.distance;
-            if (distance.enabled && distance.place) {
+            if (distance.enabled && distance.place && distance.place.coordinates) {
                 return location.getDistanceToCoordinatesInKm(distance.place.coordinates) <= query.distance.km;
             } else {
                 return true;

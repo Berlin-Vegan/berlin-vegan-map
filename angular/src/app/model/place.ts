@@ -1,4 +1,4 @@
 export interface Place {
-    coordinates: Coordinates;
+    coordinates?: Coordinates;
     address?: string;
 }

@@ -20,7 +20,7 @@ export class ResultsListComponent implements OnInit {
     ) { }
 
     @Input() locations: Location[];
-    @Input() coordinates: Coordinates | null;
+    @Input() coordinates: Coordinates | undefined;
     @Output() readonly locationSelect = new EventEmitter<Location>();
     @Output() readonly locationCenter = new EventEmitter<Location>();
 

@@ -57,7 +57,9 @@ function toSerializableDistance(distance: Distance) {
 
 function toSerializablePlace(place: Place) {
     const clone = Object.assign({}, place);
-    clone.coordinates = toSerializableCoordinates(place.coordinates);
+    if (place.coordinates) {
+        clone.coordinates = toSerializableCoordinates(place.coordinates);
+    }
     return clone;
 }
 

@@ -37,7 +37,7 @@ export class GoogleMapComponent implements OnInit {
 
     private _locations: Location[];
 
-    @Input() set coordinates(coordinates: Coordinates | null) {
+    @Input() set coordinates(coordinates: Coordinates | undefined) {
         this._coordinates = coordinates;
 
         if (coordinates) {
@@ -65,11 +65,11 @@ export class GoogleMapComponent implements OnInit {
         }
     }
 
-    get coordinates(): Coordinates | null {
+    get coordinates(): Coordinates | undefined {
         return this._coordinates;
     }
 
-    private _coordinates: Coordinates | null;
+    private _coordinates: Coordinates | undefined;
 
     @Output() readonly locationSelect = new EventEmitter<Location | null>();
 

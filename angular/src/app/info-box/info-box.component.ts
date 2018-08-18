@@ -22,7 +22,7 @@ export class InfoBoxComponent implements OnChanges {
     ) { }
 
     @Input() location: Location;
-    @Input() coordinates: Coordinates | null;
+    @Input() coordinates: Coordinates | undefined;
 
     @Output() centerLocation = new EventEmitter<void>();
     @Output() close = new EventEmitter<void>();
