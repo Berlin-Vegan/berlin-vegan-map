@@ -1,23 +1,25 @@
 <div *ngIf="isGeolocationSupported">
     <div class="flex-container-wrap">
-        <label>
-            <input
-                type="checkbox"
-                name="checkbox"
-                [(ngModel)]="isChecked"
-                (change)="onCheckboxChange()"
-            /><span
-                *ngIf="!place"
-            >{{i18n.geolocation.header}}:
-            </span><a
-                *ngIf="place"
-                href="#"
-                (click)="$event.preventDefault(); highlightRequest.emit()"
-            >{{i18n.geolocation.header}}:
-            </a>
-        </label>
-        <span *ngIf="isDetecting">&nbsp;{{i18n.geolocation.latest}}&nbsp;</span>
-        <button *ngIf="!isDetecting" (click)="detectPlace()">{{i18n.geolocation.detectButton}}</button>
+        <div>
+            <label>
+                <input
+                    type="checkbox"
+                    name="checkbox"
+                    [(ngModel)]="isChecked"
+                    (change)="onCheckboxChange()"
+                /><span
+                    *ngIf="!place"
+                >{{i18n.geolocation.header}}:
+                </span><a
+                    *ngIf="place"
+                    href="#"
+                    (click)="$event.preventDefault(); highlightRequest.emit()"
+                >{{i18n.geolocation.header}}:
+                </a>
+            </label>
+            <span *ngIf="isDetecting">{{i18n.geolocation.latest}}</span>
+            <button *ngIf="!isDetecting" (click)="detectPlace()">{{i18n.geolocation.detectButton}}</button>
+        </div>
         <app-place-select
             [placeholder]="i18n.geolocation.placeSelectPlaceholder"
             [place]="place"

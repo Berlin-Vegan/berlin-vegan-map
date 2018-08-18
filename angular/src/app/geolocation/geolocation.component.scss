@@ -1,12 +1,9 @@
 div.flex-container-wrap {
     margin-bottom: 0.1em;
+    align-items: baseline;
 }
 
 app-place-select {
     flex: 1;
-}
-
-button {
     margin-left: 0.2em;
-    margin-right: 0.2em;
 }
