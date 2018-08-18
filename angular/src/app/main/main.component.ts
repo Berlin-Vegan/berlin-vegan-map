@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { NavigatorUtil } from "@marco-eckstein/js-utils";
 
 import { GastroLocation } from "../model/gastro-location";
 import { GastroQuery } from "../model/gastro-query";
@@ -81,10 +82,14 @@ export class MainComponent implements OnInit {
     }
 
     private getInitialQuery(): GastroQuery | ShoppingQuery {
-        return this.localStorageService.settings.rememberLastQuery ?
+        const initialQuery = this.localStorageService.settings.rememberLastQuery ?
             (this.isGastro ? this.localStorageService.gastroQuery : this.localStorageService.shoppingQuery)
             :
             (this.isGastro ? new GastroQuery() : new ShoppingQuery());
+        if (!initialQuery.storedAt && NavigatorUtil.isPhoneOrTablet()) {
+            initialQuery.distance.place = {};
+        }
+        return initialQuery;
     }
 
     onSwipeleft() {
