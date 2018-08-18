@@ -1,4 +1,6 @@
-export class Settings {
+import { Storable } from "./storable";
+
+export class Settings extends Storable {
     rememberLastQuery = true;
     showPictures = true;
     clickInListCentersLocation = true;
@@ -8,6 +10,7 @@ export class Settings {
     };
 
     constructor(props: any = {}) {
+        super();
         Object.assign(this, props);
     }
 }

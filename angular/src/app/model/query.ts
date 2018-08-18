@@ -1,6 +1,7 @@
 import { getVeganCategories } from "./vegan-category";
 import { Place } from "./place";
 import { SortOrder } from "./sort-order";
+import { Storable } from "./storable";
 
 interface Distance {
     enabled: boolean;
@@ -8,7 +9,7 @@ interface Distance {
     km: number;
 }
 
-export class Query {
+export class Query extends Storable {
     text = "";
     textAppliesToNamesOnly = false;
     veganCategories: { [key: string]: boolean; } = {};
@@ -22,6 +23,7 @@ export class Query {
     sortOrder: SortOrder = "name";
 
     constructor(props: any = {}) {
+        super();
         for (const veganCategory of getVeganCategories()) {
             this.veganCategories[veganCategory] = true;
         }

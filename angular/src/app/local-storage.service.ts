@@ -28,6 +28,7 @@ export class LocalStorageService {
     }
 
     saveSettings() {
+        this.settings.storedAt = new Date();
         localStorageWrapper.setObject(keys.settings, this.settings);
     }
 
@@ -43,6 +44,7 @@ export class LocalStorageService {
     }
 
     saveGastroQuery() {
+        this.gastroQuery.storedAt = new Date();
         localStorageWrapper.setObject(keys.gastroQuery, this.gastroQuery);
     }
 
@@ -58,6 +60,7 @@ export class LocalStorageService {
     }
 
     saveShoppingQuery() {
+        this.shoppingQuery.storedAt = new Date();
         localStorageWrapper.setObject(keys.shoppingQuery, this.shoppingQuery);
     }
 
