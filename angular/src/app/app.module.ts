@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { MatExpansionModule } from "@angular/material/expansion";
 import { MatMenuModule } from "@angular/material/menu";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
@@ -65,7 +64,6 @@ const appRoutes: Routes = [
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        MatExpansionModule,
         MatMenuModule,
         NgxGalleryModule,
         RouterModule.forRoot(appRoutes),
