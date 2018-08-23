@@ -5,7 +5,7 @@ export class Settings extends Storable {
     showPictures = true;
     clickInListCentersLocation = true;
     map = {
-        mapTypeControl: true,
+        mapTypeControl: false,
         zoomControl: false,
     };
 
