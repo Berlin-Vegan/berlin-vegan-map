@@ -46,6 +46,8 @@
                 <mat-menu #menu="matMenu">
                     <a *ngFor="let path of paths" mat-menu-item routerLink="/{{path.name}}" routerLinkActive="active-link"
                     ><span class="fas {{path.faClass}}" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
+                    <a mat-menu-item href="https://www.berlin-vegan.de/bv-guide/" target="_blank" rel="noopener"
+                    ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
                     <a 
                         mat-menu-item
                         [matMenuTriggerFor]="contactSubmenu"
@@ -53,14 +55,15 @@
                         (click)="$event.preventDefault()"
                         role="button"
                     ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.contact}}</a>
-                    <a mat-menu-item href="https://www.berlin-vegan.de/bv-guide/" target="_blank" rel="noopener"
-                    ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
                 </mat-menu>
             </div>
             <ul *ngIf="!hasMobileSize">
                 <li *ngFor="let path of paths">
                     <a routerLink="/{{path.name}}" routerLinkActive="active-link"
                     ><span class="{{path.faClass}}" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
+                </li><li><!-- No space between lis -->
+                    <a href="https://www.berlin-vegan.de/bv-guide/" target="_blank" rel="noopener"
+                    ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
                 </li><li><!-- No space between lis -->
                     <a 
                         mat-button
@@ -69,9 +72,6 @@
                         (click)="$event.preventDefault()"
                         role="button"
                     ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.contact}}</a>
-                </li><li><!-- No space between lis -->
-                    <a href="https://www.berlin-vegan.de/bv-guide/" target="_blank" rel="noopener"
-                    ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
                 </li>
             </ul>
             <mat-menu #contactSubmenu="matMenu">
