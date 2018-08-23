@@ -16,7 +16,8 @@ import { SearchService } from "../search.service";
 import { LocalStorageService } from "../local-storage.service";
 import { ConfigurationService } from "../configuration.service";
 
-let firstConstruction = true;
+let module_firstConstruction = true;
+let module_fullMapView: boolean;
 
 @Component({
     selector: "app-main",
@@ -33,7 +34,10 @@ export class MainComponent implements OnInit {
         private readonly configurationService: ConfigurationService,
         private readonly localStorageService: LocalStorageService,
     ) {
-        firstConstruction = false;
+        if (module_firstConstruction) {
+            this.fullMapView = this.hasMobileSize;
+        }
+        module_firstConstruction = false;
     }
 
     @ViewChild(SearchComponent) searchComponent: SearchComponent;
@@ -46,8 +50,10 @@ export class MainComponent implements OnInit {
     filteredLocations: (GastroLocation | ShoppingLocation)[] = [];
     query: GastroQuery | ShoppingQuery;
     isGastro: boolean | undefined;
-    fullMapView = firstConstruction && this.hasMobileSize;
     selectedLocation: Location | null = null;
+
+    get fullMapView(): boolean { return module_fullMapView; }
+    set fullMapView(fullMapView: boolean) { module_fullMapView = fullMapView; }
 
     get isInfoBoxVisible(): boolean {
         return !!this.selectedLocation;
