@@ -9,13 +9,13 @@
         </p>
         <h1>{{i18n.settings.heading}}</h1>
         <p *ngIf="!isLocalStorageAvailable" class="warning">{{i18n.settings.noLocalStorageWarning}}</p>
-        <form name="searchForm">
+        <form name="settingsForm" (change)="onSettingsChange()">
             <label>
                 <input
                     type="checkbox"
                     name="rememberLastQuery"
                     [(ngModel)]="localStorageService.settings.rememberLastQuery"
-                    (change)="onQueryChange()"
+                    (change)="onRememberLastQueryChange()"
                 />{{i18n.settings.rememberLastQuery}}
             </label>
             <br/>
@@ -24,7 +24,6 @@
                     type="checkbox"
                     name="showPictures"
                     [(ngModel)]="localStorageService.settings.showPictures"
-                    (change)="onQueryChange()"
                 />{{i18n.settings.showPictures}}
             </label>
             <br/>
@@ -33,7 +32,6 @@
                     type="checkbox"
                     name="clickInListCentersLocation"
                     [(ngModel)]="localStorageService.settings.clickInListCentersLocation"
-                    (change)="onQueryChange()"
                 />{{i18n.settings.clickInListCentersLocation}}
             </label>
             <br/>
@@ -44,7 +42,6 @@
                         type="checkbox"
                         name="map.mapTypeControl"
                         [(ngModel)]="localStorageService.settings.map.mapTypeControl"
-                        (change)="onQueryChange()"
                     />{{i18n.settings.map.mapTypeControl}}
                 </label>
                 <br/>
@@ -53,7 +50,6 @@
                         type="checkbox"
                         name="map.zoomControl"
                         [(ngModel)]="localStorageService.settings.map.zoomControl"
-                        (change)="onQueryChange()"
                     />{{i18n.settings.map.zoomControl}}
                 </label>
             </fieldset>

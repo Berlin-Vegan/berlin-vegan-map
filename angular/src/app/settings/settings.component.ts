@@ -35,13 +35,16 @@ export class SettingsComponent {
         }
     }
 
-    onQueryChange() {
+    onSettingsChange() {
+        this.localStorageService.saveSettings();
+    }
+
+    onRememberLastQueryChange() {
         if (!this.localStorageService.settings.rememberLastQuery) {
             if (confirm(this.i18n.settings.deleteQueriesConfirmation)) {
                 this.localStorageService.deleteQueries();
             }
         }
-        this.localStorageService.saveSettings();
     }
 
     onResetButtonClick() {
