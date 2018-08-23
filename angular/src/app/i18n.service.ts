@@ -295,7 +295,7 @@ const i18n = {
         },
         placeSelectPlaceholder: {
             en: "Or enter an address",
-            de: "Oder geben Sie eine Adresse ein.",
+            de: "Oder gib eine Adresse ein.",
         },
     },
     sortBy: {
