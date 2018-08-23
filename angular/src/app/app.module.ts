@@ -32,7 +32,7 @@ import { SearchService } from "./search.service";
 import { SettingsComponent } from "./settings/settings.component";
 import { SortComponent } from "./sort/sort.component";
 import { StatisticsComponent } from "./statistics/statistics.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 const appRoutes: Routes = [
     { path: "gastro", component: MainComponent },
@@ -68,7 +68,7 @@ const appRoutes: Routes = [
         NgxGalleryModule,
         RouterModule.forRoot(appRoutes),
         ServiceWorkerModule.register("./ngsw-worker.js", { enabled: environment.production }),
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
     ],
     providers: [
         ConfigurationService,
