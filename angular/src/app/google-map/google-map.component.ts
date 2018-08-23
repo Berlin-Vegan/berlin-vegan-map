@@ -120,10 +120,6 @@ export class GoogleMapComponent implements OnInit {
             this.ngZone.run(() => this.locationSelect.emit(location));
         });
 
-        google.maps.event.addListener(this.infoWindow, "closeclick", () => {
-            this.ngZone.run(() => this.locationSelect.emit(null));
-        });
-
         this.markersToLocations.set(marker, location);
         this.locationsToMarkers.set(location, marker);
     }

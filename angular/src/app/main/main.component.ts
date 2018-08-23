@@ -191,7 +191,6 @@ export class MainComponent implements OnInit {
 
     onInfoBoxClose() {
         this.selectedLocation = null;
-        this.googleMapComponent.selectLocation(null);
     }
 
     private get hasMobileSize(): boolean {
