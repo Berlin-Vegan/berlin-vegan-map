@@ -32,16 +32,17 @@
         </div>
         <div>
             <span>{{location.openingTimes.getTodayFriendly()}}</span>
-            <!-- TODO: Re-consider following spans: -->
-            <span
+            <!-- TODO: Re-consider following elements: -->
+            <a
+                href=""
                 role="button"
                 [title]="location.localizedOpenComment"
                 [attr.aria-label]="i18n.openingHoursInfo"
                 [hidden]="!location.localizedOpenComment"
-                (click)="expandOpenComments.set(location, !expandOpenComments.get(location));"
+                (click)="$event.preventDefault(); expandOpenComments.set(location, !expandOpenComments.get(location));"
             >
                 <span class="fas fa-info-circle" aria-hidden="true"></span>
-            </span>
+            </a>
             <span [hidden]="!expandOpenComments.get(location)">{{location.localizedOpenComment}}</span>
         </div>
     </li>
