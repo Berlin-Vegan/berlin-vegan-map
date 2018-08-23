@@ -92,11 +92,12 @@ export class LocalStorageService {
 }
 
 function forStorage(query: Query): Query {
-    const clone = JSON.parse(JSON.stringify(query));
+    const clone = JSON.parse(JSON.stringify(query)) as Query;
     if (clone.distance.place && clone.distance.place.isCurrent) {
-        // For privacy reasons, we do not store a current place.
-        // It is not used again anyway, because it must be re-detected.
+        // For privacy reasons, we do not store a current place's details.
+        // They are not used again anyway, because they must be re-detected/re-geocoded.
         delete clone.distance.place.coordinates;
+        delete clone.distance.place.address;
     }
     return clone;
 }
