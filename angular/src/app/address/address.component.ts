@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
 
 import { I18nService } from "../i18n.service";
 import { Location } from "../model/location";
@@ -8,7 +8,7 @@ import { Location } from "../model/location";
     templateUrl: "address.component.html",
     styleUrls: [ "address.component.scss" ]
 })
-export class AddressComponent {
+export class AddressComponent implements OnChanges {
 
     constructor(private readonly i18nService: I18nService) { }
 
@@ -16,31 +16,28 @@ export class AddressComponent {
     @Input() coordinates: Coordinates | undefined;
 
     readonly i18n = this.i18nService.getI18n();
+    googleMapsSearchUrl = "";
+    googleMapsDirectionsUrl = "";
+    bvgDirectionsUrl = "";
 
-    get googleMapsSearchUrl(): string {
+    ngOnChanges(changes: SimpleChanges) {
         const l = this.location;
-        return encodeURI(
-            `https://www.google.com/maps/search/?api=1&query=${l.name} ${l.street} ${l.cityCode} ${l.city}`
-        );
-    }
-
-    get googleMapsDirectionsUrl(): string {
-        const l = this.location;
-        return this.coordinates ?
-            encodeURI(
-                `https://www.google.com/maps/dir/?api=1`
-                + `&origin=${this.coordinates.latitude}, ${this.coordinates.longitude}`
-                + `&destination=${l.name} ${l.street} ${l.cityCode} ${l.city}`
-            )
-            :
-            "";
-    }
-
-    get bvgDirectionsUrl(): string {
-        if (!this.location.publicTransport) {
-            alert("Unexpected condition.");
+        if (changes.location) {
+            this.googleMapsSearchUrl = encodeURI(
+                `https://www.google.com/maps/search/?api=1&query=${l.name} ${l.street} ${l.cityCode} ${l.city}`
+            );
         }
-        return this.coordinates ?
+        this.googleMapsDirectionsUrl =
+            this.coordinates ?
+                encodeURI(
+                    `https://www.google.com/maps/dir/?api=1`
+                    + `&origin=${this.coordinates.latitude}, ${this.coordinates.longitude}`
+                    + `&destination=${l.name} ${l.street} ${l.cityCode} ${l.city}`
+                )
+                :
+                "";
+        this.bvgDirectionsUrl =
+            this.location.publicTransport && this.coordinates ?
             encodeURI(`https://fahrinfo.bvg.de/Fahrinfo/bin/query.bin/dn?&to=${this.location.publicTransport}`)
             :
             "";
