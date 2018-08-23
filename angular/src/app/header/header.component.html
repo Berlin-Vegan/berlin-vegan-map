@@ -31,41 +31,29 @@
         </div>
         <ul>
             <li *ngFor="let path of paths">
-                <a routerLink="/{{path.name}}" routerLinkActive="active-link">
-                    <span class="{{path.faClass}}" aria-hidden="true"></span>
-                    {{i18n.header[path.name]}}
-                </a>
-            </li>
-            <li>
+                <a routerLink="/{{path.name}}" routerLinkActive="active-link"
+                ><span class="{{path.faClass}}" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
+            </li><li><!-- No space between lis -->
                 <a 
                     mat-button
                     [matMenuTriggerFor]="contactSubmenu"
                     href=""
                     (click)="$event.preventDefault()"
                     role="button"
-                >
-                    <span class="fas fa-envelope" aria-hidden="true"></span>
-                    {{i18n.header.contact}}
-                </a>
+                ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.contact}}</a>
                 <mat-menu #contactSubmenu="matMenu">
                     <a
                         mat-menu-item
                         href="https://data.berlin-vegan.de/gastro-submit/"
                         target="_blank"
                         rel="noopener"
-                    >
-                        <span class="fas fa-edit" aria-hidden="true"></span>
-                        {{i18n.header.reportNewLocation}}
-                    </a>
+                    ><span class="fas fa-edit" aria-hidden="true">&nbsp;</span>{{i18n.header.reportNewLocation}}</a>
                     <a
                         mat-menu-item
                         href="mailto:karte@berlin-vegan.de"
                         target="_blank"
                         rel="noopener"
-                    >
-                        <span class="fas fa-envelope" aria-hidden="true"></span>
-                        {{i18n.header.reportProblem}}
-                    </a>
+                    ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.reportProblem}}</a>
                 </mat-menu>
             </li>
         </ul>

@@ -64,7 +64,7 @@ nav {
         white-space: nowrap;
     }
 
-    ul:first-of-type li::after {
+    ul:first-of-type li:not(:last-of-type)::after {
         content: '\00A0' // No-break space
     }
 
