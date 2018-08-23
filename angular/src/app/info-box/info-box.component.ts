@@ -3,10 +3,11 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { DayOfWeek, NavigatorUtil } from "@marco-eckstein/js-utils";
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from "ngx-gallery";
 
+import { ConfigurationService } from "../configuration.service";
 import { I18nService } from "../i18n.service";
 import { LocalStorageService } from "./../local-storage.service";
 import { Location } from "../model/location";
-import { ConfigurationService } from "../configuration.service";
+import { Place } from "../model/place";
 
 @Component({
     selector: "app-info-box",
@@ -22,7 +23,7 @@ export class InfoBoxComponent implements OnChanges {
     ) { }
 
     @Input() location: Location;
-    @Input() coordinates: Coordinates | undefined;
+    @Input() place: Place | undefined;
 
     @Output() centerLocation = new EventEmitter<void>();
     @Output() close = new EventEmitter<void>();

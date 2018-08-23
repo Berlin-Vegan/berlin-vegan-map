@@ -14,6 +14,7 @@ import { AboutComponent } from "./about/about.component";
 import { AddressComponent } from "./address/address.component";
 import { AppComponent } from "./app.component";
 import { ConfigurationService } from "./configuration.service";
+import { GeocoderService } from "./geocoder.service";
 import { GeolocationComponent } from "./geolocation/geolocation.component";
 import { GoogleMapComponent } from "./google-map/google-map.component";
 import { HammerProvider } from "./hammer-provider";
@@ -72,6 +73,7 @@ const appRoutes: Routes = [
     ],
     providers: [
         ConfigurationService,
+        GeocoderService,
         I18nService,
         LocalStorageService,
         LocationService,

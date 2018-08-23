@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
+import { GeocoderService } from "../geocoder.service";
 import { I18nService } from "../i18n.service";
 import { Place } from "../model/place";
 
@@ -14,6 +15,7 @@ export class GeolocationComponent implements OnDestroy {
     constructor(
         private readonly configurationService: ConfigurationService,
         private readonly i18nService: I18nService,
+        private readonly geocoderService: GeocoderService,
     ) { }
 
     @Input() set place(place: Place | null) {
@@ -62,15 +64,21 @@ export class GeolocationComponent implements OnDestroy {
                         if (this.isChecked && this.isDetecting) {
                             this.info = "";
                             this.error = "";
-                            this.place = { coordinates: position.coords, isCurrent: true };
-                            this.placeChange.emit(this.place);
-                            if (firstCall) {
-                                this.autoHighlightRequest.emit();
-                            }
-                            this.updatePlace(
-                                this.configurationService.geoLocationUpdateMillis,
-                                false
-                            );
+                            this.geocoderService.getAddress(position.coords).then(address => {
+                                this.place = {
+                                    coordinates: position.coords,
+                                    address: address,
+                                    isCurrent: true,
+                                };
+                                this.placeChange.emit(this.place);
+                                if (firstCall) {
+                                    this.autoHighlightRequest.emit();
+                                }
+                                this.updatePlace(
+                                    this.configurationService.geoLocationUpdateMillis,
+                                    false
+                                );
+                            });
                         }
                     },
                     positionError => {

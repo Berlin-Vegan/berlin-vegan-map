@@ -12,7 +12,7 @@
         {{i18n.address.locationInGoogleMaps}}
     </a>
 
-    <a *ngIf="googleMapsDirectionsUrl;else noDirections"
+    <a *ngIf="googleMapsDirectionsUrl;else noGoogleMapsDirections"
         mat-menu-item
         href="{{googleMapsDirectionsUrl}}"
         target="_blank"
@@ -21,28 +21,26 @@
         <span class="fas fa-route" aria-hidden="true"></span>&nbsp;&nbsp;
         {{i18n.address.directionsInGoogleMaps}}
     </a>
-    <ng-template #noDirections>
+    <ng-template #noGoogleMapsDirections>
         <span mat-menu-item disabled class="unavailable">
             <span class="fas fa-route" aria-hidden="true"></span>&nbsp;&nbsp;
             {{i18n.address.directionsInGoogleMaps}} ({{i18n.address.geolocationRequired}})
         </span>
     </ng-template>
 
-    <div *ngIf="location.publicTransport">
-        <a *ngIf="bvgDirectionsUrl;else noPublicTransport"
-            mat-menu-item
-            href="{{bvgDirectionsUrl}}"
-            target="_blank"
-            rel="noopener"
-        >
+    <a *ngIf="bvgDirectionsUrl;else noBvgDirections"
+        mat-menu-item
+        href="{{bvgDirectionsUrl}}"
+        target="_blank"
+        rel="noopener"
+    >
+        <span class="fas fa-subway" aria-hidden="true"></span>&nbsp;&nbsp;
+        {{i18n.address.publicTransport}}
+    </a>
+    <ng-template #noBvgDirections>
+        <span mat-menu-item disabled class="unavailable">
             <span class="fas fa-subway" aria-hidden="true"></span>&nbsp;&nbsp;
-            {{i18n.address.publicTransport}}
-        </a>
-        <ng-template #noPublicTransport>
-            <span mat-menu-item disabled class="unavailable">
-                <span class="fas fa-subway" aria-hidden="true"></span>&nbsp;&nbsp;
-                {{i18n.address.publicTransport}} ({{i18n.address.geolocationRequired}})
-            </span>
-        </ng-template>
-    </div>
+            {{i18n.address.publicTransport}} ({{i18n.address.geolocationRequired}})
+        </span>
+    </ng-template>
 </mat-menu>

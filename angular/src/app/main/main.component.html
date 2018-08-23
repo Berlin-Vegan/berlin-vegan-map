@@ -54,7 +54,7 @@
                 <div *ngIf="isInfoBoxVisible" class="infoBox">
                     <app-info-box
                         [location]="selectedLocation"
-                        [coordinates]="query?.distance?.place?.coordinates"
+                        [place]="query?.distance?.place"
                         (centerLocation)="onLocationCenterInInfoBox()"
                         (close)="onInfoBoxClose()"
                         (swiperight)="onSwiperight()"
