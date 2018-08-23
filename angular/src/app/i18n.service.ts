@@ -393,6 +393,10 @@ const i18n = {
             en: "About",
             de: "Über",
         },
+        nativeApp: {
+            en: "Native app",
+            de: "Native App",
+        },
         language: {
             // A bit dirty, but we want to display the language in its language.
             en: {
@@ -458,25 +462,6 @@ const i18n = {
         versionInfoHeading: {
             en: "Version info",
             de: "Versionsinfo",
-        },
-        nativeAppHeading: {
-            en: "Native mobile app",
-            de: "Native mobile App",
-        },
-        nativeAppText: {
-            en: "You can use this Progressive Web App in any browser — "
-                + "desktop or mobile. On mobile devices, you have two additional options:",
-            de: "Du kannst diese Progressive Web App in jedem Browser benutzen — "
-                + "Desktop oder mobil. Auf mobilen Geräten hast du zwei zusätzliche Optionen:",
-        },
-        nativeAppOption1: {
-            en: "You can install it from your browser.",
-            de: "Du kannst sie aus deinem Browser heraus installieren.",
-        },
-        nativeAppOption2: {
-            en: "You can install Berlin-Vegan Guide (our native mobile app) from your device's app store:",
-            de: "Du kannst den Berlin-Vegan Guide (unsere native mobile App) aus dem App Store deines "
-                + "Geräts heraus installieren:",
         },
     },
 };
