@@ -97,7 +97,7 @@ export class MainComponent implements OnInit {
             :
             (this.isGastro ? new GastroQuery() : new ShoppingQuery());
         if (!initialQuery.storedAt && NavigatorUtil.isPhoneOrTablet()) {
-            initialQuery.distance.place = {};
+            initialQuery.distance.place = { isCurrent: true };
         }
         return initialQuery;
     }
