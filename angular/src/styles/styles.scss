@@ -13,6 +13,11 @@ body {
     // font-family: "Roboto", sans-serif;
 }
 
+main {
+    padding-left: $side-padding;
+    padding-right: $side-padding;
+}
+
 @supports (-moz-appearance: none) { // It is Firefox.
     // Make these elements zoomable in Firefox:
     input, button, select, option, textarea {
