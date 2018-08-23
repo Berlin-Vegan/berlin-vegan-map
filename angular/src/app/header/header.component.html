@@ -29,19 +29,52 @@
                 <span class="far fa-map" aria-hidden="true"></span>
             </button>
         </div>
-        <ul class="col-2">
-            <li *ngFor="let path of paths">
-                <a routerLink="/{{path.name}}" routerLinkActive="active-link"
-                ><span class="{{path.faClass}}" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
-            </li><li><!-- No space between lis -->
-                <a 
+        <div class="col-2">
+            <div *ngIf="hasMobileSize">
+                <a
+                    class="menu-button"
                     mat-button
-                    [matMenuTriggerFor]="contactSubmenu"
+                    [matMenuTriggerFor]="menu"
                     href=""
                     (click)="$event.preventDefault()"
                     role="button"
-                ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.contact}}</a>
-                <mat-menu #contactSubmenu="matMenu">
+                    [attr.aria-label]="i18n.header.menu"
+                >
+                    <span class="fas fa-bars" aria-hidden="true"></span>
+                    <span class="active-link" aria-hidden="true">{{i18n.header[pathName]}}</span>
+                </a>
+                <mat-menu #menu="matMenu">
+                    <a *ngFor="let path of paths" mat-menu-item routerLink="/{{path.name}}" routerLinkActive="active-link"
+                    ><span class="fas {{path.faClass}}" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
+                    <a 
+                        mat-menu-item
+                        [matMenuTriggerFor]="contactSubmenu"
+                        href=""
+                        (click)="$event.preventDefault()"
+                        role="button"
+                    ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.contact}}</a>
+                    <a mat-menu-item href="https://www.berlin-vegan.de/bv-guide/" target="_blank" rel="noopener"
+                    ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
+                </mat-menu>
+            </div>
+            <ul *ngIf="!hasMobileSize">
+                <li *ngFor="let path of paths">
+                    <a routerLink="/{{path.name}}" routerLinkActive="active-link"
+                    ><span class="{{path.faClass}}" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
+                </li><li><!-- No space between lis -->
+                    <a 
+                        mat-button
+                        [matMenuTriggerFor]="contactSubmenu"
+                        href=""
+                        (click)="$event.preventDefault()"
+                        role="button"
+                    ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.contact}}</a>
+                </li><li><!-- No space between lis -->
+                    <a href="https://www.berlin-vegan.de/bv-guide/" target="_blank" rel="noopener"
+                    ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
+                </li>
+            </ul>
+            <mat-menu #contactSubmenu="matMenu">
                     <a
                         mat-menu-item
                         href="https://data.berlin-vegan.de/gastro-submit/"
@@ -55,11 +88,7 @@
                         rel="noopener"
                     ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.reportProblem}}</a>
                 </mat-menu>
-            </li><li><!-- No space between lis -->
-                <a href="https://www.berlin-vegan.de/bv-guide/" target="_blank" rel="noopener"
-                ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
-            </li>
-        </ul>
+        </div>
         <ul class="col-3">
             <li>
                 <span *ngIf="language === 'de'" class="selectedLanguage">{{i18n.header.language.de}}</span>

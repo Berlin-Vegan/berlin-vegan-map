@@ -397,6 +397,10 @@ const i18n = {
             en: "Native app",
             de: "Native App",
         },
+        menu: {
+            en: "Menu",
+            de: "Menü",
+        },
         language: {
             // A bit dirty, but we want to display the language in its language.
             en: {
