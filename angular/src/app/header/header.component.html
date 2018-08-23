@@ -30,28 +30,10 @@
             </button>
         </div>
         <ul>
-            <li>
-                <a routerLink="/gastro" routerLinkActive="active-link">
-                    <span class="fas fa-utensils" aria-hidden="true"></span>
-                    {{i18n.header.gastro}}
-                </a>
-            </li>
-            <li>
-                <a routerLink="/shopping" routerLinkActive="active-link">
-                    <span class="fas fa-shopping-cart" aria-hidden="true"></span>
-                    {{i18n.header.shopping}}
-                </a>
-            </li>
-            <li>
-                <a routerLink="/settings" routerLinkActive="active-link">
-                    <span class="fas fa-cog" aria-hidden="true"></span>
-                    {{i18n.header.settings}}
-                </a>
-            </li>
-            <li>
-                <a routerLink="/about" routerLinkActive="active-link">
-                    <span class="fas fa-info-circle" aria-hidden="true"></span>
-                    {{i18n.header.about}}
+            <li *ngFor="let path of paths">
+                <a routerLink="/{{path.name}}" routerLinkActive="active-link">
+                    <span class="{{path.faClass}}" aria-hidden="true"></span>
+                    {{i18n.header[path.name]}}
                 </a>
             </li>
             <li>
