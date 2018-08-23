@@ -69,8 +69,6 @@ a.disabled {
 h1 {
     font-size: 1.3em;
     font-weight: 500;
-    margin-top: 0em;
-    margin-bottom: 0.5em;
 }
 
 select {
@@ -90,4 +88,8 @@ select {
 // Material Menu:
 .mat-menu-panel {
     max-width: 100% !important;
+
+    a {
+        color: $bv-green; // So links have the correct color again.
+    }
 }

@@ -6,44 +6,6 @@ main {
     display: flex;
 }
 
-nav {
-    background-color: $bv-green;
-    margin-top: 0;
-    padding-top: 0.8em;
-
-    ul {
-        list-style-type: none;
-        margin: 0;
-        margin-left: 0.2em;
-        padding: 0;
-
-        li {
-            display: inline;
-            text-transform: uppercase;
-            font-size: 1.18em;
-        }
-
-        li:last-of-type::before {
-            color: white;
-            content: '|'
-        }
-    }
-
-    a {
-        color: white;
-    }
-
-    a:hover {
-        text-decoration: none;
-        background-color: $bright-green;
-    }
-
-    a.disabled {
-        color: $very-bright-green;
-        font-weight: bold;
-    }
-}
-
 hr {
     color: rgb(230, 255, 230);
     margin-top: 0.5em;

@@ -2,7 +2,7 @@
     <div class="imgContainer flex-container-nowrap">
         <div>
             <a href="https://www.berlin-vegan.de/">
-                <img src="assets/images/bv-header-left.png" alt="Berlin-Vegan"/>
+                <img src="assets/images/bv-header-left.png" alt="Berlin-Vegan" title="Berlin-Vegan"/>
             </a>
         </div>
         <div class="flex-container-nowrap">
@@ -16,7 +16,7 @@
                 [title]="i18n.header.searchButtonTitle"
                 [attr.aria-label]="i18n.header.searchButtonTitle"
                 (click)="searchClick.emit()"
-                [disabled]="showingSettings"
+                [disabled]="searchButtonIsDisabled"
             >
                 <span class="fas fa-search" aria-hidden="true"></span>
             </button>
@@ -24,32 +24,67 @@
                 [title]="i18n.header.fullMapViewbuttonTitle"
                 [attr.aria-label]="i18n.header.fullMapViewbuttonTitle"
                 (click)="fullMapViewClick.emit()"
-                [disabled]="fullMapView || showingSettings"
+                [disabled]="fullMapViewButtonIsDisabled"
             >
                 <span class="far fa-map" aria-hidden="true"></span>
             </button>
-            <a routerLink="/settings" [class.disabled]="showingSettings">
-                <button
-                    [title]="i18n.header.settingsButtonTitle"
-                    [attr.aria-label]="i18n.header.settingsButtonTitle"
-                    [disabled]="showingSettings"
-                >
-                    <span class="fas fa-cog" aria-hidden="true"></span>
-                </button>
-            </a>
         </div>
         <ul>
             <li>
-                <a href="https://www.berlin-vegan.de/">Berlin&#8209;Vegan</a>
+                <a routerLink="/gastro" routerLinkActive="active-link">
+                    <span class="fas fa-utensils" aria-hidden="true"></span>
+                    {{i18n.header.gastro}}
+                </a>
             </li>
             <li>
-                <a href="https://www.berlin-vegan.de/bv-guide/">{{nativeAppText}}</a>
+                <a routerLink="/shopping" routerLinkActive="active-link">
+                    <span class="fas fa-shopping-cart" aria-hidden="true"></span>
+                    {{i18n.header.shopping}}
+                </a>
             </li>
             <li>
-                <a href="https://data.berlin-vegan.de/gastro-submit/">{{reportNewLocationText}}</a>
+                <a routerLink="/settings" routerLinkActive="active-link">
+                    <span class="fas fa-cog" aria-hidden="true"></span>
+                    {{i18n.header.settings}}
+                </a>
             </li>
             <li>
-                <a href="mailto:karte@berlin-vegan.de">{{reportProblemText}}</a>
+                <a routerLink="/about" routerLinkActive="active-link">
+                    <span class="fas fa-info-circle" aria-hidden="true"></span>
+                    {{i18n.header.about}}
+                </a>
+            </li>
+            <li>
+                <a 
+                    mat-button
+                    [matMenuTriggerFor]="contactSubmenu"
+                    href=""
+                    (click)="$event.preventDefault()"
+                    role="button"
+                >
+                    <span class="fas fa-envelope" aria-hidden="true"></span>
+                    {{i18n.header.contact}}
+                </a>
+                <mat-menu #contactSubmenu="matMenu">
+                    <a
+                        mat-menu-item
+                        href="https://data.berlin-vegan.de/gastro-submit/"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span class="fas fa-edit" aria-hidden="true"></span>
+                        {{i18n.header.reportNewLocation}}
+                    </a>
+                    <a
+                        mat-menu-item
+                        href="mailto:karte@berlin-vegan.de"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span class="fas fa-envelope" aria-hidden="true"></span>
+                        {{i18n.header.reportProblem}}
+                    </a>
+                </mat-menu>
             </li>
         </ul>
         <ul>

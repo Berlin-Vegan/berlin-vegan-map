@@ -1,28 +1,63 @@
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>{{i18n.about}}</mat-panel-title>
-    </mat-expansion-panel-header>
-    <span title="GitHub" aria-label="GitHub">
-        <span class="fab fa-github" aria-hidden="true"></span>
-        <a [href]="versionInfo.repositoryUrl" target="_blank" rel="noopener">{{versionInfo.name}}</a>
-    </span>
-    <br/>
-    <span title="Git description" aria-label="Git description">
-        <span class="fas fa-code-branch" aria-hidden="true"></span>
-        <span *ngIf="versionInfo.gitDescription.dirty; else clean">{{versionInfo.gitDescription.raw}}</span>
-        <ng-template #clean>
-            <a [href]="gitHubCommitUrl" target="_blank" rel="noopener"
-            >{{versionInfo.gitDescription.raw}} (clean)</a>
-        </ng-template>
-    </span>
-    <br/>
-    <span title="Build time" aria-label="Build time">
-        <span class="far fa-clock" aria-hidden="true"></span>
-        {{versionInfo.buildTimestamp | date:"yyyy-MM-dd HH:mm" }}
-    </span>
-    <br/>
-    <span title="Production" aria-label="Production">
-        <span class="fas fa-industry" aria-hidden="true"></span>
-        Production: {{production}}
-    </span>
-</mat-expansion-panel>
+<div>
+    <app-header></app-header>
+    <main>
+        <h1>{{i18n.about.heading}}</h1>
+        <h2>{{i18n.about.versionInfoHeading}}</h2>
+        <p>
+            <span title="GitHub" aria-label="GitHub">
+                <span class="fab fa-github" aria-hidden="true"></span>
+                <a [href]="versionInfo.repositoryUrl" target="_blank" rel="noopener">{{versionInfo.name}}</a>
+            </span>
+            <br/>
+            <span title="Git description" aria-label="Git description" class="git">
+                <span class="fas fa-code-branch" aria-hidden="true"></span>
+                <span *ngIf="versionInfo.gitDescription.dirty; else clean">{{versionInfo.gitDescription.raw}}</span>
+                <ng-template #clean>
+                    <a [href]="gitHubCommitUrl" target="_blank" rel="noopener"
+                    >{{versionInfo.gitDescription.raw}} (clean)</a>
+                </ng-template>
+            </span>
+            <br/>
+            <span title="Build time" aria-label="Build time">
+                <span class="far fa-clock" aria-hidden="true"></span>
+                {{versionInfo.buildTimestamp | date:"yyyy-MM-dd HH:mm" }}
+            </span>
+            <br/>
+            <span title="Production" aria-label="Production">
+                <span class="fas fa-industry" aria-hidden="true"></span>
+                Production: {{production}}
+            </span>
+        </p>
+        <h2>{{i18n.about.nativeAppHeading}}</h2>
+        <p>{{i18n.about.nativeAppText}}</p>
+        <ul>
+            <li>{{i18n.about.nativeAppOption1}}</li>
+            <li>
+                {{i18n.about.nativeAppOption2}}
+                <ul>
+                    <li>
+                        <a 
+                            href="http://itunes.apple.com/de/app/berlin-vegan-guide/id435371382"
+                            target="_blank"
+                            rel="noopener"
+                        >App Store (iOS)</a>
+                    </li>
+                    <li>
+                        <a 
+                            href="https://play.google.com/store/apps/details?id=org.berlin_vegan.bvapp"
+                            target="_blank"
+                            rel="noopener"
+                        >Play Store (Android)</a>
+                    </li>
+                    <li>
+                        <a 
+                            href="https://f-droid.org/de/packages/org.berlin_vegan.bvapp/"
+                            target="_blank"
+                            rel="noopener"
+                        >F-Droid (Android)</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </main>
+</div>

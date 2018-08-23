@@ -36,7 +36,7 @@ nav {
     background-color: $bv-green;
 
     div {
-        width: 23%;
+        width: 20%;
         text-align: left;
         padding-left: 0.3%;
     }
@@ -48,26 +48,20 @@ nav {
     }
 
     ul:nth-of-type(1) {
-        width: 54%;
+        width: 60%;
         text-align: center;
+        text-transform: uppercase;
     }
 
     ul:nth-of-type(2) {
-        width: 23%;
+        width: 20%;
         text-align: right;
         padding-right: 0.5%;
     }
 
     ul li {
         display: inline;
-    }
-
-    ul:first-of-type li::before {
-        content: '|'
-    }
-
-    ul:first-of-type li:first-of-type::before {
-        content: ''
+        white-space: nowrap;
     }
 
     ul:last-of-type li:last-of-type::before {
@@ -79,10 +73,17 @@ nav {
     a {
         color: white;
     }
+
+    .active-link {
+        color: $very-bright-green;
+        pointer-events: none;
+        cursor: default;
+    }
 }
 
 .selectedLanguage {
     color: $very-bright-green;
+    cursor: default;
 }
 
 .selectedLanguage {
@@ -94,5 +95,5 @@ nav {
 }
 
 button {
-    font-size: 1.05em;
+    font-size: 1.1em;
 }

@@ -1,6 +1,7 @@
 <div>
     <app-header
-        [fullMapView]="fullMapView"
+        [searchButtonIsDisabled]="false"
+        [fullMapViewButtonIsDisabled]="fullMapView"
         (searchClick)="scrollSearchIntoView()"
         (fullMapViewClick)="enableFullMapView()"
         (swipeleft)="onSwipeleft()"
@@ -9,18 +10,6 @@
     <main class="flex-container-nowrap">
         <div class="col-left" [hidden]="fullMapView" (swipeleft)="onSwipeleft()">
             <div #preSearchDiv></div>
-            <nav>
-                <ul>
-                    <li>
-                        <a routerLink="/gastro" [class.disabled]="isGastro" (click)="init('gastro')"
-                        >{{i18n.locationSwitch.gastro}}</a>
-                    </li>
-                    <li>
-                        <a routerLink="/shopping" [class.disabled]="!isGastro" (click)="init('shopping')"
-                        >{{i18n.locationSwitch.shopping}}</a>
-                    </li>
-                </ul>
-            </nav>
             <div *ngIf="query">
                 <app-search
                     [(query)]="query"

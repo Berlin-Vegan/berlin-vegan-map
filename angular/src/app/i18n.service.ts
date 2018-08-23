@@ -116,23 +116,9 @@ const i18n = {
             },
         },
     },
-    about: {
-        en: "About this app",
-        de: "Über diese App",
-    },
     loadingLocations: {
         en: "Loading locations...",
         de: "Lade Locations...",
-    },
-    locationSwitch: {
-        gastro: {
-            en: "Eating out",
-            de: "Gastronomie",
-        },
-        shopping: {
-            en: "Shopping",
-            de: "Einkaufen",
-        },
     },
     search: {
         text: {
@@ -371,36 +357,6 @@ const i18n = {
         }
     },
     header: {
-        nativeApp: {
-            long: {
-                en: "Mobile native app",
-                de: "Mobile native App",
-            },
-            short: {
-                en: "Native app",
-                de: "Native App",
-            },
-        },
-        reportNewLocation: {
-            long: {
-                en: "Report new location",
-                de: "Neueintrag melden",
-            },
-            short: {
-                en: "Report location",
-                de: "Neueintrag",
-            },
-        },
-        reportProblem: {
-            long: {
-                en: "Report problem",
-                de: "Problem melden",
-            },
-            short: {
-                en: "Problem",
-                de: "Problem",
-            },
-        },
         fullMapViewbuttonTitle: {
             en: "Full map view",
             de: "Kartenvollansicht",
@@ -409,9 +365,33 @@ const i18n = {
             en: "Show search form",
             de: "Suchformular anzeigen",
         },
-        settingsButtonTitle: {
-            en: "Open settings",
-            de: "Einstellungen öffnen",
+        gastro: {
+            en: "Eating out",
+            de: "Gastronomie",
+        },
+        shopping: {
+            en: "Shopping",
+            de: "Einkaufen",
+        },
+        contact: {
+            en: "Contact",
+            de: "Kontakt",
+        },
+        reportNewLocation: {
+            en: "Suggest new location",
+            de: "Neue Location vorschlagen",
+        },
+        reportProblem: {
+            en: "Report problem",
+            de: "Problem melden",
+        },
+        settings: {
+            en: "Settings",
+            de: "Einstellungen",
+        },
+        about: {
+            en: "About",
+            de: "Über",
         },
         language: {
             // A bit dirty, but we want to display the language in its language.
@@ -426,10 +406,6 @@ const i18n = {
         },
     },
     settings: {
-        backButtonText: {
-            en: "Back to map",
-            de: "Zurück zur Karte",
-        },
         heading: {
             en: "Settings",
             de: "Einstellungen",
@@ -473,7 +449,36 @@ const i18n = {
             en: "Reset to defaults",
             de: "Auf Standardeinstellungen zurücksetzen",
         },
-    }
+    },
+    about: {
+        heading: {
+            en: "About Berlin-Vegan Map",
+            de: "Über Berlin-Vegan Map",
+        },
+        versionInfoHeading: {
+            en: "Version info",
+            de: "Versionsinfo",
+        },
+        nativeAppHeading: {
+            en: "Native mobile app",
+            de: "Native mobile App",
+        },
+        nativeAppText: {
+            en: "You can use this Progressive Web App in any browser — "
+                + "desktop or mobile. On mobile devices, you have two additional options:",
+            de: "Du kannst diese Progressive Web App in jedem Browser benutzen — "
+                + "Desktop oder mobil. Auf mobilen Geräten hast du zwei zusätzliche Optionen:",
+        },
+        nativeAppOption1: {
+            en: "You can install it from your browser.",
+            de: "Du kannst sie aus deinem Browser heraus installieren.",
+        },
+        nativeAppOption2: {
+            en: "You can install Berlin-Vegan Guide (our native mobile app) from your device's app store:",
+            de: "Du kannst den Berlin-Vegan Guide (unsere native mobile App) aus dem App Store deines "
+                + "Geräts heraus installieren:",
+        },
+    },
 };
 
 @Injectable()

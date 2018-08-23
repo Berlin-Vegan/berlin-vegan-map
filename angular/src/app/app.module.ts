@@ -38,6 +38,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 const appRoutes: Routes = [
     { path: "gastro", component: MainComponent },
     { path: "shopping", component: MainComponent },
+    { path: "about", component: AboutComponent },
     { path: "settings", component: SettingsComponent },
     { path: "**", redirectTo: "gastro" },
 ];
