@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { I18nService } from "../i18n.service";
 import { LocalStorageService } from "../local-storage.service";
+import { ConfigurationService } from "../configuration.service";
 
 @Component({
     selector: "app-header",
@@ -11,7 +13,9 @@ import { LocalStorageService } from "../local-storage.service";
 export class HeaderComponent {
 
     constructor(
+        readonly router: Router,
         readonly localStorageService: LocalStorageService,
+        private readonly configurationService: ConfigurationService,
         private readonly i18nService: I18nService,
     ) { }
 
@@ -29,4 +33,13 @@ export class HeaderComponent {
         { name: "settings", faClass: "fas fa-cog" },
         { name: "about", faClass: "fas fa-info-circle" },
     ];
+
+    get pathName(): string {
+        return this.router.url.replace("/", "");
+    }
+
+    // TODO: Refactor (duplicated in MainComponent)
+    get hasMobileSize(): boolean {
+        return !window.matchMedia(this.configurationService.mediaQueries["min-width-1"]).matches;
+    }
 }

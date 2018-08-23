@@ -35,10 +35,22 @@ nav {
     padding-bottom: 4px;
     background-color: $bv-green;
 
-    div {
+    .col-1 {
         width: 20%;
         text-align: left;
         padding-left: 0.3%;
+    }
+
+    .col-2 {
+        width: 60%;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .col-3 {
+        width: 20%;
+        text-align: right;
+        padding-right: 0.5%;
     }
 
     ul {
@@ -47,28 +59,16 @@ nav {
         padding: 0;
     }
 
-    ul:nth-of-type(1) {
-        width: 60%;
-        text-align: center;
-        text-transform: uppercase;
-    }
-
-    ul:nth-of-type(2) {
-        width: 20%;
-        text-align: right;
-        padding-right: 0.5%;
-    }
-
     ul li {
         display: inline-block;
         white-space: nowrap;
     }
 
-    ul:first-of-type li:not(:last-of-type)::after {
+    .col-2 li:not(:last-of-type)::after {
         content: '\00A0' // No-break space
     }
 
-    ul:last-of-type li:last-of-type::before {
+    .col-3 li:last-of-type::before {
         @media #{$min-width-1} {
             content: '|'
         }

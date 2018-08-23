@@ -11,7 +11,7 @@
         </div>
     </div>
     <nav class="flex-container-nowrap">
-        <div>
+        <div class="col-1">
             <button
                 [title]="i18n.header.searchButtonTitle"
                 [attr.aria-label]="i18n.header.searchButtonTitle"
@@ -29,7 +29,7 @@
                 <span class="far fa-map" aria-hidden="true"></span>
             </button>
         </div>
-        <ul>
+        <ul class="col-2">
             <li *ngFor="let path of paths">
                 <a routerLink="/{{path.name}}" routerLinkActive="active-link"
                 ><span class="{{path.faClass}}" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
@@ -60,7 +60,7 @@
                 ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
             </li>
         </ul>
-        <ul>
+        <ul class="col-3">
             <li>
                 <span *ngIf="language === 'de'" class="selectedLanguage">{{i18n.header.language.de}}</span>
                 <a
