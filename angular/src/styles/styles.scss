@@ -8,10 +8,8 @@
 html, body { height: 100%; }
 
 body {
-    margin-top: 0;
-    margin-bottom: 0;
-    // ng add @angular/material wanted these, but we do not want them:
-    // margin: 0;
+    margin: 0;
+    // ng add @angular/material wanted this, but we do not want it:
     // font-family: "Roboto", sans-serif;
 }
 
