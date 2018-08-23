@@ -20,7 +20,7 @@ export class PlaceSelectComponent implements OnInit {
 
     @Input() set place(place: Place | null) {
         this._place = place;
-        this.address = place && place.address ? place.address : "";
+        this.address = place && place.address && !place.isCurrent ? place.address : "";
     }
     get place(): Place | null { return this._place; }
     private _place: Place | null;
@@ -60,6 +60,7 @@ export class PlaceSelectComponent implements OnInit {
                 speed: null,
             },
             address: this.address,
+            isCurrent: false,
         };
     }
 }

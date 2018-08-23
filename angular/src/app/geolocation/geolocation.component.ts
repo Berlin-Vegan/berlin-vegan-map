@@ -19,7 +19,7 @@ export class GeolocationComponent implements OnDestroy {
     @Input() set place(place: Place | null) {
         if (place) {
             this.isChecked = true;
-            if (!place.address && !this.isDetecting) {
+            if (place.isCurrent && !this.isDetecting) {
                 this.detectPlace();
             }
         }
@@ -62,7 +62,7 @@ export class GeolocationComponent implements OnDestroy {
                         if (this.isChecked && this.isDetecting) {
                             this.info = "";
                             this.error = "";
-                            this.place = { coordinates: position.coords };
+                            this.place = { coordinates: position.coords, isCurrent: true };
                             this.placeChange.emit(this.place);
                             if (firstCall) {
                                 this.autoHighlightRequest.emit();
