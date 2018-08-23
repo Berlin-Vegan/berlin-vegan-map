@@ -40,9 +40,7 @@
                 [attr.aria-label]="i18n.openingHoursInfo"
                 [hidden]="!location.localizedOpenComment"
                 (click)="$event.preventDefault(); expandOpenComments.set(location, !expandOpenComments.get(location));"
-            >
-                <span class="fas fa-info-circle" aria-hidden="true"></span>
-            </a>
+            ><span class="fas fa-info-circle" aria-hidden="true"></span></a>
             <span [hidden]="!expandOpenComments.get(location)">{{location.localizedOpenComment}}</span>
         </div>
     </li>
