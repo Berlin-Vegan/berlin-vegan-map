@@ -20,7 +20,7 @@
                 <hr/>
                 <div class="sortAndStatisticsContainer flex-container-nowrap">
                     <app-sort
-                        [isDistanceEnabled]="!!query.distance.place?.coordinates"
+                        [isDistanceEnabled]="!!query.distance.place"
                         [(sortOrder)]="query.sortOrder"
                         (sortOrderChange)="onQueryChange()"
                     ></app-sort>
