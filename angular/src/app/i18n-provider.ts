@@ -314,7 +314,7 @@ const i18n = {
         en: "Opening hours info",
         de: "Info zu Öffnungszeiten",
     },
-    infoWindow: {
+    infoBox: {
         distance: {
             en: "Distance",
             de: "Entfernung",
@@ -326,6 +326,10 @@ const i18n = {
         review: {
             en: "Review (German)",
             de: "Rezension",
+        },
+        close: {
+            en: "Close info",
+            de: "Info schließen",
         },
     },
     address: {
@@ -345,12 +349,6 @@ const i18n = {
             en: "Position required",
             de: "Standort erforderlich",
         },
-    },
-    infoBox: {
-        close: {
-            en: "Close info",
-            de: "Info schließen",
-        }
     },
     header: {
         fullMapViewbuttonTitle: {

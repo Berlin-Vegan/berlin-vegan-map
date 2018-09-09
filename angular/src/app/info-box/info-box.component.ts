@@ -101,7 +101,7 @@ export class InfoBoxComponent implements OnChanges {
 
     private get reviewAnchor(): string {
         return `<a target="_blank" rel="noopener" href="${this.location.reviewURL}">`
-            + `${this.i18n.infoWindow.review}</a>`;
+            + `${this.i18n.infoBox.review}</a>`;
     }
 
     ngOnChanges(changes: SimpleChanges) {

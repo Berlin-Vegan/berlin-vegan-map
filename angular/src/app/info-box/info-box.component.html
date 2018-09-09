@@ -26,11 +26,11 @@
                         <app-address [location]="location" [place]="place"></app-address>
                     </p>
                     <p *ngIf="place && place.coordinates">
-                        {{i18n.infoWindow.distance}}:
+                        {{i18n.infoBox.distance}}:
                         {{location.getDistanceToCoordinatesInKm(place.coordinates) | kilometer}}
                     </p>
                     <p *ngIf="location.telephone">
-                        {{i18n.infoWindow.phone}}:
+                        {{i18n.infoBox.phone}}:
                         <a *ngIf="isPhone;else justTelephone" href="tel:{{location.telephone}}">{{location.telephone}}</a>
                         <ng-template #justTelephone>{{location.telephone}}</ng-template>
                     </p>
