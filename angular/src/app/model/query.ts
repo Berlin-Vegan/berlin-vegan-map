@@ -11,7 +11,7 @@ export abstract class Query extends Storable {
     openAtWeekDay: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "all" = "all";
     openAtTime = "";
     openNow = false;
-    distance = new Distance(this);
+    distance: Distance = new Distance(this);
     review = false;
     organic = false;
     handicappedAccessible = false;
