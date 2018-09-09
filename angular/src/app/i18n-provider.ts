@@ -323,10 +323,6 @@ const i18n = {
             en: "Phone",
             de: "Tel.",
         },
-        openingTimes: {
-            en: "Opening hours",
-            de: "Öffnungszeiten",
-        },
         review: {
             en: "Review (German)",
             de: "Rezension",
