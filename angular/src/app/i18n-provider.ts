@@ -471,4 +471,5 @@ const i18n = {
 };
 
 export const I18N = new InjectionToken<any>("i18n");
-export const I18nProvider = { provide: I18N, useValue: I18nUtil.transform(i18n, global_language) };
+const getTransformedI18n = () => I18nUtil.transform(i18n, global_language);
+export const I18nProvider = { provide: I18N, useFactory: getTransformedI18n };
