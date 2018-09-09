@@ -57,12 +57,6 @@ export class SearchComponent {
     }
 
     onPlaceChange(place: Place | null) {
-        if (!this.query.distance.place && place) {
-            this.query.sortOrder = "distance";
-        }
-        if (!place) {
-            this.query.distance.enabled = false;
-        }
         this.query.distance.place = place;
         this.queryChange.emit(this.query);
     }

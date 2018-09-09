@@ -11,7 +11,7 @@ export abstract class Query extends Storable {
     openAtWeekDay: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "all" = "all";
     openAtTime = "";
     openNow = false;
-    distance = new Distance();
+    distance = new Distance(this);
     review = false;
     organic = false;
     handicappedAccessible = false;
@@ -26,7 +26,7 @@ export abstract class Query extends Storable {
             this.openAtWeekDay = props.openAtWeekDay;
             this.openAtTime = props.openAtTime;
             this.openNow = props.openNow;
-            this.distance = new Distance(props.distance);
+            this.distance = new Distance(this, props.distance);
             this.review = props.review;
             this.organic = props.organic;
             this.handicappedAccessible = props.handicappedAccessible;
