@@ -52,7 +52,7 @@
                 <input
                     type="checkbox"
                     name="{{feature}}"
-                    [(ngModel)]="query[feature]"
+                    [(ngModel)]="queryAsAny[feature]"
                     (change)="onQueryChange()"
                 />{{i18n.features[feature]}}
             </label>
@@ -62,7 +62,7 @@
                 <input
                     type="checkbox"
                     name="{{feature}}"
-                    [(ngModel)]="query[feature]"
+                    [(ngModel)]="queryAsAny[feature]"
                     (change)="onQueryChange()"
                 />{{i18n.features[feature]}}
             </label>

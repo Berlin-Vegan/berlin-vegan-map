@@ -51,6 +51,8 @@ export class SearchComponent {
             ["review"];
     }
 
+    get queryAsAny(): any { return this.query; }
+
     onQueryChange() {
         this.queryChange.emit(this.query);
     }
