@@ -1,4 +1,4 @@
-import "../init";
+import "./init";
 
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";

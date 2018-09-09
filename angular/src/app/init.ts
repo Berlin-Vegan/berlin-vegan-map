@@ -1,5 +1,5 @@
 import { keys } from "./local-storage-keys";
-import { Language } from "./language";
+import { Language } from "./model/language";
 
 export {};
 

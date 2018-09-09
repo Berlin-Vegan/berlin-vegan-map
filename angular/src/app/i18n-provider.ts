@@ -1,6 +1,6 @@
 import { InjectionToken } from "@angular/core";
 import { I18nUtil } from "@marco-eckstein/js-utils";
-import { Language } from "../language";
+import { Language } from "./model/language";
 
 declare var global_language: Language;
 
