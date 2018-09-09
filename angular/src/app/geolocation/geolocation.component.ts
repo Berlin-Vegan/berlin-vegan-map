@@ -65,11 +65,11 @@ export class GeolocationComponent implements OnDestroy {
                             this.info = "";
                             this.error = "";
                             this.geocoderService.getAddress(position.coords).then(address => {
-                                this.place = {
+                                this.place = new Place({
                                     coordinates: position.coords,
                                     address: address,
                                     isCurrent: true,
-                                };
+                                });
                                 this.placeChange.emit(this.place);
                                 if (firstCall) {
                                     this.autoHighlightRequest.emit();

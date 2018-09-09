@@ -49,7 +49,7 @@ export class PlaceSelectComponent implements OnInit {
 
     getPlace(): Place {
         const placeResult = this.autocomplete.getPlace();
-        return {
+        return new Place ({
             coordinates : {
                 accuracy: 1,
                 latitude: placeResult.geometry.location.lat(),
@@ -61,6 +61,6 @@ export class PlaceSelectComponent implements OnInit {
             },
             address: this.address,
             isCurrent: false,
-        };
+        });
     }
 }

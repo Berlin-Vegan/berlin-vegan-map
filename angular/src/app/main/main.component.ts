@@ -10,6 +10,7 @@ import { GoogleMapComponent } from "../google-map/google-map.component";
 import { I18nService } from "../i18n.service";
 import { Location } from "../model/location";
 import { LocationService } from "../location.service";
+import { Place } from "../model/place";
 import { ResultsListComponent } from "../results-list/results-list.component";
 import { SearchComponent } from "../search/search.component";
 import { SearchService } from "../search.service";
@@ -97,7 +98,7 @@ export class MainComponent implements OnInit {
             :
             (this.isGastro ? new GastroQuery() : new ShoppingQuery());
         if (!initialQuery.storedAt && NavigatorUtil.isPhoneOrTablet()) {
-            initialQuery.distance.place = { isCurrent: true };
+            initialQuery.distance.place = new Place({ isCurrent: true });
             initialQuery.sortOrder = "distance";
         }
         return initialQuery;

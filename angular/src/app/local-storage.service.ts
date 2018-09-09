@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { GastroQuery } from "./model/gastro-query";
 import { keys } from "../local-storage-keys";
 import { Language } from "../language";
-import { Query } from "./model/query";
 import { Settings } from "./model/settings";
 import { ShoppingQuery } from "./model/shopping-query";
 import * as localStorageWrapper from "./local-storage-wrapper";
@@ -63,7 +62,7 @@ export class LocalStorageService {
         this.saveQuery(keys.shoppingQuery, this.shoppingQuery);
     }
 
-    private saveQuery(key: string, query: Query) {
+    private saveQuery(key: string, query: GastroQuery | ShoppingQuery) {
         query.storedAt = new Date();
         const queryForStorage = forStorage(query);
         localStorageWrapper.setObject(key, queryForStorage);
@@ -91,13 +90,13 @@ export class LocalStorageService {
     }
 }
 
-function forStorage(query: Query): Query {
-    const clone = JSON.parse(JSON.stringify(query)) as Query;
+function forStorage(query: GastroQuery | ShoppingQuery): GastroQuery | ShoppingQuery {
+    const clone = query instanceof GastroQuery ? new GastroQuery(query) : new ShoppingQuery(query);
     if (clone.distance.place && clone.distance.place.isCurrent) {
         // For privacy reasons, we do not store a current place's details.
         // They are not used again anyway, because they must be re-detected/re-geocoded.
-        delete clone.distance.place.coordinates;
-        delete clone.distance.place.address;
+        clone.distance.place.coordinates = undefined;
+        clone.distance.place.address = undefined;
     }
     return clone;
 }

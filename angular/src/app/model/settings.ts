@@ -9,8 +9,13 @@ export class Settings extends Storable {
         zoomControl: false,
     };
 
-    constructor(props: any = {}) {
-        super();
-        Object.assign(this, props);
+    constructor(props: any = null) {
+        super(props);
+        if (props) {
+            this.rememberLastQuery = props.rememberLastQuery;
+            this.showPictures = props.showPictures;
+            this.clickInListCentersLocation = props.clickInListCentersLocation;
+            this.map = Object.assign({}, props.map);
+        }
     }
 }

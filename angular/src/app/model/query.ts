@@ -1,33 +1,37 @@
+import { Distance } from "./distance";
 import { getVeganCategories } from "./vegan-category";
-import { Place } from "./place";
 import { SortOrder } from "./sort-order";
 import { Storable } from "./storable";
+import { toMapOfStringToBoolean } from "./util";
 
-interface Distance {
-    enabled: boolean;
-    place: Place | null;
-    km: number;
-}
-
-export class Query extends Storable {
+export abstract class Query extends Storable {
     text = "";
     textAppliesToNamesOnly = false;
-    veganCategories: { [key: string]: boolean; } = {};
+    veganCategories: { [key: string]: boolean; } = toMapOfStringToBoolean(getVeganCategories(), true);
     openAtWeekDay: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "all" = "all";
     openAtTime = "";
     openNow = false;
-    distance: Distance = { enabled: false, place: null, km: 1 };
+    distance = new Distance();
     review = false;
     organic = false;
     handicappedAccessible = false;
     sortOrder: SortOrder = "name";
 
-    constructor(props: any = {}) {
-        super();
-        for (const veganCategory of getVeganCategories()) {
-            this.veganCategories[veganCategory] = true;
+    constructor(props: any = null) {
+        super(props);
+        if (props) {
+            this.text = props.text;
+            this.textAppliesToNamesOnly = props.textAppliesToNamesOnly;
+            this.veganCategories =  Object.assign({}, props.veganCategories);
+            this.openAtWeekDay = props.openAtWeekDay;
+            this.openAtTime = props.openAtTime;
+            this.openNow = props.openNow;
+            this.distance = new Distance(props.distance);
+            this.review = props.review;
+            this.organic = props.organic;
+            this.handicappedAccessible = props.handicappedAccessible;
+            this.sortOrder = props.sortOrder;
         }
-        Object.assign(this, props);
     }
 
     allWeekDays(): boolean {
@@ -37,45 +41,6 @@ export class Query extends Storable {
     openAtTimeAsDate(): Date | undefined {
         return parseTime(this.openAtTime);
     }
-
-    // Used by JSON.stringify().
-    toJSON(): Query {
-        const clone = Object.assign({}, this);
-        clone.veganCategories = Object.assign({}, this.veganCategories);
-        clone.distance = toSerializableDistance(this.distance);
-        return clone;
-    }
-}
-
-function toSerializableDistance(distance: Distance) {
-    const clone = Object.assign({}, distance);
-    if (distance.place) {
-        clone.place = toSerializablePlace(distance.place);
-    }
-    return clone;
-}
-
-function toSerializablePlace(place: Place) {
-    const clone = Object.assign({}, place);
-    if (place.coordinates) {
-        clone.coordinates = toSerializableCoordinates(place.coordinates);
-    }
-    return clone;
-}
-
-// Coordinates returned from the browser may not be serializable with JSON.stringify,
-// so we convert them to a simple object.
-// See http://www.allannienhuis.com/archives/2015/02/04/beware-json-stringify/.
-function toSerializableCoordinates(coordinates: Coordinates): Coordinates {
-    return {
-        accuracy: coordinates.accuracy,
-        altitude: coordinates.altitude,
-        altitudeAccuracy: coordinates.altitudeAccuracy,
-        heading: coordinates.heading,
-        latitude: coordinates.latitude,
-        longitude: coordinates.longitude,
-        speed: coordinates.speed,
-    };
 }
 
 // TODO: Refactor to library

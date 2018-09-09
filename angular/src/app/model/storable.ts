@@ -1,7 +1,9 @@
-export class Storable {
+export abstract class Storable {
     storedAt: Date;
 
-    constructor(props: any = {}) {
-        Object.assign(this, props);
+    constructor(props: any = null) {
+        if (props) {
+            this.storedAt = props.storedAt;
+        }
     }
 }
