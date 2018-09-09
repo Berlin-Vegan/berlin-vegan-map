@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { AppComponent } from "./../app.component";
-import { I18nService } from "../i18n.service";
+import { I18N } from "../i18n-provider";
 import { Location } from "@angular/common";
 import { LocalStorageService } from "../local-storage.service";
 import { isLocalStorageAvailable } from "../local-storage-wrapper";
@@ -15,13 +15,11 @@ import { Settings } from "../model/settings";
 export class SettingsComponent {
 
     constructor(
+        @Inject(I18N) readonly i18n: any,
         readonly localStorageService: LocalStorageService,
-        private readonly i18nService: I18nService,
         private readonly router: Router,
         private readonly location: Location,
     ) {}
-
-    readonly i18n = this.i18nService.getI18n();
 
     get isLocalStorageAvailable(): boolean {
         return isLocalStorageAvailable();

@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, Inject } from "@angular/core";
 import { DomUtil } from "@marco-eckstein/js-utils";
 
 import { ConfigurationService } from "../configuration.service";
-import { I18nService } from "../i18n.service";
+import { I18N } from "../i18n-provider";
 import { Location } from "../model/location";
 import { LocalStorageService } from "../local-storage.service";
 
@@ -14,9 +14,9 @@ import { LocalStorageService } from "../local-storage.service";
 export class ResultsListComponent implements OnInit {
 
     constructor(
+        @Inject(I18N) readonly i18n: any,
         readonly configurationService: ConfigurationService,
         private readonly localStorageService: LocalStorageService,
-        private readonly i18nService: I18nService,
     ) { }
 
     @Input() locations: Location[];
@@ -24,7 +24,6 @@ export class ResultsListComponent implements OnInit {
     @Output() readonly locationSelect = new EventEmitter<Location>();
     @Output() readonly locationCenter = new EventEmitter<Location>();
 
-    readonly i18n = this.i18nService.getI18n();
     readonly expandOpenComments = new Map<Location, boolean>();
 
     ngOnInit() {

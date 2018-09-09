@@ -1,3 +1,5 @@
+import "../init";
+
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
@@ -19,6 +21,7 @@ import { GeolocationComponent } from "./geolocation/geolocation.component";
 import { GoogleMapComponent } from "./google-map/google-map.component";
 import { HammerProvider } from "./hammer-provider";
 import { HeaderComponent } from "./header/header.component";
+import { I18N, I18nProvider } from "./i18n-provider";
 import { I18nService } from "./i18n.service";
 import { InfoBoxComponent } from "./info-box/info-box.component";
 import { KilometerPipe } from "./kilometer.pipe";
@@ -74,12 +77,13 @@ const appRoutes: Routes = [
     providers: [
         ConfigurationService,
         GeocoderService,
+        HammerProvider,
+        I18nProvider,
         I18nService,
-        LocalStorageService,
         LocationService,
+        LocalStorageService,
         OpeningTimesService,
         SearchService,
-        HammerProvider,
     ],
     bootstrap: [AppComponent]
 })

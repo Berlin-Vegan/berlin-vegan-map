@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output, Inject } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
-import { I18nService } from "../i18n.service";
+import { I18N } from "../i18n-provider";
 import { GastroQuery } from "../model/gastro-query";
 import { GastroTag, getGastroTags } from "../model/gastro-tag";
 import { Place } from "../model/place";
@@ -17,8 +17,8 @@ import { getVeganCategories } from "../model/vegan-category";
 export class SearchComponent {
 
     constructor(
+        @Inject(I18N) readonly i18n: any,
         readonly configurationService: ConfigurationService,
-        private readonly i18nService: I18nService,
     ) { }
 
     @Input() query: GastroQuery | ShoppingQuery;
@@ -26,7 +26,6 @@ export class SearchComponent {
     @Output() readonly manualPlaceHighlightRequest = new EventEmitter<void>();
     @Output() readonly autoPlaceHighlightRequest = new EventEmitter<void>();
 
-    readonly i18n = this.i18nService.getI18n();
     readonly veganCategories = getVeganCategories();
 
     get tags(): (GastroTag | ShoppingTag)[] {

@@ -1,6 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Inject } from "@angular/core";
 
-import { I18nService } from "../i18n.service";
+import { I18N } from "../i18n-provider";
 
 @Component({
     selector: "app-statistics",
@@ -9,9 +9,8 @@ import { I18nService } from "../i18n.service";
 })
 export class StatisticsComponent {
 
-    constructor(private readonly i18nService: I18nService) { }
+    constructor(@Inject(I18N) readonly i18n: any) { }
 
     @Input() allLocationsCount: number;
     @Input() filteredLocationsCount: number;
-    readonly i18n = this.i18nService.getI18n();
 }

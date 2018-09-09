@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 
-import { I18nService } from "../i18n.service";
 import { environment } from "../../environments/environment";
+import { I18N } from "../i18n-provider";
 
 @Component({
     selector: "app-about",
@@ -10,9 +10,8 @@ import { environment } from "../../environments/environment";
 })
 export class AboutComponent {
 
-    constructor(private readonly i18nService: I18nService) { }
+    constructor(@Inject(I18N) readonly i18n: any) { }
 
-    readonly i18n = this.i18nService.getI18n();
     readonly production = environment.production;
     readonly versionInfo = environment.versionInfo;
 

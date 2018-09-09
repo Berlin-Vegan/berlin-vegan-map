@@ -1,6 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { DateUtil } from "@marco-eckstein/js-utils";
 
+import { I18N } from "./i18n-provider";
 import { I18nService } from "./i18n.service";
 import { JsonLocation } from "./model/json/json-location";
 import { TimeInterval } from "./model/time-interval";
@@ -11,20 +12,23 @@ import { OpeningTimesCollection } from "./model/opening-times-collection";
 @Injectable()
 export class OpeningTimesService {
 
-    constructor(private readonly i18nService: I18nService) {}
+    constructor(
+        @Inject(I18N) private readonly i18n: any,
+        private readonly i18nService: I18nService,
+    ) {}
 
     getOpeningTimesCollection(location: JsonLocation): OpeningTimesCollection {
         return new OpeningTimesCollection(
         [
-            new OpeningTime(0, this.parseOpeningTimeInterval(location.otSun), this.i18nService),
-            new OpeningTime(1, this.parseOpeningTimeInterval(location.otMon), this.i18nService),
-            new OpeningTime(2, this.parseOpeningTimeInterval(location.otTue), this.i18nService),
-            new OpeningTime(3, this.parseOpeningTimeInterval(location.otWed), this.i18nService),
-            new OpeningTime(4, this.parseOpeningTimeInterval(location.otThu), this.i18nService),
-            new OpeningTime(5, this.parseOpeningTimeInterval(location.otFri), this.i18nService),
-            new OpeningTime(6, this.parseOpeningTimeInterval(location.otSat), this.i18nService)
+            new OpeningTime(0, this.parseOpeningTimeInterval(location.otSun), this.i18nService, this.i18n),
+            new OpeningTime(1, this.parseOpeningTimeInterval(location.otMon), this.i18nService, this.i18n),
+            new OpeningTime(2, this.parseOpeningTimeInterval(location.otTue), this.i18nService, this.i18n),
+            new OpeningTime(3, this.parseOpeningTimeInterval(location.otWed), this.i18nService, this.i18n),
+            new OpeningTime(4, this.parseOpeningTimeInterval(location.otThu), this.i18nService, this.i18n),
+            new OpeningTime(5, this.parseOpeningTimeInterval(location.otFri), this.i18nService, this.i18n),
+            new OpeningTime(6, this.parseOpeningTimeInterval(location.otSat), this.i18nService, this.i18n),
         ],
-        this.i18nService);
+        this.i18n);
     }
 
     private parseOpeningTimeInterval(otString: string): OpeningTimeInterval {
@@ -36,7 +40,7 @@ export class OpeningTimesService {
             friendly = this.i18nService.formatTimeInterval(timeInterval);
         } else {
             timeInterval = null;
-            friendly = this.i18nService.getI18n().openingTimes.isClosed;
+            friendly = this.i18n.openingTimes.isClosed;
         }
 
         return new OpeningTimeInterval(timeInterval, friendly);

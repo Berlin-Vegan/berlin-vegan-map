@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnDestroy, Output, Inject } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
 import { GeocoderService } from "../geocoder.service";
-import { I18nService } from "../i18n.service";
+import { I18N } from "../i18n-provider";
 import { Place } from "../model/place";
 
 @Component({
@@ -13,8 +13,8 @@ import { Place } from "../model/place";
 export class GeolocationComponent implements OnDestroy {
 
     constructor(
+        @Inject(I18N) readonly i18n: any,
         private readonly configurationService: ConfigurationService,
-        private readonly i18nService: I18nService,
         private readonly geocoderService: GeocoderService,
     ) { }
 
@@ -34,7 +34,6 @@ export class GeolocationComponent implements OnDestroy {
     @Output() readonly placeChange = new EventEmitter<Place | null>();
     @Output() readonly manualHighlightRequest = new EventEmitter<void>();
     @Output() readonly autoHighlightRequest = new EventEmitter<void>();
-    readonly i18n = this.i18nService.getI18n();
     readonly isGeolocationSupported = !!navigator.geolocation;
     isChecked = false;
     info = "";

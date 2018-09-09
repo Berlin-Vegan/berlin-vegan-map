@@ -1,8 +1,18 @@
-import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild } from "@angular/core";
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Inject,
+    Input,
+    NgZone,
+    OnInit,
+    Output,
+    ViewChild,
+} from "@angular/core";
 import {} from "@types/googlemaps";
 
 import { ConfigurationService } from "../configuration.service";
-import { I18nService } from "../i18n.service";
+import { I18N } from "../i18n-provider";
 import { Location } from "../model/location";
 import { LocalStorageService } from "../local-storage.service";
 
@@ -14,9 +24,9 @@ import { LocalStorageService } from "../local-storage.service";
 export class GoogleMapComponent implements OnInit {
 
     constructor(
+        @Inject(I18N) private readonly i18n: any,
         private readonly configurationService: ConfigurationService,
         private readonly localStorageService: LocalStorageService,
-        private readonly i18nService: I18nService,
         private readonly ngZone: NgZone,
     ) {}
 
@@ -80,7 +90,6 @@ export class GoogleMapComponent implements OnInit {
     private readonly markersToLocations = new Map<google.maps.Marker, Location>();
     private readonly locationsToMarkers = new Map<Location, google.maps.Marker>();
     private readonly infoWindow = new google.maps.InfoWindow();
-    private readonly i18n = this.i18nService.getI18n();
 
     ngOnInit() {
         const mapOptions: google.maps.MapOptions = {

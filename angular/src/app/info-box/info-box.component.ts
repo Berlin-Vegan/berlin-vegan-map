@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, Inject } from "@angular/core";
 
 import { DayOfWeek, NavigatorUtil } from "@marco-eckstein/js-utils";
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from "ngx-gallery";
 
 import { ConfigurationService } from "../configuration.service";
-import { I18nService } from "../i18n.service";
+import { I18N } from "../i18n-provider";
 import { LocalStorageService } from "./../local-storage.service";
 import { Location } from "../model/location";
 import { Place } from "../model/place";
@@ -17,9 +17,9 @@ import { Place } from "../model/place";
 export class InfoBoxComponent implements OnChanges {
 
     constructor(
+        @Inject(I18N) readonly i18n: any,
         private readonly configurationService: ConfigurationService,
         private readonly localStorageService: LocalStorageService,
-        private readonly i18nService: I18nService,
     ) { }
 
     @Input() location: Location;
@@ -28,7 +28,6 @@ export class InfoBoxComponent implements OnChanges {
     @Output() centerLocation = new EventEmitter<void>();
     @Output() close = new EventEmitter<void>();
 
-    readonly i18n = this.i18nService.getI18n();
     readonly isPhone = NavigatorUtil.isPhone();
     private readonly extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
     galleryOptions: NgxGalleryOptions[] = [

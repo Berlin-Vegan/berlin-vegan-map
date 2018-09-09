@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
+import { Component, Input, OnChanges, SimpleChanges, Inject } from "@angular/core";
 
-import { I18nService } from "../i18n.service";
+import { I18N } from "../i18n-provider";
 import { LocalStorageService } from "../local-storage.service";
 import { Location } from "../model/location";
 import { Place } from "../model/place";
@@ -14,14 +14,13 @@ import { GastroLocation } from "../model/gastro-location";
 export class AddressComponent implements OnChanges {
 
     constructor(
-        private readonly i18nService: I18nService,
+        @Inject(I18N) readonly i18n: any,
         private readonly localStorageService: LocalStorageService,
     ) { }
 
     @Input() location: Location;
     @Input() place: Place | undefined;
 
-    readonly i18n = this.i18nService.getI18n();
     readonly language = this.localStorageService.getLanguage();
     googleMapsSearchUrl = "";
     googleMapsDirectionsUrl = "";

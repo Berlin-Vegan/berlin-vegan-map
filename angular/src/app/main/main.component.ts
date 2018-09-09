@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild, Inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NavigatorUtil } from "@marco-eckstein/js-utils";
 
@@ -7,7 +7,7 @@ import { GastroQuery } from "../model/gastro-query";
 import { ShoppingLocation } from "../model/shopping-location";
 import { ShoppingQuery } from "../model/shopping-query";
 import { GoogleMapComponent } from "../google-map/google-map.component";
-import { I18nService } from "../i18n.service";
+import { I18N } from "../i18n-provider";
 import { Location } from "../model/location";
 import { LocationService } from "../location.service";
 import { Place } from "../model/place";
@@ -28,8 +28,8 @@ let module_fullMapView: boolean;
 export class MainComponent implements OnInit {
 
     constructor(
+        @Inject(I18N) readonly i18n: any,
         private readonly route: ActivatedRoute,
-        private readonly i18nService: I18nService,
         private readonly locationService: LocationService,
         private readonly searchService: SearchService,
         private readonly configurationService: ConfigurationService,
@@ -46,7 +46,6 @@ export class MainComponent implements OnInit {
     @ViewChild(GoogleMapComponent) googleMapComponent: GoogleMapComponent;
     @ViewChild("preSearchDiv") preSearchDiv: ElementRef;
 
-    readonly i18n = this.i18nService.getI18n();
     allLocations: (GastroLocation | ShoppingLocation)[] = [];
     filteredLocations: (GastroLocation | ShoppingLocation)[] = [];
     query: GastroQuery | ShoppingQuery;

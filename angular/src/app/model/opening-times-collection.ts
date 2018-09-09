@@ -1,18 +1,17 @@
 import { DayOfWeek, OpeningTimesUtil } from "@marco-eckstein/js-utils";
 
-import { I18nService } from "../i18n.service";
 import { OpeningTime } from "./opening-time";
 
 export class OpeningTimesCollection {
 
-    constructor(public readonly openingTimes: OpeningTime[], private readonly i18nService: I18nService) {}
+    constructor(public readonly openingTimes: OpeningTime[], private readonly i18n: any) {}
 
     getTodayFriendly(): string {
         const otIntervalToday = this.openingTimes[new Date().getDay()].interval;
         return otIntervalToday.isOpen ?
-            this.i18nService.getI18n().openingTimes.isOpenToday + ": " + otIntervalToday.friendly
+            this.i18n.openingTimes.isOpenToday + ": " + otIntervalToday.friendly
             :
-            this.i18nService.getI18n().openingTimes.isClosedToday;
+            this.i18n.openingTimes.isClosedToday;
     }
 
     getCompressed(): OpeningTime[][] {

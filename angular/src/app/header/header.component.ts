@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output, Inject } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { I18nService } from "../i18n.service";
+import { I18N } from "../i18n-provider";
 import { LocalStorageService } from "../local-storage.service";
 import { ConfigurationService } from "../configuration.service";
 
@@ -13,10 +13,10 @@ import { ConfigurationService } from "../configuration.service";
 export class HeaderComponent {
 
     constructor(
+        @Inject(I18N) readonly i18n: any,
         readonly router: Router,
         readonly localStorageService: LocalStorageService,
         private readonly configurationService: ConfigurationService,
-        private readonly i18nService: I18nService,
     ) { }
 
     @Input() searchButtonIsDisabled = true;
@@ -24,7 +24,6 @@ export class HeaderComponent {
     @Output() readonly searchClick = new EventEmitter<void>();
     @Output() readonly fullMapViewClick = new EventEmitter<void>();
 
-    readonly i18n = this.i18nService.getI18n();
     readonly language = this.localStorageService.getLanguage();
 
     readonly paths = [

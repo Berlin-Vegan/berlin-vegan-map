@@ -1,25 +1,25 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 
 import { ConfigurationService } from "./configuration.service";
+import { GastroLocation } from "./model/gastro-location";
+import { I18N } from "./i18n-provider";
 import { JsonGastroLocation } from "./model/json/json-gastro-location";
 import { JsonLocation } from "./model/json/json-location";
 import { JsonShoppingLocation } from "./model/json/json-shopping-location";
-import { GastroLocation } from "./model/gastro-location";
-import { VeganCategory } from "./model/vegan-category";
-import { I18nService } from "./i18n.service";
 import { LocalStorageService } from "./local-storage.service";
 import { OpeningTimesService } from "./opening-times.service";
 import { ShoppingLocation } from "./model/shopping-location";
+import { VeganCategory } from "./model/vegan-category";
 
 @Injectable()
 export class LocationService {
 
     constructor(
+        @Inject(I18N) private readonly i18n: any,
         private readonly httpClient: HttpClient,
         private readonly configurationService: ConfigurationService,
         private readonly openingTimesService: OpeningTimesService,
-        private readonly i18nService: I18nService,
         private readonly localStorageService: LocalStorageService,
     ) {}
 
@@ -61,7 +61,7 @@ export class LocationService {
             location.handicappedAccessible,
             location.pictures,
             location.publicTransport,
-            location.tags.map(it => this.i18nService.getI18n().enums.gastroTag[it]).join(", "),
+            location.tags.map(it => this.i18n.enums.gastroTag[it]).join(", "),
             location.email,
             location.glutenFree,
             location.breakfast,
@@ -101,7 +101,7 @@ export class LocationService {
             location.handicappedAccessible,
             [],
             undefined,
-            location.tags.map(it => this.i18nService.getI18n().enums.shoppingTag[it]).join(", "),
+            location.tags.map(it => this.i18n.enums.shoppingTag[it]).join(", "),
             location.tags.sort(),
         );
     }
