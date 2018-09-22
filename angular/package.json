@@ -8,7 +8,8 @@
     "build": "node write-version-info.js && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "postinstall": "node write-version-info.js"
+    "postinstall": "node write-version-info.js",
+    "lighthouse": "lighthouse-ignore"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "@angular/cli": "6.0.8",
     "@angular/compiler-cli": "6.0.9",
     "@angular/language-service": "6.0.9",
+    "@marco-eckstein/lighthouse-ignore": "^0.2.0",
     "@types/googlemaps": "^3.30.8",
     "@types/hammerjs": "^2.0.35",
     "@types/jasmine": "~2.8.6",

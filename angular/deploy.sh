@@ -34,3 +34,5 @@ else
     read -p "ssh $SERVER; then cd $DEPLOY_DIR; then rm -rf *; then, press ENTER!"
     scp -r dist/. $SERVER:$DEPLOY_DIR
 fi
+
+npm run lighthouse -- https://www.berlin-vegan.de$BASE_HREF

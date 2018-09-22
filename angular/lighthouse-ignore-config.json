@@ -1,0 +1,94 @@
+{
+    "chromeOptions": {
+    },
+    "lighthouseOptions": {
+    },
+    "ignored": [
+        {
+            "auditId": "color-contrast",
+            "justification": "White on Berlin-Vegan green. The green is not dark enough, but it is the brand color."
+        },
+        {
+            "auditId": "font-display",
+            "justification": "Does not seem to be very important."
+        },
+        {
+            "auditId": "geolocation-on-start",
+            "justification": "We consciously decided to do this on mobile devices."
+        },
+        {
+            "auditId": "render-blocking-resources",
+            "justification": "We probably cannot do this."
+        },
+        {
+            "auditId": "unused-css-rules",
+            "justification": "Seems to be a false positive. It is unclear, why."
+        },
+        {
+            "auditId": "uses-passive-event-listeners",
+            "justification": "Seems this is not supported by Angular."
+        },
+        {
+            "auditId": "uses-webp-images",
+            "justification": "The majority of these images is requested by Google Maps."
+        }
+    ],
+    "baseline": [
+        {
+            "auditId": "bootup-time",
+            "score": 0.24
+        },
+        {
+            "auditId": "dom-size",
+            "score": 0
+        },
+        {
+            "auditId": "estimated-input-latency",
+            "score": 0
+        },
+        {
+            "auditId": "first-contentful-paint",
+            "score": 0.41
+        },
+        {
+            "auditId": "first-cpu-idle",
+            "score": 0.18
+        },
+        {
+            "auditId": "first-meaningful-paint",
+            "score": 0.41
+        },
+        {
+            "auditId": "interactive",
+            "score": 0.21
+        },
+        {
+            "auditId": "load-fast-enough-for-pwa",
+            "score": 0
+        },
+        {
+            "auditId": "mainthread-work-breakdown",
+            "score": 0.11
+        },
+        {
+            "auditId": "redirects-http",
+            "score": 0
+        },
+        {
+            "auditId": "speed-index",
+            "score": 0.25
+        },
+        {
+            "auditId": "uses-http2",
+            "score": 0
+        },
+        {
+            "auditId": "uses-long-cache-ttl",
+            "score": 0.2
+        },
+        {
+            "auditId": "uses-rel-preconnect",
+            "score": 0.72
+        }
+    ]
+}
