@@ -43,10 +43,6 @@
             "score": 0
         },
         {
-            "auditId": "estimated-input-latency",
-            "score": 0
-        },
-        {
             "auditId": "first-contentful-paint",
             "score": 0.41
         },
@@ -61,10 +57,6 @@
         {
             "auditId": "interactive",
             "score": 0.21
-        },
-        {
-            "auditId": "load-fast-enough-for-pwa",
-            "score": 0
         },
         {
             "auditId": "mainthread-work-breakdown",
