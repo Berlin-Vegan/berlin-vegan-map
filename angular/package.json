@@ -49,7 +49,7 @@
     "@types/jasmine": "~2.8.9",
     "@types/jasminewd2": "~2.0.5",
     "@types/node": "~10.12.0",
-    "codelyzer": "~4.2.1",
+    "codelyzer": "~4.5.0",
     "git-describe": "^4.0.3",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
@@ -59,7 +59,7 @@
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "ts-node": "~5.0.1",
-    "tslint": "~5.9.1",
+    "tslint": "~5.11.0",
     "typescript": "3.1.3"
   }
 }
