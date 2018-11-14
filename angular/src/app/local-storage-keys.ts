@@ -14,6 +14,9 @@ function trimX(s: string, x: string) {
 
 function getRelativeBasePath() {
     if (document.baseURI) {
+        if (document.location == null) {
+            throw new Error("document.location is null");
+        }
         const origin = trimX(document.location.origin, "/");
         return trimX(document.baseURI.substring(origin.length), "/");
     } else {

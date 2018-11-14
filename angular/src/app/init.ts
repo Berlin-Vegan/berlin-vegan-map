@@ -10,7 +10,7 @@ if (window.location.hostname !== "localhost" && window.location.protocol === "ht
 } else {
     migrateLegacyKeys();
     global_language = getLanguage();
-    document.documentElement.setAttribute("lang", global_language);
+    document.documentElement!.setAttribute("lang", global_language);
     appendScript(
         "https://maps.googleapis.com/maps/api/js?"
         + "v=3"
@@ -59,7 +59,7 @@ function getLanguage(): Language {
 }
 
 function getPreferredLanguages() {
-    let preferredLanguages: string[];
+    let preferredLanguages: ReadonlyArray<string>;
     if (navigator.languages !== undefined) {
         // Firefox, Chrome, Opera
         preferredLanguages = navigator.languages;
@@ -80,5 +80,5 @@ function appendScript(url: string) {
     const script = document.createElement("script");
     script.src = url;
     script.async = false;
-    document.head.appendChild(script);
+    document.head!.appendChild(script);
 }

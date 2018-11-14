@@ -12,7 +12,7 @@ export class AppComponent {
 
     constructor(router: Router) {
         router.events.pipe(
-            filter((event: Event) => event instanceof NavigationEnd),
+            filter(event => event instanceof NavigationEnd),
             pairwise(),
         ).subscribe((pair: any) => {
             AppComponent.previousUrl = pair[0].url;

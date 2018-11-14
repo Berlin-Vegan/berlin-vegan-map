@@ -1,3 +1,5 @@
+/// <reference types="@types/googlemaps"/>
+
 import "./init";
 
 import { NgModule } from "@angular/core";

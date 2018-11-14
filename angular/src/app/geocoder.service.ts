@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import {} from "@types/googlemaps";
 
 @Injectable()
 export class GeocoderService {

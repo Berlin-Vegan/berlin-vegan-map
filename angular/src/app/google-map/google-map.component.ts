@@ -9,7 +9,6 @@ import {
     Output,
     ViewChild,
 } from "@angular/core";
-import {} from "@types/googlemaps";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18N } from "../i18n-provider";
