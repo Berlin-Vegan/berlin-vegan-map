@@ -48,13 +48,10 @@
                     ><span class="fas {{path.faClass}}" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
                     <a mat-menu-item href="https://www.berlin-vegan.de/bv-guide/" target="_blank" rel="noopener"
                     ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
-                    <a 
-                        mat-menu-item
-                        [matMenuTriggerFor]="contactSubmenu"
-                        href=""
-                        (click)="$event.preventDefault()"
-                        role="button"
-                    ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.contact}}</a>
+                    <a mat-menu-item href="https://data.berlin-vegan.de/gastro-submit/" target="_blank" rel="noopener"
+                    ><span class="fas fa-edit" aria-hidden="true">&nbsp;</span>{{i18n.header.reportNewLocation}}</a>
+                    <a mat-menu-item href="mailto:karte@berlin-vegan.de" target="_blank" rel="noopener"
+                    ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.reportProblem}}</a>
                 </mat-menu>
             </div>
             <ul *ngIf="!hasMobileSize">
@@ -65,29 +62,13 @@
                     <a href="https://www.berlin-vegan.de/bv-guide/" target="_blank" rel="noopener"
                     ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
                 </li><li><!-- No space between lis -->
-                    <a 
-                        mat-button
-                        [matMenuTriggerFor]="contactSubmenu"
-                        href=""
-                        (click)="$event.preventDefault()"
-                        role="button"
-                    ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.contact}}</a>
+                    <a href="https://data.berlin-vegan.de/gastro-submit/" target="_blank" rel="noopener"
+                    ><span class="fas fa-edit" aria-hidden="true">&nbsp;</span>{{i18n.header.reportNewLocation}}</a>
+                </li><li><!-- No space between lis -->
+                    <a href="mailto:karte@berlin-vegan.de" target="_blank" rel="noopener"
+                    ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.reportProblem}}</a>
                 </li>
             </ul>
-            <mat-menu #contactSubmenu="matMenu">
-                    <a
-                        mat-menu-item
-                        href="https://data.berlin-vegan.de/gastro-submit/"
-                        target="_blank"
-                        rel="noopener"
-                    ><span class="fas fa-edit" aria-hidden="true">&nbsp;</span>{{i18n.header.reportNewLocation}}</a>
-                    <a
-                        mat-menu-item
-                        href="mailto:karte@berlin-vegan.de"
-                        target="_blank"
-                        rel="noopener"
-                    ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.reportProblem}}</a>
-                </mat-menu>
         </div>
         <ul class="col-3">
             <li>

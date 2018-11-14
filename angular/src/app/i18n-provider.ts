@@ -367,10 +367,6 @@ const i18n = {
             en: "Shopping",
             de: "Einkaufen",
         },
-        contact: {
-            en: "Contact",
-            de: "Kontakt",
-        },
         reportNewLocation: {
             en: "Suggest new location",
             de: "Neue Location vorschlagen",
