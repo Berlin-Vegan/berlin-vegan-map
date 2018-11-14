@@ -68,11 +68,15 @@
         },
         {
             "auditId": "speed-index",
-            "score": 0.25
+            "score": 0.21
         },
         {
             "auditId": "uses-http2",
             "score": 0
+        },
+        {
+            "auditId": "uses-responsive-images",
+            "score": 0.85
         },
         {
             "auditId": "uses-long-cache-ttl",
