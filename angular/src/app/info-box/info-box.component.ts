@@ -25,8 +25,9 @@ export class InfoBoxComponent implements OnChanges {
     @Input() location: Location;
     @Input() place: Place | undefined;
 
-    @Output() centerLocation = new EventEmitter<void>();
-    @Output() close = new EventEmitter<void>();
+    @Output() readonly centerLocation = new EventEmitter<void>();
+    // tslint:disable-next-line:no-output-named-after-standard-event
+    @Output() readonly close = new EventEmitter<void>();
 
     readonly isPhone = NavigatorUtil.isPhone();
     private readonly extraLongHyphen = "–"; // Your editor may display this as a regular hyphen.
