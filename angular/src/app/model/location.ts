@@ -1,8 +1,8 @@
 import { GeoUtil, LatitudeLongitude } from "@marco-eckstein/js-utils";
 
-import { VeganCategory } from "./vegan-category";
 import { OpeningTimesCollection } from "./opening-times-collection";
 import { Picture } from "./picture";
+import { VeganCategory } from "./vegan-category";
 import { YesNoUnknown } from "./yes-no-unknown";
 
 export class Location {

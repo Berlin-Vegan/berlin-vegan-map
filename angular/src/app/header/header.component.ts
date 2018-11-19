@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, Output, Inject } from "@angular/core";
+import { Component, EventEmitter, Inject, Input, Output } from "@angular/core";
 import { Router } from "@angular/router";
 
+import { ConfigurationService } from "../configuration.service";
 import { I18N } from "../i18n-provider";
 import { LocalStorageService } from "../local-storage.service";
-import { ConfigurationService } from "../configuration.service";
 
 @Component({
     selector: "app-header",

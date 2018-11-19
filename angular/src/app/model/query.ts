@@ -1,8 +1,8 @@
 import { Distance } from "./distance";
-import { getVeganCategories } from "./vegan-category";
 import { SortOrder } from "./sort-order";
 import { Storable } from "./storable";
 import { toMapOfStringToBoolean } from "./util";
+import { getVeganCategories } from "./vegan-category";
 
 export abstract class Query extends Storable {
     text = "";

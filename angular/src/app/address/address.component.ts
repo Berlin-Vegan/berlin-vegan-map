@@ -1,10 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges, Inject } from "@angular/core";
+import { Component, Inject, Input, OnChanges, SimpleChanges } from "@angular/core";
 
 import { I18N } from "../i18n-provider";
 import { LocalStorageService } from "../local-storage.service";
+import { GastroLocation } from "../model/gastro-location";
 import { Location } from "../model/location";
 import { Place } from "../model/place";
-import { GastroLocation } from "../model/gastro-location";
 
 @Component({
     selector: "app-address",

@@ -1,13 +1,13 @@
-import { Injectable, Inject } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { DateUtil } from "@marco-eckstein/js-utils";
 
 import { I18N } from "./i18n-provider";
 import { I18nService } from "./i18n.service";
 import { JsonLocation } from "./model/json/json-location";
-import { TimeInterval } from "./model/time-interval";
-import { OpeningTimeInterval } from "./model/opening-time-interval";
 import { OpeningTime } from "./model/opening-time";
+import { OpeningTimeInterval } from "./model/opening-time-interval";
 import { OpeningTimesCollection } from "./model/opening-times-collection";
+import { TimeInterval } from "./model/time-interval";
 
 @Injectable()
 export class OpeningTimesService {

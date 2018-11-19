@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, Inject } from "@angular/core";
-
+import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
 import { DayOfWeek, NavigatorUtil } from "@marco-eckstein/js-utils";
-import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from "ngx-gallery";
+import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from "ngx-gallery";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18N } from "../i18n-provider";
-import { LocalStorageService } from "./../local-storage.service";
 import { Location } from "../model/location";
 import { Place } from "../model/place";
+
+import { LocalStorageService } from "./../local-storage.service";
 
 @Component({
     selector: "app-info-box",

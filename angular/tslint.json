@@ -83,6 +83,12 @@
       "check-else",
       "check-whitespace"
     ],
+    "ordered-imports": [
+      true,
+      {
+        "grouped-imports": "true"
+      }
+    ],
     "prefer-const": true,
     "quotemark": [
       true,

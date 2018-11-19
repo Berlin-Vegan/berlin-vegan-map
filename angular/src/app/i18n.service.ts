@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { I18nUtil } from "@marco-eckstein/js-utils";
 
-import { TimeInterval } from "./model/time-interval";
 import { LocalStorageService } from "./local-storage.service";
+import { TimeInterval } from "./model/time-interval";
 
 @Injectable()
 export class I18nService {

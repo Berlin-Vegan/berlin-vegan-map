@@ -1,4 +1,4 @@
-import { Component, Input, Inject } from "@angular/core";
+import { Component, Inject, Input } from "@angular/core";
 
 import { I18N } from "../i18n-provider";
 

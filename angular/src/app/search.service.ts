@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { DayOfWeek } from "@marco-eckstein/js-utils";
 
+import { LocalStorageService } from "./local-storage.service";
 import { GastroLocation } from "./model/gastro-location";
 import { GastroQuery } from "./model/gastro-query";
 import { GastroTag } from "./model/gastro-tag";
 import { ShoppingLocation } from "./model/shopping-location";
 import { ShoppingQuery } from "./model/shopping-query";
-import { LocalStorageService } from "./local-storage.service";
 import { ShoppingTag } from "./model/shopping-tag";
 
 @Injectable()

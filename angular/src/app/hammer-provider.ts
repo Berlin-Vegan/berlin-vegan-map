@@ -1,6 +1,6 @@
-import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from "@angular/platform-browser";
-import "hammerjs";
+import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from "@angular/platform-browser";
 import "hammer-timejs";
+import "hammerjs";
 
 delete Hammer.defaults.cssProps.userSelect; // Re-enable text selection
 

@@ -1,5 +1,5 @@
-import { getShoppingTags } from "./shopping-tag";
 import { Query } from "./query";
+import { getShoppingTags } from "./shopping-tag";
 import { toMapOfStringToBoolean } from "./util";
 
 export class ShoppingQuery extends Query {

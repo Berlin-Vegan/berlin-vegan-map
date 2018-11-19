@@ -1,6 +1,7 @@
 import { DayOfWeek } from "@marco-eckstein/js-utils";
 
 import { I18nService } from "../i18n.service";
+
 import { OpeningTimeInterval } from "./opening-time-interval";
 
 export class OpeningTime {

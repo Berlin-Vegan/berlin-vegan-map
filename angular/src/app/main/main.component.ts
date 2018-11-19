@@ -1,21 +1,21 @@
-import { Component, ElementRef, OnInit, ViewChild, Inject } from "@angular/core";
+import { Component, ElementRef, Inject, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NavigatorUtil } from "@marco-eckstein/js-utils";
 
-import { GastroLocation } from "../model/gastro-location";
-import { GastroQuery } from "../model/gastro-query";
-import { ShoppingLocation } from "../model/shopping-location";
-import { ShoppingQuery } from "../model/shopping-query";
+import { ConfigurationService } from "../configuration.service";
 import { GoogleMapComponent } from "../google-map/google-map.component";
 import { I18N } from "../i18n-provider";
-import { Location } from "../model/location";
-import { LocationService } from "../location.service";
-import { Place } from "../model/place";
-import { ResultsListComponent } from "../results-list/results-list.component";
-import { SearchComponent } from "../search/search.component";
-import { SearchService } from "../search.service";
 import { LocalStorageService } from "../local-storage.service";
-import { ConfigurationService } from "../configuration.service";
+import { LocationService } from "../location.service";
+import { GastroLocation } from "../model/gastro-location";
+import { GastroQuery } from "../model/gastro-query";
+import { Location } from "../model/location";
+import { Place } from "../model/place";
+import { ShoppingLocation } from "../model/shopping-location";
+import { ShoppingQuery } from "../model/shopping-query";
+import { ResultsListComponent } from "../results-list/results-list.component";
+import { SearchService } from "../search.service";
+import { SearchComponent } from "../search/search.component";
 
 let module_firstConstruction = true;
 let module_fullMapView: boolean;

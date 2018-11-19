@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output, Inject } from "@angular/core";
+import { Component, EventEmitter, Inject, Input, OnDestroy, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
 import { GeocoderService } from "../geocoder.service";

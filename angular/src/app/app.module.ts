@@ -1,15 +1,15 @@
 /// <reference types="@types/googlemaps"/>
 
 import "./init";
-
+// tslint:disable-next-line:ordered-imports
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
 import { MatMenuModule } from "@angular/material/menu";
 import { BrowserModule } from "@angular/platform-browser";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule, Routes } from "@angular/router";
 import { ServiceWorkerModule } from "@angular/service-worker";
-
 import { NgxGalleryModule } from "ngx-gallery";
 
 import { environment } from "../environments/environment";
@@ -33,12 +33,11 @@ import { MainComponent } from "./main/main.component";
 import { OpeningTimesService } from "./opening-times.service";
 import { PlaceSelectComponent } from "./place-select/place-select.component";
 import { ResultsListComponent } from "./results-list/results-list.component";
-import { SearchComponent } from "./search/search.component";
 import { SearchService } from "./search.service";
+import { SearchComponent } from "./search/search.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SortComponent } from "./sort/sort.component";
 import { StatisticsComponent } from "./statistics/statistics.component";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 const appRoutes: Routes = [
     { path: "gastro", component: MainComponent },

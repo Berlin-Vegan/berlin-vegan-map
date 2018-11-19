@@ -1,16 +1,16 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, Inject } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 
 import { ConfigurationService } from "./configuration.service";
-import { GastroLocation } from "./model/gastro-location";
 import { I18N } from "./i18n-provider";
+import { LocalStorageService } from "./local-storage.service";
+import { GastroLocation } from "./model/gastro-location";
 import { JsonGastroLocation } from "./model/json/json-gastro-location";
 import { JsonLocation } from "./model/json/json-location";
 import { JsonShoppingLocation } from "./model/json/json-shopping-location";
-import { LocalStorageService } from "./local-storage.service";
-import { OpeningTimesService } from "./opening-times.service";
 import { ShoppingLocation } from "./model/shopping-location";
 import { VeganCategory } from "./model/vegan-category";
+import { OpeningTimesService } from "./opening-times.service";
 
 @Injectable()
 export class LocationService {

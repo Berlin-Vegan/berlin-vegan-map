@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, Inject } from "@angular/core";
+import { Component, EventEmitter, Inject, Input, Output } from "@angular/core";
 
 import { I18N } from "../i18n-provider";
 import { SortOrder } from "../model/sort-order";

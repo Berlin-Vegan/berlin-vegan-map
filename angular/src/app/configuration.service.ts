@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { environment } from "../environments/environment";
+
 import { VeganCategory } from "./model/vegan-category";
 
 @Injectable()

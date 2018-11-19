@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output, Inject } from "@angular/core";
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from "@angular/core";
 import { DomUtil } from "@marco-eckstein/js-utils";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18N } from "../i18n-provider";
-import { Location } from "../model/location";
 import { LocalStorageService } from "../local-storage.service";
+import { Location } from "../model/location";
 
 @Component({
     selector: "app-results-list",

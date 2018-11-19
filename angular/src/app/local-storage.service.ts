@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 
-import { GastroQuery } from "./model/gastro-query";
 import { keys } from "./local-storage-keys";
+import * as localStorageWrapper from "./local-storage-wrapper";
+import { GastroQuery } from "./model/gastro-query";
 import { Language } from "./model/language";
 import { Settings } from "./model/settings";
 import { ShoppingQuery } from "./model/shopping-query";
-import * as localStorageWrapper from "./local-storage-wrapper";
 
 declare var global_language: Language;
 

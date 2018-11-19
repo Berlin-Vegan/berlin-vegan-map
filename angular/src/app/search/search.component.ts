@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, Inject } from "@angular/core";
+import { Component, EventEmitter, Inject, Input, Output } from "@angular/core";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18N } from "../i18n-provider";
@@ -6,7 +6,7 @@ import { GastroQuery } from "../model/gastro-query";
 import { GastroTag, getGastroTags } from "../model/gastro-tag";
 import { Place } from "../model/place";
 import { ShoppingQuery } from "../model/shopping-query";
-import { ShoppingTag, getShoppingTags } from "../model/shopping-tag";
+import { getShoppingTags, ShoppingTag } from "../model/shopping-tag";
 import { getVeganCategories } from "../model/vegan-category";
 
 @Component({
