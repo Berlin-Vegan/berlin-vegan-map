@@ -31,7 +31,7 @@
                     </p>
                     <p *ngIf="location.telephone">
                         {{i18n.infoBox.phone}}:
-                        <a *ngIf="isPhone;else justTelephone" href="tel:{{location.telephone}}">{{location.telephone}}</a>
+                        <a *ngIf="isPhone; else justTelephone" href="tel:{{location.telephone}}">{{location.telephone}}</a>
                         <ng-template #justTelephone>{{location.telephone}}</ng-template>
                     </p>
                     <p [innerHTML]="openingTimesInnerHtml"></p>

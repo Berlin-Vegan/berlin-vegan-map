@@ -12,7 +12,7 @@
         {{i18n.address.locationInGoogleMaps}}
     </a>
 
-    <a *ngIf="googleMapsDirectionsUrl;else noGoogleMapsDirections"
+    <a *ngIf="googleMapsDirectionsUrl; else noGoogleMapsDirections"
         mat-menu-item
         href="{{googleMapsDirectionsUrl}}"
         target="_blank"
@@ -28,7 +28,7 @@
         </span>
     </ng-template>
 
-    <a *ngIf="bvgDirectionsUrl;else noBvgDirections"
+    <a *ngIf="bvgDirectionsUrl; else noBvgDirections"
         mat-menu-item
         href="{{bvgDirectionsUrl}}"
         target="_blank"
