@@ -52,9 +52,8 @@ export class LocationService {
             this.getOpenComment(location),
             this.getVeganCategory(location),
             location.comment,
-            this.removeFormatting(location.comment),
             location.commentEnglish,
-            this.removeFormatting(location.commentEnglish),
+            this.removeFormatting(location.review),
             // Base URL possibly not necessary in production:
             location.reviewURL ? this.configurationService.reviewBaseUrl + location.reviewURL : undefined,
             location.organic,
@@ -92,9 +91,8 @@ export class LocationService {
             this.getOpenComment(location),
             this.getVeganCategory(location),
             location.comment,
-            this.removeFormatting(location.comment),
             location.commentEnglish,
-            this.removeFormatting(location.commentEnglish),
+            this.removeFormatting(location.review),
             // Base URL possibly not necessary in production:
             location.reviewURL ? this.configurationService.reviewBaseUrl + location.reviewURL : undefined,
             location.organic,
@@ -126,10 +124,7 @@ export class LocationService {
         }
     }
 
-    private removeFormatting(locationComment: string | undefined): string | undefined {
-        return locationComment ?
-            locationComment.replace(/&shy;/g, "").replace(/<br\/>/g, " ")
-            :
-            locationComment;
+    private removeFormatting(review: string | undefined): string | undefined {
+        return review ? review.replace(/&shy;/g, "").replace(/<br\/>/g, " ") : review;
     }
 }

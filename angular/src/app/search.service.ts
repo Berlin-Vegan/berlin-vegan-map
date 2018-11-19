@@ -58,11 +58,8 @@ export class SearchService {
                     location.cityCode + "",
                     location.telephone || "",
                     location.website || "",
-                    (this.localStorageService.getLanguage() === "en" ?
-                        location.commentEnglishWithoutFormatting
-                        :
-                        location.commentWithoutFormatting
-                    ) || ""
+                    location.getLocalizedComment(this.localStorageService.getLanguage()) || "",
+                    location.reviewWithoutFormatting || "",
                 ]);
 
                 if (location instanceof GastroLocation) {

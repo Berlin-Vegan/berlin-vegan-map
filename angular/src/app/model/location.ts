@@ -1,5 +1,6 @@
 import { GeoUtil, LatitudeLongitude } from "@marco-eckstein/js-utils";
 
+import { Language } from "./language";
 import { OpeningTimesCollection } from "./opening-times-collection";
 import { Picture } from "./picture";
 import { VeganCategory } from "./vegan-category";
@@ -20,9 +21,8 @@ export class Location {
         public readonly localizedOpenComment: string | undefined,
         public readonly veganCategory: VeganCategory,
         public readonly comment: string | undefined,
-        public readonly commentWithoutFormatting: string | undefined,
         public readonly commentEnglish: string | undefined,
-        public readonly commentEnglishWithoutFormatting: string | undefined,
+        public readonly reviewWithoutFormatting: string | undefined,
         public readonly reviewURL: string | undefined,
         public readonly organic: YesNoUnknown,
         public readonly handicappedAccessible: YesNoUnknown,
@@ -40,6 +40,10 @@ export class Location {
 
     getDistanceToCoordinatesInKm(coordinates: Coordinates): number {
         return GeoUtil.getDistanceInKm(coordinates, this.latitudeLongitude);
+    }
+
+    getLocalizedComment(language: Language): string | undefined {
+        return language === "en" ? this.commentEnglish : this.comment;
     }
 
     get address(): string {

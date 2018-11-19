@@ -22,6 +22,7 @@
             <div class="flex-container">
                 <div>
                     <p>{{location.tagsFriendly}} ({{i18n.enums.veganCategory.verbose[location.veganCategory]}})</p>
+                    <p *ngIf="comment">{{comment}}</p>
                     <p>
                         <app-address [location]="location" [place]="place"></app-address>
                     </p>
@@ -36,7 +37,9 @@
                     </p>
                     <p [innerHTML]="openingTimesInnerHtml"></p>
                     <p *ngIf="location.localizedOpenComment">{{location.localizedOpenComment}}</p>
-                    <p [innerHTML]="commentAndReviewInnerHtml"></p>
+                    <p *ngIf="location.reviewURL">
+                        <a [href]="location.reviewURL" target="_blank" rel="noopener">{{i18n.infoBox.review}}</a>
+                    </p>
                 </div>
                 <div *ngIf="galleryImages" aria-hidden="true">
                     <p>

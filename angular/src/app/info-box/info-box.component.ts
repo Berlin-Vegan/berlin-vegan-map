@@ -92,17 +92,8 @@ export class InfoBoxComponent implements OnChanges {
         return html;
     }
 
-    get commentAndReviewInnerHtml(): string {
-        return this.localStorageService.getLanguage() === "en" ?
-            (this.location.commentEnglish ? `${this.location.commentEnglish}<br/>` : ``)
-            + (this.location.reviewURL ? this.reviewAnchor : ``)
-            :
-            (this.location.reviewURL ? this.reviewAnchor : this.location.comment || ``);
-    }
-
-    private get reviewAnchor(): string {
-        return `<a target="_blank" rel="noopener" href="${this.location.reviewURL}">`
-            + `${this.i18n.infoBox.review}</a>`;
+    get comment(): string | undefined {
+        return this.location.getLocalizedComment(this.localStorageService.getLanguage());
     }
 
     ngOnChanges(changes: SimpleChanges) {

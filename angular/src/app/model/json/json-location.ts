@@ -134,6 +134,12 @@ export interface JsonLocation {
     handicappedAccessible: YesNoUnknown;
 
     /**
+     * Review by Berlin-Vegan.
+     * Non-empty.
+     */
+    review?: string;
+
+    /**
      * URL of a review by Berlin-Vegan, relative to Berlin-Vegan's review base URL.
      * Non-empty.
      */
