@@ -30,6 +30,7 @@
     "@angular/pwa": "^0.6.8",
     "@angular/router": "7.0.0",
     "@angular/service-worker": "7.0.0",
+    "@marco-eckstein/angular-lib-common": "^1.0.0",
     "@marco-eckstein/js-utils": "^0.9.0",
     "core-js": "^2.5.4",
     "hammer-timejs": "^1.1.0",

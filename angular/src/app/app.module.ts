@@ -10,6 +10,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule, Routes } from "@angular/router";
 import { ServiceWorkerModule } from "@angular/service-worker";
+import { ExternalHRefModule } from "@marco-eckstein/angular-lib-common";
 import { NgxGalleryModule } from "ngx-gallery";
 
 import { environment } from "../environments/environment";
@@ -67,6 +68,11 @@ const appRoutes: Routes = [
     ],
     imports: [
         BrowserModule,
+        ExternalHRefModule.forRoot({
+            isExternalHRef: isExternalHRef,
+            externalHRefTargetDefaultsToBlank: true,
+            safeBlankRelTokens: ["noopener"],
+        }),
         FormsModule,
         HttpClientModule,
         MatMenuModule,
@@ -89,3 +95,7 @@ const appRoutes: Routes = [
     bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function isExternalHRef(href: string): boolean {
+    return href.startsWith("http://") || href.startsWith("https://");
+}

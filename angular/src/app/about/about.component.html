@@ -6,15 +6,14 @@
         <p>
             <span title="GitHub" aria-label="GitHub">
                 <span class="fab fa-github" aria-hidden="true"></span>
-                <a [href]="versionInfo.repositoryUrl" target="_blank" rel="noopener">{{versionInfo.name}}</a>
+                <a [href]="versionInfo.repositoryUrl">{{versionInfo.name}}</a>
             </span>
             <br/>
             <span title="Git description" aria-label="Git description" class="git">
                 <span class="fas fa-code-branch" aria-hidden="true"></span>
                 <span *ngIf="versionInfo.gitDescription.dirty; else clean">{{versionInfo.gitDescription.raw}}</span>
                 <ng-template #clean>
-                    <a [href]="gitHubCommitUrl" target="_blank" rel="noopener"
-                    >{{versionInfo.gitDescription.raw}} (clean)</a>
+                    <a [href]="gitHubCommitUrl">{{versionInfo.gitDescription.raw}} (clean)</a>
                 </ng-template>
             </span>
             <br/>

@@ -12,8 +12,6 @@
                     >{{location.name}}</a>
                 </h1>
                 <a *ngIf="location.website"
-                    target="_blank"
-                    rel="noopener"
                     [href]="location.website"
                     [title]="location.website"
                     aria-label="Website"
@@ -38,7 +36,7 @@
                     <p [innerHTML]="openingTimesInnerHtml"></p>
                     <p *ngIf="location.localizedOpenComment">{{location.localizedOpenComment}}</p>
                     <p *ngIf="location.reviewURL">
-                        <a [href]="location.reviewURL" target="_blank" rel="noopener">{{i18n.infoBox.review}}</a>
+                        <a [href]="location.reviewURL">{{i18n.infoBox.review}}</a>
                     </p>
                 </div>
                 <div *ngIf="galleryImages" aria-hidden="true">

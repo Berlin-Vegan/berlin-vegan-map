@@ -2,12 +2,7 @@
 >{{location.address}}</a>
 <mat-menu #menu="matMenu">
 
-    <a
-        mat-menu-item
-        href="{{googleMapsSearchUrl}}"
-        target="_blank"
-        rel="noopener"
-    >
+    <a mat-menu-item href="{{googleMapsSearchUrl}}">
         <span class="fas fa-map-marker-alt" aria-hidden="true"></span>&nbsp;&nbsp;
         {{i18n.address.locationInGoogleMaps}}
     </a>
@@ -15,8 +10,6 @@
     <a *ngIf="googleMapsDirectionsUrl; else noGoogleMapsDirections"
         mat-menu-item
         href="{{googleMapsDirectionsUrl}}"
-        target="_blank"
-        rel="noopener"
     >
         <span class="fas fa-route" aria-hidden="true"></span>&nbsp;&nbsp;
         {{i18n.address.directionsInGoogleMaps}}
@@ -31,8 +24,6 @@
     <a *ngIf="bvgDirectionsUrl; else noBvgDirections"
         mat-menu-item
         href="{{bvgDirectionsUrl}}"
-        target="_blank"
-        rel="noopener"
     >
         <span class="fas fa-subway" aria-hidden="true"></span>&nbsp;&nbsp;
         {{i18n.address.publicTransport}}
