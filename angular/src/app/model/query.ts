@@ -1,13 +1,14 @@
+import { ObjectUtil } from "@marco-eckstein/js-utils";
+
 import { Distance } from "./distance";
 import { SortOrder } from "./sort-order";
 import { Storable } from "./storable";
-import { toMapObject } from "./util";
 import { getVeganCategories } from "./vegan-category";
 
 export abstract class Query extends Storable {
     text = "";
     textAppliesToNamesOnly = false;
-    veganCategories: { [key: string]: boolean; } = toMapObject(getVeganCategories(), true);
+    veganCategories: { [key: string]: boolean; } = ObjectUtil.toMapObject(getVeganCategories(), true);
     openAtWeekDay: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "all" = "all";
     openAtTime = "";
     openNow = false;

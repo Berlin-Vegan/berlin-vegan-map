@@ -1,9 +1,10 @@
+import { ObjectUtil } from "@marco-eckstein/js-utils";
+
 import { getGastroTags } from "./gastro-tag";
 import { Query } from "./query";
-import { toMapObject } from "./util";
 
 export class GastroQuery extends Query {
-    tags: { [key: string]: boolean; } = toMapObject(getGastroTags(), true);
+    tags: { [key: string]: boolean; } = ObjectUtil.toMapObject(getGastroTags(), true);
     glutenFree = false;
     breakfast = false;
     brunch = false;

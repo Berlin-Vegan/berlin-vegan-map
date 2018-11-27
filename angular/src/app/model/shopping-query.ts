@@ -1,9 +1,10 @@
+import { ObjectUtil } from "@marco-eckstein/js-utils";
+
 import { Query } from "./query";
 import { getShoppingTags } from "./shopping-tag";
-import { toMapObject } from "./util";
 
 export class ShoppingQuery extends Query {
-    tags: { [key: string]: boolean; } = toMapObject(getShoppingTags(), true);
+    tags: { [key: string]: boolean; } = ObjectUtil.toMapObject(getShoppingTags(), true);
 
     constructor(props: any = null) {
         super(props);

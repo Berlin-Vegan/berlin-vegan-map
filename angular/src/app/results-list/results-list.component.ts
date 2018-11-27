@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from "@angular/core";
-import { DomUtil } from "@marco-eckstein/js-utils";
+import { DocumentUtil } from "@marco-eckstein/js-utils";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18N } from "../i18n-provider";
@@ -35,7 +35,7 @@ export class ResultsListComponent implements OnInit {
     makeVisible(location: Location) {
         const locationElement = document.getElementById(location.id)!; // TODO
 
-        if (!DomUtil.isElementVisible(locationElement)) {
+        if (!DocumentUtil.isElementVisible(locationElement)) {
             locationElement.scrollIntoView();
         }
     }
