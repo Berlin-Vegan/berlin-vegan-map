@@ -195,6 +195,6 @@ export class MainComponent implements OnInit {
     }
 
     private get hasMobileSize(): boolean {
-        return !window.matchMedia(this.configurationService.mediaQueries["min-width-1"]).matches;
+        return this.configurationService.hasMobileSize();
     }
 }

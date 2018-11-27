@@ -55,8 +55,7 @@ export class HeaderComponent {
         return this.router.url.replace("/", "");
     }
 
-    // TODO: Refactor (duplicated in MainComponent)
     get hasMobileSize(): boolean {
-        return !window.matchMedia(this.configurationService.mediaQueries["min-width-1"]).matches;
+        return this.configurationService.hasMobileSize();
     }
 }

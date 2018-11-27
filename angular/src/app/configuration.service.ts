@@ -30,6 +30,10 @@ export class ConfigurationService {
     readonly mediaQueries = { "min-width-1": "all and (min-width: 568px)"};
     readonly minWidths = [ 568, 655, 740, 1080, 1210, 1380, 1600, 1915 ];
 
+    hasMobileSize(): boolean {
+        return !window.matchMedia(this.mediaQueries["min-width-1"]).matches;
+    }
+
     getColor(veganCategory: VeganCategory): string {
         switch (veganCategory) {
             case "omnivorous":
