@@ -33,6 +33,24 @@ export class HeaderComponent {
         { name: "about", faClass: "fas fa-info-circle" },
     ];
 
+    readonly links = [
+        {
+            name: "nativeApp",
+            faClass: "fas fa-mobile-alt",
+            href: "https://www.berlin-vegan.de/bv-guide/"
+        },
+        {
+            name: "reportNewLocation",
+            faClass: "fas fa-edit",
+            href: "https://data.berlin-vegan.de/gastro-submit/"
+        },
+        {
+            name: "reportProblem",
+            faClass: "fas fa-envelope",
+            href: "mailto:karte@berlin-vegan.de"
+        },
+    ];
+
     get pathName(): string {
         return this.router.url.replace("/", "");
     }

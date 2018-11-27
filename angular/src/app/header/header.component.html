@@ -45,28 +45,18 @@
                 </a>
                 <mat-menu #menu="matMenu">
                     <a *ngFor="let path of paths" mat-menu-item routerLink="/{{path.name}}" routerLinkActive="active-link"
-                    ><span class="fas {{path.faClass}}" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
-                    <a mat-menu-item href="https://www.berlin-vegan.de/bv-guide/"
-                    ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
-                    <a mat-menu-item href="https://data.berlin-vegan.de/gastro-submit/"
-                    ><span class="fas fa-edit" aria-hidden="true">&nbsp;</span>{{i18n.header.reportNewLocation}}</a>
-                    <a mat-menu-item href="mailto:karte@berlin-vegan.de"
-                    ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.reportProblem}}</a>
+                    ><span [class]="path.faClass" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
+                    <a *ngFor="let link of links" mat-menu-item [href]="link.href"
+                    ><span [class]="link.faClass" aria-hidden="true">&nbsp;</span>{{i18n.header[link.name]}}</a>
                 </mat-menu>
             </div>
             <ul *ngIf="!hasMobileSize">
                 <li *ngFor="let path of paths">
                     <a routerLink="/{{path.name}}" routerLinkActive="active-link"
-                    ><span class="{{path.faClass}}" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
-                </li><li><!-- No space between lis -->
-                    <a href="https://www.berlin-vegan.de/bv-guide/"
-                    ><span class="fas fa-mobile-alt" aria-hidden="true">&nbsp;</span>{{i18n.header.nativeApp}}</a>
-                </li><li><!-- No space between lis -->
-                    <a href="https://data.berlin-vegan.de/gastro-submit/"
-                    ><span class="fas fa-edit" aria-hidden="true">&nbsp;</span>{{i18n.header.reportNewLocation}}</a>
-                </li><li><!-- No space between lis -->
-                    <a href="mailto:karte@berlin-vegan.de"
-                    ><span class="fas fa-envelope" aria-hidden="true">&nbsp;</span>{{i18n.header.reportProblem}}</a>
+                    ><span [class]="path.faClass" aria-hidden="true">&nbsp;</span>{{i18n.header[path.name]}}</a>
+                </li><li *ngFor="let link of links"><!-- No space between lis -->
+                    <a [href]="link.href"
+                    ><span [class]="link.faClass" aria-hidden="true">&nbsp;</span>{{i18n.header[link.name]}}</a>
                 </li>
             </ul>
         </div>
