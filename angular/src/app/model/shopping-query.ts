@@ -1,9 +1,9 @@
 import { Query } from "./query";
 import { getShoppingTags } from "./shopping-tag";
-import { toMapOfStringToBoolean } from "./util";
+import { toMapObject } from "./util";
 
 export class ShoppingQuery extends Query {
-    tags: { [key: string]: boolean; } = toMapOfStringToBoolean(getShoppingTags(), true);
+    tags: { [key: string]: boolean; } = toMapObject(getShoppingTags(), true);
 
     constructor(props: any = null) {
         super(props);

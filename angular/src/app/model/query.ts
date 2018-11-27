@@ -1,13 +1,13 @@
 import { Distance } from "./distance";
 import { SortOrder } from "./sort-order";
 import { Storable } from "./storable";
-import { toMapOfStringToBoolean } from "./util";
+import { toMapObject } from "./util";
 import { getVeganCategories } from "./vegan-category";
 
 export abstract class Query extends Storable {
     text = "";
     textAppliesToNamesOnly = false;
-    veganCategories: { [key: string]: boolean; } = toMapOfStringToBoolean(getVeganCategories(), true);
+    veganCategories: { [key: string]: boolean; } = toMapObject(getVeganCategories(), true);
     openAtWeekDay: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "all" = "all";
     openAtTime = "";
     openNow = false;

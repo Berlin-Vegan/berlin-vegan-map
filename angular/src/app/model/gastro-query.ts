@@ -1,9 +1,9 @@
 import { getGastroTags } from "./gastro-tag";
 import { Query } from "./query";
-import { toMapOfStringToBoolean } from "./util";
+import { toMapObject } from "./util";
 
 export class GastroQuery extends Query {
-    tags: { [key: string]: boolean; } = toMapOfStringToBoolean(getGastroTags(), true);
+    tags: { [key: string]: boolean; } = toMapObject(getGastroTags(), true);
     glutenFree = false;
     breakfast = false;
     brunch = false;
