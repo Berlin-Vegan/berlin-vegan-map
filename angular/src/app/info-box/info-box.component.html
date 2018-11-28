@@ -3,29 +3,32 @@
     <div class="content-column" (swiperight)="{}">
         <article>
             <header class="flex-container-nowrap">
-                <h1>
-                    <a
-                        title="{{i18n.showOnMap}}"
-                        href=""
-                        role="button"
-                        (click)="$event.preventDefault(); centerLocation.emit($event)"
-                    >{{location.name}}</a>
-                </h1>
-                <a *ngIf="location.website"
-                    [href]="location.website"
-                    [title]="location.website"
-                    aria-label="Website"
-                ><span class="fas fa-globe-americas" aria-hidden="true"></span></a>
+                <div class="title-with-website" [style.width]="place && place.coordinates ? '55%' : '100%'">
+                    <h1>
+                        <a
+                            title="{{i18n.showOnMap}}"
+                            href=""
+                            role="button"
+                            (click)="$event.preventDefault(); centerLocation.emit($event)"
+                        >{{location.name}}</a>
+                    </h1>
+                    <a *ngIf="location.website"
+                        [href]="location.website"
+                        [title]="location.website"
+                        aria-label="Website"
+                    ><span class="fas fa-globe-americas" aria-hidden="true"></span></a>
+                </div>
+                <div *ngIf="place && place.coordinates" class="coordinates" [style.width]="'45%'">
+                    <span></span>
+                    <span>{{i18n.infoBox.distance}}:
+                    {{location.getDistanceToCoordinatesInKm(place.coordinates) | kilometer}}</span>
+                </div>
             </header>
             <div class="flex-container">
                 <div>
                     <p>{{location.tagsFriendly}} ({{i18n.enums.veganCategory.verbose[location.veganCategory]}})</p>
                     <p>
                         <app-address [location]="location" [place]="place"></app-address>
-                    </p>
-                    <p *ngIf="place && place.coordinates">
-                        {{i18n.infoBox.distance}}:
-                        {{location.getDistanceToCoordinatesInKm(place.coordinates) | kilometer}}
                     </p>
                     <p *ngIf="location.telephone">
                         {{i18n.infoBox.phone}}:

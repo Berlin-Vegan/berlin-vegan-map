@@ -14,6 +14,33 @@
     overflow-y: auto;
 }
 
+header {
+    padding-top: 0.2em;
+    padding-bottom: 0.4em;
+    border-bottom: 0.06em solid $bv-green;
+
+    .title-with-website {
+        > * {
+            display: inline;
+            font-size: 1.2em;
+            font-weight: 500;
+            padding: 0;
+            margin: 0 0.2em 0 0;
+        }
+    }
+
+    .coordinates {
+        text-align: right;
+        white-space: nowrap;
+        span:nth-of-type(1) {
+            font-size: 1.2em; // We need this for vertical alignment of following span.
+        }
+        span:nth-of-type(2) {
+            white-space: normal;
+        }
+    }
+}
+
 .flex-container {
     display: flex;
     flex-direction: column;
@@ -28,19 +55,6 @@
 
     @media #{$min-width-4} {
         flex-direction: row; // Keep this in sync with code.
-    }
-}
-
-header {
-    padding-top: 0.2em;
-    padding-bottom: 0.4em;
-    border-bottom: 0.06em solid $bv-green;
-
-    > * {
-        font-size: 1.2em;
-        font-weight: 500;
-        padding: 0;
-        margin: 0 0.2em 0 0;
     }
 }
 
