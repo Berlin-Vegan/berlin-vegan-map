@@ -104,6 +104,12 @@ export interface JsonLocation {
     openComment?: string;
 
     /**
+     * Opening/closing times comment (English).
+     * Possibly empty.
+     */
+    openCommentEnglish?: string;
+
+    /**
      * Vegan category code.
      * 2 = omnivore (vegan declared),
      * 4 = vegetarian (vegan declared),

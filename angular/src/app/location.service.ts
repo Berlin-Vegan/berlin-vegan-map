@@ -105,10 +105,15 @@ export class LocationService {
     }
 
     private getOpenComment(location: JsonLocation): string | undefined {
-        return location.openComment && this.localStorageService.getLanguage() === "en" ?
-            "Please see location website for opening time details!"
-            :
-            location.openComment;
+        if (this.localStorageService.getLanguage() === "en") {
+            if (location.openComment && !location.openCommentEnglish) {
+                return "Please see location website for opening time details!";
+            } else {
+                return location.openCommentEnglish;
+            }
+        } else {
+            return location.openComment;
+        }
     }
 
     private getVeganCategory(location: JsonLocation): VeganCategory {
