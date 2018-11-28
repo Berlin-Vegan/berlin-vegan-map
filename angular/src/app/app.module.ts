@@ -42,9 +42,10 @@ import { StatisticsComponent } from "./statistics/statistics.component";
 
 const appRoutes: Routes = [
     { path: "gastro", component: MainComponent },
-    { path: "shopping", component: MainComponent },
+    { path: "shops", component: MainComponent },
     { path: "about", component: AboutComponent },
     { path: "settings", component: SettingsComponent },
+    { path: "shopping", redirectTo: "shops" }, // Legacy
     { path: "**", redirectTo: "gastro" },
 ];
 

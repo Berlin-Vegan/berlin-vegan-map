@@ -28,7 +28,7 @@ export class HeaderComponent {
 
     readonly paths = [
         { name: "gastro", faClass: "fas fa-utensils" },
-        { name: "shopping", faClass: "fas fa-shopping-cart" },
+        { name: "shops", faClass: "fas fa-shopping-cart" },
         { name: "settings", faClass: "fas fa-cog" },
         { name: "about", faClass: "fas fa-info-circle" },
     ];

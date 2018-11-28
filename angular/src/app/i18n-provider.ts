@@ -62,21 +62,37 @@ const i18n = {
         },
         shoppingTag: {
             foods: {
-                en: "Foods",
+                en: "Food",
                 de: "Lebensmittel",
             },
             clothing: {
-                en: "Clothing",
+                en: "Fashion",
                 de: "Kleidung",
             },
             toiletries: {
-                en: "Toiletries",
-                de: "Hygieneartikel",
+                en: "Cosmetics",
+                de: "Kosmetik",
             },
             supermarket: {
                 en: "Supermarket",
                 de: "Supermarkt",
             },
+            hairdressers: {
+                en: "Hairdresser's",
+                de: "Friseursalon",
+            },
+            fitness: {
+                en: "Fitness",
+                de: "Sport",
+            },
+            tattoostudio: {
+                en: "Tattoo studio",
+                de: "Tattoostudio",
+            },
+            accommodation: {
+                en: "Accommodation",
+                de: "Unterkunft",
+            }
         },
         weekday: {
             all: {
@@ -364,9 +380,9 @@ const i18n = {
             en: "Eating out",
             de: "Gastronomie",
         },
-        shopping: {
-            en: "Shopping",
-            de: "Einkaufen",
+        shops: {
+            en: "Shops",
+            de: "Geschäfte",
         },
         reportNewLocation: {
             en: "Suggest new location",

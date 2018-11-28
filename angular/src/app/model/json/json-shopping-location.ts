@@ -4,7 +4,16 @@ export interface JsonShoppingLocation extends JsonLocation {
 
     /**
      * Tags.
-     * 1 to 4 items.
+     * 1 to 8 items.
      */
-    tags: ("foods" | "clothing" | "toiletries" | "supermarket")[];
+    tags: (
+        "foods"
+        | "clothing"
+        | "toiletries"
+        | "supermarket"
+        | "hairdressers"
+        | "fitness"
+        | "tattoostudio"
+        | "accommodation"
+    )[];
 }

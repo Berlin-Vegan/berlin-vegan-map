@@ -64,7 +64,7 @@ export class MainComponent implements OnInit {
             .url
             .subscribe(url => {
                 const path = url[0].path;
-                if (path === "gastro" || path === "shopping") {
+                if (path === "gastro" || path === "shops") {
                     this.init(path);
                 } else {
                     throw new Error("Unexpected path: " + path);
@@ -72,7 +72,7 @@ export class MainComponent implements OnInit {
             });
     }
 
-    init(path: "gastro" | "shopping") {
+    init(path: "gastro" | "shops") {
         this.isGastro = (path === "gastro");
         const locationPromise: Promise<(GastroLocation | ShoppingLocation)[]> =
             this.isGastro ?
