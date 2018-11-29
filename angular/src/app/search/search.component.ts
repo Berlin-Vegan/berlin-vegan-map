@@ -39,9 +39,9 @@ export class SearchComponent {
 
     get featureList1(): string[] {
         return this.isGastro ?
-            ["organic", "breakfast", "dog", "handicappedAccessible", "delivery", "wlan"]
+            ["isNew", "organic", "breakfast", "dog", "handicappedAccessible", "delivery", "wlan"]
             :
-            ["organic", "handicappedAccessible"];
+            ["isNew", "organic", "handicappedAccessible"];
     }
 
     get featureList2(): string[] {

@@ -1,4 +1,6 @@
 import { GeoUtil, LatitudeLongitude } from "@marco-eckstein/js-utils";
+import * as moment from "moment";
+import { Moment } from "moment";
 
 import { Language } from "./language";
 import { OpeningTimesCollection } from "./opening-times-collection";
@@ -9,6 +11,7 @@ import { YesNoUnknown } from "./yes-no-unknown";
 export class Location {
     constructor(
         public readonly id: string,
+        public readonly dateCreated: Moment | undefined,
         public readonly name: string,
         public readonly street: string,
         public readonly cityCode: number,
@@ -48,5 +51,9 @@ export class Location {
 
     get address(): string {
         return this.street + ", " + this.cityCode + " " + this.city;
+    }
+
+    hasBeenCreatedInLastMonths(months: number): boolean {
+        return !!this.dateCreated && this.dateCreated.isAfter(moment().subtract(months, "months"));
     }
 }

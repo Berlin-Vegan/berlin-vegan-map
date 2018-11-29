@@ -1,3 +1,5 @@
+import { Moment } from "moment";
+
 import { GastroTag } from "./gastro-tag";
 import { Location } from "./location";
 import { OpeningTimesCollection } from "./opening-times-collection";
@@ -8,6 +10,7 @@ import { YesNoUnknown } from "./yes-no-unknown";
 export class GastroLocation extends Location {
     constructor(
         id: string,
+        dateCreated: Moment | undefined,
         name: string,
         street: string,
         cityCode: number,
@@ -43,6 +46,7 @@ export class GastroLocation extends Location {
     ) {
         super(
             id,
+            dateCreated,
             name,
             street,
             cityCode,

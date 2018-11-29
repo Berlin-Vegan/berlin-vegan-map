@@ -13,6 +13,7 @@ export abstract class Query extends Storable {
     openAtTime = "";
     openNow = false;
     distance: Distance = new Distance(this);
+    isNew = false;
     review = false;
     organic = false;
     handicappedAccessible = false;
@@ -21,6 +22,12 @@ export abstract class Query extends Storable {
     constructor(props: any = null) {
         super(props);
         if (props) {
+
+            // Persisted props may not have it yet.
+            if (typeof props.isNew === "undefined") {
+                props.isNew = this.isNew;
+            }
+
             this.text = props.text;
             this.textAppliesToNamesOnly = props.textAppliesToNamesOnly;
             this.veganCategories =  Object.assign({}, props.veganCategories);
@@ -28,6 +35,7 @@ export abstract class Query extends Storable {
             this.openAtTime = props.openAtTime;
             this.openNow = props.openNow;
             this.distance = new Distance(this, props.distance);
+            this.isNew = props.isNew;
             this.review = props.review;
             this.organic = props.organic;
             this.handicappedAccessible = props.handicappedAccessible;

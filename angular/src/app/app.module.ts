@@ -31,6 +31,7 @@ import { KilometerPipe } from "./kilometer.pipe";
 import { LocalStorageService } from "./local-storage.service";
 import { LocationService } from "./location.service";
 import { MainComponent } from "./main/main.component";
+import { NewIndicatorComponent } from "./new-indicator/new-indicator.component";
 import { OpeningTimesService } from "./opening-times.service";
 import { PlaceSelectComponent } from "./place-select/place-select.component";
 import { ResultsListComponent } from "./results-list/results-list.component";
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
         InfoBoxComponent,
         KilometerPipe,
         MainComponent,
+        NewIndicatorComponent,
         PlaceSelectComponent,
         ResultsListComponent,
         SearchComponent,

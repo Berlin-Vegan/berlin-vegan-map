@@ -29,6 +29,17 @@
                 />{{i18n.settings.clickInListCentersLocation}}
             </label>
             <br/>
+            <label>
+                <input
+                    type="number"
+                    name="monthsNew"
+                    min= "1"
+                    max= "12"
+                    step="1"
+                    [(ngModel)]="localStorageService.settings.monthsNew"
+                />&nbsp;{{i18n.settings.monthsNew}}
+            </label>
+            <br/>
             <fieldset>
                 <legend>{{i18n.settings.map.header}}</legend>
                 <label>

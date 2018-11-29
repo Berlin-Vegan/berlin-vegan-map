@@ -111,7 +111,9 @@ export class SearchService {
             return false;
         };
 
-        const filter6 = () => !query.review || !!location.reviewURL;
+        const filter6 = () =>
+            (!query.isNew || location.hasBeenCreatedInLastMonths(this.localStorageService.settings.monthsNew))
+            && (!query.review || !!location.reviewURL);
 
         const filter7 = () => {
             return (!query.organic || location.organic === 1)

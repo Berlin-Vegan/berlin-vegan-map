@@ -1,14 +1,17 @@
 <ul>
     <li *ngFor="let location of locations" id="{{location.id}}">
         <div class="locationHeadingContainer flex-container-nowrap">
-            <h1>
-                <a
-                    title="{{i18n.showOnMap}}"
-                    href=""
-                    role="button"
-                    (click)="$event.preventDefault(); onLocationClick(location)"
-                >{{location.name}}</a>
-            </h1>
+            <div>
+                <h1>
+                    <a
+                        title="{{i18n.showOnMap}}"
+                        href=""
+                        role="button"
+                        (click)="$event.preventDefault(); onLocationClick(location)"
+                    >{{location.name}}</a>
+                </h1>
+                <app-new-indicator [location]="location"></app-new-indicator>
+            </div>
             <div>
                 <img
                     title="{{i18n.showOnMap}}"

@@ -1,3 +1,5 @@
+import { Moment } from "moment";
+
 import { Location } from "./location";
 import { OpeningTimesCollection } from "./opening-times-collection";
 import { Picture } from "./picture";
@@ -8,6 +10,7 @@ import { YesNoUnknown } from "./yes-no-unknown";
 export class ShoppingLocation extends Location {
     constructor(
         id: string,
+        dateCreated: Moment | undefined,
         name: string,
         street: string,
         cityCode: number,
@@ -32,6 +35,7 @@ export class ShoppingLocation extends Location {
     ) {
         super(
             id,
+            dateCreated,
             name,
             street,
             cityCode,

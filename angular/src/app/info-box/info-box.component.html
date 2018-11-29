@@ -17,6 +17,7 @@
                         [title]="location.website"
                         aria-label="Website"
                     ><span class="fas fa-globe-americas" aria-hidden="true"></span></a>
+                    <app-new-indicator [location]="location"></app-new-indicator>
                 </div>
                 <div *ngIf="place && place.coordinates" class="coordinates" [style.width]="'45%'">
                     <span></span>

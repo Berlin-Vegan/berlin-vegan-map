@@ -162,6 +162,10 @@ const i18n = {
         },
     },
     features: {
+        isNew: {
+            en: "New",
+            de: "Neu",
+        },
         organic: {
             en: "Organic",
             de: "Bioware",
@@ -436,6 +440,10 @@ const i18n = {
         clickInListCentersLocation: {
             en: "Click on location list centers location",
             de: "Klick auf Location in der Liste zentriert die Location",
+        },
+        monthsNew: {
+            en: "The maximum age (in months) of a location record that is considered as new",
+            de: "Das maximale Alter (in Monaten) eines Location-Eintrags, der als neu gilt",
         },
         map: {
             header: {

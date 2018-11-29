@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
+import * as moment from "moment";
 
 import { ConfigurationService } from "./configuration.service";
 import { I18N } from "./i18n-provider";
@@ -40,6 +41,7 @@ export class LocationService {
     private newGastroLocation(location: JsonGastroLocation) {
         return new GastroLocation(
             location.id,
+            location.dateCreated ? moment(location.dateCreated) : undefined,
             location.name,
             location.street,
             location.cityCode,
@@ -79,6 +81,7 @@ export class LocationService {
     private newShoppingLocation(location: JsonShoppingLocation) {
         return new ShoppingLocation(
             location.id,
+            location.dateCreated ? moment(location.dateCreated) : undefined,
             location.name,
             location.street,
             location.cityCode,

@@ -10,6 +10,14 @@ export interface JsonLocation {
     id: string;
 
     /**
+     * The creation date of this record in format "YYYY-MM-DD" (UTC).
+     *
+     * I.e., this is not the date when the actual location was created/opened,
+     * but rather the date when this record was created in the database.
+     */
+    dateCreated?: string;
+
+    /**
      * Name.
      * Non-empty.
      */

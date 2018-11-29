@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 
 import { I18N } from "../i18n-provider";
 import { isLocalStorageAvailable } from "../local-storage-wrapper";
@@ -9,19 +9,35 @@ import { Settings } from "../model/settings";
     selector: "app-settings",
     templateUrl: "./settings.component.html",
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
 
     constructor(
         @Inject(I18N) readonly i18n: any,
         readonly localStorageService: LocalStorageService,
     ) {}
 
+    private lastValidMonthsNew: number;
+
+    ngOnInit() {
+        this.lastValidMonthsNew = this.localStorageService.settings.monthsNew;
+    }
+
     get isLocalStorageAvailable(): boolean {
         return isLocalStorageAvailable();
     }
 
     onSettingsChange() {
-        this.localStorageService.saveSettings();
+        if (this.isMonthsNewValid) {
+            this.lastValidMonthsNew = this.localStorageService.settings.monthsNew;
+            this.localStorageService.saveSettings();
+        } else {
+            this.localStorageService.settings.monthsNew = this.lastValidMonthsNew;
+        }
+    }
+
+    private get isMonthsNewValid(): boolean {
+        const value = this.localStorageService.settings.monthsNew;
+        return value === Math.floor(value) && value > 0;
     }
 
     onRememberLastQueryChange() {
