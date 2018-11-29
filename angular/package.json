@@ -4,7 +4,7 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
+    "start": "node write-version-info.js && ng serve --open",
     "build": "node write-version-info.js && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
