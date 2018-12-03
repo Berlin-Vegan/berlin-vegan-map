@@ -41,3 +41,12 @@ app-text-clear {
         display: initial;
     }
 }
+
+@supports (-ms-ime-align:auto) { // It is Edge.
+    ::-ms-clear {
+        display: none; // Bug: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/17584515/
+    }
+    app-text-clear {
+        display: initial;
+    }
+}

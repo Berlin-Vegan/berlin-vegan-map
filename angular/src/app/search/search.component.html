@@ -6,9 +6,10 @@
             [(ngModel)]="query.text"
             [placeholder]="i18n.search.text.placeholder"
             [attr.aria-label]="i18n.search.text.placeholder"
-            (keyup)="onQueryChange()"
+            (input)="onQueryChange()"
         />
-        <app-text-clear [(text)]="query.text"></app-text-clear>
+        <app-text-clear [text]="query.text" (textChange)="query.text = $event; onQueryChange()">
+        </app-text-clear>
         <label>
             <input
                 type="checkbox"
