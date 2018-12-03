@@ -46,9 +46,9 @@
             </label>
         </div>
     </section>
-    <section class="flex-container-wrap">
-        <div class="feature-col">
-            <label *ngFor="let feature of featureList1">
+    <section class="features flex-container-wrap">
+        <div *ngFor="let feature of features">
+            <label *ngIf="feature !== 'PLACEHOLDER'">
                 <input
                     type="checkbox"
                     name="{{feature}}"
@@ -56,16 +56,10 @@
                     (change)="onQueryChange()"
                 />{{i18n.features[feature]}}
             </label>
-        </div>
-        <div class="feature-col">
-            <label *ngFor="let feature of featureList2">
-                <input
-                    type="checkbox"
-                    name="{{feature}}"
-                    [(ngModel)]="queryAsAny[feature]"
-                    (change)="onQueryChange()"
-                />{{i18n.features[feature]}}
-            </label>
+            <div style="visibility: hidden; height: 0;" aria-hidden="true">
+                <!-- For layout -->
+                <label><input type="checkbox"/>{{longestFeatureText}}</label>
+            </div>
         </div>
     </section>
     <section class="flex-container-wrap">

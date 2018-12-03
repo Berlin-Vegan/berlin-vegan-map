@@ -37,18 +37,34 @@ export class SearchComponent {
         return this.query instanceof GastroQuery;
     }
 
-    get featureList1(): string[] {
-        return this.isGastro ?
-            ["isNew", "organic", "breakfast", "dog", "handicappedAccessible", "delivery", "wlan"]
-            :
-            ["isNew", "organic", "handicappedAccessible"];
+    get features(): string[] {
+        return this.isGastro ? [
+            "isNew",
+            "PLACEHOLDER", // Note this.
+            "organic",
+            "glutenFree",
+            "breakfast",
+            "brunch",
+            "handicappedAccessible",
+            "handicappedAccessibleWc",
+            "childChair",
+            "dog",
+            "delivery",
+            "catering",
+            "wlan",
+            "review"
+        ] : [
+            "isNew",
+            "organic",
+            "handicappedAccessible",
+            "review"
+        ];
     }
 
-    get featureList2(): string[] {
-        return this.isGastro ?
-            ["glutenFree", "brunch", "childChair", "handicappedAccessibleWc", "catering", "review"]
-            :
-            ["review"];
+    // Note that due to variable-width fonts, this method cannot guarantee that the returned text is
+    // the one that actually displays with maximum width.
+    get longestFeatureText(): string {
+        return this.features.map(it => this.i18n.features[it] as string).sort((a, b) => b.length - a.length)[0];
     }
 
     get queryAsAny(): any { return this.query; }
