@@ -77,4 +77,11 @@ export class SearchComponent {
         this.query.distance.place = place;
         this.queryChange.emit(this.query);
     }
+
+    onQueryTextKeyPress(event: KeyboardEvent) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            (document.activeElement as HTMLElement).blur();
+        }
+    }
 }
