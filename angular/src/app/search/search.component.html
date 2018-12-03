@@ -58,8 +58,10 @@
                 />{{i18n.features[feature]}}
             </label>
             <div style="visibility: hidden; height: 0;" aria-hidden="true">
-                <!-- For layout -->
-                <label><input type="checkbox"/>{{longestFeatureText}}</label>
+                <!-- For layout. Whitespace is important. -->
+                <label>
+                    <input type="checkbox"/>{{longestFeatureText}}
+                </label>
             </div>
         </div>
     </section>
