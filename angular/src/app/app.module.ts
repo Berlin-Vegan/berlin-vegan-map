@@ -40,6 +40,7 @@ import { SearchComponent } from "./search/search.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SortComponent } from "./sort/sort.component";
 import { StatisticsComponent } from "./statistics/statistics.component";
+import { TextClearComponent } from "./text-clear/text-clear.component";
 
 const appRoutes: Routes = [
     { path: "gastro", component: MainComponent },
@@ -68,6 +69,7 @@ const appRoutes: Routes = [
         SettingsComponent,
         SortComponent,
         StatisticsComponent,
+        TextClearComponent,
     ],
     imports: [
         BrowserModule,

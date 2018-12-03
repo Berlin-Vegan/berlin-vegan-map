@@ -31,3 +31,13 @@ form {
         white-space: nowrap;
     }
 }
+
+app-text-clear {
+    display: none;
+}
+
+@supports (-moz-appearance: none) { // It is Firefox.
+    app-text-clear {
+        display: initial;
+    }
+}
