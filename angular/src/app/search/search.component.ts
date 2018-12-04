@@ -40,7 +40,7 @@ export class SearchComponent {
     get features(): string[] {
         return this.isGastro ? [
             "isNew",
-            "PLACEHOLDER", // Note this.
+            "_", // Note this.
             "organic",
             "glutenFree",
             "breakfast",
@@ -63,8 +63,11 @@ export class SearchComponent {
 
     // Note that due to variable-width fonts, this method cannot guarantee that the returned text is
     // the one that actually displays with maximum width.
-    get longestFeatureText(): string {
-        return this.features.map(it => this.i18n.features[it] as string).sort((a, b) => b.length - a.length)[0];
+    getLongestFeatureText(even: boolean): string {
+        return this.features
+            .filter((_, index) => (even && index % 2 === 0) || (!even && index % 2 !== 0))
+            .map(it => this.i18n.features[it] as string)
+            .sort((a, b) => b.length - a.length)[0];
     }
 
     get queryAsAny(): any { return this.query; }

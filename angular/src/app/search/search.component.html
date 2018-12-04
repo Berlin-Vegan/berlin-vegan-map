@@ -50,8 +50,8 @@
         </div>
     </section>
     <section class="features flex-container-wrap">
-        <div *ngFor="let feature of features">
-            <label *ngIf="feature !== 'PLACEHOLDER'">
+        <div *ngFor="let feature of features; let even = even">
+            <label *ngIf="feature !== '_'">
                 <input
                     type="checkbox"
                     name="{{feature}}"
@@ -62,7 +62,7 @@
             <div style="visibility: hidden; height: 0;" aria-hidden="true">
                 <!-- For layout. Whitespace is important. -->
                 <label>
-                    <input type="checkbox"/>{{longestFeatureText}}
+                    <input type="checkbox"/>{{getLongestFeatureText(even)}}
                 </label>
             </div>
         </div>
