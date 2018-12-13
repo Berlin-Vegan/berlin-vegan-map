@@ -29,11 +29,8 @@ app-main {
     height: 100vh;
 }
 
-/*
-  This media query essentially asks for IE using a trick.
-  The adjustments make the layout in IE less horrible.
-  */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+// The adjustments make the layout in IE less horrible.
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { // It is IE.
     body {
         margin-top: 2vh;
     }
