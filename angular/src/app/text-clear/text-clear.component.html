@@ -1,3 +1,11 @@
-<div *ngIf="text" aria-hidden="true">
-    <button type="button" (click)="textChange.emit('')">✕</button>
+<div (mouseenter)="onMouseenter()" (mouseleave)="onMouseleave()">
+    <ng-content select="input[type=search], input[type=text]"></ng-content>
+    <button #button
+        [hidden]="!showButton"
+        aria-hidden="true"
+        type="button"
+        tabindex="-1"
+        (click)="onClick()"
+    ><ng-content *ngIf="buttonContent; else defaultButtonContent" select=":not(input)"></ng-content></button>
+    <ng-template #defaultButtonContent>✕</ng-template>
 </div>

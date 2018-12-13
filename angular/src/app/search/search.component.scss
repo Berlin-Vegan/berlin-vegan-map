@@ -7,7 +7,7 @@ section {
     min-width: 34%;
 }
 
-.searchTextContainer input {
+.searchTextContainer app-text-clear {
     flex: 1;
 }
 
@@ -28,23 +28,4 @@ h1:after {
 label {
     font-weight: normal;
     white-space: nowrap;
-}
-
-app-text-clear {
-    display: none;
-}
-
-@supports (-moz-appearance: none) { // It is Firefox.
-    app-text-clear {
-        display: initial;
-    }
-}
-
-@supports (-ms-ime-align:auto) { // It is Edge.
-    ::-ms-clear {
-        display: none; // Bug: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/17584515/
-    }
-    app-text-clear {
-        display: initial;
-    }
 }

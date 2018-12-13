@@ -1,15 +1,24 @@
 div {
     position: relative;
-    width: 0;
-    height: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
 
     button {
         position: absolute;
-        top: -0.07em;
-        left: -1.92em;
-        font-weight: lighter;
-        color: gray;
         background-color: transparent;
-        border-color: transparent;
+        border: none;
+        padding: 0;
+    }
+
+    &::ng-deep {
+        &::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+        }
+        &::-ms-clear {
+            display: none;
+            width: 0;
+            height: 0;
+        }
     }
 }

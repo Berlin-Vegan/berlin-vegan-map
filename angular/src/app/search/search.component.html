@@ -1,15 +1,15 @@
 <form *ngIf="query" name="searchForm">
     <section class="searchTextContainer flex-container-wrap">
-        <input
-            type="search"
-            name="text"
-            [(ngModel)]="query.text"
-            [placeholder]="i18n.search.text.placeholder"
-            [attr.aria-label]="i18n.search.text.placeholder"
-            (input)="onQueryChange()"
-            (keypress)="onQueryTextKeyPress($event)"
-        />
-        <app-text-clear [text]="query.text" (textChange)="query.text = $event; onQueryChange()">
+        <app-text-clear>
+            <input #input
+                type="search"
+                name="text"
+                [(ngModel)]="query.text"
+                [placeholder]="i18n.search.text.placeholder"
+                [attr.aria-label]="i18n.search.text.placeholder"
+                (input)="onQueryChange()"
+                (keypress)="onQueryTextKeyPress($event)"
+            />
         </app-text-clear>
         <label>
             <input
