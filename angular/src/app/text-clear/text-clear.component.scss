@@ -9,6 +9,17 @@ div {
         background-color: transparent;
         border: none;
         padding: 0;
+        margin-top: -1px;
+        margin-right: 2px;
+
+        @supports (-moz-appearance: none) { // It is Firefox.
+            margin-top: -2px;
+            margin-right: 0;
+        }
+
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { // It is IE.
+            margin-top: -9px;
+        }
     }
 
     &::ng-deep {
