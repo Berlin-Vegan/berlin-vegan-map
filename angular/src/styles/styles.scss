@@ -94,3 +94,15 @@ select {
         color: $bv-green; // So links have the correct color again.
     }
 }
+
+// Larger text inputs on touch devices.
+// pointer is not universally supported, and -moz-touch-enabled is just for Mozilla,
+// so we also assume a touch device when the width is really small.
+@media (pointer: coarse),
+(-moz-touch-enabled),
+screen and (max-width: 480px) and (orientation: portrait),
+screen and (max-width: 640px) and (orientation: landscape) {
+    input[type=text], input[type=search] {
+        padding: 0.5em
+    }
+}

@@ -7,8 +7,12 @@ section {
     min-width: 34%;
 }
 
-.searchTextContainer app-text-clear {
-    flex: 1;
+.searchTextContainer {
+    align-items: center;
+
+    app-text-clear {
+        flex: 1;
+    }
 }
 
 .distanceContainer input {
