@@ -44,17 +44,17 @@ header {
 .flex-container {
     display: flex;
     flex-direction: column;
-    
-    > div:nth-of-type(1) {
-        flex: 60;
-    }
-
-    > div:nth-of-type(2) {
-        flex: 40;
-    }
 
     @media #{$min-width-4} {
         flex-direction: row; // Keep this in sync with code.
+
+        > div:nth-of-type(1) {
+            flex: 60;
+        }
+
+        > div:nth-of-type(2) {
+            flex: 40;
+        }
     }
 }
 
