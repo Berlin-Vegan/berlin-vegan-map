@@ -15,8 +15,12 @@ section {
     }
 }
 
-.distanceContainer input {
-    flex: 1;
+.distanceContainer {
+    align-items: center;
+
+    input {
+        flex: 1;
+    }
 }
 
 h1 {

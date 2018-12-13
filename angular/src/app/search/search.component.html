@@ -71,7 +71,7 @@
         <h1>{{i18n.openingTimes.header}}</h1>
         <div>
             <span [hidden]="query.openNow">
-                <select 
+                <select
                     name="openAtWeekDay"
                     [attr.aria-label]="i18n.openingTimes.openAtWeekDay"
                     [(ngModel)]="query.openAtWeekDay"
@@ -137,7 +137,8 @@
                 [(ngModel)]="query.distance.km"
                 (input)="query.distance.enabled = true; onQueryChange()"
                 (change)="query.distance.enabled = true; onQueryChange()"
-            /><span>{{query.distance.km | kilometer }}</span>
+            />
+            <span>{{query.distance.km | kilometer }}</span>
         </div>
     </section>
 </form>
