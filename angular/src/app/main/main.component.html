@@ -1,73 +1,71 @@
-<div>
-    <app-header
-        [searchButtonIsDisabled]="false"
-        [fullMapViewButtonIsDisabled]="fullMapView"
-        (searchClick)="scrollSearchIntoView()"
-        (fullMapViewClick)="enableFullMapView()"
-        (swipeleft)="onSwipeleft()"
-        (swiperight)="onSwiperight()"
-    ></app-header>
-    <main class="flex-container-nowrap">
-        <div class="col-left" [hidden]="fullMapView" (swipeleft)="onSwipeleft()">
-            <div #preSearchDiv></div>
-            <div *ngIf="query">
-                <app-search
-                    [(query)]="query"
-                    (queryChange)="onQueryChange()"
-                    (manualPlaceHighlightRequest)="onPlaceHighlightRequest(true)"
-                    (autoPlaceHighlightRequest)="onPlaceHighlightRequest(false)"
-                ></app-search>
-                <hr/>
-                <div class="sortAndStatisticsContainer flex-container-nowrap">
-                    <app-sort
-                        [isDistanceEnabled]="!!query.distance.place"
-                        [(sortOrder)]="query.sortOrder"
-                        (sortOrderChange)="onQueryChange()"
-                    ></app-sort>
-                    <app-statistics
-                        [allLocationsCount]="allLocations.length"
-                        [filteredLocationsCount]="filteredLocations.length"
-                    ></app-statistics>
-                </div>
-                <hr class="fat"/>
-                <app-results-list
+<app-header
+    [searchButtonIsDisabled]="false"
+    [fullMapViewButtonIsDisabled]="fullMapView"
+    (searchClick)="scrollSearchIntoView()"
+    (fullMapViewClick)="enableFullMapView()"
+    (swipeleft)="onSwipeleft()"
+    (swiperight)="onSwiperight()"
+></app-header>
+<main class="flex-container-nowrap">
+    <div class="col-left" [hidden]="fullMapView" (swipeleft)="onSwipeleft()">
+        <div #preSearchDiv></div>
+        <div *ngIf="query">
+            <app-search
+                [(query)]="query"
+                (queryChange)="onQueryChange()"
+                (manualPlaceHighlightRequest)="onPlaceHighlightRequest(true)"
+                (autoPlaceHighlightRequest)="onPlaceHighlightRequest(false)"
+            ></app-search>
+            <hr/>
+            <div class="sortAndStatisticsContainer flex-container-nowrap">
+                <app-sort
+                    [isDistanceEnabled]="!!query.distance.place"
+                    [(sortOrder)]="query.sortOrder"
+                    (sortOrderChange)="onQueryChange()"
+                ></app-sort>
+                <app-statistics
+                    [allLocationsCount]="allLocations.length"
+                    [filteredLocationsCount]="filteredLocations.length"
+                ></app-statistics>
+            </div>
+            <hr class="fat"/>
+            <app-results-list
+                [locations]="filteredLocations"
+                [coordinates]="query?.distance?.place?.coordinates"
+                (locationSelect)="onLocationSelectInResultsList($event, false)"
+                (locationCenter)="onLocationSelectInResultsList($event, true)"
+            ></app-results-list>
+        </div>
+        <p *ngIf="!query">
+            <span class="fas fa-spinner fa-spin" aria-hidden="true"></span>
+            {{i18n.loadingLocations}}
+        </p>
+    </div>
+    <div class="col-right" [ngClass]="{fullMapView: fullMapView}">
+        <div [hidden]="!query">
+            <div [ngClass]="isInfoBoxVisible ? 'reducedHeightMap' : 'fullHeightMap'">
+                <app-google-map
                     [locations]="filteredLocations"
                     [coordinates]="query?.distance?.place?.coordinates"
-                    (locationSelect)="onLocationSelectInResultsList($event, false)"
-                    (locationCenter)="onLocationSelectInResultsList($event, true)"
-                ></app-results-list>
+                    (locationSelect)="onLocationSelectInGoogleMap($event)"
+                ></app-google-map>
             </div>
-            <p *ngIf="!query">
-                <span class="fas fa-spinner fa-spin" aria-hidden="true"></span>
-                {{i18n.loadingLocations}}
-            </p>
-        </div>
-        <div class="col-right" [ngClass]="{fullMapView: fullMapView}">
-            <div [hidden]="!query">
-                <div [ngClass]="isInfoBoxVisible ? 'reducedHeightMap' : 'fullHeightMap'">
-                    <app-google-map
-                        [locations]="filteredLocations"
-                        [coordinates]="query?.distance?.place?.coordinates"
-                        (locationSelect)="onLocationSelectInGoogleMap($event)"
-                    ></app-google-map>
-                </div>
-                <div *ngIf="isInfoBoxVisible" class="infoBox">
-                    <app-info-box
-                        [location]="selectedLocation"
-                        [place]="query?.distance?.place"
-                        (centerLocation)="onLocationCenterInInfoBox()"
-                        (close)="onInfoBoxClose()"
-                        (swiperight)="onSwiperight()"
-                    ></app-info-box>
-                </div>
-            </div>
-            <div *ngIf="!query"
-                class="big-spinner"
-                [title]="i18n.loadingLocations"
-                [attr.aria-label]="i18n.loadingLocations"
-            >
-                <span class="fas fa-spinner fa-spin" aria-hidden="true"></span>
+            <div *ngIf="isInfoBoxVisible" class="infoBox">
+                <app-info-box
+                    [location]="selectedLocation"
+                    [place]="query?.distance?.place"
+                    (centerLocation)="onLocationCenterInInfoBox()"
+                    (close)="onInfoBoxClose()"
+                    (swiperight)="onSwiperight()"
+                ></app-info-box>
             </div>
         </div>
-    </main>
-</div>
+        <div *ngIf="!query"
+            class="big-spinner"
+            [title]="i18n.loadingLocations"
+            [attr.aria-label]="i18n.loadingLocations"
+        >
+            <span class="fas fa-spinner fa-spin" aria-hidden="true"></span>
+        </div>
+    </div>
+</main>

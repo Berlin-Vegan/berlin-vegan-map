@@ -25,7 +25,7 @@ main {
     }
 }
 
-app-main > div {
+app-main {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@ app-main > div {
         margin-top: 2vh;
     }
 
-    app-main > div {
+    app-main {
         height: 98vh;
     }
 }

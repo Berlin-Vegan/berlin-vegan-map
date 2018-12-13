@@ -1,66 +1,64 @@
-<div>
-    <app-header></app-header>
-    <main>
-        <h1>{{i18n.settings.heading}}</h1>
-        <p *ngIf="!isLocalStorageAvailable" class="warning">{{i18n.settings.noLocalStorageWarning}}</p>
-        <form name="settingsForm" (change)="onSettingsChange()">
+<app-header></app-header>
+<main>
+    <h1>{{i18n.settings.heading}}</h1>
+    <p *ngIf="!isLocalStorageAvailable" class="warning">{{i18n.settings.noLocalStorageWarning}}</p>
+    <form name="settingsForm" (change)="onSettingsChange()">
+        <label>
+            <input
+                type="checkbox"
+                name="rememberLastQuery"
+                [(ngModel)]="localStorageService.settings.rememberLastQuery"
+                (change)="onRememberLastQueryChange()"
+            />{{i18n.settings.rememberLastQuery}}
+        </label>
+        <br/>
+        <label>
+            <input
+                type="checkbox"
+                name="showPictures"
+                [(ngModel)]="localStorageService.settings.showPictures"
+            />{{i18n.settings.showPictures}}
+        </label>
+        <br/>
+        <label>
+            <input
+                type="checkbox"
+                name="clickInListCentersLocation"
+                [(ngModel)]="localStorageService.settings.clickInListCentersLocation"
+            />{{i18n.settings.clickInListCentersLocation}}
+        </label>
+        <br/>
+        <label>
+            <input
+                type="number"
+                name="monthsNew"
+                min= "1"
+                max= "12"
+                step="1"
+                [(ngModel)]="localStorageService.settings.monthsNew"
+            />&nbsp;{{i18n.settings.monthsNew}}
+        </label>
+        <br/>
+        <fieldset>
+            <legend>{{i18n.settings.map.header}}</legend>
             <label>
                 <input
                     type="checkbox"
-                    name="rememberLastQuery"
-                    [(ngModel)]="localStorageService.settings.rememberLastQuery"
-                    (change)="onRememberLastQueryChange()"
-                />{{i18n.settings.rememberLastQuery}}
+                    name="map.mapTypeControl"
+                    [(ngModel)]="localStorageService.settings.map.mapTypeControl"
+                />{{i18n.settings.map.mapTypeControl}}
             </label>
             <br/>
             <label>
                 <input
                     type="checkbox"
-                    name="showPictures"
-                    [(ngModel)]="localStorageService.settings.showPictures"
-                />{{i18n.settings.showPictures}}
+                    name="map.zoomControl"
+                    [(ngModel)]="localStorageService.settings.map.zoomControl"
+                />{{i18n.settings.map.zoomControl}}
             </label>
-            <br/>
-            <label>
-                <input
-                    type="checkbox"
-                    name="clickInListCentersLocation"
-                    [(ngModel)]="localStorageService.settings.clickInListCentersLocation"
-                />{{i18n.settings.clickInListCentersLocation}}
-            </label>
-            <br/>
-            <label>
-                <input
-                    type="number"
-                    name="monthsNew"
-                    min= "1"
-                    max= "12"
-                    step="1"
-                    [(ngModel)]="localStorageService.settings.monthsNew"
-                />&nbsp;{{i18n.settings.monthsNew}}
-            </label>
-            <br/>
-            <fieldset>
-                <legend>{{i18n.settings.map.header}}</legend>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="map.mapTypeControl"
-                        [(ngModel)]="localStorageService.settings.map.mapTypeControl"
-                    />{{i18n.settings.map.mapTypeControl}}
-                </label>
-                <br/>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="map.zoomControl"
-                        [(ngModel)]="localStorageService.settings.map.zoomControl"
-                    />{{i18n.settings.map.zoomControl}}
-                </label>
-            </fieldset>
-        </form>
-        <p>
-            <button (click)="onResetButtonClick()">{{i18n.settings.reset}}</button>
-        </p>
-    </main>
-</div>
+        </fieldset>
+    </form>
+    <p>
+        <button (click)="onResetButtonClick()">{{i18n.settings.reset}}</button>
+    </p>
+</main>

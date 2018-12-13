@@ -1,31 +1,29 @@
-<div>
-    <app-header></app-header>
-    <main>
-        <h1>{{i18n.about.heading}}</h1>
-        <h2>{{i18n.about.versionInfoHeading}}</h2>
-        <p>
-            <span title="GitHub" aria-label="GitHub">
-                <span class="fab fa-github" aria-hidden="true"></span>
-                <a [href]="versionInfo.repositoryUrl">{{versionInfo.name}}</a>
-            </span>
-            <br/>
-            <span title="Git description" aria-label="Git description" class="git">
-                <span class="fas fa-code-branch" aria-hidden="true"></span>
-                <span *ngIf="versionInfo.gitDescription.dirty; else clean">{{versionInfo.gitDescription.raw}}</span>
-                <ng-template #clean>
-                    <a [href]="gitHubCommitUrl">{{versionInfo.gitDescription.raw}} (clean)</a>
-                </ng-template>
-            </span>
-            <br/>
-            <span title="Build time" aria-label="Build time">
-                <span class="far fa-clock" aria-hidden="true"></span>
-                {{versionInfo.buildTimestamp | date:"yyyy-MM-dd HH:mm"}}
-            </span>
-            <br/>
-            <span title="Production" aria-label="Production">
-                <span class="fas fa-industry" aria-hidden="true"></span>
-                Production: {{production}}
-            </span>
-        </p>
-    </main>
-</div>
+<app-header></app-header>
+<main>
+    <h1>{{i18n.about.heading}}</h1>
+    <h2>{{i18n.about.versionInfoHeading}}</h2>
+    <p>
+        <span title="GitHub" aria-label="GitHub">
+            <span class="fab fa-github" aria-hidden="true"></span>
+            <a [href]="versionInfo.repositoryUrl">{{versionInfo.name}}</a>
+        </span>
+        <br/>
+        <span title="Git description" aria-label="Git description" class="git">
+            <span class="fas fa-code-branch" aria-hidden="true"></span>
+            <span *ngIf="versionInfo.gitDescription.dirty; else clean">{{versionInfo.gitDescription.raw}}</span>
+            <ng-template #clean>
+                <a [href]="gitHubCommitUrl">{{versionInfo.gitDescription.raw}} (clean)</a>
+            </ng-template>
+        </span>
+        <br/>
+        <span title="Build time" aria-label="Build time">
+            <span class="far fa-clock" aria-hidden="true"></span>
+            {{versionInfo.buildTimestamp | date:"yyyy-MM-dd HH:mm"}}
+        </span>
+        <br/>
+        <span title="Production" aria-label="Production">
+            <span class="fas fa-industry" aria-hidden="true"></span>
+            Production: {{production}}
+        </span>
+    </p>
+</main>
