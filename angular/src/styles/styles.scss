@@ -103,3 +103,45 @@ screen and (max-width: 640px) and (orientation: landscape) {
         padding: 0.5em
     }
 }
+
+input[type=range] {
+    &::-moz-range-thumb {
+        background-color: $bv-green;
+        height: 1.4em;
+        width: 0.8em;
+        border: none;
+        border-radius: 0 0 1000px 1000px;
+
+        &:hover {
+            background-color: black;
+        }
+
+        &:active {
+            background-color: lightgray;
+        }
+    }
+
+    &::-moz-range-track {
+        background: lightgray;
+    }
+
+    &::-ms-thumb {
+        background-color: black;
+        border: none;
+        height: 0.7em;
+        width: 0.7em;
+    }
+
+    &::-ms-track {
+        background-color: lightgray;
+        border: none;
+        height: 0.7em;
+        color: transparent; // Removes the markers.
+    }
+
+    &::-ms-fill-lower {
+        background-color: $bright-green;
+        border: none;
+        height: 0.7em;
+    }
+}
