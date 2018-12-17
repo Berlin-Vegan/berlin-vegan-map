@@ -16,3 +16,11 @@ $min-height-1: "all and (min-height: 800px)";
 $min-height-2: "all and (min-height: 900px)";
 $min-height-3: "all and (min-height: 1000px)";
 $min-height-4: "all and (min-height: 1100px)";
+/* 
+ * pointer is not universally supported, and -moz-touch-enabled is just for Mozilla,
+ * so we also assume a touch device when the width is really small.
+ */
+$is-touch-device: "(pointer: coarse),"
+    + "(-moz-touch-enabled),"
+    + "screen and (max-width: 480px) and (orientation: portrait),"
+    + "screen and (max-width: 640px) and (orientation: landscape)"
