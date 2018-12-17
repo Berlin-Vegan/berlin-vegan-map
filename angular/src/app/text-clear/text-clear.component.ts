@@ -74,5 +74,3 @@ function getEmValueFromElement(element: HTMLElement, pixelValue: number): number
     const pixelValueOfOneEm = (elementFontSize / parentFontSize) * elementFontSize;
     return pixelValue / pixelValueOfOneEm;
 }
-
-(window as any)["getEmValueFromElement"] = getEmValueFromElement;
