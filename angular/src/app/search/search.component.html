@@ -1,6 +1,6 @@
 <form *ngIf="query" name="searchForm">
     <section class="searchTextContainer flex-container-wrap">
-        <app-text-clear>
+        <app-text-clear [isTouchDevice]="configurationService.isTouchDevice">
             <input #input
                 type="search"
                 name="text"

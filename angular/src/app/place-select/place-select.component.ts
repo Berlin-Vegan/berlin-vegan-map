@@ -11,7 +11,7 @@ import { Place } from "../model/place";
 export class PlaceSelectComponent implements OnInit {
 
     constructor(
-        private readonly configurationService: ConfigurationService,
+        readonly configurationService: ConfigurationService,
         private readonly ngZone: NgZone
     ) {}
 

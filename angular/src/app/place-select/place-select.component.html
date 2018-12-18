@@ -1,4 +1,4 @@
-<app-text-clear>
+<app-text-clear [isTouchDevice]="configurationService.isTouchDevice">
     <input #input
         type="text"
         [ngModel]="address"

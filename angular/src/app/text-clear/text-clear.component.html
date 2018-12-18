@@ -1,4 +1,4 @@
-<div (mouseenter)="onMouseenter()" (mouseleave)="onMouseleave()">
+<div #div (mouseenter)="onMouseenter()" (mouseleave)="onMouseleave()">
     <ng-content select="input[type=search], input[type=text]"></ng-content>
     <button #button
         [hidden]="!showButton"

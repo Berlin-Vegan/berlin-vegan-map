@@ -27,11 +27,21 @@ export class ConfigurationService {
     };
 
     // Keep these in sync with styles/variables.scss!
-    readonly mediaQueries = { "min-width-1": "all and (min-width: 568px)"};
+    readonly mediaQueries = {
+        "min-width-1": "all and (min-width: 568px)",
+        "is-touch-device": "(pointer: coarse),"
+            + "(-moz-touch-enabled),"
+            + "screen and (max-width: 480px) and (orientation: portrait),"
+            + "screen and (max-width: 640px) and (orientation: landscape)",
+    };
     readonly minWidths = [ 568, 655, 740, 1080, 1210, 1380, 1600, 1915 ];
 
     hasMobileSize(): boolean {
         return !window.matchMedia(this.mediaQueries["min-width-1"]).matches;
+    }
+
+    isTouchDevice = () => {
+        return window.matchMedia(this.mediaQueries["is-touch-device"]).matches;
     }
 
     getColor(veganCategory: VeganCategory): string {

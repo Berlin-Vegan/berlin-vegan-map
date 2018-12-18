@@ -4,6 +4,7 @@ import {
     Component,
     ContentChild,
     ElementRef,
+    HostListener,
     Input,
     ViewChild
 } from "@angular/core";
@@ -19,19 +20,22 @@ export class TextClearComponent implements AfterViewInit {
     constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
 
     @Input() showButtonWhenOutside = false;
+    @Input() isTouchDevice: () => boolean;
     @ContentChild("input") input: ElementRef;
     @ContentChild("buttonContent") buttonContent: ElementRef;
+    @ViewChild("div") div: ElementRef;
     @ViewChild("button") button: ElementRef;
-    initialized = false;
+    forceButtonVisibility = false;
     focus = false;
     hover = false;
+    private getButtonOffsetWidthPx: () => number;
 
     get inputElement(): HTMLInputElement { return this.input.nativeElement; }
 
     private get buttonElement(): HTMLButtonElement { return this.button.nativeElement; }
 
     get showButton(): boolean {
-        return !this.initialized
+        return this.forceButtonVisibility
             || (!!this.inputElement.value && (this.showButtonWhenOutside || this.focus || this.hover));
     }
 
@@ -39,20 +43,76 @@ export class TextClearComponent implements AfterViewInit {
         if (!this.input) {
             throw new Error("#input is mandatory content.");
         }
-
-        const inputPaddingRightPx =
-            parseInt(window.getComputedStyle(this.inputElement).paddingRight!.replace("px", ""), 10);
-        const paddingRightEm = getEmValueFromElement(this.inputElement, inputPaddingRightPx);
-        const buttonWidthEm = getEmValueFromElement(this.buttonElement, this.buttonElement.offsetWidth);
-        this.buttonElement.style.right = paddingRightEm + "em";
-        this.inputElement.style.paddingRight = (2 * paddingRightEm + buttonWidthEm) + "em";
-        this.inputElement.style.flex = "1";
         this.inputElement.addEventListener("focus", () => this.focus = true);
         this.inputElement.addEventListener("blur", () => this.focus = false);
+        this.inputElement.style.flex = "1";
 
-        this.initialized = true;
-        this.changeDetectorRef.detectChanges(); // Otherwise ExpressionChangedAfterItHasBeenCheckedError
+        if (listenToVisibilityChange) {
+            this.getButtonOffsetWidthPx = () => {
+                if (!this.showButton) {
+                    // Temporarily force button visibility (provided that its container is visible),
+                    // so offsetWidth is computed correctly.
+                    this.forceButtonVisibility = true;
+                    this.changeDetectorRef.detectChanges();
+                }
+                const offsetWidthPx = this.buttonElement.offsetWidth;
+                if (this.forceButtonVisibility) {
+                    this.forceButtonVisibility = false;
+                    this.changeDetectorRef.detectChanges();
+                }
+                return offsetWidthPx;
+            };
+            listenToVisibilityChange(this.div.nativeElement, (visible: boolean) => {
+                if (visible) {
+                    this.style();
+                }
+            });
+        } else {
+            // style() might get called when the button's container (the div element) is invisible
+            // and thus have a "wrong" offsetWidth of 0.
+            // This is no problem when we can react to the container getting visible, because then
+            // - finally - style() can run with the correct button's offsetWidth.
+            // When we cannot do this (as in this else branch), at least we can consistently use 0
+            // as the utton's offsetWidth.
+            this.getButtonOffsetWidthPx = () => 0;
+            this.style();
+        }
     }
+
+    @HostListener("window:resize") onWindowResize() {
+        this.style();
+    }
+
+    private style() {
+        const inputOriginalPaddingRightPx = this.getInputOriginalPaddingRightPx();
+
+        if (this.isTouchDevice()) {
+            this.buttonElement.style.paddingRight = inputOriginalPaddingRightPx + "px";
+            this.buttonElement.style.paddingLeft = inputOriginalPaddingRightPx + "px";
+            this.buttonElement.style.paddingTop =
+                getCssPropertyPx(this.inputElement, "paddingTop") + "px";
+            this.buttonElement.style.paddingBottom =
+                getCssPropertyPx(this.inputElement, "paddingBottom") + "px";
+            this.buttonElement.style.right = "0";
+
+            this.inputElement.style.paddingRight = this.getButtonOffsetWidthPx() + "px";
+        } else {
+            this.buttonElement.style.padding = "0";
+            this.buttonElement.style.right = inputOriginalPaddingRightPx + "px";
+
+            this.inputElement.style.paddingRight =
+                (this.getButtonOffsetWidthPx() + 2 * inputOriginalPaddingRightPx) + "px";
+        }
+    }
+
+    private getInputOriginalPaddingRightPx(): number {
+        const paddingRight = this.inputElement.style.paddingRight;
+        this.inputElement.style.paddingRight = null;
+        const result = getCssPropertyPx(this.inputElement, "paddingRight");
+        this.inputElement.style.paddingRight = paddingRight;
+        return result;
+    }
+
 
     onMouseenter() { this.hover = true; }
 
@@ -65,12 +125,30 @@ export class TextClearComponent implements AfterViewInit {
     }
 }
 
-function getEmValueFromElement(element: HTMLElement, pixelValue: number): number {
-    if (!element.parentElement) {
-        throw new Error("Unexpected condition");
-    }
-    const parentFontSize = parseFloat(window.getComputedStyle(element.parentElement).fontSize!);
-    const elementFontSize = parseFloat(window.getComputedStyle(element).fontSize!);
-    const pixelValueOfOneEm = (elementFontSize / parentFontSize) * elementFontSize;
-    return pixelValue / pixelValueOfOneEm;
+function getCssPropertyPx(
+    element: HTMLElement,
+    property: "paddingTop" | "paddingRight" | "paddingBottom"
+): number {
+    const value = window.getComputedStyle(element)[property];
+    return value ? parseInt(value.replace("px", ""), 10) : 0;
 }
+
+// Adopted from https://stackoverflow.com/a/44670818/443836.
+// Works only in browsers where IntersectionObserver is defined.
+// TODO: Move to library
+const listenToVisibilityChange =
+    typeof IntersectionObserver !== "undefined" ?
+    function(element: Element, callback: (visible: boolean) => void) {
+        const observerOptions = {
+            root: document.documentElement
+        };
+
+        const observer = new IntersectionObserver(
+            entries => entries.forEach(entry => callback(entry.intersectionRatio > 0)),
+            observerOptions
+        );
+
+        observer.observe(element);
+    }
+    :
+    undefined;
