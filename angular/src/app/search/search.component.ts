@@ -87,4 +87,9 @@ export class SearchComponent {
             (document.activeElement as HTMLElement).blur();
         }
     }
+
+    // TODO: Move to library
+    capitalizeFirstLetter(s: string) {
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    }
 }

@@ -31,7 +31,7 @@
                     (change)="onQueryChange()"
                 /><span
                     [style.border-bottom]="'3px dotted ' + configurationService.getColor(veganCategory)"
-                >{{i18n.enums.veganCategory.concise[veganCategory]}}
+                >{{capitalizeFirstLetter(i18n.enums.veganCategory.concise[veganCategory])}}
                 </span>
             </label>
         </div>
