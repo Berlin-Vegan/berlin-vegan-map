@@ -70,7 +70,7 @@ const i18n = {
                 de: "Kleidung",
             },
             toiletries: {
-                en: "Cosmetics",
+                en: "Toiletries",
                 de: "Kosmetik",
             },
             supermarket: {
