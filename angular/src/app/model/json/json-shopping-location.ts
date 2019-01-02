@@ -12,7 +12,7 @@ export interface JsonShoppingLocation extends JsonLocation {
         | "toiletries"
         | "supermarket"
         | "hairdressers"
-        | "fitness"
+        | "sports"
         | "tattoostudio"
         | "accommodation"
     )[];

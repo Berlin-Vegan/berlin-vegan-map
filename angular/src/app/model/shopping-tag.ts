@@ -4,7 +4,7 @@ export type ShoppingTag =
     | "toiletries"
     | "supermarket"
     | "hairdressers"
-    | "fitness"
+    | "sports"
     | "tattoostudio"
     | "accommodation";
 export function getShoppingTags(): ShoppingTag[] {
@@ -14,7 +14,7 @@ export function getShoppingTags(): ShoppingTag[] {
         "toiletries",
         "supermarket",
         "hairdressers",
-        "fitness",
+        "sports",
         "tattoostudio",
         "accommodation",
     ];

@@ -81,8 +81,8 @@ const i18n = {
                 en: "Hairdresser's",
                 de: "Friseursalon",
             },
-            fitness: {
-                en: "Fitness",
+            sports: {
+                en: "Sports",
                 de: "Sport",
             },
             tattoostudio: {
