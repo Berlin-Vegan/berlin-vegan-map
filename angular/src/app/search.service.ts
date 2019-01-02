@@ -150,7 +150,7 @@ export class SearchService {
 function normalizeText(text: string | undefined): string {
 
     if (!text) {
-        text = "";
+        return "";
     }
 
     // So we find café when searching for cafe and vice versa.
