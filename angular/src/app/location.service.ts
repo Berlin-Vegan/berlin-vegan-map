@@ -62,6 +62,7 @@ export class LocationService {
             location.handicappedAccessible,
             location.pictures,
             location.publicTransport,
+            window.location.origin + "/gastro/" + location.id,
             location.tags.map(it => this.i18n.enums.gastroTag[it]).join(", "),
             location.email,
             location.glutenFree,
@@ -102,6 +103,7 @@ export class LocationService {
             location.handicappedAccessible,
             [],
             undefined,
+            window.location.origin + "/shops/" + location.id,
             location.tags.map(it => this.i18n.enums.shoppingTag[it]).join(", "),
             location.tags.sort(),
         );

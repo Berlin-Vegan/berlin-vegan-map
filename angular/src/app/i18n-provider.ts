@@ -352,6 +352,20 @@ const i18n = {
             en: "Close info",
             de: "Info schließen",
         },
+        shareLink: {
+            title: {
+                en: "Share the link to this location",
+                de: "Link zu dieser Location teilen",
+            },
+            header: {
+                en: "Share the link to this location:",
+                de: "Link zu dieser Location teilen:",
+            },
+            clipboardTitle: {
+                en: "Copy to clipboard",
+                de: "In die Zwischenablage kopieren",
+            },
+        }
     },
     address: {
         locationInGoogleMaps: {

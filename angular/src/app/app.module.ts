@@ -38,6 +38,7 @@ import { ResultsListComponent } from "./results-list/results-list.component";
 import { SearchService } from "./search.service";
 import { SearchComponent } from "./search/search.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { ShareLinkComponent } from "./share-link/share-link.component";
 import { SortComponent } from "./sort/sort.component";
 import { StatisticsComponent } from "./statistics/statistics.component";
 import { TextClearComponent } from "./text-clear/text-clear.component";
@@ -67,6 +68,7 @@ const appRoutes: Routes = [
         ResultsListComponent,
         SearchComponent,
         SettingsComponent,
+        ShareLinkComponent,
         SortComponent,
         StatisticsComponent,
         TextClearComponent,

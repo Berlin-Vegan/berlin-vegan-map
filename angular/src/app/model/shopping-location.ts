@@ -30,6 +30,7 @@ export class ShoppingLocation extends Location {
         handicappedAccessible: YesNoUnknown,
         pictures: Picture[],
         publicTransport: string | undefined,
+        berlinVeganMapUrl: string,
         tagsFriendly: string,
         public readonly tags: ShoppingTag[],
     ) {
@@ -55,6 +56,7 @@ export class ShoppingLocation extends Location {
             handicappedAccessible,
             pictures,
             publicTransport,
+            berlinVeganMapUrl,
             tagsFriendly,
         );
     }

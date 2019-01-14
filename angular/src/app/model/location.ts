@@ -31,6 +31,7 @@ export class Location {
         public readonly handicappedAccessible: YesNoUnknown,
         public readonly pictures: Picture[],
         public readonly publicTransport: string | undefined,
+        public readonly berlinVeganMapUrl: string,
         public readonly tagsFriendly: string,
     ) {}
 

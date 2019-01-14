@@ -17,6 +17,13 @@
                         [title]="location.website"
                         aria-label="Website"
                     ><span class="fas fa-globe-americas" aria-hidden="true"></span></a>
+                    <!-- TODO: Enable component when routes to locations have been implemented: -->
+                    <app-share-link *ngIf="false"
+                        [title]="i18n.infoBox.shareLink.title"
+                        [header]="i18n.infoBox.shareLink.header"
+                        [url]="location.berlinVeganMapUrl"
+                        [clipboardTitle]="i18n.infoBox.shareLink.clipboardTitle"
+                    ></app-share-link>
                     <app-new-indicator [location]="location"></app-new-indicator>
                 </div>
                 <div *ngIf="place && place.coordinates" class="coordinates" [style.width]="'45%'">

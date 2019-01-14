@@ -30,6 +30,7 @@ export class GastroLocation extends Location {
         handicappedAccessible: YesNoUnknown,
         pictures: Picture[],
         publicTransport: string | undefined,
+        berlinVeganMapUrl: string,
         tagsFriendly: string,
         public readonly email: string | undefined,
         public readonly glutenFree: YesNoUnknown,
@@ -66,6 +67,7 @@ export class GastroLocation extends Location {
             handicappedAccessible,
             pictures,
             publicTransport,
+            berlinVeganMapUrl,
             tagsFriendly,
         );
     }

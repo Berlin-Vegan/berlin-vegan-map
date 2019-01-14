@@ -1,0 +1,21 @@
+<a mat-button
+    [matMenuTriggerFor]="menu"
+    href=""
+    (click)="$event.preventDefault(); onMatButtonClick()"
+    role="button"
+    [title]="title"
+    [attr.aria-label]="title"
+><span class="fas fa-share-alt-square" aria-hidden="true"></span></a>
+<mat-menu #menu="matMenu">
+    <div mat-menu-item disabled>{{header}}</div>
+    <div mat-menu-item disabled>
+        <input #input type="text" [value]="url"/>
+        <a
+            href=""
+            (click)="$event.preventDefault(); onClipboardClick()"
+            role="button"
+            [title]="clipboardTitle"
+            [attr.aria-label]="clipboardTitle"
+        ><span class="fas fa-clipboard" aria-hidden="true"></span></a>
+    </div>
+</mat-menu>
