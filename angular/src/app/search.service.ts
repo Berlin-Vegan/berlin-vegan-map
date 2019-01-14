@@ -5,6 +5,7 @@ import { LocalStorageService } from "./local-storage.service";
 import { GastroLocation } from "./model/gastro-location";
 import { GastroQuery } from "./model/gastro-query";
 import { GastroTag } from "./model/gastro-tag";
+import { Location } from "./model/location";
 import { ShoppingLocation } from "./model/shopping-location";
 import { ShoppingQuery } from "./model/shopping-query";
 import { ShoppingTag } from "./model/shopping-tag";
@@ -14,7 +15,7 @@ export class SearchService {
 
     constructor(private readonly localStorageService: LocalStorageService) {}
 
-    isResult(location: GastroLocation | ShoppingLocation, query: GastroQuery | ShoppingQuery): boolean {
+    isResult(location: Location, query: GastroQuery | ShoppingQuery): boolean {
 
         if (
             (location instanceof GastroLocation && query instanceof ShoppingQuery)
@@ -70,7 +71,10 @@ export class SearchService {
                     ]);
                 }
 
-                searchedValues = searchedValues.concat(location.tags);
+                // Always true, but smart cast does not recognize that:
+                if (location instanceof GastroLocation || location instanceof ShoppingLocation) {
+                    searchedValues = searchedValues.concat(location.tags);
+                }
             }
             return searchedValues.some(property =>
                 normalizeText(property).includes(normalizeText(query.text))

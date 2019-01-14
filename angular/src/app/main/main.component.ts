@@ -46,8 +46,8 @@ export class MainComponent implements OnInit {
     @ViewChild(GoogleMapComponent) googleMapComponent: GoogleMapComponent;
     @ViewChild("preSearchDiv") preSearchDiv: ElementRef;
 
-    allLocations: (GastroLocation | ShoppingLocation)[] = [];
-    filteredLocations: (GastroLocation | ShoppingLocation)[] = [];
+    allLocations: Location[] = [];
+    filteredLocations: Location[] = [];
     query: GastroQuery | ShoppingQuery;
     isGastro: boolean | undefined;
     selectedLocation: Location | null = null;
