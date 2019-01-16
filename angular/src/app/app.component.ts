@@ -1,6 +1,7 @@
+import { PlatformLocation } from "@angular/common";
 import { Component } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
-import { filter, map } from "rxjs/operators";
+import { filter } from "rxjs/operators";
 
 import { ConfigurationService } from "./configuration.service";
 import { LocalStorageService } from "./local-storage.service";
@@ -15,6 +16,7 @@ export class AppComponent {
 
     constructor(
         router: Router,
+        platformLocation: PlatformLocation,
         configurationService: ConfigurationService,
         localStorageService: LocalStorageService
     ) {
@@ -41,11 +43,10 @@ export class AppComponent {
         }
 
         router.events.pipe(
-            filter(event => event instanceof NavigationEnd),
-            map(event => event as NavigationEnd)
-        ).subscribe(event => {
+            filter(event => event instanceof NavigationEnd)
+        ).subscribe(() => {
             if (gtag) {
-                const url = getUrl(event);
+                const url = normalizeId(platformLocation.pathname);
                 gtag("event", "page_view", {
                     "send_to": trackingIds.website,
                     "page_path": url,
@@ -58,10 +59,6 @@ export class AppComponent {
             }
         });
     }
-}
-
-function getUrl(event: NavigationEnd): string {
-    return normalizeId(event.urlAfterRedirects);
 }
 
 function normalizeId(url: string): string {
