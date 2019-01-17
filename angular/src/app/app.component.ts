@@ -30,14 +30,16 @@ export class AppComponent {
                 "custom_map": { "dimension1": "appLanguage" }
             });
 
-            // Setup a listener to track "Add to Homescreen?" events;
-            window.addEventListener("beforeinstallprompt", (e: any) => {
-                e.userChoice.then((choiceResult: any) => {
-                    gtag("event", "installprompt", {
-                        "send_to": trackingIds.map,
-                        "event_label": choiceResult.outcome,
-                        "appLanguage": localStorageService.getLanguage(),
-                    });
+            window.addEventListener("beforeinstallprompt", () => {
+                gtag("event", "beforeinstallprompt", {
+                    "send_to": trackingIds.map,
+                    "appLanguage": localStorageService.getLanguage(),
+                });
+            });
+            window.addEventListener("appinstalled", () => {
+                gtag("event", "appinstalled", {
+                    "send_to": trackingIds.map,
+                    "appLanguage": localStorageService.getLanguage(),
                 });
             });
         }
