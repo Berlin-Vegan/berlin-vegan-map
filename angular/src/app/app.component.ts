@@ -21,25 +21,33 @@ export class AppComponent {
         localStorageService: LocalStorageService
     ) {
         const trackingIds = configurationService.googleAnalyticsTrackingIds;
+        const standalone = window.matchMedia("(display-mode: standalone)").matches
+            || (window.navigator as any).standalone === true; // Safari
+
         if (gtag) {
             gtag("config", trackingIds.website, {
                 "send_page_view": false,
             });
             gtag("config", trackingIds.map, {
                 "send_page_view": false,
-                "custom_map": { "dimension1": "appLanguage" }
+                "custom_map": {
+                    "dimension1": "appLanguage",
+                    "dimension2": "standalone"
+                }
             });
 
             window.addEventListener("beforeinstallprompt", () => {
                 gtag("event", "beforeinstallprompt", {
                     "send_to": trackingIds.map,
                     "appLanguage": localStorageService.getLanguage(),
+                    "standalone": standalone + ""
                 });
             });
             window.addEventListener("appinstalled", () => {
                 gtag("event", "appinstalled", {
                     "send_to": trackingIds.map,
                     "appLanguage": localStorageService.getLanguage(),
+                    "standalone": standalone + ""
                 });
             });
         }
@@ -57,6 +65,7 @@ export class AppComponent {
                     "send_to": trackingIds.map,
                     "page_path": url,
                     "appLanguage": localStorageService.getLanguage(),
+                    "standalone": standalone + ""
                 });
             }
         });
