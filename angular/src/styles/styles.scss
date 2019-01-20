@@ -109,6 +109,10 @@ input[type=text], input[type=search], input[type=time], input[type=number], sele
     }
 }
 
+input[type=checkbox]:checked {
+    background-color: $bright-green; // Green instead of dark gray in mobile Safari.
+}
+
 input[type=range] {
     &::-moz-range-thumb {
         background-color: $bv-green;
