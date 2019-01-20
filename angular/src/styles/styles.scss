@@ -98,6 +98,17 @@ select {
     }
 }
 
+input[type=search] {
+    -webkit-appearance: textfield; // Need this so border gets applied on Desktop Safari.
+}
+
+input[type=text], input[type=search], input[type=time], input[type=number], select {
+    &:focus {
+        border: 2px solid $bright-green; // Cannot use outline because of rounded search input ion mobile Safari.
+        outline: none; // Override default in Opera.
+    }
+}
+
 input[type=range] {
     &::-moz-range-thumb {
         background-color: $bv-green;
