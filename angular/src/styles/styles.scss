@@ -98,8 +98,12 @@ select {
     }
 }
 
-input[type=search] {
-    -webkit-appearance: textfield; // Need this so border gets applied on Desktop Safari.
+@media not all and (pointer: coarse) {
+    input[type=search] {
+        // Need this so border gets applied on Desktop Safari.
+        // However, on mobile Safari it sometimes (and only sometimes) makes the rounded search input rectangular.
+        -webkit-appearance: textfield;
+    }
 }
 
 input[type=text], input[type=search], input[type=time], input[type=number], select {
