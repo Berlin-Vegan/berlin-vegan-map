@@ -18,7 +18,7 @@ import { Location } from "../model/location";
 @Component({
     selector: "app-google-map",
     template: `<div #mapDiv></div>`,
-    styles: [ `div { width: 100%; height: 100%; }` ],
+    styles: [`div { width: 100%; height: 100%; }`],
 })
 export class GoogleMapComponent implements OnInit {
 
@@ -27,7 +27,7 @@ export class GoogleMapComponent implements OnInit {
         private readonly configurationService: ConfigurationService,
         private readonly localStorageService: LocalStorageService,
         private readonly ngZone: NgZone,
-    ) {}
+    ) { }
 
     @Input() set locations(locations: Location[]) {
         this._locations = locations;
@@ -82,7 +82,7 @@ export class GoogleMapComponent implements OnInit {
 
     @Output() readonly locationSelect = new EventEmitter<Location | null>();
 
-    @ViewChild("mapDiv") mapDiv: ElementRef;
+    @ViewChild("mapDiv", { static: false }) mapDiv: ElementRef;
 
     private map: google.maps.Map;
     private coordinatesMarker: google.maps.Marker;

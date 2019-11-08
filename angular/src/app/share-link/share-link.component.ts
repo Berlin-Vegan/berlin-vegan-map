@@ -14,8 +14,8 @@ export class ShareLinkComponent {
     @Input() url: string;
     @Input() clipboardTitle: string;
 
-    @ViewChild(MatMenuTrigger) matMenuTrigger: MatMenuTrigger;
-    @ViewChild("input") input: ElementRef;
+    @ViewChild(MatMenuTrigger, { static: false }) matMenuTrigger: MatMenuTrigger;
+    @ViewChild("input", { static: false }) input: ElementRef;
 
     onMatButtonClick() {
         this.input.nativeElement.select();

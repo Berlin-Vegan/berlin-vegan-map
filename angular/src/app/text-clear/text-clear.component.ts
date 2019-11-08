@@ -13,18 +13,18 @@ import {
 @Component({
     selector: "app-text-clear",
     templateUrl: "./text-clear.component.html",
-    styleUrls: [ "./text-clear.component.scss" ],
+    styleUrls: ["./text-clear.component.scss"],
 })
 export class TextClearComponent implements AfterViewInit {
 
-    constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
+    constructor(private readonly changeDetectorRef: ChangeDetectorRef) { }
 
     @Input() showButtonWhenOutside = false;
     @Input() isTouchDevice: () => boolean;
-    @ContentChild("input") input: ElementRef;
-    @ContentChild("buttonContent") buttonContent: ElementRef;
-    @ViewChild("div") div: ElementRef;
-    @ViewChild("button") button: ElementRef;
+    @ContentChild("input", { static: false }) input: ElementRef;
+    @ContentChild("buttonContent", { static: false }) buttonContent: ElementRef;
+    @ViewChild("div", { static: false }) div: ElementRef;
+    @ViewChild("button", { static: false }) button: ElementRef;
     forceButtonVisibility = false;
     focus = false;
     hover = false;
@@ -138,17 +138,17 @@ function getCssPropertyPx(
 // TODO: Move to library
 const listenToVisibilityChange =
     typeof IntersectionObserver !== "undefined" ?
-    function(element: Element, callback: (visible: boolean) => void) {
-        const observerOptions = {
-            root: document.documentElement
-        };
+        function (element: Element, callback: (visible: boolean) => void) {
+            const observerOptions = {
+                root: document.documentElement
+            };
 
-        const observer = new IntersectionObserver(
-            entries => entries.forEach(entry => callback(entry.intersectionRatio > 0)),
-            observerOptions
-        );
+            const observer = new IntersectionObserver(
+                entries => entries.forEach(entry => callback(entry.intersectionRatio > 0)),
+                observerOptions
+            );
 
-        observer.observe(element);
-    }
-    :
-    undefined;
+            observer.observe(element);
+        }
+        :
+        undefined;

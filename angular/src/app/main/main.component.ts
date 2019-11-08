@@ -23,7 +23,7 @@ let module_fullMapView: boolean;
 @Component({
     selector: "app-main",
     templateUrl: "./main.component.html",
-    styleUrls: [ "./main.component.scss" ],
+    styleUrls: ["./main.component.scss"],
 })
 export class MainComponent implements OnInit {
 
@@ -41,10 +41,10 @@ export class MainComponent implements OnInit {
         module_firstConstruction = false;
     }
 
-    @ViewChild(SearchComponent) searchComponent: SearchComponent;
-    @ViewChild(ResultsListComponent) resultsListComponent: ResultsListComponent;
-    @ViewChild(GoogleMapComponent) googleMapComponent: GoogleMapComponent;
-    @ViewChild("preSearchDiv") preSearchDiv: ElementRef;
+    @ViewChild(SearchComponent, { static: false }) searchComponent: SearchComponent;
+    @ViewChild(ResultsListComponent, { static: false }) resultsListComponent: ResultsListComponent;
+    @ViewChild(GoogleMapComponent, { static: false }) googleMapComponent: GoogleMapComponent;
+    @ViewChild("preSearchDiv", { static: false }) preSearchDiv: ElementRef;
 
     allLocations: Location[] = [];
     filteredLocations: Location[] = [];

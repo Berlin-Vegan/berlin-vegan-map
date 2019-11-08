@@ -6,14 +6,14 @@ import { Place } from "../model/place";
 @Component({
     selector: "app-place-select",
     templateUrl: "./place-select.component.html",
-    styleUrls: [ "./place-select.component.scss" ],
+    styleUrls: ["./place-select.component.scss"],
 })
 export class PlaceSelectComponent implements OnInit {
 
     constructor(
         readonly configurationService: ConfigurationService,
         private readonly ngZone: NgZone
-    ) {}
+    ) { }
 
     @Input() placeholder: string;
 
@@ -25,7 +25,7 @@ export class PlaceSelectComponent implements OnInit {
     private _place: Place | null;
 
     @Output() readonly placeChange = new EventEmitter<Place>();
-    @ViewChild("input") input: ElementRef;
+    @ViewChild("input", { static: false }) input: ElementRef;
     address: string;
     private autocomplete: google.maps.places.Autocomplete;
 
@@ -48,8 +48,8 @@ export class PlaceSelectComponent implements OnInit {
 
     getPlace(): Place {
         const placeResult = this.autocomplete.getPlace();
-        return new Place ({
-            coordinates : {
+        return new Place({
+            coordinates: {
                 accuracy: 1,
                 latitude: placeResult.geometry.location.lat(),
                 longitude: placeResult.geometry.location.lng(),
