@@ -12,7 +12,7 @@ import { LocalStorageService } from "./../local-storage.service";
 @Component({
     selector: "app-info-box",
     templateUrl: "info-box.component.html",
-    styleUrls: [ "info-box.component.scss" ]
+    styleUrls: ["info-box.component.scss"]
 })
 export class InfoBoxComponent implements OnChanges {
 
@@ -26,7 +26,7 @@ export class InfoBoxComponent implements OnChanges {
     @Input() place: Place | undefined;
 
     @Output() readonly centerLocation = new EventEmitter<void>();
-    // tslint:disable-next-line:no-output-named-after-standard-event
+    // tslint:disable-next-line:no-output-native
     @Output() readonly close = new EventEmitter<void>();
 
     readonly isPhone = NavigatorUtil.isPhone();
@@ -100,12 +100,12 @@ export class InfoBoxComponent implements OnChanges {
         if (changes["location"] && this.localStorageService.settings.showPictures) {
             this.galleryImages =
                 this.location.pictures.length > 0 ?
-                this.location.pictures
-                    .map(it => it.url)
-                    .map(it => it.replace("http://", "https://")) // TODO: Remove when replaced on server.
-                    .map(it => ({ small: it, medium: it, big: it }))
-                :
-                null;
+                    this.location.pictures
+                        .map(it => it.url)
+                        .map(it => it.replace("http://", "https://")) // TODO: Remove when replaced on server.
+                        .map(it => ({ small: it, medium: it, big: it }))
+                    :
+                    null;
         }
     }
 }
