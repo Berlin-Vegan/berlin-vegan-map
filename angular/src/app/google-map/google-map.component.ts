@@ -82,7 +82,7 @@ export class GoogleMapComponent implements OnInit {
 
     @Output() readonly locationSelect = new EventEmitter<Location | null>();
 
-    @ViewChild("mapDiv", { static: false }) mapDiv: ElementRef;
+    @ViewChild("mapDiv", { static: true }) mapDiv: ElementRef;
 
     private map: google.maps.Map;
     private coordinatesMarker: google.maps.Marker;

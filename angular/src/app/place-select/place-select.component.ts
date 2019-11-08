@@ -25,7 +25,7 @@ export class PlaceSelectComponent implements OnInit {
     private _place: Place | null;
 
     @Output() readonly placeChange = new EventEmitter<Place>();
-    @ViewChild("input", { static: false }) input: ElementRef;
+    @ViewChild("input", { static: true }) input: ElementRef;
     address: string;
     private autocomplete: google.maps.places.Autocomplete;
 
