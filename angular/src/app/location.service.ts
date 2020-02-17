@@ -39,6 +39,12 @@ export class LocationService {
     }
 
     private newGastroLocation(location: JsonGastroLocation) {
+        // #region Workaround for a bug (wrong property name)
+        // TODO: Remove when bug has been fixed.
+        if (!location.dateCreated && (location as any).created) {
+            location.dateCreated = (location as any).created;
+        }
+        // #endregion
         return new GastroLocation(
             location.id,
             location.dateCreated ? moment(location.dateCreated) : undefined,
