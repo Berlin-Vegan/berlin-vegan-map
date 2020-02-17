@@ -57,17 +57,17 @@ export class SearchService {
                 searchedValues = searchedValues.concat([
                     location.street,
                     location.cityCode + "",
-                    location.telephone || "",
-                    location.website || "",
-                    location.getLocalizedComment(this.localStorageService.getLanguage()) || "",
-                    location.reviewWithoutFormatting || "",
+                    location.telephone ?? "",
+                    location.website ?? "",
+                    location.getLocalizedComment(this.localStorageService.getLanguage()) ?? "",
+                    location.reviewWithoutFormatting ?? "",
                 ]);
 
                 if (location instanceof GastroLocation) {
                     searchedValues = searchedValues.concat([
                         location.district,
-                        location.publicTransport || "",
-                        location.email || "",
+                        location.publicTransport ?? "",
+                        location.email ?? "",
                     ]);
                 }
 

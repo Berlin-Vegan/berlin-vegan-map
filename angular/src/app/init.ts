@@ -44,10 +44,10 @@ function getLanguage(): Language {
     if (location.href.includes("lang=")) {
         language = location.href.split("lang=")[1];
     } else if (localStorage) {
-        language = localStorage.getItem(keys.language) || "de";
+        language = localStorage.getItem(keys.language) ?? "de";
     } else {
         const prefLang = getPreferredLanguages().find(it => it === "en" || it === "de");
-        language = prefLang || "de";
+        language = prefLang ?? "de";
     }
 
     if (language === "en" || language === "de") {
