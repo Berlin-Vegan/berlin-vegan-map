@@ -107,7 +107,7 @@ export class TextClearComponent implements AfterViewInit {
 
     private getInputOriginalPaddingRightPx(): number {
         const paddingRight = this.inputElement.style.paddingRight;
-        this.inputElement.style.paddingRight = null;
+        this.inputElement.style.paddingRight = "";
         const result = getCssPropertyPx(this.inputElement, "paddingRight");
         this.inputElement.style.paddingRight = paddingRight;
         return result;
