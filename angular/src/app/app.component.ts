@@ -26,9 +26,11 @@ export class AppComponent {
 
         if (gtag) {
             gtag("config", trackingIds.website, {
+                "anonymize_ip": true,
                 "send_page_view": false,
             });
             gtag("config", trackingIds.map, {
+                "anonymize_ip": true,
                 "send_page_view": false,
                 "custom_map": {
                     "dimension1": "appLanguage",
