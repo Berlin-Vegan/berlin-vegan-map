@@ -1,9 +1,11 @@
 import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from "@angular/platform-browser";
+import { Injectable } from "@angular/core";
 import "hammer-timejs";
 import "hammerjs";
 
 delete Hammer.defaults.cssProps.userSelect; // Re-enable text selection
 
+@Injectable()
 export class HammerConfig extends HammerGestureConfig  {
     overrides = {
         "swipe": {

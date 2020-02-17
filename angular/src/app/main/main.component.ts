@@ -41,10 +41,10 @@ export class MainComponent implements OnInit {
         module_firstConstruction = false;
     }
 
-    @ViewChild(SearchComponent, { static: false }) searchComponent: SearchComponent;
-    @ViewChild(ResultsListComponent, { static: false }) resultsListComponent: ResultsListComponent;
-    @ViewChild(GoogleMapComponent, { static: false }) googleMapComponent: GoogleMapComponent;
-    @ViewChild("preSearchDiv", { static: false }) preSearchDiv: ElementRef;
+    @ViewChild(SearchComponent) searchComponent: SearchComponent;
+    @ViewChild(ResultsListComponent) resultsListComponent: ResultsListComponent;
+    @ViewChild(GoogleMapComponent) googleMapComponent: GoogleMapComponent;
+    @ViewChild("preSearchDiv") preSearchDiv: ElementRef;
 
     allLocations: Location[] = [];
     filteredLocations: Location[] = [];

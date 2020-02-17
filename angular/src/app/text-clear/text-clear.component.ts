@@ -21,10 +21,10 @@ export class TextClearComponent implements AfterViewInit {
 
     @Input() showButtonWhenOutside = false;
     @Input() isTouchDevice: () => boolean;
-    @ContentChild("input", { static: false }) input: ElementRef;
-    @ContentChild("buttonContent", { static: false }) buttonContent: ElementRef;
-    @ViewChild("div", { static: false }) div: ElementRef;
-    @ViewChild("button", { static: false }) button: ElementRef;
+    @ContentChild("input") input: ElementRef;
+    @ContentChild("buttonContent") buttonContent: ElementRef;
+    @ViewChild("div") div: ElementRef;
+    @ViewChild("button") button: ElementRef;
     forceButtonVisibility = false;
     focus = false;
     hover = false;

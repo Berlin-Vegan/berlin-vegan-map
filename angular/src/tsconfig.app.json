@@ -4,10 +4,6 @@
     "outDir": "../out-tsc/app",
     "types": []
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
-  ],
   "angularCompilerOptions": {
     // See https://github.com/angular/angular-cli/issues/10859
     // TODO: Check later if we still need this:
@@ -15,4 +11,11 @@
     "fullTemplateTypeCheck": true, // TODO: Remove when this has become the default.
     "strictInjectionParameters": true // TODO: Remove when this has become the default.
   },
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],  "include": [
+    "src/**/*.d.ts"
+  ]
+,
 }
