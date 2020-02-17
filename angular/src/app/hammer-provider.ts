@@ -1,5 +1,6 @@
-import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from "@angular/platform-browser";
 import { Injectable } from "@angular/core";
+// tslint:disable-next-line:ordered-imports (false positive on CLI)
+import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from "@angular/platform-browser";
 import "hammer-timejs";
 import "hammerjs";
 
