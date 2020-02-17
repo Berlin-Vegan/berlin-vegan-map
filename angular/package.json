@@ -17,6 +17,8 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/core": "^9.0.2",
+    "@angular-devkit/schematics": "^9.0.2",
     "@angular/animations": "8.2.14",
     "@angular/cdk": "^8.2.3",
     "@angular/common": "8.2.14",
@@ -32,6 +34,7 @@
     "@angular/service-worker": "8.2.14",
     "@marco-eckstein/angular-lib-common": "^1.0.0",
     "@marco-eckstein/js-utils": "^0.10.0",
+    "@schematics/angular": "^9.0.2",
     "core-js": "^2.5.4",
     "hammer-timejs": "^1.1.0",
     "hammerjs": "^2.0.8",
