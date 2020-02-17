@@ -76,7 +76,7 @@ export class LocalStorageService {
     }
 
     setLanguage(language: Language) {
-        if (localStorageWrapper.isLocalStorageAvailable) {
+        if (localStorageWrapper.isLocalStorageAvailable()) {
             localStorageWrapper.setItem(keys.language, language);
             // Clear search parameters: (location.search = "" leaves question mark in some browsers.)
             location.href = location.href.split("?")[0];
