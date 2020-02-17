@@ -52,7 +52,8 @@
                 </div>
                 <div *ngIf="galleryImages" aria-hidden="true">
                     <p>
-                        <ngx-gallery [images]="galleryImages" [options]="galleryOptions"></ngx-gallery>
+                        <ngx-gallery class="ngx-gallery" [images]="galleryImages" [options]="galleryOptions">
+                        </ngx-gallery>
                     </p>
                 </div>
             </div>

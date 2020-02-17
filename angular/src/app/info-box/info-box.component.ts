@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from "@kolkov/ngx-gallery";
 import { DayOfWeek, NavigatorUtil } from "@marco-eckstein/js-utils";
-import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from "ngx-gallery";
 
 import { ConfigurationService } from "../configuration.service";
 import { I18N } from "../i18n-provider";

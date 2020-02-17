@@ -158,3 +158,9 @@ input[type=range] {
         height: 0.7em;
     }
 }
+
+// Workaround for an @kolkov/ngx-gallery issue.
+// TODO: When updated, check if still necessary.
+.ngx-gallery {
+    display: inline-block;
+}
