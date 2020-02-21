@@ -8,7 +8,6 @@ declare var global_language: Language;
 if (window.location.hostname !== "localhost" && window.location.protocol === "http:") {
     redirectToHttps();
 } else {
-    migrateLegacyKeys();
     global_language = getLanguage();
     document.documentElement!.setAttribute("lang", global_language);
     appendScript(
@@ -24,18 +23,6 @@ if (window.location.hostname !== "localhost" && window.location.protocol === "ht
 function redirectToHttps() {
     const httpsUrl = location.href.replace(/http:/, "https:");
     window.location.replace(httpsUrl);
-}
-
-// Migrate legacy keys not using a namespace for URL and app.
-// TODO: Remove this code after a couple of months, e.g. January 2019.
-function migrateLegacyKeys() {
-    if (localStorage) {
-        const language = localStorage.getItem("lang");
-        if (language) {
-            localStorage.setItem(keys.language, language);
-            localStorage.removeItem("lang");
-        }
-    }
 }
 
 function getLanguage(): Language {
