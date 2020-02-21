@@ -11,11 +11,11 @@ const versionInfo = {
     repositoryUrl: packageJson.repository.url,
     gitDescription: gitDescription,
     buildTimestamp: new Date().toISOString(),
-}
+};
 
 const fileContent = `// This file is auto-generated. Do not manually edit or check in!
 
 export const versionInfo = ${JSON.stringify(versionInfo, null, 4)};
-`
+`;
 
 writeFileSync("./src/environments/version-info.ts", fileContent);

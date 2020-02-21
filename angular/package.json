@@ -4,13 +4,13 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "ng": "ng",
-    "start": "node write-version-info.js && ng serve --open",
-    "build": "node write-version-info.js && ng build --prod",
+    "start": "node write-version-info.ts && ng serve --open",
+    "build": "node write-version-info.ts && ng build --prod",
     "serve-build": "open-cli http://localhost:8000/ && cd ./dist && ws --spa index.html",
     "test": "ng test",
     "lint": "ng lint",
     "verify": "npm run build && ng lint",
-    "postinstall": "node write-version-info.js",
+    "postinstall": "node write-version-info.ts",
     "lighthouse": "lighthouse-ignore"
   },
   "repository": {
