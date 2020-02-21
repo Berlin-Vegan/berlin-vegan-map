@@ -21,7 +21,7 @@ npm start
 
 In case your default browser does not open the app automatically, navigate to http://localhost:4200/.
 
-Note that for this command, Internet Explorer is not supported. (same for other legacy browsers)
+Note that for this command, IE11 is not supported. (same for other legacy browsers)
 
 # Test
 
@@ -37,6 +37,16 @@ npm run build
 ```
 
 The build artifacts will be stored in the `dist/` directory.
+
+In order to manually test the build, run:
+
+```
+npm run serve-build
+```
+
+In case your default browser does not open the app automatically, navigate to http://localhost:8000/.
+
+This also works for IE11.
 
 # Build and Deploy
 
