@@ -18,7 +18,7 @@ export interface JsonLocation {
      * Note that due to a bug, this is currently named "created".
      */
     // TODO: Remove notice about "created" when bug has been fixed.
-    dateCreated?: string;
+    dateCreated: string;
 
     /**
      * Name.

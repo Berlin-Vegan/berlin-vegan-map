@@ -22,7 +22,7 @@ export class LocationService {
         private readonly configurationService: ConfigurationService,
         private readonly openingTimesService: OpeningTimesService,
         private readonly localStorageService: LocalStorageService,
-    ) {}
+    ) { }
 
     getGastroLocations(): Promise<GastroLocation[]> {
         return this.httpClient.get(this.configurationService.gastroLocationsUrl)
@@ -41,13 +41,13 @@ export class LocationService {
     private newGastroLocation(location: JsonGastroLocation) {
         // #region Workaround for a bug (wrong property name)
         // TODO: Remove when bug has been fixed.
-        if (!location.dateCreated && (location as any).created) {
+        if (!location.dateCreated) {
             location.dateCreated = (location as any).created;
         }
         // #endregion
         return new GastroLocation(
             location.id,
-            location.dateCreated ? moment(location.dateCreated) : undefined,
+            moment(location.dateCreated),
             location.name,
             location.street,
             location.cityCode,
@@ -88,7 +88,7 @@ export class LocationService {
     private newShoppingLocation(location: JsonShoppingLocation) {
         return new ShoppingLocation(
             location.id,
-            location.dateCreated ? moment(location.dateCreated) : undefined,
+            moment(location.dateCreated),
             location.name,
             location.street,
             location.cityCode,
