@@ -1,6 +1,6 @@
-import { DocumentUtil } from "@marco-eckstein/js-utils";
+import { BrowserUtil } from "@marco-eckstein/js-utils";
 
-const baseURI = DocumentUtil.getRelativeBaseURI();
+const baseURI = BrowserUtil.getRelativeBaseURI();
 const prefix = (baseURI ? baseURI + ":" : "") + "berlin-vegan-map.";
 
 export const keys = {
