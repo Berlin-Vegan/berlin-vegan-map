@@ -9,6 +9,7 @@
     "serve-build": "open-cli http://localhost:8000/ && cd ./dist && ws --spa index.html",
     "test": "ng test",
     "lint": "ng lint",
+    "verify": "npm run build && ng lint",
     "postinstall": "node write-version-info.js",
     "lighthouse": "lighthouse-ignore"
   },

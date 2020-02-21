@@ -23,17 +23,16 @@ In case your default browser does not open the app automatically, navigate to ht
 
 Note that for this command, IE11 is not supported. (same for other legacy browsers)
 
-# Test
-
-```
-npm test
-npm run lint
-```
-
 # Build
 
 ```
 npm run build
+```
+
+Alternatively (including lint):
+
+```
+npm run verify
 ```
 
 The build artifacts will be stored in the `dist/` directory.
@@ -44,9 +43,9 @@ In order to manually test the build, run:
 npm run serve-build
 ```
 
-In case your default browser does not open the app automatically, navigate to http://localhost:8000/.
-
 This also works for IE11.
+
+In case your default browser does not open the app automatically, navigate to http://localhost:8000/.
 
 # Build and Deploy
 
