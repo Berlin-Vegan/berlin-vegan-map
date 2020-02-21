@@ -8,14 +8,19 @@ https://www.berlin-vegan.de/map/
 * Change directory to `angular/`
 
 # Installation
+
  ```
 npm install
 ```
+
 # Run
+
 ```
 npm start
 ```
+
 # Test
+
 ```
 npm test
 npm run lint
