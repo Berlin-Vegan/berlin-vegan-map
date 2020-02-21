@@ -14,7 +14,10 @@ export interface JsonLocation {
      *
      * I.e., this is not the date when the actual location was created/opened,
      * but rather the date when this record was created in the database.
+     *
+     * Note that due to a bug, this is currently named "created".
      */
+    // TODO: Remove notice about "created" when bug has been fixed.
     dateCreated?: string;
 
     /**
