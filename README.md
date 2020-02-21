@@ -19,6 +19,8 @@ npm install
 npm start
 ```
 
+Note that for this command, Internet Explorer is not supported. (same for other legacy browsers)
+
 # Test
 
 ```

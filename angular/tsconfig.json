@@ -7,9 +7,9 @@
     "declaration": false,
     "module": "esnext",
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "importHelpers": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -23,5 +23,12 @@
     "noUnusedParameters": true,
     "strict": true,
     "strictPropertyInitialization": false
-  }
+  },
+  "angularCompilerOptions": {
+    // See https://github.com/angular/angular-cli/issues/10859
+    // TODO: Check later if we still need this:
+    "preserveWhitespaces": true,
+    "fullTemplateTypeCheck": true, // TODO: Remove when this has become the default.
+    "strictInjectionParameters": true // TODO: Remove when this has become the default.
+  },
 }

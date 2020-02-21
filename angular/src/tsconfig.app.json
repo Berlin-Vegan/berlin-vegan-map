@@ -4,17 +4,11 @@
     "outDir": "../out-tsc/app",
     "types": []
   },
-  "angularCompilerOptions": {
-    // See https://github.com/angular/angular-cli/issues/10859
-    // TODO: Check later if we still need this:
-    "preserveWhitespaces": true,
-    "fullTemplateTypeCheck": true, // TODO: Remove when this has become the default.
-    "strictInjectionParameters": true // TODO: Remove when this has become the default.
-  },
   "files": [
     "main.ts",
     "polyfills.ts"
-  ],  "include": [
+  ],
+  "include": [
     "src/**/*.d.ts"
   ]
 ,
