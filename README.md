@@ -19,6 +19,8 @@ npm install
 npm start
 ```
 
+In case your default browser does not open the app automatically, navigate to http://localhost:4200/.
+
 Note that for this command, Internet Explorer is not supported. (same for other legacy browsers)
 
 # Test
@@ -27,6 +29,14 @@ Note that for this command, Internet Explorer is not supported. (same for other 
 npm test
 npm run lint
 ```
+
+# Build
+
+```
+npm run build
+```
+
+The build artifacts will be stored in the `dist/` directory.
 
 # Build and Deploy
 
