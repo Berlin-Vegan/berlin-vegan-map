@@ -7,10 +7,11 @@ import { VeganCategory } from "./model/vegan-category";
 @Injectable()
 export class ConfigurationService {
 
-    private readonly locationsBaseUrl = (environment.production ? "/app/data/" : "assets/");
+    private readonly productionOrigin = "https://www.berlin-vegan.de";
+    private readonly locationsBaseUrl = (location.origin === this.productionOrigin ? "/app/data/" : "assets/");
     readonly gastroLocationsUrl = this.locationsBaseUrl + "GastroLocations.json";
     readonly shoppingLocationsUrl = this.locationsBaseUrl + "ShoppingLocations.json";
-    readonly reviewBaseUrl = "https://www.berlin-vegan.de/essen-und-trinken/kritiken/";
+    readonly reviewBaseUrl = this.productionOrigin + "/essen-und-trinken/kritiken/";
     readonly geoLocationTimeoutMillis = environment.production ? 15000 : 5000;
     readonly geoLocationFirefoxWorkaroundTimeoutMillis = environment.production ? 16000 : 8000;
     readonly geoLocationUpdateMillis = environment.production ? 20000 : 5000;
