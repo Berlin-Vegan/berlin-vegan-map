@@ -21,18 +21,17 @@ fi
 # See https://stackoverflow.com/questions/50662064/
 MSYS2_ARG_CONV_EXCL="--base-href" npm run verify -- --base-href=$BASE_HREF
 
-# The .json files are only needed for development.
-rm dist/assets/*.json
 cp $HTACCESS_FILE dist/.htaccess
 
 DEPLOY_DIR="/var/www/berlin-vegan-wp"$BASE_HREF
 SERVER="deploy@berlin-vegan.de"
 
 if command -v rsync &> /dev/null; then # if rsync is available
-    rsync -avz dist/ $SERVER:$DEPLOY_DIR
+    # The .json files are only needed for development.
+    rsync -avz --exclude=dist/assets/*.json dist/ $SERVER:$DEPLOY_DIR
 else
-    read -p "ssh $SERVER; then cd $DEPLOY_DIR; then rm -rf *; then, press ENTER!"
-    scp -r dist/. $SERVER:$DEPLOY_DIR
+    echo "You must install rsync. If you use Windows, see https://serverfault.com/a/872557/124321."
+    exit -1
 fi
 
 npm run lighthouse -- https://www.berlin-vegan.de$BASE_HREF

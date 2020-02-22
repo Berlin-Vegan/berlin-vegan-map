@@ -12,6 +12,8 @@ https://www.berlin-vegan.de/map/
 
 * Install a recent version of Node.js
 * Change directory to `angular/`
+* For deployment to the staging/production server from Windows, you need to install a Bash
+  (e.g. [Git Bash](https://gitforwindows.org/)) and [rsync](https://serverfault.com/a/872557/124321).
 
 ## Installation
 
