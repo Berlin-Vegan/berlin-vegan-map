@@ -3,7 +3,7 @@ const { gitDescribeSync } = require("git-describe");
 const packageJson = require("./package.json");
 
 const gitDescription = gitDescribeSync({
-    match: "[0-9].[0-9]",
+    match: "[0-9]*", // glob pattern
     customArguments: ["--abbrev=40"]
 });
 const versionInfo = {
