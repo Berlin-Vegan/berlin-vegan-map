@@ -1,21 +1,27 @@
-# Live Demo
+# berlin-vegan-map
+
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](
+    https://conventionalcommits.org
+)
+
+## Live Demo
 
 https://www.berlin-vegan.de/map/
 
-# Requirements
+## Requirements
 
 * Install a recent version of Node.js
 * Change directory to `angular/`
 
-# Installation
+## Installation
 
- ```
+```bash
 npm install
 ```
 
-# Run
+## Run
 
-```
+```bash
 npm start
 ```
 
@@ -23,15 +29,15 @@ In case your default browser does not open the app automatically, navigate to ht
 
 Note that for this command, IE11 is not supported. (same for other legacy browsers)
 
-# Build
+## Build
 
-```
+```bash
 npm run build
 ```
 
 Alternatively (including lint):
 
-```
+```bash
 npm run verify
 ```
 
@@ -39,7 +45,7 @@ The build artifacts will be stored in the `dist/` directory.
 
 In order to manually test the build, run:
 
-```
+```bash
 npm run serve-build
 ```
 
@@ -47,21 +53,21 @@ This also works for IE11.
 
 In case your default browser does not open the app automatically, navigate to http://localhost:8000/.
 
-# Build and Deploy
+## Build and Deploy
 
-## Staging
+### Staging
 
-```
+```bash
 sh deploy.sh
 ```
 
-## Production
+### Production
 
-```
+```bash
 sh deploy.sh production
 ```
 
-# License
+## License
 
 Copyright (C) 2015-2020  Berlin-Vegan
 
@@ -77,7 +83,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Contact
+## Contact
 
 https://www.berlin-vegan.de/
 
