@@ -17,9 +17,10 @@ else
     exit -1
 fi
 
+npm run lint
 # Setting MSYS2_ARG_CONV_EXCL is necessary for Git Bash (on Windows).
 # See https://stackoverflow.com/questions/50662064/
-MSYS2_ARG_CONV_EXCL="--base-href" npm run verify -- --base-href=$BASE_HREF
+MSYS2_ARG_CONV_EXCL="--base-href" npm run build -- --base-href=$BASE_HREF
 
 cp $HTACCESS_FILE dist/.htaccess
 
