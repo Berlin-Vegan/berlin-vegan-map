@@ -10,7 +10,7 @@ import { YesNoUnknown } from "./yes-no-unknown";
 export class ShoppingLocation extends Location {
     constructor(
         id: string,
-        dateCreated: Moment,
+        dateCreated: Moment | undefined,
         name: string,
         street: string,
         cityCode: number,

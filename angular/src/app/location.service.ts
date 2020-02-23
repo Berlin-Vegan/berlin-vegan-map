@@ -7,7 +7,7 @@ import { I18N } from "./i18n-provider";
 import { LocalStorageService } from "./local-storage.service";
 import { GastroLocation } from "./model/gastro-location";
 import { JsonGastroLocation } from "./model/json/json-gastro-location";
-import { JsonLocation } from "./model/json/json-location";
+import { fix, JsonLocation } from "./model/json/json-location";
 import { JsonShoppingLocation } from "./model/json/json-shopping-location";
 import { ShoppingLocation } from "./model/shopping-location";
 import { VeganCategory } from "./model/vegan-category";
@@ -28,6 +28,7 @@ export class LocationService {
         return this.httpClient.get(this.configurationService.gastroLocationsUrl)
             .toPromise()
             .then(response => response as any)
+            .then((locations: JsonGastroLocation[]) => locations.map(it => fix(it)))
             .then((locations: JsonGastroLocation[]) => locations.map(it => this.newGastroLocation(it)));
     }
 
@@ -35,16 +36,11 @@ export class LocationService {
         return this.httpClient.get(this.configurationService.shoppingLocationsUrl)
             .toPromise()
             .then(response => response as any)
+            .then((locations: JsonShoppingLocation[]) => locations.map(it => fix(it)))
             .then((locations: JsonShoppingLocation[]) => locations.map(it => this.newShoppingLocation(it)));
     }
 
     private newGastroLocation(location: JsonGastroLocation) {
-        // #region Workaround for a bug (wrong property name)
-        // TODO: Remove when bug has been fixed.
-        if (!location.dateCreated) {
-            location.dateCreated = (location as any).created;
-        }
-        // #endregion
         return new GastroLocation(
             location.id,
             moment(location.dateCreated),
@@ -88,7 +84,7 @@ export class LocationService {
     private newShoppingLocation(location: JsonShoppingLocation) {
         return new ShoppingLocation(
             location.id,
-            moment(location.dateCreated),
+            location.dateCreated ? moment(location.dateCreated) : undefined,
             location.name,
             location.street,
             location.cityCode,

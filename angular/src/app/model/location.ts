@@ -11,7 +11,7 @@ import { YesNoUnknown } from "./yes-no-unknown";
 export class Location {
     constructor(
         public readonly id: string,
-        public readonly dateCreated: Moment,
+        public readonly dateCreated: Moment | undefined,
         public readonly name: string,
         public readonly street: string,
         public readonly cityCode: number,

@@ -54,7 +54,7 @@ export class SearchComponent {
             "wlan",
             "review"
         ] : [
-            "isNew",
+            // "isNew", // Not supported by the server yet.
             "organic",
             "handicappedAccessible",
             "review"

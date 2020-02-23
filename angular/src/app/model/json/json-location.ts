@@ -15,10 +15,13 @@ export interface JsonLocation {
      * I.e., this is not the date when the actual location was created/opened,
      * but rather the date when this record was created in the database.
      *
+     * It is optional because right now, it is missing in JsonShoppingLocations. Still, JsonLocation is the
+     * correct place to define it, because in the future, all JsonLocations will have it.
+     *
      * Note that due to a bug, this is currently named "created".
      */
     // TODO: Remove notice about "created" when bug has been fixed.
-    dateCreated: string;
+    dateCreated?: string;
 
     /**
      * Name.
@@ -161,4 +164,16 @@ export interface JsonLocation {
      * Non-empty.
      */
     reviewURL?: string;
+}
+
+/**
+ * Workaround for a bug: wrong property name (see above)
+ *
+ * TODO: Remove when bug has been fixed.
+ */
+export function fix<T extends JsonLocation>(location: T): T {
+    if (!location.dateCreated) {
+        location.dateCreated = (location as any).created;
+    }
+    return location;
 }
