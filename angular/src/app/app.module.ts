@@ -6,7 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatMenuModule } from "@angular/material/menu";
-import { BrowserModule } from "@angular/platform-browser";
+import { BrowserModule, HammerModule } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule, Routes } from "@angular/router";
 import { ServiceWorkerModule } from "@angular/service-worker";
@@ -81,6 +81,7 @@ const appRoutes: Routes = [
             safeBlankRelTokens: ["noopener"],
         }),
         FormsModule,
+        HammerModule,
         HttpClientModule,
         MatMenuModule,
         NgxGalleryModule,
