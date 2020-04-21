@@ -1,14 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
+import { NativeGastroLocation, NativeLocation, NativeShoppingLocation } from "@berlin-vegan/berlin-vegan-data-js";
 import * as moment from "moment";
 
 import { ConfigurationService } from "./configuration.service";
 import { I18N } from "./i18n-provider";
 import { LocalStorageService } from "./local-storage.service";
 import { GastroLocation } from "./model/gastro-location";
-import { JsonGastroLocation } from "./model/json/json-gastro-location";
-import { fix, JsonLocation } from "./model/json/json-location";
-import { JsonShoppingLocation } from "./model/json/json-shopping-location";
 import { ShoppingLocation } from "./model/shopping-location";
 import { VeganCategory } from "./model/vegan-category";
 import { OpeningTimesService } from "./opening-times.service";
@@ -28,19 +26,19 @@ export class LocationService {
         return this.httpClient.get(this.configurationService.gastroLocationsUrl)
             .toPromise()
             .then(response => response as any)
-            .then((locations: JsonGastroLocation[]) => locations.map(it => fix(it)))
-            .then((locations: JsonGastroLocation[]) => locations.map(it => this.newGastroLocation(it)));
+            .then((locations: NativeGastroLocation[]) => locations.map(it => fix(it)))
+            .then((locations: NativeGastroLocation[]) => locations.map(it => this.newGastroLocation(it)));
     }
 
     getShoppingLocations(): Promise<ShoppingLocation[]> {
         return this.httpClient.get(this.configurationService.shoppingLocationsUrl)
             .toPromise()
             .then(response => response as any)
-            .then((locations: JsonShoppingLocation[]) => locations.map(it => fix(it)))
-            .then((locations: JsonShoppingLocation[]) => locations.map(it => this.newShoppingLocation(it)));
+            .then((locations: NativeShoppingLocation[]) => locations.map(it => fix(it)))
+            .then((locations: NativeShoppingLocation[]) => locations.map(it => this.newShoppingLocation(it)));
     }
 
-    private newGastroLocation(location: JsonGastroLocation) {
+    private newGastroLocation(location: NativeGastroLocation) {
         return new GastroLocation(
             location.id,
             moment(location.dateCreated),
@@ -81,7 +79,7 @@ export class LocationService {
         );
     }
 
-    private newShoppingLocation(location: JsonShoppingLocation) {
+    private newShoppingLocation(location: NativeShoppingLocation) {
         return new ShoppingLocation(
             location.id,
             location.dateCreated ? moment(location.dateCreated) : undefined,
@@ -111,7 +109,7 @@ export class LocationService {
         );
     }
 
-    private getOpenComment(location: JsonLocation): string | undefined {
+    private getOpenComment(location: NativeLocation): string | undefined {
         if (this.localStorageService.getLanguage() === "en") {
             if (location.openComment && !location.openCommentEnglish) {
                 return "Please see location website for opening time details!";
@@ -123,7 +121,7 @@ export class LocationService {
         }
     }
 
-    private getVeganCategory(location: JsonLocation): VeganCategory {
+    private getVeganCategory(location: NativeLocation): VeganCategory {
         switch (location.vegan) {
             case 5:
                 return "vegan";
@@ -139,4 +137,15 @@ export class LocationService {
     private removeFormatting(review: string | undefined): string | undefined {
         return review ? review.replace(/&shy;/g, "").replace(/<br\/>/g, " ") : review;
     }
+}
+
+/**
+ * Workaround for a bug: wrong property name "created"
+ *
+ * TODO: Remove when bug has been fixed.
+ */
+export function fix<T extends NativeLocation>(location: T): T {
+    // tslint:disable-next-line: deprecation
+    location.dateCreated = location.dateCreated ?? location.created;
+    return location;
 }

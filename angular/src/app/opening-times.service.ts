@@ -1,9 +1,9 @@
 import { Inject, Injectable } from "@angular/core";
+import { NativeLocation } from "@berlin-vegan/berlin-vegan-data-js";
 import { DateUtil } from "@marco-eckstein/js-utils";
 
 import { I18N } from "./i18n-provider";
 import { I18nService } from "./i18n.service";
-import { JsonLocation } from "./model/json/json-location";
 import { OpeningTime } from "./model/opening-time";
 import { OpeningTimeInterval } from "./model/opening-time-interval";
 import { OpeningTimesCollection } from "./model/opening-times-collection";
@@ -17,7 +17,7 @@ export class OpeningTimesService {
         private readonly i18nService: I18nService,
     ) {}
 
-    getOpeningTimesCollection(location: JsonLocation): OpeningTimesCollection {
+    getOpeningTimesCollection(location: NativeLocation): OpeningTimesCollection {
         return new OpeningTimesCollection(
         [
             new OpeningTime(0, this.parseOpeningTimeInterval(location.otSun), this.i18nService, this.i18n),
