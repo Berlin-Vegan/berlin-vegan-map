@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from "@kolkov/ngx-gallery";
 import { DayOfWeek, NavigatorUtil } from "@marco-eckstein/js-utils";
 
-import { ConfigurationService } from "../configuration.service";
+import { ConfigurationService } from "../config/configuration.service";
 import { I18N } from "../i18n-provider";
 import { Location } from "../model/location";
 import { Place } from "../model/place";

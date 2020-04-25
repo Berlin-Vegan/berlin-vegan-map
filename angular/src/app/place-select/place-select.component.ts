@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild } from "@angular/core";
 
-import { ConfigurationService } from "../configuration.service";
+import { ConfigurationService } from "../config/configuration.service";
 import { Place } from "../model/place";
 
 @Component({

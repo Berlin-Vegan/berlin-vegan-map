@@ -10,7 +10,7 @@ import {
     ViewChild,
 } from "@angular/core";
 
-import { ConfigurationService } from "../configuration.service";
+import { ConfigurationService } from "../config/configuration.service";
 import { I18N } from "../i18n-provider";
 import { LocalStorageService } from "../local-storage.service";
 import { Location } from "../model/location";

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, Output } from "@angular/core";
 
-import { ConfigurationService } from "../configuration.service";
+import { ConfigurationService } from "../config/configuration.service";
 import { I18N } from "../i18n-provider";
 import { GastroQuery } from "../model/gastro-query";
 import { GastroTag, getGastroTags } from "../model/gastro-tag";

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, OnDestroy, Output } from "@angular/core";
 
-import { ConfigurationService } from "../configuration.service";
+import { ConfigurationService } from "../config/configuration.service";
 import { GeocoderService } from "../geocoder.service";
 import { I18N } from "../i18n-provider";
 import { Place } from "../model/place";

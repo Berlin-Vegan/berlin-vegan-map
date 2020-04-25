@@ -2,7 +2,7 @@ import { Component, ElementRef, Inject, OnInit, ViewChild } from "@angular/core"
 import { ActivatedRoute } from "@angular/router";
 import { NavigatorUtil } from "@marco-eckstein/js-utils";
 
-import { ConfigurationService } from "../configuration.service";
+import { ConfigurationService } from "../config/configuration.service";
 import { GoogleMapComponent } from "../google-map/google-map.component";
 import { I18N } from "../i18n-provider";
 import { LocalStorageService } from "../local-storage.service";

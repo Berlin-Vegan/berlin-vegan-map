@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 
-import { ConfigurationService } from "./configuration.service";
+import { ConfigurationService } from "./config/configuration.service";
 import { LocalStorageService } from "./local-storage.service";
 
 declare var gtag: any;
