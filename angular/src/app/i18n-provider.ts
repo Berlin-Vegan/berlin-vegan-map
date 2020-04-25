@@ -488,10 +488,6 @@ const i18n = {
         },
     },
     about: {
-        heading: {
-            en: "About Berlin-Vegan Map",
-            de: "Über Berlin-Vegan Map",
-        },
         versionInfoHeading: {
             en: "Version info",
             de: "Versionsinfo",
