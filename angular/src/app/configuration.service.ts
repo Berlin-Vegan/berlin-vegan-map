@@ -26,7 +26,7 @@ export class ConfigurationService {
         },
         zoom: 12,
     };
-    readonly googleAnalyticsTrackingIds: { readonly[key: string]: string } = {
+    readonly googleAnalyticsTrackingIds: { readonly [key: string]: string } = {
         website: "UA-1323925-1",
         map: "UA-1323925-4",
     };
@@ -39,7 +39,7 @@ export class ConfigurationService {
             + "screen and (max-width: 480px) and (orientation: portrait),"
             + "screen and (max-width: 640px) and (orientation: landscape)",
     };
-    readonly minWidths = [ 568, 655, 740, 1080, 1210, 1380, 1600, 1915 ];
+    readonly minWidths = [568, 655, 740, 1080, 1210, 1380, 1600, 1915];
 
     hasMobileSize(): boolean {
         return !window.matchMedia(this.mediaQueries["min-width-1"]).matches;
