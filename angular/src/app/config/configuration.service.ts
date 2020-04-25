@@ -26,7 +26,7 @@ export class ConfigurationService {
         },
         zoom: 12,
     };
-    readonly googleAnalyticsTrackingIds: { readonly [key: string]: string } = {
+    readonly googleAnalyticsTrackingIds: { readonly [key: string]: string | undefined } = {
         website: "UA-1323925-1",
         map: "UA-1323925-4",
     };

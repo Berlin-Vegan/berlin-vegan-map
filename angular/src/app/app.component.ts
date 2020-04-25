@@ -25,18 +25,22 @@ export class AppComponent {
             || (window.navigator as any).standalone === true; // Safari
 
         if (gtag) {
-            gtag("config", trackingIds.website, {
-                "anonymize_ip": true,
-                "send_page_view": false,
-            });
-            gtag("config", trackingIds.map, {
-                "anonymize_ip": true,
-                "send_page_view": false,
-                "custom_map": {
-                    "dimension1": "appLanguage",
-                    "dimension2": "standalone"
-                }
-            });
+            if (trackingIds.website) {
+                gtag("config", trackingIds.website, {
+                    "anonymize_ip": true,
+                    "send_page_view": false,
+                });
+            }
+            if (trackingIds.map) {
+                gtag("config", trackingIds.map, {
+                    "anonymize_ip": true,
+                    "send_page_view": false,
+                    "custom_map": {
+                        "dimension1": "appLanguage",
+                        "dimension2": "standalone"
+                    }
+                });
+            }
 
             window.addEventListener("beforeinstallprompt", () => {
                 gtag("event", "beforeinstallprompt", {
@@ -59,16 +63,20 @@ export class AppComponent {
         ).subscribe(() => {
             if (gtag) {
                 const url = normalizeId(platformLocation.pathname);
-                gtag("event", "page_view", {
-                    "send_to": trackingIds.website,
-                    "page_path": url,
-                });
-                gtag("event", "page_view", {
-                    "send_to": trackingIds.map,
-                    "page_path": url,
-                    "appLanguage": localStorageService.getLanguage(),
-                    "standalone": standalone + ""
-                });
+                if (trackingIds.website) {
+                    gtag("event", "page_view", {
+                        "send_to": trackingIds.website,
+                        "page_path": url,
+                    });
+                }
+                if (trackingIds.map) {
+                    gtag("event", "page_view", {
+                        "send_to": trackingIds.map,
+                        "page_path": url,
+                        "appLanguage": localStorageService.getLanguage(),
+                        "standalone": standalone + ""
+                    });
+                }
             }
         });
     }
