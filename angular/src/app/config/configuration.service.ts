@@ -1,35 +1,28 @@
 import { Injectable } from "@angular/core";
 
-import { environment } from "../environments/environment";
+import { environment } from "../../environments/environment";
+import { VeganCategory } from "../model/vegan-category";
 
-import { VeganCategory } from "./model/vegan-category";
+import { defaultConfig as config } from "./default-config";
+
+const environmentKey = (environment.production ? "prod" : "dev");
 
 @Injectable()
 export class ConfigurationService {
 
-    private readonly productionOrigin = "https://www.berlin-vegan.de";
-    private readonly locationsBaseUrl = (location.origin === this.productionOrigin ? "/app/data/" : "assets/");
+    private readonly locationsBaseUrl = config.baseUrls[environmentKey].locations;
     readonly gastroLocationsUrl = this.locationsBaseUrl + "GastroLocations.json";
     readonly shoppingLocationsUrl = this.locationsBaseUrl + "ShoppingLocations.json";
-    readonly reviewBaseUrl = this.productionOrigin + "/essen-und-trinken/kritiken/";
+    readonly reviewBaseUrl = config.baseUrls[environmentKey].reviews;
     readonly geoLocationTimeoutMillis = environment.production ? 15000 : 5000;
     readonly geoLocationFirefoxWorkaroundTimeoutMillis = environment.production ? 16000 : 8000;
     readonly geoLocationUpdateMillis = environment.production ? 20000 : 5000;
-    readonly area = {
-        country: "de",
-        center: { lat: 52.5200070, lng: 13.4049540 },
-        bounds: {
-            north: 52.65,
-            south: 52.35,
-            west: 13.1,
-            east: 13.8,
-        },
-        zoom: 12,
-    };
-    readonly googleAnalyticsTrackingIds: { readonly [key: string]: string | undefined } = {
-        website: "UA-1323925-1",
-        map: "UA-1323925-4",
-    };
+    readonly area = config.area;
+    readonly googleAnalyticsTrackingIds = config.googleAnalyticsTrackingIds;
+    readonly homePage = config.homePage;
+    readonly nativeAppUrl = config.nativeAppUrl;
+    readonly reportNewLocationUrl = config.reportNewLocationUrl;
+    readonly reportProblemEmail = config.reportProblemEmail;
 
     // Keep these in sync with styles/variables.scss!
     readonly mediaQueries = {

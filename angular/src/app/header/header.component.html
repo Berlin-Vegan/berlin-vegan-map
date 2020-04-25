@@ -1,8 +1,12 @@
 <header class="flex-container-wrap">
     <div class="imgContainer flex-container-nowrap">
         <div>
-            <a href="https://www.berlin-vegan.de/" target="_self">
-                <img src="assets/images/bv-header-left.png" alt="Berlin-Vegan" title="Berlin-Vegan"/>
+            <a [href]="configurationService.homePage.url" target="_self">
+                <img
+                    src="assets/images/bv-header-left.png"
+                    [alt]="configurationService.homePage.title"
+                    [title]="configurationService.homePage.title"
+                />
             </a>
         </div>
         <div class="flex-container-nowrap">

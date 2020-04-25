@@ -2,13 +2,14 @@ import { Component, EventEmitter, Inject, Input, Output } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { ConfigurationService } from "../config/configuration.service";
+import { defaultConfig as config } from "../config/default-config";
 import { I18N } from "../i18n-provider";
 import { LocalStorageService } from "../local-storage.service";
 
 @Component({
     selector: "app-header",
     templateUrl: "./header.component.html",
-    styleUrls: [ "./header.component.scss" ],
+    styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent {
 
@@ -16,7 +17,7 @@ export class HeaderComponent {
         @Inject(I18N) readonly i18n: any,
         readonly router: Router,
         readonly localStorageService: LocalStorageService,
-        private readonly configurationService: ConfigurationService,
+        readonly configurationService: ConfigurationService,
     ) { }
 
     @Input() searchButtonIsDisabled = true;
@@ -31,25 +32,25 @@ export class HeaderComponent {
         { name: "shops", faClass: "fas fa-shopping-cart" },
         { name: "settings", faClass: "fas fa-cog" },
         { name: "about", faClass: "fas fa-info-circle" },
-    ];
+    ].filter(it => config.enableShops || it.name !== "shops") as { name: string, faClass: string }[];
 
     readonly links = [
         {
             name: "nativeApp",
             faClass: "fas fa-mobile-alt",
-            href: "https://www.berlin-vegan.de/bv-guide/"
+            href: this.configurationService.nativeAppUrl
         },
         {
             name: "reportNewLocation",
             faClass: "fas fa-edit",
-            href: "https://data.berlin-vegan.de/gastro-submit/"
+            href: this.configurationService.reportNewLocationUrl
         },
         {
             name: "reportProblem",
             faClass: "fas fa-envelope",
-            href: "mailto:karte@berlin-vegan.de"
+            href: "mailto:" + this.configurationService.reportProblemEmail
         },
-    ];
+    ].filter(it => !!it.href) as { name: string, faClass: string, href: string }[];
 
     get pathName(): string {
         return this.router.url.replace("/", "");
