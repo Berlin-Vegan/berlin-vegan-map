@@ -25,7 +25,7 @@ export class ConfigurationService {
     readonly reportProblemEmail = config.reportProblemEmail;
 
     // Keep these in sync with styles/variables.scss!
-    readonly mediaQueries = {
+    private readonly mediaQueries = {
         "min-width-1": "all and (min-width: 568px)",
         "is-touch-device": "(pointer: coarse),"
             + "(-moz-touch-enabled),"
