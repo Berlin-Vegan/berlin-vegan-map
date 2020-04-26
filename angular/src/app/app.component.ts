@@ -2,25 +2,24 @@ import { PlatformLocation } from "@angular/common";
 import { Component } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 
-import { ConfigurationService } from "./config/configuration.service";
 import { LocalStorageService } from "./local-storage.service";
 
 declare var gtag: any;
 
 @Component({
-  selector: "app-root",
-  template: `<router-outlet></router-outlet>`,
+    selector: "app-root",
+    template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {
 
     constructor(
         router: Router,
         platformLocation: PlatformLocation,
-        configurationService: ConfigurationService,
         localStorageService: LocalStorageService
     ) {
-        const trackingIds = configurationService.googleAnalyticsTrackingIds;
+        const trackingIds = environment.googleAnalyticsTrackingIds;
         const standalone = window.matchMedia("(display-mode: standalone)").matches
             || (window.navigator as any).standalone === true; // Safari
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, OnDestroy, Output } from "@angular/core";
+import { environment } from "src/environments/environment";
 
-import { ConfigurationService } from "../config/configuration.service";
 import { GeocoderService } from "../geocoder.service";
 import { I18N } from "../i18n-provider";
 import { Place } from "../model/place";
@@ -8,13 +8,12 @@ import { Place } from "../model/place";
 @Component({
     selector: "app-geolocation",
     templateUrl: "./geolocation.component.html",
-    styleUrls: [ "./geolocation.component.scss" ],
+    styleUrls: ["./geolocation.component.scss"],
 })
 export class GeolocationComponent implements OnDestroy {
 
     constructor(
         @Inject(I18N) readonly i18n: any,
-        private readonly configurationService: ConfigurationService,
         private readonly geocoderService: GeocoderService,
     ) { }
 
@@ -73,10 +72,7 @@ export class GeolocationComponent implements OnDestroy {
                                 if (firstCall) {
                                     this.autoHighlightRequest.emit();
                                 }
-                                this.updatePlace(
-                                    this.configurationService.geoLocationUpdateMillis,
-                                    false
-                                );
+                                this.updatePlace(environment.geoLocation.updateMillis, false);
                             });
                         }
                     },
@@ -85,16 +81,13 @@ export class GeolocationComponent implements OnDestroy {
                             this.info = "";
                             this.error = this.getErrorMessage(positionError);
                             if (!firstCall) {
-                                this.updatePlace(
-                                    this.configurationService.geoLocationUpdateMillis,
-                                    false
-                                );
+                                this.updatePlace(environment.geoLocation.updateMillis, false);
                             }
                         }
                     },
                     {
                         enableHighAccuracy: true,
-                        timeout: this.configurationService.geoLocationTimeoutMillis
+                        timeout: environment.geoLocation.updateMillis,
                     }
                 );
             }

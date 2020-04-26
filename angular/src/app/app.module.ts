@@ -19,7 +19,6 @@ import { AboutComponent } from "./about/about.component";
 import { AddressComponent } from "./address/address.component";
 import { AppComponent } from "./app.component";
 import { ConfigurationService } from "./config/configuration.service";
-import { defaultConfig as config } from "./config/default-config";
 import { GeocoderService } from "./geocoder.service";
 import { GeolocationComponent } from "./geolocation/geolocation.component";
 import { GoogleMapComponent } from "./google-map/google-map.component";
@@ -51,7 +50,7 @@ const appRoutes: Routes = [
     { path: "settings", component: SettingsComponent },
     { path: "shopping", redirectTo: "shops" }, // Legacy
     { path: "**", redirectTo: "gastro" },
-].filter(it => config.enableShops || !it.path.startsWith("shop"));
+].filter(it => environment.shoppingLocationsUrl || !it.path.startsWith("shop"));
 
 @NgModule({
     declarations: [

@@ -1,28 +1,9 @@
 import { Injectable } from "@angular/core";
 
-import { environment } from "../../environments/environment";
 import { VeganCategory } from "../model/vegan-category";
-
-import { defaultConfig as config } from "./default-config";
-
-const environmentKey = (environment.production ? "prod" : "dev");
 
 @Injectable()
 export class ConfigurationService {
-
-    private readonly locationsBaseUrl = config.baseUrls[environmentKey].locations;
-    readonly gastroLocationsUrl = this.locationsBaseUrl + "GastroLocations.json";
-    readonly shoppingLocationsUrl = this.locationsBaseUrl + "ShoppingLocations.json";
-    readonly reviewBaseUrl = config.baseUrls[environmentKey].reviews;
-    readonly geoLocationTimeoutMillis = environment.production ? 15000 : 5000;
-    readonly geoLocationFirefoxWorkaroundTimeoutMillis = environment.production ? 16000 : 8000;
-    readonly geoLocationUpdateMillis = environment.production ? 20000 : 5000;
-    readonly area = config.area;
-    readonly googleAnalyticsTrackingIds = config.googleAnalyticsTrackingIds;
-    readonly homePage = config.homePage;
-    readonly nativeAppUrl = config.nativeAppUrl;
-    readonly reportNewLocationUrl = config.reportNewLocationUrl;
-    readonly reportProblemEmail = config.reportProblemEmail;
 
     // Keep these in sync with styles/variables.scss!
     private readonly mediaQueries = {

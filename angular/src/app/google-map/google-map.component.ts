@@ -9,6 +9,7 @@ import {
     Output,
     ViewChild,
 } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 import { ConfigurationService } from "../config/configuration.service";
 import { I18N } from "../i18n-provider";
@@ -92,8 +93,8 @@ export class GoogleMapComponent implements OnInit {
 
     ngOnInit() {
         const mapOptions: google.maps.MapOptions = {
-            zoom: this.configurationService.area.zoom,
-            center: this.configurationService.area.center,
+            zoom: environment.area.zoom,
+            center: environment.area.center,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             gestureHandling: "greedy",
             mapTypeControl: this.localStorageService.settings.map.mapTypeControl,

@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output, ViewChild } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 import { ConfigurationService } from "../config/configuration.service";
 import { Place } from "../model/place";
@@ -31,8 +32,8 @@ export class PlaceSelectComponent implements OnInit {
 
     ngOnInit() {
         const options = {
-            componentRestrictions: { country: this.configurationService.area.country },
-            bounds: this.configurationService.area.bounds,
+            componentRestrictions: { country: environment.area.country },
+            bounds: environment.area.bounds,
             strictBounds: true,
             types: ["address"],
         };

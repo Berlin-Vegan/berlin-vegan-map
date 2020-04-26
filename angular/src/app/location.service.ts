@@ -2,8 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { NativeGastroLocation, NativeLocation, NativeShoppingLocation } from "@berlin-vegan/berlin-vegan-data-js";
 import * as moment from "moment";
+import { environment } from "src/environments/environment";
 
-import { ConfigurationService } from "./config/configuration.service";
 import { I18N } from "./i18n-provider";
 import { LocalStorageService } from "./local-storage.service";
 import { GastroLocation } from "./model/gastro-location";
@@ -17,13 +17,12 @@ export class LocationService {
     constructor(
         @Inject(I18N) private readonly i18n: any,
         private readonly httpClient: HttpClient,
-        private readonly configurationService: ConfigurationService,
         private readonly openingTimesService: OpeningTimesService,
         private readonly localStorageService: LocalStorageService,
     ) { }
 
     getGastroLocations(): Promise<GastroLocation[]> {
-        return this.httpClient.get(this.configurationService.gastroLocationsUrl)
+        return this.httpClient.get(environment.gastroLocationsUrl)
             .toPromise()
             .then(response => response as any)
             .then((locations: NativeGastroLocation[]) => locations.map(it => fix(it)))
@@ -31,7 +30,10 @@ export class LocationService {
     }
 
     getShoppingLocations(): Promise<ShoppingLocation[]> {
-        return this.httpClient.get(this.configurationService.shoppingLocationsUrl)
+        if (!environment.shoppingLocationsUrl) {
+            throw new Error("environment.shoppingLocationsUrl is missing.");
+        }
+        return this.httpClient.get(environment.shoppingLocationsUrl)
             .toPromise()
             .then(response => response as any)
             .then((locations: NativeShoppingLocation[]) => locations.map(it => fix(it)))
@@ -57,7 +59,7 @@ export class LocationService {
             location.commentEnglish,
             this.removeFormatting(location.review),
             // Base URL possibly not necessary in production:
-            location.reviewURL ? this.configurationService.reviewBaseUrl + location.reviewURL : undefined,
+            location.reviewURL ? environment.reviewsBaseUrl + location.reviewURL : undefined,
             location.organic,
             location.handicappedAccessible,
             location.pictures,
@@ -98,7 +100,7 @@ export class LocationService {
             location.commentEnglish,
             this.removeFormatting(location.review),
             // Base URL possibly not necessary in production:
-            location.reviewURL ? this.configurationService.reviewBaseUrl + location.reviewURL : undefined,
+            location.reviewURL ? environment.reviewsBaseUrl + location.reviewURL : undefined,
             location.organic,
             location.handicappedAccessible,
             [],

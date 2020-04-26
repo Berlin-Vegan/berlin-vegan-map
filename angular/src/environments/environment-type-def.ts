@@ -1,25 +1,20 @@
-export interface Config {
-
-    readonly baseUrls: {
-        readonly dev: {
-            readonly locations: string
-            readonly reviews?: string
-        }
-        readonly prod: {
-            readonly locations: string
-            readonly reviews?: string
-        }
+export interface Environment {
+    readonly production: boolean;
+    readonly geoLocation: {
+        readonly timeoutMillis: number
+        readonly firefoxWorkaroundTimeoutMillis: number
+        readonly updateMillis: number
     };
-
+    readonly gastroLocationsUrl: string;
+    readonly shoppingLocationsUrl?: string;
+    readonly reviewsBaseUrl: string;
     readonly homePage: {
         readonly url: string
         readonly title: string
     };
-
     readonly nativeAppUrl?: string;
     readonly reportNewLocationUrl?: string;
     readonly reportProblemEmail: string;
-    readonly enableShops: boolean;
 
     readonly area: {
 
@@ -36,7 +31,7 @@ export interface Config {
         readonly center: {
             readonly lat: number
             readonly lng: number
-        },
+        }
 
         /**
          * The initial bounds of the map
@@ -46,7 +41,7 @@ export interface Config {
             readonly south: number
             readonly west: number
             readonly east: number
-        },
+        }
 
         /**
          * The initial zoom of the map
