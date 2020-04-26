@@ -15,33 +15,33 @@ import { ExternalHRefModule } from "@marco-eckstein/angular-lib-common";
 
 import { environment } from "../environments/environment";
 
-import { AboutComponent } from "./about/about.component";
-import { AddressComponent } from "./address/address.component";
 import { AppComponent } from "./app.component";
-import { ConfigurationService } from "./config/configuration.service";
+import { ConfigurationService } from "./configuration.service";
 import { GeocoderService } from "./geocoder.service";
-import { GeolocationComponent } from "./geolocation/geolocation.component";
-import { GoogleMapComponent } from "./google-map/google-map.component";
 import { HammerProvider } from "./hammer-provider";
-import { HeaderComponent } from "./header/header.component";
 import { I18nProvider } from "./i18n-provider";
 import { I18nService } from "./i18n.service";
-import { InfoBoxComponent } from "./info-box/info-box.component";
-import { KilometerPipe } from "./kilometer.pipe";
 import { LocalStorageService } from "./local-storage.service";
 import { LocationService } from "./location.service";
-import { MainComponent } from "./main/main.component";
-import { NewIndicatorComponent } from "./new-indicator/new-indicator.component";
 import { OpeningTimesService } from "./opening-times.service";
-import { PlaceSelectComponent } from "./place-select/place-select.component";
-import { ResultsListComponent } from "./results-list/results-list.component";
+import { AboutComponent } from "./pages/about/about.component";
+import { GoogleMapComponent } from "./pages/main/google-map/google-map.component";
+import { AddressComponent } from "./pages/main/info-box/address/address.component";
+import { InfoBoxComponent } from "./pages/main/info-box/info-box.component";
+import { ShareLinkComponent } from "./pages/main/info-box/share-link/share-link.component";
+import { KilometerPipe } from "./pages/main/kilometer.pipe";
+import { MainComponent } from "./pages/main/main.component";
+import { ResultsListComponent } from "./pages/main/results-list/results-list.component";
+import { GeolocationComponent } from "./pages/main/search/geolocation/geolocation.component";
+import { PlaceSelectComponent } from "./pages/main/search/geolocation/place-select/place-select.component";
+import { SearchComponent } from "./pages/main/search/search.component";
+import { SortComponent } from "./pages/main/sort/sort.component";
+import { StatisticsComponent } from "./pages/main/statistics/statistics.component";
+import { SettingsComponent } from "./pages/settings/settings.component";
 import { SearchService } from "./search.service";
-import { SearchComponent } from "./search/search.component";
-import { SettingsComponent } from "./settings/settings.component";
-import { ShareLinkComponent } from "./share-link/share-link.component";
-import { SortComponent } from "./sort/sort.component";
-import { StatisticsComponent } from "./statistics/statistics.component";
-import { TextClearComponent } from "./text-clear/text-clear.component";
+import { HeaderComponent } from "./shared-components/header/header.component";
+import { NewIndicatorComponent } from "./shared-components/new-indicator/new-indicator.component";
+import { TextClearComponent } from "./shared-components/text-clear/text-clear.component";
 
 const appRoutes: Routes = [
     { path: "gastro", component: MainComponent },

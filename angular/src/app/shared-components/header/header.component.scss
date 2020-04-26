@@ -1,0 +1,122 @@
+@import "variables";
+
+.imgContainer {
+    flex: 1;
+
+    img {
+        height: 7vh;
+    }
+
+    div:nth-of-type(2) {
+        flex: 1;
+    }
+
+    div:nth-of-type(2) div:nth-of-type(1) {
+        width: 21vh; /* 21 = 3 * 7. Indeed vh, not vw! */
+        background-image: url("../../../assets/images/bv-header-center.png");
+        background-repeat: no-repeat;
+        background-size: auto 7vh;
+    }
+
+    div:nth-of-type(2) div:nth-of-type(2) {
+        flex: 1;
+        background-image: url("../../../assets/images/bv-header-right.png");
+        background-repeat: repeat-x;
+        background-size: auto 7vh;
+    }
+}
+
+$col-1-width-small: 29%;
+$col-1-width-big: 19%;
+$col-2-width-small: calc(100% - 2 * #{$col-1-width-small});
+$col-2-width-big: calc(100% - 2 * #{$col-1-width-big});
+$col-3-width-small: $col-1-width-small;
+$col-3-width-big: $col-1-width-big;
+
+nav {
+    width: 100%;
+    align-items: flex-end;
+    color: white;
+    margin-top: -8px;
+    padding-top: -8px;
+    padding-bottom: 4px;
+    background-color: $bv-green;
+
+    .col-1 {
+        width: $col-1-width-small;
+        text-align: left;
+        padding-left: $side-padding;
+
+        @media #{$min-width-1} {
+            width: $col-1-width-big;
+        }
+    }
+
+    .col-2 {
+        width: $col-2-width-small;
+        text-align: center;
+        text-transform: uppercase;
+
+        @media #{$min-width-1} {
+            width: $col-2-width-big;
+        }
+    }
+
+    .col-3 {
+        width: $col-3-width-small;
+        text-align: right;
+        padding-right: $side-padding;
+
+        @media #{$min-width-1} {
+            width: $col-3-width-big;
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li, .menu-button {
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .col-2 li:not(:last-of-type)::after {
+        content: '\00A0' // No-break space
+    }
+
+    .col-3 li:last-of-type::before {
+        @media #{$min-width-1} {
+            content: '|'
+        }
+    }
+
+    a {
+        color: white;
+    }
+
+    .active-link {
+        color: $very-bright-green;
+        pointer-events: none;
+        cursor: default;
+    }
+}
+
+.selectedLanguage {
+    color: $very-bright-green;
+    cursor: default;
+}
+
+.selectedLanguage {
+    display: none;
+
+    @media #{$min-width-1} {
+      display: inline; /* initial is more elegant, but does not work in IE11. */
+    }
+}
+
+button {
+    font-size: 1.1em;
+}
