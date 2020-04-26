@@ -1,6 +1,7 @@
 import { Component, Inject } from "@angular/core";
 
 import { environment } from "../../environments/environment";
+import { versionInfo } from "../../environments/version-info";
 import { I18N } from "../i18n-provider";
 
 @Component({
@@ -13,7 +14,7 @@ export class AboutComponent {
     constructor(@Inject(I18N) readonly i18n: any) { }
 
     readonly production = environment.production;
-    readonly versionInfo = environment.versionInfo;
+    readonly versionInfo = versionInfo;
 
     get gitHubCommitUrl(): string {
         const vi = this.versionInfo;
