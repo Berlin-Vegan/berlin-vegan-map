@@ -6,6 +6,6 @@
 import { versionInfo } from "./version-info";
 
 export const environment = {
-  production: false,
-  versionInfo: versionInfo,
+    production: false,
+    versionInfo: versionInfo,
 };
