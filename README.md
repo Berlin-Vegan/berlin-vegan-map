@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-https://www.berlin-vegan.de/map/
+<https://www.berlin-vegan.de/map/>
 
 ## Requirements
 
@@ -27,7 +27,7 @@ npm install
 npm start
 ```
 
-In case your default browser does not open the app automatically, navigate to http://localhost:4200/.
+In case your default browser does not open the app automatically, navigate to <http://localhost:4200/>.
 
 Note that for this command, IE11 is not supported. (same for other legacy browsers)
 
@@ -53,7 +53,7 @@ npm run serve-build
 
 This also works for IE11.
 
-In case your default browser does not open the app automatically, navigate to http://localhost:8000/.
+In case your default browser does not open the app automatically, navigate to <http://localhost:8000/>.
 
 ## Build and Deploy
 
@@ -87,7 +87,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## Contact
 
-https://www.berlin-vegan.de/
+<https://www.berlin-vegan.de/>
 
 karte@berlin-vegan.de
 
