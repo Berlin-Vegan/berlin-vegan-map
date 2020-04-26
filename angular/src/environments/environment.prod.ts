@@ -1,6 +1,6 @@
-import { versionInfo } from "./version-info";
+import { environmentDefault } from "./environment-default";
 
-export const environment = {
+export const environment: typeof environmentDefault = {
+    ...environmentDefault,
     production: true,
-    versionInfo: versionInfo,
 };
