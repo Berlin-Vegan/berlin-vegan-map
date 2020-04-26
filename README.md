@@ -69,6 +69,19 @@ sh deploy.sh
 sh deploy.sh production
 ```
 
+## Usage with other cities
+
+If you want to use the app for other cities, you have to change some files, because it is not completely
+configurable yet:
+
+* `src/index.html`
+* `src/manifest.json`
+* `src/assets/*.json` (optional - useful for development)
+* `src/assets/images/*`
+* `src/environments/environment-default.ts`
+* `src/environments/environment.prod.ts`
+* `src/styles/_variables.scss` (optional)
+
 ## License
 
 Copyright (C) 2015-2020  Berlin-Vegan
