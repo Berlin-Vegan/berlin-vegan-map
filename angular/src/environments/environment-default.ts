@@ -13,6 +13,8 @@ export const environmentDefault: Environment = {
     nativeAppUrl: "https://www.berlin-vegan.de/bv-guide/",
     reportNewLocationUrl: "https://data.berlin-vegan.de/gastro-submit/",
     reportProblemEmail: "karte@berlin-vegan.de",
+    gastroVeganCategoryOptions: [],
+    shoppingVeganCategoryOptions: ["vegan", "vegetarian", "omnivorous"],
     homePage: {
         url: "https://www.berlin-vegan.de/",
         title: "Berlin-Vegan",

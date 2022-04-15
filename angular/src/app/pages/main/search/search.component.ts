@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Output } from "@angular/core";
+import { VeganCategory } from "src/app/model/vegan-category";
 
+import { environment } from "../../../../environments/environment";
 import { ConfigurationService } from "../../../configuration.service";
 import { I18N } from "../../../i18n-provider";
 import { GastroQuery } from "../../../model/gastro-query";
@@ -7,7 +9,6 @@ import { GastroTag, getGastroTags } from "../../../model/gastro-tag";
 import { Place } from "../../../model/place";
 import { ShoppingQuery } from "../../../model/shopping-query";
 import { getShoppingTags, ShoppingTag } from "../../../model/shopping-tag";
-import { getVeganCategories } from "../../../model/vegan-category";
 
 @Component({
     selector: "app-search",
@@ -26,7 +27,10 @@ export class SearchComponent {
     @Output() readonly manualPlaceHighlightRequest = new EventEmitter<void>();
     @Output() readonly autoPlaceHighlightRequest = new EventEmitter<void>();
 
-    readonly veganCategories = getVeganCategories();
+    get veganCategoryOptions(): VeganCategory[] {
+        return this.isGastro ?
+            environment.gastroVeganCategoryOptions : environment.shoppingVeganCategoryOptions;
+    }
 
     get tags(): (GastroTag | ShoppingTag)[] {
         return this.query instanceof GastroQuery ? getGastroTags() : getShoppingTags();

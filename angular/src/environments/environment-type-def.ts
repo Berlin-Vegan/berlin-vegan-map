@@ -1,3 +1,5 @@
+import { VeganCategory } from "src/app/model/vegan-category";
+
 export interface Environment {
     readonly production: boolean;
     readonly geoLocation: {
@@ -15,6 +17,8 @@ export interface Environment {
     readonly nativeAppUrl?: string;
     readonly reportNewLocationUrl?: string;
     readonly reportProblemEmail: string;
+    readonly gastroVeganCategoryOptions: VeganCategory[];
+    readonly shoppingVeganCategoryOptions: VeganCategory[];
 
     readonly area: {
 

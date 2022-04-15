@@ -20,10 +20,10 @@
             />{{i18n.search.text.namesOnly}}
         </label>
     </section>
-    <section class="flex-container-wrap">
+    <section *ngIf="veganCategoryOptions.length > 0" class="flex-container-wrap">
         <h1>{{i18n.category.header}}</h1>
         <div class="flex-container-wrap">
-            <label *ngFor="let veganCategory of veganCategories" title="{{i18n.enums.veganCategory.verbose[veganCategory]}}">
+            <label *ngFor="let veganCategory of veganCategoryOptions" title="{{i18n.enums.veganCategory.verbose[veganCategory]}}">
                 <input
                     type="checkbox"
                     [name]="'veganCategories-' + veganCategory"
