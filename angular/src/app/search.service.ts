@@ -164,6 +164,7 @@ function normalizeText(text: string | undefined): string {
         .replace(/é|ê/g, "e")
         .replace(/ó|ô/g, "o")
         .replace(/ñ/g, "n")
+        .replace(/['´`]/g, "")
         .toLowerCase()
         .trim();
 }
