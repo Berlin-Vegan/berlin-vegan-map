@@ -1,7 +1,7 @@
 import { keys } from "./local-storage-keys";
 import { Language } from "./model/language";
 
-export {};
+export { };
 
 declare var global_language: Language;
 
@@ -27,9 +27,10 @@ function redirectToHttps() {
 
 function getLanguage(): Language {
     let language: string;
+    const languageFromUrl = new URLSearchParams(window.location.search).get("lang");
 
-    if (location.href.includes("lang=")) {
-        language = location.href.split("lang=")[1];
+    if (languageFromUrl) {
+        language = languageFromUrl;
     } else if (localStorage) {
         language = localStorage.getItem(keys.language) ?? "de";
     } else {
