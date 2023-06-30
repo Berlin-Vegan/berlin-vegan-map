@@ -34,7 +34,7 @@ export const environmentDefault: Environment = {
         zoom: 12,
     },
     googleAnalyticsTrackingIds: {
-        website: "UA-1323925-1",
-        map: "UA-1323925-4",
+        website: "G-DMHN7C0Y1E",
+        map: "G-7CNH0V1P6E",
     }
 };
