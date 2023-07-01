@@ -1,6 +1,6 @@
 {
   "name": "berlin-vegan-map",
-  "version": "4.6.0",
+  "version": "4.7.0",
   "license": "AGPL-3.0-only",
   "scripts": {
     "_comment": "env-cmd sets environment variables from file ./.env for the following command.",
