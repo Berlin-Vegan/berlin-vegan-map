@@ -179,8 +179,8 @@ const i18n = {
             de: "Frühstück",
         },
         brunch: {
-            en: "Brunch",
-            de: "Brunch",
+            en: "Brunch buffet",
+            de: "Brunch-Buffet",
         },
         dog: {
             en: "Dogs allowed",
