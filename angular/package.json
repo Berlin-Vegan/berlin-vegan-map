@@ -1,6 +1,6 @@
 {
   "name": "berlin-vegan-map",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "license": "AGPL-3.0-only",
   "scripts": {
     "ng": "ng",
@@ -45,7 +45,7 @@
     "@angular/cli": "9.0.3",
     "@angular/compiler-cli": "9.0.2",
     "@angular/language-service": "9.0.2",
-    "@berlin-vegan/berlin-vegan-data-js": "^0.2.0",
+    "@berlin-vegan/berlin-vegan-data-js": "^0.3.0",
     "@marco-eckstein/lighthouse-ignore": "^0.2.0",
     "@types/googlemaps": "^3.30.17",
     "@types/hammerjs": "^2.0.36",
