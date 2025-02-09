@@ -103,7 +103,7 @@ export class LocationService {
             location.reviewURL ? environment.reviewsBaseUrl + location.reviewURL : undefined,
             location.organic,
             location.handicappedAccessible,
-            [],
+            location.pictures,
             undefined,
             window.location.origin + "/shops/" + location.id,
             location.tags.map(it => this.i18n.enums.shoppingTag[it]).join(", "),
