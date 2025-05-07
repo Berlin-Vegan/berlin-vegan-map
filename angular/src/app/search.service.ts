@@ -160,11 +160,11 @@ function normalizeText(text: string | undefined): string {
     // So we find café when searching for cafe and vice versa.
     // Analogous motivation for the other letters.
     return text
+        .toLowerCase()
         .replace(/á|â|à/g, "a")
         .replace(/é|ê/g, "e")
         .replace(/ó|ô/g, "o")
         .replace(/ñ/g, "n")
         .replace(/['´`]/g, "")
-        .toLowerCase()
         .trim();
 }
