@@ -4,31 +4,30 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
+    "esModuleInterop": true,
     "declaration": false,
-    "module": "esnext",
+    "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
     "experimentalDecorators": true,
-    "target": "es2015",
+    "target": "ES2022",
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
-      "es2018",
-      "dom"
+      "ES2022",
+      "DOM"
     ],
-    "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
-    // See https://github.com/angular/angular-cli/issues/10859
-    // TODO: Check later if we still need this:
     "preserveWhitespaces": true,
-    "fullTemplateTypeCheck": true, // TODO: Remove when this has become the default.
-    "strictInjectionParameters": true // TODO: Remove when this has become the default.
-  },
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
 }

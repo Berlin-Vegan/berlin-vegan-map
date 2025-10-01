@@ -8,7 +8,7 @@ export class OpeningTimesCollection {
 
     getTodayFriendly(): string {
         const otIntervalToday = this.openingTimes[new Date().getDay()].interval;
-        return otIntervalToday.isOpen ?
+        return otIntervalToday.isOpen() ?
             this.i18n.openingTimes.isOpenToday + ": " + otIntervalToday.friendly
             :
             this.i18n.openingTimes.isClosedToday;

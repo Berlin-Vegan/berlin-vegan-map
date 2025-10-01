@@ -64,14 +64,14 @@ export class GoogleMapComponent implements OnInit {
                 });
 
                 google.maps.event.addListener(this.coordinatesMarker, "click", () => {
-                    this.map.setCenter(this.coordinatesMarker.getPosition());
-                    this.infoWindow.setContent(this.coordinatesMarker.getTitle());
-                    this.infoWindow.open(this.map, this.coordinatesMarker);
+                    this.map.setCenter(this.coordinatesMarker!.getPosition());
+                    this.infoWindow.setContent(this.coordinatesMarker!.getTitle());
+                    this.infoWindow.open(this.map, this.coordinatesMarker!);
                 });
             }
         } else if (this.coordinatesMarker) {
             this.coordinatesMarker.setMap(null);
-            delete this.coordinatesMarker;
+            this.coordinatesMarker = undefined;
         }
     }
 
@@ -86,7 +86,7 @@ export class GoogleMapComponent implements OnInit {
     @ViewChild("mapDiv", { static: true }) mapDiv: ElementRef;
 
     private map: google.maps.Map;
-    private coordinatesMarker: google.maps.Marker;
+    private coordinatesMarker?: google.maps.Marker;
     private readonly markersToLocations = new Map<google.maps.Marker, Location>();
     private readonly locationsToMarkers = new Map<Location, google.maps.Marker>();
     private readonly infoWindow = new google.maps.InfoWindow();
@@ -157,7 +157,9 @@ export class GoogleMapComponent implements OnInit {
     }
 
     selectCoordinates() {
-        setTimeout(() => { google.maps.event.trigger(this.coordinatesMarker, "click"); }, 0);
+        if (this.coordinatesMarker) {
+            setTimeout(() => { google.maps.event.trigger(this.coordinatesMarker!, "click"); }, 0);
+        }
     }
 
     resize() {
