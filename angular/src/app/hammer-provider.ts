@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-// tslint:disable-next-line:ordered-imports (false positive on CLI)
 import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from "@angular/platform-browser";
 import "hammer-timejs";
 import "hammerjs";
 
-delete Hammer.defaults.cssProps.userSelect; // Re-enable text selection
+(Hammer.defaults.cssProps as Partial<typeof Hammer.defaults.cssProps>).userSelect = undefined; // Re-enable text selection
 
 @Injectable()
 export class HammerConfig extends HammerGestureConfig  {

@@ -1,8 +1,7 @@
 /// <reference types="@types/googlemaps"/>
 
 import "./init";
-// tslint:disable-next-line:ordered-imports
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatMenuModule } from "@angular/material/menu";
@@ -11,7 +10,7 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule, Routes } from "@angular/router";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { NgxGalleryModule } from "@kolkov/ngx-gallery";
-import { ExternalHRefModule } from "@marco-eckstein/angular-lib-common";
+import { ExternalHrefModule } from "./shared/external-href/external-href.module";
 
 import { environment } from "../environments/environment";
 
@@ -75,14 +74,13 @@ const appRoutes: Routes = [
     ],
     imports: [
         BrowserModule,
-        ExternalHRefModule.forRoot({
-            isExternalHRef: isExternalHRef,
+        ExternalHrefModule.forRoot({
+            isExternalHref: isExternalHRef,
             externalHRefTargetDefaultsToBlank: true,
             safeBlankRelTokens: ["noopener"],
         }),
         FormsModule,
         HammerModule,
-        HttpClientModule,
         MatMenuModule,
         NgxGalleryModule,
         RouterModule.forRoot(appRoutes),
@@ -99,8 +97,9 @@ const appRoutes: Routes = [
         LocalStorageService,
         OpeningTimesService,
         SearchService,
+        provideHttpClient(withInterceptorsFromDi()),
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule { }
 
