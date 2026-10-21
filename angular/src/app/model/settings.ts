@@ -1,7 +1,7 @@
 import { Storable } from "./storable";
 
 export class Settings extends Storable {
-    rememberLastQuery = true;
+    rememberLastQuery = false;
     showPictures = true;
     clickInListCentersLocation = true;
     monthsNew = 3;
