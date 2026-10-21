@@ -10,9 +10,8 @@ export const environmentDefault: Environment = {
     gastroLocationsUrl: "assets/GastroLocations.json",
     shoppingLocationsUrl: "assets/ShoppingLocations.json",
     reviewsBaseUrl: "https://www.berlin-vegan.de/essen-und-trinken/kritiken/",
-    nativeAppUrl: "https://www.berlin-vegan.de/bv-guide/",
     reportNewLocationUrl: "https://data.berlin-vegan.de/gastro-submit/",
-    reportProblemEmail: "karte@berlin-vegan.de",
+    googleListUrl: "https://maps.app.goo.gl/BQHZYyT6CBfAkcNQ6",
     gastroVeganCategoryOptions: [],
     shoppingVeganCategoryOptions: ["vegan", "vegetarian", "omnivorous"],
     homePage: {

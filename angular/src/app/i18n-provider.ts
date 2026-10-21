@@ -403,12 +403,12 @@ const i18n = {
             de: "Geschäfte",
         },
         reportNewLocation: {
-            en: "Suggest new location",
-            de: "Neue Location vorschlagen",
+            en: "Suggest location",
+            de: "Location vorschlagen",
         },
-        reportProblem: {
-            en: "Report problem",
-            de: "Problem melden",
+        googleListUrl: {
+            en: "Google List",
+            de: "Google-Liste",
         },
         settings: {
             en: "Settings",
@@ -417,10 +417,6 @@ const i18n = {
         about: {
             en: "About",
             de: "Über",
-        },
-        nativeApp: {
-            en: "Native app",
-            de: "Native App",
         },
         menu: {
             en: "Menu",

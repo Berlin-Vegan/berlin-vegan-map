@@ -39,19 +39,14 @@ export class HeaderComponent {
 
     readonly links = [
         {
-            name: "nativeApp",
-            faClass: "fas fa-mobile-alt",
-            href: environment.nativeAppUrl
-        },
-        {
             name: "reportNewLocation",
             faClass: "fas fa-edit",
             href: environment.reportNewLocationUrl
         },
         {
-            name: "reportProblem",
-            faClass: "fas fa-envelope",
-            href: "mailto:" + environment.reportProblemEmail
+            name: "googleListUrl",
+            faClass: "fas fa-map-pin",
+            href: environment.googleListUrl
         },
     ].filter(it => !!it.href) as { name: string, faClass: string, href: string }[];
 

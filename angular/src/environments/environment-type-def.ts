@@ -14,9 +14,8 @@ export interface Environment {
         readonly url: string
         readonly title: string
     };
-    readonly nativeAppUrl?: string;
     readonly reportNewLocationUrl?: string;
-    readonly reportProblemEmail: string;
+    readonly googleListUrl: string;
     readonly gastroVeganCategoryOptions: VeganCategory[];
     readonly shoppingVeganCategoryOptions: VeganCategory[];
 
