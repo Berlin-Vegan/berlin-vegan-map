@@ -163,7 +163,7 @@ function normalizeText(text: string | undefined): string {
         .toLowerCase()
         .replace(/á|â|à/g, "a")
         .replace(/é|ê/g, "e")
-        .replace(/ó|ô/g, "o")
+        .replace(/ó|ô|ø/g, "o")
         .replace(/ñ/g, "n")
         .replace(/['´`]/g, "")
         .trim();
