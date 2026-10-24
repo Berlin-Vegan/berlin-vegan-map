@@ -45,6 +45,6 @@ export class ConfigurationService {
     }
 
     private getIconUrlByColor(colorString: string): string {
-        return "https://maps.google.com/mapfiles/ms/icons/" + colorString + "-dot.png";
+        return new URL(`assets/images/bv-pin-${colorString}.png`, document.baseURI).href;
     }
 }

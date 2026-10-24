@@ -136,9 +136,7 @@ export class GoogleMapComponent implements OnInit {
     private getIcon(location: Location): google.maps.Icon {
         return {
             url: this.configurationService.getIconUrl(location.veganCategory),
-            size: new google.maps.Size(50, 50),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(15, 34)
+            scaledSize: new google.maps.Size(30, 30),
         };
     }
 
