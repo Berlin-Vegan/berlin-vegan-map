@@ -25,7 +25,7 @@ export class InfoBoxComponent implements OnChanges {
     @Input() place: Place | undefined;
 
     @Output() readonly centerLocation = new EventEmitter<void>();
-    // tslint:disable-next-line:no-output-native
+    // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() readonly close = new EventEmitter<void>();
 
     readonly isPhone = NavigatorUtil.isPhone();

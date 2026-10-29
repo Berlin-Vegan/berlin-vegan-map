@@ -6,7 +6,9 @@ import { environment } from "src/environments/environment";
 
 import { LocalStorageService } from "./local-storage.service";
 
-declare var gtag: any;
+type GtagFunction = (command: string, targetId: string, params?: Record<string, unknown>) => void;
+
+declare const gtag: GtagFunction | undefined;
 
 @Component({
     selector: "app-root",

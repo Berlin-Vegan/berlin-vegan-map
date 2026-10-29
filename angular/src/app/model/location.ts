@@ -1,5 +1,5 @@
 import { GeoUtil, LatitudeLongitude } from "@marco-eckstein/js-utils";
-import * as moment from "moment";
+import moment from "moment";
 import { Moment } from "moment";
 
 import { Language } from "./language";

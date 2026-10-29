@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { NativeGastroLocation, NativeLocation, NativeShoppingLocation } from "@berlin-vegan/berlin-vegan-data-js";
-import * as moment from "moment";
+import moment from "moment";
 import { environment } from "src/environments/environment";
 
 import { I18N } from "./i18n-provider";
@@ -147,7 +147,6 @@ export class LocationService {
  * TODO: Remove when bug has been fixed.
  */
 export function fix<T extends NativeLocation>(location: T): T {
-    // tslint:disable-next-line: deprecation
     location.dateCreated = location.dateCreated ?? location.created;
     return location;
 }
